@@ -1,0 +1,17 @@
+#---
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    config:
+      fail-fast: true
+     # discovery:
+       # service-id: config-server
+      #  enabled: true
+      profile: pro
+      label: master
+      uri: http://192.168.88.104:10000/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://${spring.cloud.client.ipAddress}:3001/eureka/

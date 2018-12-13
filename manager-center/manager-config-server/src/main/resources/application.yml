@@ -1,0 +1,48 @@
+#---
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          password:
+          clone-on-start: true
+          search-paths: local/
+          uri: https://github.com/riceincoke/springcloud_spider_pros.git
+          username:
+      label: master
+  application:
+    name: config-server
+  rabbitmq:
+    connection-timeout: 0
+    template:
+      retry:
+        enabled: true
+    password: admin
+    port: 5672
+    host: ${spring.cloud.client.ipAddress}
+    virtual-host: /
+    username: admin
+server:
+  port: 10000
+management:
+  security:
+    enabled: false
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ipAddress}
+    instance-id: ${spring.application.name}.${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 10
+  client:
+    eureka-service-url-poll-interval-seconds: 300
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${spring.cloud.client.ipAddress}:3001/eureka/
+    registry-fetch-interval-seconds: 10
+info:
+  number: 15282648585
+  provider: ${eureka.instance.instance-id}
+  groupId: ${project.groupId}
+  artifactId: ${project.artifactId}
+  version: ${project.version}
