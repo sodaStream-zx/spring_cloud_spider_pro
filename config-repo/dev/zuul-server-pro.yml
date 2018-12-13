@@ -1,7 +1,7 @@
 #---
 spring:
   application:
-    name: zuul-api
+    name: zuul-server
 server:
   port: 9999
 hystrix:

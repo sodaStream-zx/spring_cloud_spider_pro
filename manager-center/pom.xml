@@ -13,6 +13,7 @@
     <modules>
         <module>manager-eureka-server</module>
         <module>manager-config-server</module>
+        <module>manager-zuul-gateway</module>
     </modules>
     <dependencies>
         <!-- 修改后立即生效，热部署 -->

@@ -10,7 +10,7 @@ spring:
       server:
         git:
           clone-on-start: true
-          search-paths: config-repo/dev/
+          search-paths: /config-repo/dev/
           uri: https://github.com/riceincoke/spring_cloud_spider_pro.git
           password:
           username:

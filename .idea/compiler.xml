@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="manager-config-server" />
         <module name="manager-eureka-server" />
+        <module name="manager-zuul-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />
