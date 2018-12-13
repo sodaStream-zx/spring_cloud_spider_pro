@@ -10,7 +10,7 @@ spring:
       #  enabled: true
       profile: on
       label: master
-      uri: http://192.168.88.104:10000/
+      uri: http://${spring.cloud.client.ipAddress}:10000/
 #eureka:
 #  client:
 #    service-url:

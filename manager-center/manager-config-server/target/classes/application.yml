@@ -1,5 +1,10 @@
 #---
+server:
+  port: 10000
 spring:
+  application:
+    name: config-server
+  #git repository
   cloud:
     config:
       server:
@@ -11,8 +16,7 @@ spring:
           username:
           basedir: f:/mygitcache
       label: master
-  application:
-    name: config-server
+#rabbitmq
   rabbitmq:
     connection-timeout: 0
     template:
@@ -23,15 +27,13 @@ spring:
     host: ${spring.cloud.client.ipAddress}
     virtual-host: /
     username: admin
-server:
-  port: 10000
 management:
   security:
     enabled: false
 eureka:
   instance:
     hostname: ${spring.cloud.client.ipAddress}
-    instance-id: ${spring.application.name}.${spring.cloud.client.ipAddress}:${server.port}
+    instance-id: ${spring.application.name}-${spring.cloud.client.ipAddress}:${server.port}
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 90
     lease-renewal-interval-in-seconds: 10

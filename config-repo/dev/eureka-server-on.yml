@@ -1,0 +1,39 @@
+#---
+spring:
+  application:
+    name: eureka_Server
+  rabbitmq:
+    connection-timeout: 0
+    template:
+      retry:
+        enabled: true
+    password: admin
+    port: 5672
+    host: ${spring.cloud.client.ipAddress}
+    virtual-host: /
+    username: admin
+server:
+  port: 3001
+management:
+  security:
+    enabled: false
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 20000
+    response-cache-auto-expiration-in-seconds: 90
+  instance:
+    hostname: ${spring.cloud.client.ipAddress}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${spring.cloud.client.ipAddress}:3001/eureka/
+info:
+  number: 15282648585
+  provider: ${spring.cloud.client.ipAddress}_eureka_server_${server.port}
+  groupId: ${spring.application.name}
+  artifactedId: ${project.artifactId}
+  version: ${project.version}
