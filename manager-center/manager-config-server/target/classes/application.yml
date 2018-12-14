@@ -11,11 +11,10 @@ spring:
         git:
           clone-on-start: true
           search-paths: /config-repo/dev/
-          uri: https://github.com/riceincoke/spring_cloud_spider_pro.git
+          uri: https://github.com/riceincoke/spring_cloud_web_spider_pro_repo.git
           password:
           username:
-          basedir: f:/mygitcache
-      label: master
+          basedir: f:/my_git_cache
 #rabbitmq
   rabbitmq:
     connection-timeout: 0

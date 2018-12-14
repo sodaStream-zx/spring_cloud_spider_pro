@@ -6,9 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="consumer-parser" />
+        <module name="consumer-spidercore" />
         <module name="manager-config-server" />
         <module name="manager-eureka-server" />
+        <module name="manager-hystrix-dashboard" />
         <module name="manager-zuul-gateway" />
+        <module name="my-common" />
+        <module name="provider-mainentry" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />

@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
     </dependencies>
 
@@ -34,7 +34,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration><!-- 指定该Main Class为全局的唯一入口 -->
                     <classifier>exec</classifier>
-                    <mainClass>zuulcore.ZuulApp</mainClass>
+                    <mainClass>zuulcore.ZuulServerApp</mainClass>
                     <layout>JAR</layout>
                 </configuration>
                 <executions>
