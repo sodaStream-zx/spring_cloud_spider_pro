@@ -1,10 +1,10 @@
 package spider.spiderCore.crawler;
 
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spider.spiderCore.crawldb.AbstractDBManager;
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.CrawlDatums;
 import spider.spiderCore.fetcher.Fetcher;
 import spider.spiderCore.fetcher.IFetcherTools.Executor;
 import spider.spiderCore.fetcher.IFetcherTools.NextFilter;

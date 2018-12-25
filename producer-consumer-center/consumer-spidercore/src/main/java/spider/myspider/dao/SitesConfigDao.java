@@ -1,8 +1,8 @@
 package spider.myspider.dao;/*
-package spider.myspider.dao;
+package spider.myspider.dbUtils;
 
-import entity.ParseContentRules;
-import entity.SiteConfig;
+import ParseContentRules;
+import SiteConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.maincore.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;

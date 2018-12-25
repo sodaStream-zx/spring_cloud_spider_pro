@@ -1,8 +1,8 @@
 package spider.spiderCore.http;
 
+import commoncore.entity.responseEntity.entityTools.CharsetDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.spiderCore.http.httpUtil.CharsetDetector;
 
 import java.net.URL;
 import java.util.ArrayList;

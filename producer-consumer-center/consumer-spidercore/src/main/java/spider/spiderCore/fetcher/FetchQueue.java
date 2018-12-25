@@ -1,8 +1,8 @@
 package spider.spiderCore.fetcher;
 
+import commoncore.entity.responseEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.spiderCore.entities.CrawlDatum;
 
 import java.util.Collections;
 import java.util.LinkedList;

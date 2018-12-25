@@ -5,6 +5,6 @@ spring:
       fail-fast: true
       profile: pro
       label: master
-      uri: http://${spring.cloud.client.ipAddress}:10000/
+      uri: http://${spring.cloud.client.ipAddress}:4321/
   application:
     name: eureka-server

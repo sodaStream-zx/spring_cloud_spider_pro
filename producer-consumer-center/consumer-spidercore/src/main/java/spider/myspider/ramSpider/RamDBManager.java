@@ -1,11 +1,11 @@
 package spider.myspider.ramSpider;
 
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.AbstractDBManager;
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.CrawlDatums;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +52,7 @@ public class RamDBManager extends AbstractDBManager<HashMap> {
     }
 
     @Override
-    public void inject(CrawlDatums datums, boolean force) throws Exception {
+    public void inject(CrawlDatums datums, boolean force) {
         for (CrawlDatum datum : datums) {
             inject(datum, force);
         }

@@ -16,6 +16,8 @@
         <module name="provider-mainentry" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="consumer-urlfilter" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

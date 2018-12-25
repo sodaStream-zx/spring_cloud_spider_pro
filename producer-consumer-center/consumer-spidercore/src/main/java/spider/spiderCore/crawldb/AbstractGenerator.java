@@ -1,11 +1,11 @@
 package spider.spiderCore.crawldb;
 
 
+import commoncore.entity.responseEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spider.spiderCore.crawldb.Idbutil.DataBase;
 import spider.spiderCore.crawldb.Idbutil.GeneratorFilter;
-import spider.spiderCore.entities.CrawlDatum;
 import spider.spiderCore.spiderConfig.DefaultConfigImp;
 import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 

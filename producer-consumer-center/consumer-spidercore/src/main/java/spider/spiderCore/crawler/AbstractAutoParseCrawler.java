@@ -1,11 +1,11 @@
 package spider.spiderCore.crawler;
 
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatums;
+import commoncore.entity.responseEntity.Links;
+import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.entity.responseEntity.entityTools.RegexRule;
 import org.jsoup.nodes.Document;
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.CrawlDatums;
-import spider.spiderCore.entities.Links;
-import spider.spiderCore.entities.Page;
-import spider.spiderCore.entities.entityUtil.RegexRule;
 import spider.spiderCore.fetcher.IFetcherTools.Executor;
 import spider.spiderCore.fetcher.IFetcherTools.Visitor;
 import spider.spiderCore.http.IRequestor.Requester;
@@ -49,27 +49,27 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
      */
     @Override
     public void execute(CrawlDatum datum, CrawlDatums next) throws Exception {
-        Page page = requester.getResponse(datum);
+        ResponsePage responsePage = requester.getResponse(datum);
         //抽取当前页面符合条件的urls
         if (autoParse && !regexRule.isEmpty()) {
-            parseLink(page, next);
+            parseLink(responsePage, next);
         }
         //用户自定义页面解析 重写visit方法
-        visitor.visit(page, next);
-        afterParse(page, next);
+        visitor.visit(responsePage, next);
+        afterParse(responsePage, next);
     }
 
-    protected void afterParse(Page page, CrawlDatums next) {
+    protected void afterParse(ResponsePage responsePage, CrawlDatums next) {
         //单个页面正文抽取，任务urls抽取完成之后，执行该函数
     }
 
     /**
      * @Desc: [获取网页中符合 规则的url]
      */
-    protected void parseLink(Page page, CrawlDatums next) {
-        String contentType = page.contentType();
+    protected void parseLink(ResponsePage responsePage, CrawlDatums next) {
+        String contentType = responsePage.contentType();
         if (contentType != null && contentType.contains("text/html")) {
-            Document doc = page.doc();
+            Document doc = responsePage.doc();
             if (doc != null) {
                 //从页面中取出需要的url 形成接下来的任务
                 Links links = new Links().addByRegex(doc, regexRule, getConfig().getAutoDetectImg());

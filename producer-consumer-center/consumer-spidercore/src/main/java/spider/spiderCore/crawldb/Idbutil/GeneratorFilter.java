@@ -1,6 +1,6 @@
 package spider.spiderCore.crawldb.Idbutil;
 
-import spider.spiderCore.entities.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatum;
 
 /**
  * <p>项目名称: ${小型分布式爬虫} </p>

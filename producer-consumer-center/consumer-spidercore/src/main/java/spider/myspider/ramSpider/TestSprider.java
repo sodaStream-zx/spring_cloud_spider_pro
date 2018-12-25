@@ -1,10 +1,10 @@
 
 package spider.myspider.ramSpider;
 
+import commoncore.entity.responseEntity.CrawlDatums;
+import commoncore.entity.responseEntity.ResponsePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import spider.spiderCore.entities.CrawlDatums;
-import spider.spiderCore.entities.Page;
 
 @Component
 public class TestSprider extends RamCrawler {
@@ -30,6 +30,6 @@ public class TestSprider extends RamCrawler {
     }
 
     @Override
-    public void visit(Page page, CrawlDatums next) {
+    public void visit(ResponsePage responsePage, CrawlDatums next) {
     }
 }

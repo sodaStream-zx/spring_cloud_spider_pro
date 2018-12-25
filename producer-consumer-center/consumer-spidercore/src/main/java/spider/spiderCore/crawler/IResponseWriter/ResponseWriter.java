@@ -1,6 +1,6 @@
 package spider.spiderCore.crawler.IResponseWriter;
 
-import spider.spiderCore.entities.Page;
+import commoncore.entity.responseEntity.ResponsePage;
 
 /**
  * @author 一杯咖啡
@@ -8,5 +8,5 @@ import spider.spiderCore.entities.Page;
  * @createTime 2018-11-30-13:12
  */
 public interface ResponseWriter {
-    boolean writerResponsePageToRedis(Page page);
+    boolean writerResponsePageToRedis(ResponsePage responsePage);
 }

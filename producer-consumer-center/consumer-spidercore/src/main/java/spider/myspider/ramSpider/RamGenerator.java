@@ -1,10 +1,10 @@
 package spider.myspider.ramSpider;
 
+import commoncore.entity.responseEntity.CrawlDatum;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.AbstractGenerator;
 import spider.spiderCore.crawldb.Idbutil.GeneratorFilter;
-import spider.spiderCore.entities.CrawlDatum;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -1,10 +1,10 @@
 package spider.spiderCore.crawldb;
 
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatums;
 import spider.spiderCore.crawldb.Idbutil.DataBase;
 import spider.spiderCore.crawldb.Idbutil.Injector;
 import spider.spiderCore.crawldb.Idbutil.SegmentWriter;
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.CrawlDatums;
 import spider.spiderCore.spiderConfig.DefaultConfigImp;
 
 /**

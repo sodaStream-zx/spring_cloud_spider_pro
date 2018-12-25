@@ -1,8 +1,8 @@
 package spider.myspider.ramSpider;
 
+import commoncore.entity.responseEntity.CrawlDatum;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.Idbutil.DataBase;
-import spider.spiderCore.entities.CrawlDatum;
 
 import java.util.HashMap;
 

@@ -17,14 +17,14 @@
  */
 package spider.spiderCore.fetcher.IFetcherTools;
 
-import spider.spiderCore.entities.CrawlDatums;
-import spider.spiderCore.entities.Page;
+import commoncore.entity.responseEntity.CrawlDatums;
+import commoncore.entity.responseEntity.ResponsePage;
 
 /**
  *遍历器
  */
 public interface Visitor {
 
-      void visit(Page page, CrawlDatums next);
+      void visit(ResponsePage responsePage, CrawlDatums next);
 
 }

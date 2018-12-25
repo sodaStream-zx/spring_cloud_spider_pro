@@ -18,7 +18,7 @@
 package spider.spiderCore.fetcher.IFetcherTools;
 
 
-import spider.spiderCore.entities.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatum;
 
 /**
  *过滤器

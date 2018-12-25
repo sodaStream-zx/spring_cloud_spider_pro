@@ -1,8 +1,8 @@
 package spider.spiderCore.crawldb;
 
+import commoncore.entity.responseEntity.CrawlDatum;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.Idbutil.GeneratorFilter;
-import spider.spiderCore.entities.CrawlDatum;
 import spider.spiderCore.spiderConfig.DefaultConfigImp;
 
 @Component

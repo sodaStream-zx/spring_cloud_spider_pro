@@ -18,8 +18,8 @@
 package spider.spiderCore.crawldb.Idbutil;
 
 
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.CrawlDatums;
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatums;
 
 /**
  * 爬取过程中，写入爬取历史、网页Content、解析信息的Writer

@@ -1,6 +1,6 @@
 package spider.spiderCore.crawldb.Idbutil;
 
-import spider.spiderCore.entities.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatum;
 
 /**
  *入口注入

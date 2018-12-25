@@ -1,7 +1,7 @@
 package spider.myspider.dao;/*
-package spider.myspider.dao;
+package spider.myspider.dbUtils;
 
-import spider.myspider.spiderTools.SerializeUtil;
+import parsercore.parseTools.SerializeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.maincore.RedisTemplate;
 import org.springframework.stereotype.Component;

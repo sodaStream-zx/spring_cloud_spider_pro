@@ -1,9 +1,9 @@
 package spider.spiderCore.http;
 
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.ResponsePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.Page;
 import spider.spiderCore.spiderConfig.Configuration;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -61,21 +61,21 @@ public class HttpRequest{
         this.crawlDatum = crawlDatum;
     }
 
-    public HttpRequest(CrawlDatum crawlDatum, Proxy proxy) throws Exception {
+    public HttpRequest(CrawlDatum crawlDatum, Proxy proxy) {
         this(crawlDatum);
         this.proxy = proxy;
     }
 
-    public Page responsePage() throws Exception{
+    public ResponsePage responsePage() throws Exception{
         HttpResponse response = response();
-        Page page = new Page(
+        ResponsePage responsePage = new ResponsePage(
                 crawlDatum,
                 response.code(),
                 response.contentType(),
                 response.content()
         );
-        page.obj(response);
-        return page;
+        responsePage.obj(response);
+        return responsePage;
     }
 
 

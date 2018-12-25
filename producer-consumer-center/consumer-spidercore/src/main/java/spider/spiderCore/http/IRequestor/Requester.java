@@ -1,12 +1,12 @@
 package spider.spiderCore.http.IRequestor;
 
 
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.Page;
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.ResponsePage;
 
 /**
  *发送请求接口
  */
 public interface Requester {
-     Page getResponse(CrawlDatum crawlDatum) throws Exception;
+     ResponsePage getResponse(CrawlDatum crawlDatum) throws Exception;
 }

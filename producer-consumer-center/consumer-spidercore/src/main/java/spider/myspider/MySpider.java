@@ -1,16 +1,19 @@
 package spider.myspider;
 
 
-import entity.SiteConfig;
+import commoncore.entity.SiteConfig;
+import commoncore.entity.responseEntity.CrawlDatums;
+import commoncore.entity.responseEntity.ResponseData;
+import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.parseTools.ParesUtil;
+import commoncore.parseTools.RulesSplitUtil;
+import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import spider.myspider.spiderTools.ParesUtil;
-import spider.myspider.spiderTools.RulesSplitUtil;
 import spider.spiderCore.crawler.AbstractAutoParseCrawler;
-import spider.spiderCore.entities.CrawlDatums;
-import spider.spiderCore.entities.Page;
 import spider.spiderCore.http.IRequestor.Requester;
-import spider.spiderCore.pares.ParesContent;
 
 /**
 * @author 一杯咖啡
@@ -28,7 +31,6 @@ public class MySpider extends AbstractAutoParseCrawler {
      **/
     private SiteConfig siteconfig;
     private ParesUtil paresUtil;
-    private ParesContent paresContent;
     /**
      * urlRules url 解析正则表达式
      * seeds 入口 url
@@ -38,6 +40,7 @@ public class MySpider extends AbstractAutoParseCrawler {
     private String[] seeds;
     private String[] conPickRules;
 
+    @Autowired private RedisTemplate redisTemplate;
     public MySpider() {
         //设置任务上限
         //this.configuration.setTopN(600);
@@ -47,13 +50,11 @@ public class MySpider extends AbstractAutoParseCrawler {
 
     /**
      * @param siteConfig   网站配置信息
-     * @param paresContent 自定义页面解析器
      * @param requester    自定义请求工具 需实现requestor接口
      * desc :初始化爬虫组件
      */
-    public void initMySpider(SiteConfig siteConfig, ParesContent paresContent, Requester requester, ParesUtil paresUtil) {
+    public void initMySpider(SiteConfig siteConfig, Requester requester, ParesUtil paresUtil) {
         this.siteconfig = siteConfig;
-        this.paresContent = paresContent;
         this.requester = requester;
         this.paresUtil = paresUtil;
 
@@ -111,11 +112,20 @@ public class MySpider extends AbstractAutoParseCrawler {
      * desc: 符合正文提取规则。调用自定义解析页面
      **/
     @Override
-    public void visit(Page page, CrawlDatums next) {
+    public void visit(ResponsePage responsePage, CrawlDatums next) {
         //匹配正文筛选规则 url
+        ResponseData responseData;
         for (String conRegx : conPickRules) {
-            if (page.url().matches(conRegx)) {
-                paresContent.paresContent(page, next);
+            if (responsePage.url().matches(conRegx)) {
+                responseData = new ResponseData(siteconfig.getSiteName(), responsePage.crawlDatum(),responsePage.code(),responsePage.contentType(),responsePage.content());
+                String rd = null;
+                try {
+                    rd = new SerializeUtil().serializeToString(responseData);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                redisTemplate.opsForList().rightPush("responseList", rd);
+                //LOG.warn("tip:将page 存入redis中，供解析模块提取数据");
             }
         }
     }

@@ -1,7 +1,7 @@
 
 package maincore.dao;
 
-import entity.SiteConfig;
+import commoncore.entity.SiteConfig;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -36,7 +36,9 @@ public class ConfigFromMysqlToRedis {
         for (SiteConfig x : scs) {
             try {
                 str = serializeUtil.serializeToString(x);
-                redisTemplate.opsForList().leftPush("sites", str);
+                for (int i = 0; i < 3; i++) {
+                    redisTemplate.opsForList().leftPush("sites", str);
+                }
                 //jedis.lpush("sites", str);
                 Thread.sleep(1000);
             } catch (Exception e) {

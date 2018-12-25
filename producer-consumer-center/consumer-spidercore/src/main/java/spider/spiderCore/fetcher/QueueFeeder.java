@@ -1,12 +1,12 @@
 package spider.spiderCore.fetcher;
 
 
+import commoncore.entity.responseEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spider.spiderCore.crawldb.AbstractDBManager;
 import spider.spiderCore.crawldb.AbstractGenerator;
 import spider.spiderCore.crawldb.Idbutil.GeneratorFilter;
-import spider.spiderCore.entities.CrawlDatum;
 
 import java.util.concurrent.TimeUnit;
 

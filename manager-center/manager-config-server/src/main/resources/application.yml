@@ -1,6 +1,6 @@
 #---
 server:
-  port: 10000
+  port: 4321
 spring:
   application:
     name: config-server

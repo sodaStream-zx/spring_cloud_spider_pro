@@ -1,17 +1,15 @@
 package spider.myspider;
 
 
-import entity.SiteConfig;
+import commoncore.entity.SiteConfig;
+import commoncore.parseTools.ParesUtil;
+import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import spider.myspider.DbUtils.DataStoreTool;
 import spider.myspider.redisSpider.RedisManager;
-import spider.myspider.spiderComponent.MyParesContent;
 import spider.myspider.spiderComponent.MyRequester;
-import spider.myspider.spiderTools.ParesUtil;
-import spider.myspider.spiderTools.SerializeUtil;
 import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -44,10 +42,6 @@ public class SpiderEngine {
     @Autowired
     private MyRequester myRequester;
     @Autowired
-    private DataStoreTool dataStoreTool;
-    @Autowired
-    private MyParesContent paresContent;
-    @Autowired
     private SerializeUtil serializeUtil;
     @Autowired
     private MySpider mySpider;
@@ -56,10 +50,9 @@ public class SpiderEngine {
     /**
      * desc: 初始化爬虫,监听消息
      */
-    public void initToRun() {
+    public boolean initToRun() {
         try {
-            if (true){
-
+            while (true){
                 //读取redis队列任务，并开始抓取；阻塞直到能取出值
                 String siteConfigString = "";
                 try {
@@ -74,6 +67,7 @@ public class SpiderEngine {
                     }
                 } catch (Exception e) {
                     LOG.error("读取redis队列失败" + e.getCause());
+                    return false;
                 }
                 try {
                     //获取序列化的字符串 生成siteConfig对象
@@ -87,12 +81,9 @@ public class SpiderEngine {
                      * mySpider 爬虫组合APP
                      * abstractDBmanager 数据库管理组件
                      */
-                    dataStoreTool.initStore(siteConfig.getTableName());
-                    paresUtil.initParesUitl(siteConfig, dataStoreTool);
-                    paresContent.MyParesContent(paresUtil);
-                    ConfigurationUtils.setTo(mySpider, paresContent, redisManager);
+                    ConfigurationUtils.setTo(mySpider, redisManager);
                     mySpider.setAbstractDbManager(redisManager);
-                    mySpider.initMySpider(siteConfig, paresContent, myRequester, paresUtil);
+                    mySpider.initMySpider(siteConfig, myRequester, paresUtil);
                     mySpider.getConfig().setTopN(1000);
                     LOG.info(this.toString());
 
@@ -103,12 +94,14 @@ public class SpiderEngine {
             }, "关闭线程").start();*/
 
                     mySpider.startFetcher(mySpider);
+                    return true;
                 } catch (Exception e) {
                     LOG.error("初始化爬虫异常: " + e.getCause() + ";messages:" + e.getMessage());
+                    return false;
                 }
             }
         } catch (Exception e) {
-
+            return false;
         }
     }
 
@@ -131,7 +124,6 @@ public class SpiderEngine {
                 "\n  ramDBManager : " + redisManager.getClass().getName() +
                 "\n  redisTemplate : " + redisTemplate.getClass().getName() +
                 "\n  myRequester : " + myRequester.getClass().getName() +
-                "\n  paresContent=" + paresContent.toString() +
                 '}';
     }
 }

@@ -1,15 +1,15 @@
 package spider.myspider.redisSpider;
 
 
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.parseTools.SerializeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import spider.myspider.spiderTools.SerializeUtil;
 import spider.spiderCore.crawldb.AbstractGenerator;
 import spider.spiderCore.crawldb.Idbutil.GeneratorFilter;
-import spider.spiderCore.entities.CrawlDatum;
 import spider.spiderCore.spiderConfig.DefaultConfigImp;
 
 import javax.annotation.Resource;

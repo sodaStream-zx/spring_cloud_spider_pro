@@ -1,7 +1,7 @@
 package maincore.dao;
 
-import entity.ParseContentRules;
-import entity.SiteConfig;
+import commoncore.entity.ParseContentRules;
+import commoncore.entity.SiteConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;

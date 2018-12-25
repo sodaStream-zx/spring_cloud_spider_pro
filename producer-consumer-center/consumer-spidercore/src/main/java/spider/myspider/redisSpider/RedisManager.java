@@ -1,13 +1,13 @@
 package spider.myspider.redisSpider;
 
+import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.responseEntity.CrawlDatums;
+import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import spider.myspider.spiderTools.SerializeUtil;
 import spider.spiderCore.crawldb.AbstractDBManager;
-import spider.spiderCore.entities.CrawlDatum;
-import spider.spiderCore.entities.CrawlDatums;
 
 /**
  * desc:连接操作redis类
