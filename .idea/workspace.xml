@@ -2,51 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d16afd6-5162-43c9-835d-97df58fb2f45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetchQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/coreimp/RedisDataFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/generatorcore/IDataFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/generatorcore/IGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/test/java/parsercore/fetchercore/FetcherTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/maincore/ConfigLoaderApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/maincore/controller/LoadConfigsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/parseTools/ParesCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/parseTools/ParesCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/MysqlDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/MysqlDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/IGain/IRedisDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/IGain/IRedisDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresUtil/MyParesContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresUtil/MyParesContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresUtil/ParesContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresUtil/ParesContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/IParesEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/IParesEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpringBootStartRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/MySpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/MySpider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/AbstractGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/AbstractGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/provider-mainentry.iml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/provider-config-loader.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/java/maincore/MainRnterApplicationRun.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/java/maincore/MyMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/java/maincore/dao/ConfigFromMysqlToRedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/maincore/dao/ConfigFromMysqlToRedis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/java/maincore/dao/MainSerializeUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/java/maincore/dao/RedisDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/maincore/dao/RedisDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/java/maincore/dao/SitesConfigDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/maincore/dao/SitesConfigDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-mainentry/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -108,7 +66,7 @@
           <entry key="MySpider" value="1" />
           <entry key="class" value="3" />
           <entry key="iml" value="4" />
-          <entry key="java" value="621" />
+          <entry key="java" value="623" />
           <entry key="properties" value="61" />
           <entry key="xml" value="69" />
           <entry key="yml" value="54" />
@@ -119,7 +77,7 @@
           <entry key="ANSI Aware" value="1" />
           <entry key="CLASS" value="3" />
           <entry key="IDEA_MODULE" value="4" />
-          <entry key="JAVA" value="621" />
+          <entry key="JAVA" value="623" />
           <entry key="PLAIN_TEXT" value="21" />
           <entry key="Properties" value="40" />
           <entry key="UML" value="3" />
@@ -130,17 +88,17 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="113" />
-          <entry key="java" value="8175" />
+          <entry key="java" value="8250" />
           <entry key="properties" value="213" />
-          <entry key="txt" value="24" />
+          <entry key="txt" value="62" />
           <entry key="xml" value="359" />
           <entry key="yml" value="1223" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8175" />
-          <entry key="PLAIN_TEXT" value="246" />
+          <entry key="JAVA" value="8250" />
+          <entry key="PLAIN_TEXT" value="284" />
           <entry key="Properties" value="104" />
           <entry key="XML" value="359" />
           <entry key="YAML" value="1223" />
@@ -156,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="45" column="19" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="19" />
+            <state relative-caret-position="251">
+              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -166,22 +124,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresUtil/ParesContent.java">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+            <state relative-caret-position="351">
+              <caret line="17" column="37" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="37" />
               <folding>
-                <element signature="docComment;method#paresContent#0;class#ParesContent#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#pause#0;class#FetcherThread#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/ParesEngineApplication.java">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetchQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="27">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,8 +151,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-217">
-              <caret line="85" column="38" selection-start-line="85" selection-start-column="38" selection-end-line="85" selection-end-column="38" />
+            <state relative-caret-position="-363">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -202,7 +164,7 @@
         <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="91">
-              <caret line="135" column="27" selection-start-line="135" selection-start-column="15" selection-end-line="135" selection-end-column="27" />
+              <caret line="133" column="27" selection-start-line="133" selection-start-column="15" selection-end-line="133" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#RedisDao#0" expanded="true" />
@@ -309,10 +271,10 @@
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/pom.xml" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesEngine.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" />
       </list>
     </option>
   </component>
@@ -433,21 +395,6 @@
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
               <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
               <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-              <item name="debug" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -476,190 +423,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
-              <item name="gainDao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
-              <item name="gainDao" type="462c0819:PsiDirectoryNode" />
-              <item name="IGain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
-              <item name="Istore" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="fetchercore" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="fetchercore" type="462c0819:PsiDirectoryNode" />
-              <item name="coreimp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="pareser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="paresrule" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="paresrule" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="paresUtil" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="spider" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -676,7 +439,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545890811067" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545895748054" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring projects/springmvc" />
@@ -929,7 +692,7 @@
       <workItem from="1545706278706" duration="19352000" />
       <workItem from="1545793045115" duration="17921000" />
       <workItem from="1545833479896" duration="897000" />
-      <workItem from="1545882762668" duration="7888000" />
+      <workItem from="1545882762668" duration="10616000" />
     </task>
     <task id="LOCAL-00001" summary="1.创建分层目录">
       <created>1544717167375</created>
@@ -945,7 +708,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545729669282</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="多线程解析器 ；tips：关闭异常，线程关闭后，无法重新开启，">
+      <created>1545890879536</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1545890879536</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -981,7 +751,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82882000" />
+    <option name="totallyTimeSpent" value="85610000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -994,6 +764,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.393586" visible="true" weight="0.29881975" />
       <window_info id="Structure" order="1" sideWeight="0.606414" side_tool="true" weight="0.29023606" />
@@ -1017,7 +788,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32890365" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.49946353" visible="true" weight="0.50830567" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.49946353" visible="true" weight="0.27353266" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1039,7 +810,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="1.创建分层目录" />
     <MESSAGE value="单线程解析" />
-    <option name="LAST_COMMIT_MESSAGE" value="单线程解析" />
+    <MESSAGE value="多线程解析器 ；tips：关闭异常，线程关闭后，无法重新开启，" />
+    <option name="LAST_COMMIT_MESSAGE" value="多线程解析器 ；tips：关闭异常，线程关闭后，无法重新开启，" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1102,6 +874,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+          <folding>
+            <element signature="e#811#812#0" expanded="true" />
+            <element signature="e#2639#2640#0" expanded="true" />
+            <element signature="e#2675#2676#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1172,6 +949,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="16" column="47" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="47" />
+          <folding>
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#2367#2368#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4225,27 +4006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#pause#0;class#FetcherThread#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetchQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/IParesEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -4308,7 +4068,7 @@
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="91">
-          <caret line="135" column="27" selection-start-line="135" selection-start-column="15" selection-end-line="135" selection-end-column="27" />
+          <caret line="133" column="27" selection-start-line="133" selection-start-column="15" selection-end-line="133" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#RedisDao#0" expanded="true" />
@@ -4320,10 +4080,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetchQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#pause#0;class#FetcherThread#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="45" column="19" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="19" />
+        <state relative-caret-position="251">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -4332,8 +4113,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-217">
-          <caret line="85" column="38" selection-start-line="85" selection-start-column="38" selection-end-line="85" selection-end-column="38" />
+        <state relative-caret-position="-363">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

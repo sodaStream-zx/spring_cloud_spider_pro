@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @createTime
  */
 @Component
-public class QueueFeeder extends Thread {
+public class QueueFeeder implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(QueueFeeder.class);
 
@@ -43,10 +43,6 @@ public class QueueFeeder extends Thread {
             LOG.error("【关闭数据库提取工具出错】");
         }
         fetcherState.setFeedRunnning(false);
-        while (this.isAlive()) {
-            pause(1, 0);
-            LOG.info("【停止任务生产者】");
-        }
     }
 
     /**

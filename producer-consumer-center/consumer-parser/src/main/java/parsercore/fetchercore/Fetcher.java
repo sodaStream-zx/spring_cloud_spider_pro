@@ -33,7 +33,9 @@ public class Fetcher {
     @Value(value = "${my.fetcher.maxThread}")
     private int threads = 20;
 
-    @Autowired private IParesEngine iParesEngine;
+    @Autowired
+    private IParesEngine iParesEngine;
+
     /**
      * 抓取当前所有任务，会阻塞到爬取完成 开启 feeder 和 执行爬取线程。
      *
@@ -42,24 +44,27 @@ public class Fetcher {
     public boolean fetcherStart() {
         //调度器开始，设置状态为 true
         fetcherState.setFetcherRunning(true);
-        //任务生产者开始 ，添加上限1000个
-        queueFeeder.start();
-        //等待管道先添加任务
-        LOG.info(" 生产者先运行3秒，保证管道有数据足够多");
-        pause(3, 0);
+
         //创建线程池，允许核心线程超时关闭
         ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(30, 45, 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
         threadsExecutor.allowCoreThreadTimeOut(true);
+        //任务生产者开始 ，添加上限1000个
+        threadsExecutor.execute(queueFeeder);
+
+        //等待管道先添加任务
+        LOG.info(" 生产者先运行3秒，保证管道有数据足够多");
+        pause(3, 0);
         //初始化消费者 从queue中读取任务
         for (int i = 0; i < threads; i++) {
-            threadsExecutor.execute(new FetcherThread(fetchQueue,fetcherState,iParesEngine));
+            threadsExecutor.execute(new FetcherThread(fetchQueue, fetcherState, iParesEngine));
         }
 
         do {
             pause(1, 0);
             LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
             //调度器线程 依赖执行线程运行数量 调度器状态，生产者状态
-        } while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning()&&fetcherState.isFeedRunnning());
+        }
+        while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning() && fetcherState.isFeedRunnning());
 
         this.stopFetcher();
         threadsExecutor.shutdown();
