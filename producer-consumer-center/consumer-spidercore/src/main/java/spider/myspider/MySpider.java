@@ -2,17 +2,14 @@ package spider.myspider;
 
 
 import commoncore.entity.SiteConfig;
-import commoncore.entity.responseEntity.CrawlDatums;
-import commoncore.entity.responseEntity.ResponseData;
 import commoncore.entity.responseEntity.ResponsePage;
 import commoncore.parseTools.ParesUtil;
 import commoncore.parseTools.RulesSplitUtil;
-import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawler.AbstractAutoParseCrawler;
+import spider.spiderCore.fetcher.IFetcherTools.TransferToParser;
 import spider.spiderCore.http.IRequestor.Requester;
 
 /**
@@ -30,7 +27,6 @@ public class MySpider extends AbstractAutoParseCrawler {
      * paresContent 页面解析组件
      **/
     private SiteConfig siteconfig;
-    private ParesUtil paresUtil;
     /**
      * urlRules url 解析正则表达式
      * seeds 入口 url
@@ -41,7 +37,7 @@ public class MySpider extends AbstractAutoParseCrawler {
     private String[] conPickRules;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private TransferToParser<ResponsePage> transferToParser;
 
     public MySpider() {
         //设置任务上限
@@ -58,7 +54,6 @@ public class MySpider extends AbstractAutoParseCrawler {
     public void initMySpider(SiteConfig siteConfig, Requester requester, ParesUtil paresUtil) {
         this.siteconfig = siteConfig;
         this.requester = requester;
-        this.paresUtil = paresUtil;
 
         RulesSplitUtil rulesSplitUtil = paresUtil.getRulesSplitUtil();
         urlRules = rulesSplitUtil.splitRule(siteconfig.getUrlPares());
@@ -111,28 +106,6 @@ public class MySpider extends AbstractAutoParseCrawler {
     }
 
     /**
-     * desc: 符合正文提取规则。调用自定义解析页面
-     **/
-    @Override
-    public void visit(ResponsePage responsePage, CrawlDatums next) {
-        //匹配正文筛选规则 url
-        ResponseData responseData;
-        for (String conRegx : conPickRules) {
-            if (responsePage.url().matches(conRegx)) {
-                responseData = new ResponseData(siteconfig.getSiteName(), responsePage.crawlDatum(), responsePage.code(), responsePage.contentType(), responsePage.content());
-                String rd = null;
-                try {
-                    rd = new SerializeUtil().serializeToString(responseData);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                redisTemplate.opsForList().rightPush("responseList", rd);
-                //LOG.warn("tip:将page 存入redis中，供解析模块提取数据");
-            }
-        }
-    }
-
-    /**
      * desc: 爬虫完成后执行
      */
     @Override
@@ -141,5 +114,19 @@ public class MySpider extends AbstractAutoParseCrawler {
         abstractDbManager.getAbstractGenerator().setTotalGenerate(0);
         LOG.info("等待10秒 继续下一任务--------------------------");
         //System.exit(0);
+    }
+
+    /**
+     * desc: 符合正文提取规则。调用自定义解析页面
+     **/
+    @Override
+    public void getContentPageData(ResponsePage responsePage) {
+        //匹配正文筛选规则 url
+        for (String conRegx : conPickRules) {
+            if (responsePage.url().matches(conRegx)) {
+                responsePage.setSiteName(siteconfig.getSiteName());
+                transferToParser.transfer(responsePage);
+            }
+        }
     }
 }

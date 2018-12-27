@@ -17,7 +17,12 @@ public class SpiderController {
     private SpiderEngine spiderEngine;
 
     @GetMapping(value = "/spiderRun")
-    public Boolean start(){
+    public Boolean start() {
         return spiderEngine.initToRun();
+    }
+
+    public boolean stopspider() {
+
+        return true;
     }
 }

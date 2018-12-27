@@ -17,7 +17,6 @@ import spider.spiderCore.crawldb.AbstractDBManager;
 public class RedisManager extends AbstractDBManager<String> {
     private static final Logger LOG = Logger.getLogger(RedisManager.class);
 
-    //private DataBase redisDb;
     private RedisTemplate redisTemplate;
     private SerializeUtil serializeUtil;
 
@@ -32,6 +31,9 @@ public class RedisManager extends AbstractDBManager<String> {
         return redisTemplate != null;
     }
 
+    /**
+     * desc:清空数据库
+     **/
     @Override
     public void clear() {
         redisTemplate.execute((RedisCallback<Object>) connection -> {

@@ -31,11 +31,6 @@ public class ParesEngine implements IParesEngine {
     private String listKey;
     private DomainRule domainRule = null;
 
-    @Override
-    public void parseRun() {
-        //默认解析
-    }
-
     /**
      * desc:解析器
      **/
@@ -49,6 +44,7 @@ public class ParesEngine implements IParesEngine {
                 IMysqlDao.insertNew(myNew);
             }
         } else {
+            log.info("当前解析规则不可用，从redis 中获取 指定的解析器 ");
             domainRule = iRedisDao.getDomainRuleFromRedis(pageData.getSiteName());
             this.parseRun(pageData);
         }

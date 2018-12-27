@@ -4,7 +4,7 @@ package spider.myspider.dbUtils;
 import ParseContentRules;
 import SiteConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.maincore.JdbcTemplate;
+import org.springframework.jdbc.loadercore.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 

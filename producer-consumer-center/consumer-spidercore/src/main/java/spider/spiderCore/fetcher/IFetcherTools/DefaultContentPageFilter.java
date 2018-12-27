@@ -17,14 +17,18 @@
  */
 package spider.spiderCore.fetcher.IFetcherTools;
 
-import commoncore.entity.responseEntity.CrawlDatums;
 import commoncore.entity.responseEntity.ResponsePage;
 
 /**
- *遍历器
+ * 将数据交给解析器
+ *
+ * @author 一杯咖啡
  */
-public interface Visitor {
-
-      void visit(ResponsePage responsePage, CrawlDatums next);
+public interface DefaultContentPageFilter {
+    /**
+     * desc:该接口用于将请求返回的数据交给解析模块
+     * @param  responsePage 数据
+     **/
+    void getContentPageData(ResponsePage responsePage);
 
 }

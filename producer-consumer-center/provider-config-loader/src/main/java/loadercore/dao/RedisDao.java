@@ -1,4 +1,4 @@
-package maincore.dao;
+package loadercore.dao;
 
 import commoncore.parseTools.SerializeUtil;
 import org.springframework.beans.factory.annotation.Autowired;

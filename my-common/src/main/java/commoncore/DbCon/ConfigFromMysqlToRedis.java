@@ -5,7 +5,7 @@ import spider.myspider.dbUtils.SitesConfigDao;
 import SiteConfig;
 import spider.myspider.spiderTools.SerializeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.maincore.RedisTemplate;
+import org.springframework.data.redis.loadercore.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

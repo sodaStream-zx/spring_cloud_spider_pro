@@ -1,5 +1,5 @@
 
-package maincore.dao;
+package loadercore.dao;
 
 import commoncore.entity.SiteConfig;
 import commoncore.parseTools.SerializeUtil;
@@ -16,7 +16,8 @@ import java.util.List;
  * <p>文件名称: ${MysqlToRedis} </p>
  * <p>描述: [读取mysql 网站配置信息到redis队列] </p>
  *
- * @author 一杯咖啡*/
+ * @author 一杯咖啡
+ */
 
 @Component
 public class ConfigFromMysqlToRedis {
@@ -31,7 +32,7 @@ public class ConfigFromMysqlToRedis {
     /**
      * desc:主节点需要该功能从mysql数据库读到redis队列
      **/
-    public void MysqlWirteRedis() {
+    public void mysqlWriteRedis() {
         List<SiteConfig> scs = sitesConfigDao.Read();
         String str;
         for (SiteConfig x : scs) {

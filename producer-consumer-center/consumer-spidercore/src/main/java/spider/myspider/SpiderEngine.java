@@ -29,8 +29,6 @@ public class SpiderEngine {
      */
     @Autowired
     private RedisManager redisManager;
-    // @Autowired
-    //private RamDBManager ramDBManager;
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -77,7 +75,7 @@ public class SpiderEngine {
                     /**
                      * DataToDB 数据持久化组件 param(tableName)
                      * paresUtil 网页解析组件 param(siteConfig,dataToDB)
-                     * visitor 网页解析器
+                     * DefaultContentPageFilter 网页解析器
                      * mySpider 爬虫组合APP
                      * abstractDBmanager 数据库管理组件
                      */

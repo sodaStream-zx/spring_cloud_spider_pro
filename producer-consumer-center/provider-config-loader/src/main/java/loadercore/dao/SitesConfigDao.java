@@ -1,4 +1,4 @@
-package maincore.dao;
+package loadercore.dao;
 
 import commoncore.entity.ParseContentRules;
 import commoncore.entity.SiteConfig;

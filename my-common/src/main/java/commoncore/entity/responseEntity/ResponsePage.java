@@ -35,11 +35,12 @@ import java.util.regex.Pattern;
 
 /**
  * Page是爬取过程中，内存中保存网页爬取信息的一个容器，Page只在内存中存放，用于保存一些网页信息，方便用户进行自定义网页解析之类的操作。
+ * @author 一杯咖啡
  */
 public class ResponsePage implements Serializable {
 
     public static final Logger LOG = LoggerFactory.getLogger(ResponsePage.class);
-
+    private String siteName;
     private CrawlDatum crawlDatum = null;
 
     private String contentType;
@@ -78,6 +79,7 @@ public class ResponsePage implements Serializable {
         }
         return Pattern.matches(contentTypeRegex, contentType());
     }
+
     /**
      * 获取网页中满足指定css选择器的所有元素的指定属性的集合
      * 例如通过attrs("img[src]","abs:src")可获取网页中所有图片的链接
@@ -416,5 +418,13 @@ public class ResponsePage implements Serializable {
 
     public void obj(Object obj) {
         this.obj = obj;
+    }
+
+    public String getSiteName() {
+        return siteName;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
     }
 }

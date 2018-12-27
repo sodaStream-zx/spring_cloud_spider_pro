@@ -1,6 +1,6 @@
-package maincore.controller;
+package loadercore.controller;
 
-import maincore.dao.ConfigFromMysqlToRedis;
+import loadercore.dao.ConfigFromMysqlToRedis;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author 一杯咖啡
- * @desc
+ * @desc 加载配置文件 controller
  * @createTime 2018-12-26-11:02
  */
 @RestController
@@ -22,7 +22,7 @@ public class LoadConfigsController {
      **/
     @GetMapping(value = "/load")
     public boolean readConfigFormMysql() {
-        configFromMysqlToRedis.MysqlWirteRedis();
+        configFromMysqlToRedis.mysqlWriteRedis();
         LOG.info("加载配置文件到redis 完成");
         return true;
     }

@@ -10,10 +10,6 @@ import commoncore.entity.responseEntity.ResponseData;
  */
 public interface IParesEngine {
     /**
-     * desc:默认解析
-     **/
-    void parseRun();
-    /**
      * desc:解析传入的数据
      * @param responseData
      **/

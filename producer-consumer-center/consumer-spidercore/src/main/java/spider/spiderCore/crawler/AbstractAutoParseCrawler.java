@@ -6,26 +6,26 @@ import commoncore.entity.responseEntity.Links;
 import commoncore.entity.responseEntity.ResponsePage;
 import commoncore.entity.responseEntity.entityTools.RegexRule;
 import org.jsoup.nodes.Document;
+import spider.spiderCore.fetcher.IFetcherTools.DefaultContentPageFilter;
 import spider.spiderCore.fetcher.IFetcherTools.Executor;
-import spider.spiderCore.fetcher.IFetcherTools.Visitor;
 import spider.spiderCore.http.IRequestor.Requester;
 import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 /**
  * 自动爬取解析爬虫
  */
-public abstract class AbstractAutoParseCrawler extends Crawler implements Executor, Visitor {
+public abstract class AbstractAutoParseCrawler extends Crawler implements Executor, DefaultContentPageFilter {
 
     /**
      * 是否自动抽取符合正则的链接并加入后续任务
      */
     protected boolean autoParse = true;
-    protected Visitor visitor;
+    protected DefaultContentPageFilter defaultContentPageFilter;
     protected Requester requester;
 
     public AbstractAutoParseCrawler() {
         this.executor = this;
-        this.visitor = this;
+        this.defaultContentPageFilter = this;
     }
 
     @Override
@@ -33,7 +33,7 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
         super.registerOtherConfigurations();
         //当前对象配置，付给当前对象配置
         ConfigurationUtils.setTo(this, requester);
-        ConfigurationUtils.setTo(this, visitor);
+        ConfigurationUtils.setTo(this, defaultContentPageFilter);
     }
 
 
@@ -44,8 +44,9 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
 
     /**
      * 页面解析器（页面urls提取）
+     *
      * @param datum 任务对象
-     * @param next 当前任务对象提取出来的接下来的任务
+     * @param next  当前任务对象提取出来的接下来的任务
      */
     @Override
     public void execute(CrawlDatum datum, CrawlDatums next) throws Exception {
@@ -54,8 +55,8 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
         if (autoParse && !regexRule.isEmpty()) {
             parseLink(responsePage, next);
         }
-        //用户自定义页面解析 重写visit方法
-        visitor.visit(responsePage, next);
+        //传输数据给解析器
+        defaultContentPageFilter.getContentPageData(responsePage);
         afterParse(responsePage, next);
     }
 
@@ -80,31 +81,48 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
 
     /**
      * 添加URL正则约束
+     *
      * @param urlRegex URL正则约束
      */
-    public void addRegex(String urlRegex) { regexRule.addRule(urlRegex); }
+    public void addRegex(String urlRegex) {
+        regexRule.addRule(urlRegex);
+    }
 
     /**
      * 是否自动抽取符合正则的链接并加入后续任务
+     *
      * @param autoParse 是否自动抽取符合正则的链接并加入后续任务
      */
-    public void setAutoParse(boolean autoParse) { this.autoParse = autoParse; }
+    public void setAutoParse(boolean autoParse) {
+        this.autoParse = autoParse;
+    }
+
     public boolean isAutoParse() {
         return autoParse;
     }
+
     /**
      * 正则规则
+     *
      * @param regexRule 正则规则
      */
-    public void setRegexRule(RegexRule regexRule) { this.regexRule = regexRule; }
-    public RegexRule getRegexRule() { return regexRule; }
+    public void setRegexRule(RegexRule regexRule) {
+        this.regexRule = regexRule;
+    }
+
+    public RegexRule getRegexRule() {
+        return regexRule;
+    }
+
     /**
      * 获取requester
+     *
      * @return requester
      */
     public Requester getRequester() {
         return requester;
     }
+
     public void setRequester(Requester requester) {
         this.requester = requester;
     }
