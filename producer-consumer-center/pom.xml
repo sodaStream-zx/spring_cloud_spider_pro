@@ -12,7 +12,7 @@
     <artifactId>producer-consumer-center</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>provider-mainentry</module>
+        <module>provider-config-loader</module>
         <module>consumer-spidercore</module>
         <module>consumer-parser</module>
     </modules>

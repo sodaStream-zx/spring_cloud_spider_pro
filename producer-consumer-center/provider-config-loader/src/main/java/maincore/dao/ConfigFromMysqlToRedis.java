@@ -2,6 +2,7 @@
 package maincore.dao;
 
 import commoncore.entity.SiteConfig;
+import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,7 +15,8 @@ import java.util.List;
  * <p>项目名称: ${小型分布式爬虫} </p>
  * <p>文件名称: ${MysqlToRedis} </p>
  * <p>描述: [读取mysql 网站配置信息到redis队列] </p>
- **/
+ *
+ * @author 一杯咖啡*/
 
 @Component
 public class ConfigFromMysqlToRedis {
@@ -24,8 +26,7 @@ public class ConfigFromMysqlToRedis {
     private RedisTemplate redisTemplate;
     @Autowired
     private SitesConfigDao sitesConfigDao;
-    @Autowired
-    private MainSerializeUtil serializeUtil;
+    private SerializeUtil serializeUtil = new SerializeUtil();
 
     /**
      * desc:主节点需要该功能从mysql数据库读到redis队列
@@ -39,7 +40,6 @@ public class ConfigFromMysqlToRedis {
                 for (int i = 0; i < 3; i++) {
                     redisTemplate.opsForList().leftPush("sites", str);
                 }
-                //jedis.lpush("sites", str);
                 Thread.sleep(1000);
             } catch (Exception e) {
                 LOG.error("序列化SiteConfig对象出错");
@@ -47,19 +47,21 @@ public class ConfigFromMysqlToRedis {
         }
     }
 
-    //从redis中读取配置
+    /**
+     * desc:从redis中读取配置
+     **/
     public void readRedis() {
         List<String> sites = redisTemplate.opsForList().range("sites", 0, -1);
-        if (sites.size() > 0){
-        for (String site : sites) {
-            try {
-                SiteConfig siteConfig = (SiteConfig) serializeUtil.deserializeToObject(site);
-                System.out.println("siteconfig:" + siteConfig.toString());
-            } catch (Exception e) {
-                LOG.error("反序列化SiteConfig对象出错");
+        if (sites.size() > 0) {
+            for (String site : sites) {
+                try {
+                    SiteConfig siteConfig = (SiteConfig) serializeUtil.deserializeToObject(site);
+                    System.out.println("siteconfig:" + siteConfig.toString());
+                } catch (Exception e) {
+                    LOG.error("反序列化SiteConfig对象出错");
+                }
             }
-        }
-        }else {
+        } else {
             LOG.error("未取得redis中的值");
         }
     }

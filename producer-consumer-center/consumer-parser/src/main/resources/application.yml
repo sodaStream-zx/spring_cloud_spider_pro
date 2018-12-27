@@ -1,6 +1,17 @@
-redis:
-  responseList: responseList
-
+#######p配置信息
+my:
+  queue:
+    maxSize: 1000
+  #待解析数据 redis list key
+  responseList:
+    redisKey: responseList
+  #解析器 hashmap key
+  domain:
+    mapName: rule
+  #任务执行线程数量
+  fetcher:
+    maxThread: 30
+#############以上为自定义配置
 spring:
   application:
     name: MyPares

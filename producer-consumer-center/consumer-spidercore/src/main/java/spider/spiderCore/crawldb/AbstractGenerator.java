@@ -22,6 +22,10 @@ public abstract class AbstractGenerator<T> extends DefaultConfigImp {
 
     private int totalGenerate;
 
+    public void setTotalGenerate(int totalGenerate) {
+        this.totalGenerate = totalGenerate;
+    }
+
     public AbstractGenerator() {
         this.totalGenerate = 0;
 //      this.maxExecuteCount = getConfig().getOrDefault(Configuration.KEY_MAX_EXECUTE_COUNT, Integer.MAX_VALUE);

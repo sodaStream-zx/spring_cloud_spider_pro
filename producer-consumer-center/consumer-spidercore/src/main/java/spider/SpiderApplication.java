@@ -20,8 +20,8 @@ import java.sql.SQLException;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"spider","commoncore"})
-public class SpringBootStartRun {
-    private static final Logger LOG = Logger.getLogger(SpringBootStartRun.class);
+public class SpiderApplication {
+    private static final Logger LOG = Logger.getLogger(SpiderApplication.class);
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
@@ -51,6 +51,6 @@ public class SpringBootStartRun {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootStartRun.class, args);
+        SpringApplication.run(SpiderApplication.class, args);
     }
 }

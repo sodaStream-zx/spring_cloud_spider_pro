@@ -11,8 +11,10 @@ import commoncore.entity.responseEntity.ResponsePage;
  * */
 public interface ParesContent<T> {
     /**
-     * @Description: [页面内容提取]
-     * @param page 当前页面
-     */
+     * Description: 数据解析方法
+     * @param page 数据页面
+     * @param domainRule 解析器规则
+     * @return T 泛型 后期可解析出不同内容
+     **/
     T paresContent(ResponsePage page, DomainRule domainRule);
 }

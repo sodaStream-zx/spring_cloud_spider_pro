@@ -13,7 +13,7 @@
         <module name="manager-hystrix-dashboard" />
         <module name="manager-zuul-gateway" />
         <module name="my-common" />
-        <module name="provider-mainentry" />
+        <module name="provider-config-loader" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

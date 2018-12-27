@@ -11,7 +11,7 @@
     <file url="file://$PROJECT_DIR$/producer-consumer-center" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/producer-consumer-center/provider-mainentry" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/producer-consumer-center/provider-config-loader" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

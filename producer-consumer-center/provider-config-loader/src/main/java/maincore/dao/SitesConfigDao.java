@@ -12,19 +12,21 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * <p>项目名称: ${小型分布式爬虫} </p>
- * <p>文件名称: ${file_name} </p>
- * <p>描述: [mysql 网站配置数据操作] </p>
- * <p>创建时间: ${date} </p>
- * @author <a href="mail to: 1139835238@qq.com" rel="nofollow">whitenoise</a>
- * @update [序号][日期YYYY-MM-DD] [更改人姓名][变更描述]
+ * 项目名称: ${小型分布式爬虫}
+ * 描述: [mysql 网站配置数据操作]
+ *
+ * @author whitenoise
  **/
 @Component
 public class SitesConfigDao {
     private static final Logger LOG = Logger.getLogger(SitesConfigDao.class.getSimpleName());
 
-    @Autowired JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
+    /**
+     * desc: 读取siteconfig 和解析配置
+     **/
     public List<SiteConfig> Read() {
         String sql = "SELECT * FROM siteconfig ";
         String siteName = "";
@@ -32,7 +34,7 @@ public class SitesConfigDao {
         results = jdbcTemplate.queryForRowSet(sql);
         if (results.next()) {
             siteName = results.getString(2);
-        }else {
+        } else {
             LOG.warning("网站配置数据库为空");
         }
         results.beforeFirst();
@@ -41,8 +43,11 @@ public class SitesConfigDao {
         return sfList;
     }
 
+    /**
+     * desc:读取解析配置文件
+     **/
     public ParseContentRules readContentRules(String siteName) {
-        String sql = "SELECT * from contentRules WHERE siteName = '" + siteName+"'";
+        String sql = "SELECT * from contentRules WHERE siteName = '" + siteName + "'";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         ParseContentRules cs = null;
         if (result.next()) {
@@ -55,13 +60,15 @@ public class SitesConfigDao {
                 cs.setMedia_rule(result.getString(6));
                 cs.setAnthor_rule(result.getString(7));
             }
-            return cs;
         } else {
             LOG.warning("正文提取规则为空");
-            return cs;
         }
+        return cs;
     }
 
+    /**
+     * desc:添加 siteconfig和 解析配置 到mysql
+     **/
     public boolean insertSiteConfig(SiteConfig sc) {
         String sfsql = "INSERT INTO siteConfig(siteName,siteUrl,resume,contentPares,urlPares,seeds,deepPath,autoParse,tableName) VALUES (?,?,?,?,?,?,?,?,?)";
         int sfindex = jdbcTemplate.update(sfsql, sc.getSiteName(), sc.getSiteUrl(), sc.isRes(), sc.getPageParse(), sc.getUrlPares(), sc.getSeeds(), sc.getDeepPath(), sc.isAutoParse(), sc.getTableName());
@@ -73,6 +80,9 @@ public class SitesConfigDao {
         return sfindex != 0 && crindex != 0;
     }
 
+    /**
+     * desc: 读取siteconfig
+     **/
     public List<SiteConfig> ObjectRelation(SqlRowSet resultSet, ParseContentRules parseContentRules) {
         SiteConfig siteconfig;
         List<SiteConfig> list = new ArrayList<>();

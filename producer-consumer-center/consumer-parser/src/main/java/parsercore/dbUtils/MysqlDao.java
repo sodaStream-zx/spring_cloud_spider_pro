@@ -3,10 +3,8 @@ package parsercore.dbUtils;
 
 import commoncore.entity.paresEntity.DomainRule;
 import commoncore.entity.paresEntity.MyNew;
-import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import parsercore.dbUtils.Istore.IMysqlDao;
@@ -18,10 +16,6 @@ public class MysqlDao implements IMysqlDao<MyNew> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
-    private RedisTemplate redisTemplate;
-
-    private SerializeUtil serializeUtil = new SerializeUtil();
 
     /**
      * desc:初始化mysql建表
@@ -65,19 +59,17 @@ public class MysqlDao implements IMysqlDao<MyNew> {
     /**
      * desc:获取mysql 中的解析器配置
      *
-     * @Return:
      **/
     @Override
     public DomainRule getDomainRuleFromMysql(String siteName) {
         String sql = "select * from domain_rule where site_name = ?";
-        LOG.info("sql = " + sql);
         DomainRule domainRule = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
             DomainRule domainRule1 = new DomainRule();
             domainRule1.setDomainId(rs.getInt(1));
             domainRule1.setAnthor_rule(rs.getString(2));
             domainRule1.setContent_rule(rs.getString(3));
             domainRule1.setMedia_rule(rs.getString(4));
-            domainRule1.setSiteName(rs.getString(5));
+            domainRule1.setSiteName(siteName);
             domainRule1.setTime_rule(rs.getString(6));
             domainRule1.setTitle_rule(rs.getString(7));
             return domainRule1;

@@ -14,7 +14,7 @@ import parsercore.paresUtil.ParesContent;
 
 /**
  * @author 一杯咖啡
- * @desc 解析器集成
+ * @desc 解析器
  * @createTime 2018-12-21-15:49
  */
 @Component
@@ -24,28 +24,33 @@ public class ParesEngine implements IParesEngine {
     @Autowired
     ParesContent paresContent;
     @Autowired
-    IRedisDao iRedisDaoResponseData;
+    IRedisDao iRedisDao;
     @Autowired
     IMysqlDao IMysqlDao;
-    @Value(value = "${redis.responseList}")
+    @Value(value = "${my.responseList.redisKey}")
     private String listKey;
     private DomainRule domainRule = null;
 
     @Override
-    public void paresRun() {
-        //多线程调度中心 waiting writing
-        while (true) {
-            log.info("start pareser");
-            ResponseData pageData = iRedisDaoResponseData.getResponseDataFromRedis(listKey);
-            if (domainRule != null && pageData.getSiteName().equals(domainRule.getSiteName())) {
-                ResponsePage page = new ResponsePage(pageData.getDatum(), pageData.getCode(), pageData.getContentType(), pageData.getContent());
-                MyNew myNew = (MyNew) paresContent.paresContent(page, domainRule);
-                if (myNew !=null) {
-                    IMysqlDao.insertNew(myNew);
-                }
-            } else {
-                domainRule = iRedisDaoResponseData.getDomainRuleFromRedis(pageData.getSiteName());
+    public void parseRun() {
+        //默认解析
+    }
+
+    /**
+     * desc:解析器
+     **/
+    @Override
+    public void parseRun(ResponseData pageData) {
+        log.info("开始解析-----");
+        if (domainRule != null && pageData.getSiteName().equals(domainRule.getSiteName())) {
+            ResponsePage page = new ResponsePage(pageData.getDatum(), pageData.getCode(), pageData.getContentType(), pageData.getContent());
+            MyNew myNew = (MyNew) paresContent.paresContent(page, domainRule);
+            if (myNew != null) {
+                IMysqlDao.insertNew(myNew);
             }
+        } else {
+            domainRule = iRedisDao.getDomainRuleFromRedis(pageData.getSiteName());
+            this.parseRun(pageData);
         }
     }
 }

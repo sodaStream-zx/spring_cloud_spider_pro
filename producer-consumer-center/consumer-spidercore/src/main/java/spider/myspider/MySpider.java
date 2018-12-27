@@ -16,10 +16,10 @@ import spider.spiderCore.crawler.AbstractAutoParseCrawler;
 import spider.spiderCore.http.IRequestor.Requester;
 
 /**
-* @author 一杯咖啡
-* @desc 爬虫初始化类
-* @createTime  ${YEAR}-${MONTH}-${DAY}-${TIME}
-*/
+ * @author 一杯咖啡
+ * @desc 爬虫初始化类
+ * @createTime ${YEAR}-${MONTH}-${DAY}-${TIME}
+ */
 @Component
 public class MySpider extends AbstractAutoParseCrawler {
 
@@ -40,7 +40,9 @@ public class MySpider extends AbstractAutoParseCrawler {
     private String[] seeds;
     private String[] conPickRules;
 
-    @Autowired private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     public MySpider() {
         //设置任务上限
         //this.configuration.setTopN(600);
@@ -49,9 +51,9 @@ public class MySpider extends AbstractAutoParseCrawler {
     }
 
     /**
-     * @param siteConfig   网站配置信息
-     * @param requester    自定义请求工具 需实现requestor接口
-     * desc :初始化爬虫组件
+     * @param siteConfig 网站配置信息
+     * @param requester  自定义请求工具 需实现requestor接口
+     *                   desc :初始化爬虫组件
      */
     public void initMySpider(SiteConfig siteConfig, Requester requester, ParesUtil paresUtil) {
         this.siteconfig = siteConfig;
@@ -66,8 +68,8 @@ public class MySpider extends AbstractAutoParseCrawler {
     }
 
     /**
-     * @param siteConfig   网站配置信息
-     * desc :初始化爬虫属性
+     * @param siteConfig 网站配置信息
+     *                   desc :初始化爬虫属性
      */
     public void configSpider(SiteConfig siteConfig) {
         //设置爬虫入口
@@ -117,7 +119,7 @@ public class MySpider extends AbstractAutoParseCrawler {
         ResponseData responseData;
         for (String conRegx : conPickRules) {
             if (responsePage.url().matches(conRegx)) {
-                responseData = new ResponseData(siteconfig.getSiteName(), responsePage.crawlDatum(),responsePage.code(),responsePage.contentType(),responsePage.content());
+                responseData = new ResponseData(siteconfig.getSiteName(), responsePage.crawlDatum(), responsePage.code(), responsePage.contentType(), responsePage.content());
                 String rd = null;
                 try {
                     rd = new SerializeUtil().serializeToString(responseData);
@@ -131,12 +133,13 @@ public class MySpider extends AbstractAutoParseCrawler {
     }
 
     /**
-     *  desc: 爬虫完成后执行
+     * desc: 爬虫完成后执行
      */
     @Override
     public void afterStop() {
-        LOG.info(paresUtil.getParesCounter().toString());
+        LOG.info("总提取量归零");
+        abstractDbManager.getAbstractGenerator().setTotalGenerate(0);
         LOG.info("等待10秒 继续下一任务--------------------------");
-            //System.exit(0);
+        //System.exit(0);
     }
 }
