@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"/>
+    <script th:src="@{/js/index.js}"/>
+</head>
+<body>
+<h1>this is a index html by thymeleaf</h1>
+<form method="post" th:action="@{/pro/set}">
+    <input type="text" name="user_agent" value=""/>
+    <input type="text" name="cookie" value=""/>
+    <input type="text" name="accept" value=""/>
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>

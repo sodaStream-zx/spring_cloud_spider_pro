@@ -20,6 +20,6 @@ public class SpiderControllerTest {
     SpiderEngine spiderEngine;
     @Test
     public void start() {
-        spiderEngine.initToRun();
+        //   spiderEngine.initToRun();
     }
 }

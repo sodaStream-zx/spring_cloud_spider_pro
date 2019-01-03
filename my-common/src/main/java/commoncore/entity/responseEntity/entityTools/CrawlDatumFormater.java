@@ -33,31 +33,8 @@ public class CrawlDatumFormater {
 
         //加入执行时间
         sb.append("\nExecuteTime:").append(sdf.format(new Date(datum.getExecuteTime())))
-                .append("\nExecuteCount:").append(datum.getExecuteCount());
-
-        //int metaIndex = 0;
-
-       /* for(Entry<String, JsonElement> entry: datum.meta().entrySet()){
-            sb.append("\nMETA").append("[").append(metaIndex++).append("]:(")
-                    .append(entry.getKey()).append(",").append(entry.getValue()).append(")");
-        }*/
+                .append("\nExecuteCount:").append(datum.getExecuteCount()).append("\nMethod:").append(datum.getMethod());
         sb.append("\n");
         return sb.toString();
     }
-
-   /* public static CrawlDatum jsonStrToDatum(String crawlDatumKey, String jsonStr) {
-        JsonArray jsonArray = GsonUtils.parse(jsonStr).getAsJsonArray();
-
-        CrawlDatum crawlDatum = new CrawlDatum();
-        crawlDatum.key(crawlDatumKey);
-        crawlDatum.url(jsonArray.get(0).getAsString());
-        crawlDatum.setStatus(jsonArray.get(1).getAsInt());
-        crawlDatum.setExecuteTime(jsonArray.get(2).getAsLong());
-        crawlDatum.setExecuteCount(jsonArray.get(3).getAsInt());
-        *//*if (jsonArray.size() == 5) {
-            JsonObject metaJsonObject = jsonArray.get(4).getAsJsonObject();
-            crawlDatum.meta(metaJsonObject);
-        }*//*
-        return crawlDatum;
-    }*/
 }

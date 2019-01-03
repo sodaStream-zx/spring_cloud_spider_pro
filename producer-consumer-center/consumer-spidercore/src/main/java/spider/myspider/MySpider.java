@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawler.AbstractAutoParseCrawler;
 import spider.spiderCore.fetcher.IFetcherTools.TransferToParser;
-import spider.spiderCore.http.IRequestor.Requester;
+import spider.spiderCore.http.Requester;
 
 /**
  * @author 一杯咖啡

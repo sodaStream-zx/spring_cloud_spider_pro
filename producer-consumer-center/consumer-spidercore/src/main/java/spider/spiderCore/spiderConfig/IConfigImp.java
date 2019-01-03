@@ -1,8 +1,8 @@
 package spider.spiderCore.spiderConfig;
 
-import spider.spiderCore.spiderConfig.IConfig.CustomConfig;
+import spider.spiderCore.spiderConfig.IConfig.IConfig;
 
-public class CustomConfigImp implements CustomConfig {
+public class IConfigImp implements IConfig {
     protected Configuration configuration;
     @Override
     public Configuration getConfig() {

@@ -1,7 +1,7 @@
 package spider.spiderCore.spiderConfig.configUtil;
 
 
-import spider.spiderCore.spiderConfig.IConfig.CustomConfig;
+import spider.spiderCore.spiderConfig.IConfig.IConfig;
 
 public class ConfigurationUtils {
 //    public static void addParent(Object child, Configured parent){
@@ -11,10 +11,10 @@ public class ConfigurationUtils {
 //        }
 //    }
 
-    public static void setTo(CustomConfig from, Object... targets){
+    public static void setTo(IConfig from, Object... targets) {
         for(Object target:targets){
-            if(target instanceof CustomConfig){
-                CustomConfig configuredTarget = (CustomConfig) target;
+            if (target instanceof IConfig) {
+                IConfig configuredTarget = (IConfig) target;
                 configuredTarget.setConfig(from.getConfig());
             }
         }

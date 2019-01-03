@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -426,5 +427,21 @@ public class ResponsePage implements Serializable {
 
     public void setSiteName(String siteName) {
         this.siteName = siteName;
+    }
+
+    @Override
+    public String toString() {
+        return "ResponsePage{" +
+                "siteName='" + siteName + '\'' +
+                ", crawlDatum=" + crawlDatum +
+                ", contentType='" + contentType + '\'' +
+                ", code=" + code +
+                ", exception=" + exception +
+                ", html='" + html + '\'' +
+                ", doc=" + doc +
+                ", charset='" + charset + '\'' +
+                ", content=" + Arrays.toString(content) +
+                ", obj=" + obj +
+                '}';
     }
 }

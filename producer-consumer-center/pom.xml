@@ -15,6 +15,7 @@
         <module>provider-config-loader</module>
         <module>consumer-spidercore</module>
         <module>consumer-parser</module>
+        <module>consumer-crud</module>
     </modules>
     <dependencies>
         <!--启动重试-->
@@ -49,11 +50,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
-        <!--测试-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
 </project>

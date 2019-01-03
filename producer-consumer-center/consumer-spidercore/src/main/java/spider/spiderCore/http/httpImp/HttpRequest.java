@@ -1,9 +1,10 @@
-package spider.spiderCore.http;
+package spider.spiderCore.http.httpImp;
 
 import commoncore.entity.responseEntity.CrawlDatum;
 import commoncore.entity.responseEntity.ResponsePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import spider.spiderCore.spiderConfig.Configuration;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -23,9 +24,12 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
 /**
- *url请求发送
+ * url请求发送
+ *
+ * @author 一杯咖啡
  */
-public class HttpRequest{
+@Component
+public class HttpRequest {
 
     public static final Logger LOG = LoggerFactory.getLogger(HttpRequest.class);
 
@@ -41,7 +45,7 @@ public class HttpRequest{
     protected boolean followRedirects = false;
     protected int timeoutForConnect = defaultConf.getConnectTimeout();
     protected int timeoutForRead = defaultConf.getReadTimeout();
-    protected byte[] outputData=null;
+    protected byte[] outputData = null;
     protected String userAgent = defaultConf.getDefaultUserAgent();
     Proxy proxy = null;
 
@@ -49,11 +53,14 @@ public class HttpRequest{
 
     protected CrawlDatum crawlDatum = null;
 
+    public HttpRequest() {
+    }
+
     public HttpRequest(String url) {
         this.crawlDatum = new CrawlDatum(url);
     }
 
-    public HttpRequest(String url, Proxy proxy) throws Exception {
+    public HttpRequest(String url, Proxy proxy) {
         this(new CrawlDatum(url), proxy);
     }
 
@@ -66,7 +73,7 @@ public class HttpRequest{
         this.proxy = proxy;
     }
 
-    public ResponsePage responsePage() throws Exception{
+    public ResponsePage responsePage() throws Exception {
         HttpResponse response = response();
         ResponsePage responsePage = new ResponsePage(
                 crawlDatum,
@@ -81,11 +88,12 @@ public class HttpRequest{
 
     /**
      * desc:发送http请求，并获取返回的内容
-     * @Return:
+     *
+     * @Return:HttpResponse
      **/
     public HttpResponse response() throws Exception {
         URL url = new URL(crawlDatum.url());
-        if(userAgent!=null){
+        if (userAgent != null) {
             setUserAgent(userAgent);
         }
         HttpResponse response = new HttpResponse(url);
@@ -94,36 +102,30 @@ public class HttpRequest{
         HttpURLConnection con = null;
         InputStream is = null;
         try {
-
+            //请求重试次数
             for (int redirect = 0; redirect <= maxRedirect; redirect++) {
                 if (proxy == null) {
                     con = (HttpURLConnection) url.openConnection();
                 } else {
                     con = (HttpURLConnection) url.openConnection(proxy);
                 }
-
                 config(con);
-                
-                if(outputData!=null){
-                    OutputStream os=con.getOutputStream();
+                if (outputData != null) {
+                    OutputStream os = con.getOutputStream();
                     os.write(outputData);
                     os.close();
                 }
-
                 code = con.getResponseCode();
                 /*只记录第一次返回的code*/
                 if (redirect == 0) {
                     response.code(code);
                 }
-                
-                if(code==HttpURLConnection.HTTP_NOT_FOUND){
+                if (code == HttpURLConnection.HTTP_NOT_FOUND) {
                     response.setNotFound(true);
                     return response;
                 }
-
                 boolean needBreak = false;
                 switch (code) {
-                        
                     case HttpURLConnection.HTTP_MOVED_PERM:
                     case HttpURLConnection.HTTP_MOVED_TEMP:
                         response.setRedirect(true);
@@ -146,7 +148,6 @@ public class HttpRequest{
                 if (needBreak) {
                     break;
                 }
-
             }
 
             is = con.getInputStream();
@@ -189,6 +190,7 @@ public class HttpRequest{
 
     /**
      * desc: 配置请求头
+     *
      * @Return:
      **/
     public void config(HttpURLConnection con) throws Exception {
@@ -220,7 +222,7 @@ public class HttpRequest{
     }
 
     public void setMethod(String method) {
-        this.method=method;
+        this.method = method;
     }
 
     public CrawlDatum getCrawlDatum() {
@@ -233,22 +235,22 @@ public class HttpRequest{
 
     static {
         TrustManager[] trustAllCerts = new TrustManager[]{
-            new X509TrustManager() {
-                @Override
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
+                new X509TrustManager() {
+                    @Override
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                        return null;
+                    }
 
-                @Override
-                public void checkClientTrusted(
-                        java.security.cert.X509Certificate[] certs, String authType) {
-                }
+                    @Override
+                    public void checkClientTrusted(
+                            java.security.cert.X509Certificate[] certs, String authType) {
+                    }
 
-                @Override
-                public void checkServerTrusted(
-                        java.security.cert.X509Certificate[] certs, String authType) {
+                    @Override
+                    public void checkServerTrusted(
+                            java.security.cert.X509Certificate[] certs, String authType) {
+                    }
                 }
-            }
         };
 
         try {
@@ -329,7 +331,6 @@ public class HttpRequest{
         this.MAX_RECEIVE_SIZE = MAX_RECEIVE_SIZE;
     }
 
-   
 
     public Map<String, List<String>> getHeaders() {
         return headerMap;
@@ -420,6 +421,6 @@ public class HttpRequest{
 
     public void setOutputData(byte[] outputData) {
         this.outputData = outputData;
-        this.dooutput=true;
+        this.dooutput = true;
     }
 }

@@ -1,4 +1,4 @@
-package spider.spiderCore.http;
+package spider.spiderCore.http.httpImp;
 
 import commoncore.entity.responseEntity.entityTools.CharsetDetector;
 import org.slf4j.Logger;

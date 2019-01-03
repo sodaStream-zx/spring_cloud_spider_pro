@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="consumer-crud" />
         <module name="consumer-parser" />
         <module name="consumer-spidercore" />
         <module name="manager-config-server" />
@@ -16,8 +17,6 @@
         <module name="provider-config-loader" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="consumer-urlfilter" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8" />
   </component>
 </project>

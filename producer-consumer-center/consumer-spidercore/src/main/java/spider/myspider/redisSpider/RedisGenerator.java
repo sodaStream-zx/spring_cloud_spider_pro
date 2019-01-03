@@ -39,7 +39,7 @@ public class RedisGenerator extends AbstractGenerator<String> {
         CrawlDatum datum = null;
         String parse = getDataBase().getFetchDB();
         datumString = redisTemplate.opsForList().leftPop(parse);
-        //LOG.info("解析数据库任务提取 : " + datumstr);
+        LOG.debug("redis 待请求任务序列化字符串 : " + datumString);
         if (datumString != null) {
             datum = (CrawlDatum) serializeUtil.deserializeToObject(datumString);
         }

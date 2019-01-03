@@ -1,4 +1,4 @@
-package spider.spiderCore.http.IRequestor;
+package spider.spiderCore.http;
 
 
 import commoncore.entity.responseEntity.CrawlDatum;

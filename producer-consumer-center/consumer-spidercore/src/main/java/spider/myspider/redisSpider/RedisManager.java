@@ -28,7 +28,7 @@ public class RedisManager extends AbstractDBManager<String> {
 
     @Override
     public boolean isDBExists() {
-        return redisTemplate != null;
+        return redisTemplate.getConnectionFactory().getConnection() != null;
     }
 
     /**
@@ -38,7 +38,7 @@ public class RedisManager extends AbstractDBManager<String> {
     public void clear() {
         redisTemplate.execute((RedisCallback<Object>) connection -> {
             connection.flushDb();
-            LOG.info("启动清空以前的任务数据库");
+            LOG.debug("启动清空以前的任务数据库");
             return "ok";
         });
     }

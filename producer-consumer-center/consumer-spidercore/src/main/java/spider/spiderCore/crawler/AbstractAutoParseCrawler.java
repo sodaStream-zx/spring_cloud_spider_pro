@@ -8,7 +8,7 @@ import commoncore.entity.responseEntity.entityTools.RegexRule;
 import org.jsoup.nodes.Document;
 import spider.spiderCore.fetcher.IFetcherTools.DefaultContentPageFilter;
 import spider.spiderCore.fetcher.IFetcherTools.Executor;
-import spider.spiderCore.http.IRequestor.Requester;
+import spider.spiderCore.http.Requester;
 import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 /**

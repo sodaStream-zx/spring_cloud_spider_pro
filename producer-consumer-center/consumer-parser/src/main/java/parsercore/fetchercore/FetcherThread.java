@@ -39,7 +39,7 @@ public class FetcherThread implements Runnable {
                     break;
                 }
             } else {
-                //LOG.info("item = "+rs.toString());
+                //LOG.debug("item = "+rs.toString());
                 //pause(8, 0);
                 iParesEngine.parseRun(responseData);
             }

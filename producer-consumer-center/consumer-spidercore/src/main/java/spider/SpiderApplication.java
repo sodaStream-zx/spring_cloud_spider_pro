@@ -37,7 +37,7 @@ public class SpiderApplication {
         LOG.info("环境监视：\n");
         //获取redis连接，连接失败则退出程序
         try {
-            redisTemplate.getConnectionFactory().getConnection();
+            //  redisTemplate.getConnectionFactory().getConnection();
         } catch (Exception e) {
             LOG.error("redis 连接失败");
             System.exit(0);
