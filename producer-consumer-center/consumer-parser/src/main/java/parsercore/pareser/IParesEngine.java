@@ -1,7 +1,7 @@
 package parsercore.pareser;
 
 
-import commoncore.entity.responseEntity.ResponseData;
+import commoncore.entity.httpEntity.ResponseData;
 
 /**
  * @author 一杯咖啡

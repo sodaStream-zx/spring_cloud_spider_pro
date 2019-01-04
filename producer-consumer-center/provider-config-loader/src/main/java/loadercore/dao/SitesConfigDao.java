@@ -1,7 +1,6 @@
 package loadercore.dao;
 
-import commoncore.entity.ParseContentRules;
-import commoncore.entity.SiteConfig;
+import commoncore.entity.configEntity.SiteConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -38,14 +37,13 @@ public class SitesConfigDao {
             LOG.warning("网站配置数据库为空");
         }
         results.beforeFirst();
-        ParseContentRules CR = readContentRules(siteName);
-        List<SiteConfig> sfList = ObjectRelation(results, CR);
+        List<SiteConfig> sfList = ObjectRelation(results);
         return sfList;
     }
 
-    /**
+    /* *//**
      * desc:读取解析配置文件
-     **/
+     **//*
     public ParseContentRules readContentRules(String siteName) {
         String sql = "SELECT * from contentRules WHERE siteName = '" + siteName + "'";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
@@ -64,7 +62,7 @@ public class SitesConfigDao {
             LOG.warning("正文提取规则为空");
         }
         return cs;
-    }
+    }*/
 
     /**
      * desc:添加 siteconfig和 解析配置 到mysql
@@ -72,18 +70,13 @@ public class SitesConfigDao {
     public boolean insertSiteConfig(SiteConfig sc) {
         String sfsql = "INSERT INTO siteConfig(siteName,siteUrl,resume,contentPares,urlPares,seeds,deepPath,autoParse,tableName) VALUES (?,?,?,?,?,?,?,?,?)";
         int sfindex = jdbcTemplate.update(sfsql, sc.getSiteName(), sc.getSiteUrl(), sc.isRes(), sc.getPageParse(), sc.getUrlPares(), sc.getSeeds(), sc.getDeepPath(), sc.isAutoParse(), sc.getTableName());
-
-        String sql = "insert into contentRules(siteName,title_rule,content_rule,time_rule,media_rule,author_rule) values(?,?,?,?,?,?)";
-        ParseContentRules cr = sc.getParseContentRules();
-        int crindex = jdbcTemplate.update(sql, sc.getSiteName(), cr.getTitle_rule(), cr.getContent_rule(), cr.getTime_rule(), cr.getMedia_rule(), cr.getAnthor_rule());
-
-        return sfindex != 0 && crindex != 0;
+        return sfindex != 0;
     }
 
     /**
      * desc: 读取siteconfig
      **/
-    public List<SiteConfig> ObjectRelation(SqlRowSet resultSet, ParseContentRules parseContentRules) {
+    public List<SiteConfig> ObjectRelation(SqlRowSet resultSet) {
         SiteConfig siteconfig;
         List<SiteConfig> list = new ArrayList<>();
         if (resultSet.next()) {
@@ -99,7 +92,6 @@ public class SitesConfigDao {
                 siteconfig.setUrlPares(resultSet.getString(10));
                 siteconfig.setSeeds(resultSet.getString(6));
                 siteconfig.setPageParse(resultSet.getString(5));
-                siteconfig.setParseContentRules(parseContentRules);
                 list.add(siteconfig);
             }
             return list;

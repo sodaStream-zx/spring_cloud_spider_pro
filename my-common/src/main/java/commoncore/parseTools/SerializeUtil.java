@@ -1,7 +1,6 @@
 package commoncore.parseTools;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,7 +13,6 @@ import java.nio.charset.StandardCharsets;
  *
  * @author 一杯咖啡
  */
-@Component
 public class SerializeUtil {
     private static final Logger LOG = Logger.getLogger(SerializeUtil.class);
 
@@ -23,7 +21,7 @@ public class SerializeUtil {
      * @Description: [序列化对象为字符串]
      * @author <a href="mail to: 113985238@qq.com" rel="nofollow">whitenoise</a>
      */
-    public String serializeToString(Object obj) throws Exception {
+    public static String serializeToString(Object obj) throws Exception {
         LOG.debug("对象序列化");
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         ObjectOutputStream objOut = new ObjectOutputStream(byteOut);
@@ -37,7 +35,7 @@ public class SerializeUtil {
      * @Description: [反序列化字符串为对象]
      * @author <a href="mail to: *******@******.com" rel="nofollow">作者</a>
      */
-    public Object deserializeToObject(String str) throws Exception {
+    public static Object deserializeToObject(String str) throws Exception {
         LOG.debug("对象反序列化，进入程序");
         ByteArrayInputStream byteIn = new ByteArrayInputStream(str.getBytes(StandardCharsets.ISO_8859_1));
         ObjectInputStream objIn = new ObjectInputStream(byteIn);

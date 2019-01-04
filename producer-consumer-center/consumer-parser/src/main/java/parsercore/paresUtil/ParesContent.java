@@ -1,8 +1,8 @@
 package parsercore.paresUtil;
 
 
+import commoncore.entity.httpEntity.ResponsePage;
 import commoncore.entity.paresEntity.DomainRule;
-import commoncore.entity.responseEntity.ResponsePage;
 
 /**
  * 实现该接口

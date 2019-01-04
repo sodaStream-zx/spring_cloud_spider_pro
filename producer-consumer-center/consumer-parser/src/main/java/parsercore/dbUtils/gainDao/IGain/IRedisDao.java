@@ -1,8 +1,8 @@
 package parsercore.dbUtils.gainDao.IGain;
 
 
+import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.paresEntity.DomainRule;
-import commoncore.entity.responseEntity.ResponseData;
 import parsercore.fetchercore.generatorcore.IGenerator;
 
 /**

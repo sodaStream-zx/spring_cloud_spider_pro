@@ -1,6 +1,6 @@
 package parsercore.dbUtils.gainDao;
 
-import commoncore.entity.responseEntity.ResponseData;
+import commoncore.entity.httpEntity.ResponseData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

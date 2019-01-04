@@ -1,6 +1,6 @@
 package parsercore.fetchercore.coreimp;
 
-import commoncore.entity.responseEntity.ResponseData;
+import commoncore.entity.httpEntity.ResponseData;
 import org.springframework.stereotype.Component;
 import parsercore.fetchercore.generatorcore.IDataFilter;
 

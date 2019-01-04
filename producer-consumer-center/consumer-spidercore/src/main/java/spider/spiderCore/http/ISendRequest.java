@@ -1,7 +1,7 @@
 package spider.spiderCore.http;
 
-import commoncore.entity.responseEntity.CrawlDatum;
-import spider.spiderCore.http.httpImp.HttpResponse;
+import commoncore.entity.httpEntity.HttpResponse;
+import commoncore.entity.requestEntity.CrawlDatum;
 
 import java.net.HttpURLConnection;
 

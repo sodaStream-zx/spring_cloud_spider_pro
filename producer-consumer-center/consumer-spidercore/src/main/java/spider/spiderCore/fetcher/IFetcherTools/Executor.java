@@ -18,8 +18,8 @@
 package spider.spiderCore.fetcher.IFetcherTools;
 
 
-import commoncore.entity.responseEntity.CrawlDatum;
-import commoncore.entity.responseEntity.CrawlDatums;
+import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.CrawlDatums;
 
 /**
  * 页面处理

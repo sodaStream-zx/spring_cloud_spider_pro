@@ -1,14 +1,14 @@
 package spider.spiderCore.crawler;
 
-import commoncore.entity.responseEntity.CrawlDatum;
-import commoncore.entity.responseEntity.CrawlDatums;
-import commoncore.entity.responseEntity.Links;
-import commoncore.entity.responseEntity.ResponsePage;
-import commoncore.entity.responseEntity.entityTools.RegexRule;
+import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.CrawlDatums;
+import commoncore.entity.requestEntity.Links;
+import commoncore.entity.requestEntity.entityTools.RegexRule;
 import org.jsoup.nodes.Document;
 import spider.spiderCore.fetcher.IFetcherTools.DefaultContentPageFilter;
 import spider.spiderCore.fetcher.IFetcherTools.Executor;
-import spider.spiderCore.http.Requester;
+import spider.spiderCore.http.ISendRequest;
 import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 /**
@@ -21,7 +21,7 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
      */
     protected boolean autoParse = true;
     protected DefaultContentPageFilter defaultContentPageFilter;
-    protected Requester requester;
+    protected ISendRequest<ResponsePage> iSendRequest;
 
     public AbstractAutoParseCrawler() {
         this.executor = this;
@@ -32,10 +32,8 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
     protected void registerOtherConfigurations() {
         super.registerOtherConfigurations();
         //当前对象配置，付给当前对象配置
-        ConfigurationUtils.setTo(this, requester);
         ConfigurationUtils.setTo(this, defaultContentPageFilter);
     }
-
 
     /**
      * URL正则约束
@@ -49,8 +47,8 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
      * @param next  当前任务对象提取出来的接下来的任务
      */
     @Override
-    public void execute(CrawlDatum datum, CrawlDatums next) throws Exception {
-        ResponsePage responsePage = requester.getResponse(datum);
+    public void execute(CrawlDatum datum, CrawlDatums next) {
+        ResponsePage responsePage = iSendRequest.converterResponsePage(datum);
         //抽取当前页面符合条件的urls
         if (autoParse && !regexRule.isEmpty()) {
             parseLink(responsePage, next);
@@ -112,18 +110,5 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
 
     public RegexRule getRegexRule() {
         return regexRule;
-    }
-
-    /**
-     * 获取requester
-     *
-     * @return requester
-     */
-    public Requester getRequester() {
-        return requester;
-    }
-
-    public void setRequester(Requester requester) {
-        this.requester = requester;
     }
 }

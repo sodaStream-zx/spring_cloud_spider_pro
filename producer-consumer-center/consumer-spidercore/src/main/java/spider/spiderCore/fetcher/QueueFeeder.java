@@ -1,12 +1,14 @@
 package spider.spiderCore.fetcher;
 
 
-import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.spiderCore.crawldb.AbstractDBManager;
-import spider.spiderCore.crawldb.AbstractGenerator;
-import spider.spiderCore.crawldb.Idbutil.GeneratorFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import spider.spiderCore.crawldb.IDataUtil;
+import spider.spiderCore.crawldb.IGenerator;
+import spider.spiderCore.crawldb.IGeneratorFilter;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,26 +17,28 @@ import java.util.concurrent.TimeUnit;
  * @desc 任务生产者
  * @createTime
  */
-public class QueueFeeder extends Thread {
+@Component
+public class QueueFeeder implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(QueueFeeder.class);
 
+    @Autowired
     private FetchQueue queue;
-    private AbstractDBManager abstractDbManager;
-    private AbstractGenerator abstractGenerator;
-    private GeneratorFilter generatorFilter = null;
+    @Autowired
+    private IDataUtil iDataUtil;
+    @Autowired
+    private IGenerator<CrawlDatum> iGenerator;
+    @Autowired(required = false)
+    private IGeneratorFilter IGeneratorFilter = null;
     //queeue 大小最大值设置
-    private int queueMaxSize;
+    private int queueMaxSize = 1000;
     //feeder 的状态
-    public volatile boolean feederRunning = true;
-
+    @Autowired
+    private FetcherState fetcherState;
     /**
      * desc:初始化feeder
      **/
-    public QueueFeeder(Fetcher fetcher, Integer size) {
-        this.queue = fetcher.getFetchQueue();
-        this.abstractDbManager = fetcher.getAbstractDbManager();
-        this.queueMaxSize = size;
+    public QueueFeeder() {
     }
 
     /**
@@ -48,8 +52,8 @@ public class QueueFeeder extends Thread {
         } catch (Exception e) {
             LOG.error("【关闭数据库提取工具出错】");
         }
-        feederRunning = false;
-        while (this.isAlive()) {
+        fetcherState.setFeedRunnning(false);
+        while (fetcherState.isFeedRunnning()) {
             try {
                 TimeUnit.SECONDS.sleep(1);
                 LOG.info("【停止任务生产者】");
@@ -62,10 +66,11 @@ public class QueueFeeder extends Thread {
     /**
      * desc:关闭任务生成工具
      **/
-    public void closeGenerator() throws Exception {
-        if (abstractGenerator != null) {
-            abstractGenerator.close();
-            LOG.info("close abstractGenerator:" + abstractGenerator.getClass().getName() + " ......");
+    public void closeGenerator() {
+
+        if (iGenerator != null) {
+            iGenerator.close();
+            LOG.info("close abstractGenerator:" + iGenerator.getClass().getName() + " ......");
         }
     }
 
@@ -75,15 +80,11 @@ public class QueueFeeder extends Thread {
     @Override
     public void run() {
         //获取任务生成工具 （从数据库中提取数据）
-        abstractGenerator = abstractDbManager.getAbstractGenerator();
-        LOG.info(abstractGenerator.toString());
-        //abstractGenerator.setFilter(new StatusGeneratorFilter());
-        //LOG.info("create abstractGenerator:" + abstractGenerator.getClass().getName());
-        //判断任务来源中是否存在任务 redis
+        LOG.info(iGenerator.toString());
         boolean hasMore = true;
-        feederRunning = true;
+        fetcherState.setFeedRunnning(true);
 
-        while (hasMore && feederRunning) {
+        while (hasMore && fetcherState.isFeedRunnning()) {
             //监听queue中数量，当queue中数量为1000时，线程等待，
             int feed = queueMaxSize - queue.getSize();
             if (feed <= 0) {
@@ -95,21 +96,23 @@ public class QueueFeeder extends Thread {
             }
             //如果queue中小于1000，往queue中添加新任务，未提取到任务 count 等待时间
             int count = 0;
-            while (feed > 0 && hasMore && feederRunning) {
+            while (feed > 0 && hasMore && fetcherState.isFeedRunnning()) {
                 //任务生成器 如果下一个任务为空，返回空。判断dbmananger中是否有后续任务
-                CrawlDatum datum = abstractGenerator.next();
+                CrawlDatum datum = iGenerator.next();
                 if (datum != null) {
+                    LOG.info("取得数据");
                     queue.addCrawlDatum(datum);
                     feed--;//一直填到queue为1000
                 } else {
+                    LOG.info("未取得数据");
                     try {
                         TimeUnit.SECONDS.sleep(1);
                         count++;
                         if (count < 5) {
-                            LOG.info("redis 中无后续任务，等待第 "+count+" 秒");
+                            LOG.info("redis 中无后续任务，等待第 " + count + " 秒");
                         } else {
                             LOG.info("等待超时，关闭程序");
-                            feederRunning = false;
+                            fetcherState.setFeedRunnning(false);
                             hasMore = false;
                         }
                     } catch (InterruptedException e) {
@@ -117,9 +120,5 @@ public class QueueFeeder extends Thread {
                 }
             }
         }
-    }
-
-    public AbstractGenerator getAbstractGenerator() {
-        return abstractGenerator;
     }
 }

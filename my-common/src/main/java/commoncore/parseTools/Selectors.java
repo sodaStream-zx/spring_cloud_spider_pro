@@ -1,7 +1,7 @@
 package commoncore.parseTools;
 
 
-import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponsePage;
 import org.jsoup.nodes.Document;
 
 /**

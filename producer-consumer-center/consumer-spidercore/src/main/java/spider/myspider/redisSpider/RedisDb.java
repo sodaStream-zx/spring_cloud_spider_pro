@@ -1,13 +1,13 @@
 package spider.myspider.redisSpider;
 
 import org.springframework.stereotype.Component;
-import spider.spiderCore.crawldb.Idbutil.DataBase;
+import spider.spiderCore.crawldb.IDataBase;
 
 /**
  * @author 一杯咖啡
  */
 @Component
-public class RedisDb implements DataBase<String> {
+public class RedisDb implements IDataBase<String> {
 
     private String seedsList = "seeds";
     private String undoneList = "undone";

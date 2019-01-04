@@ -1,7 +1,7 @@
 package parsercore.fetchercore;
 
 
-import commoncore.entity.responseEntity.ResponseData;
+import commoncore.entity.httpEntity.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

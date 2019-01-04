@@ -1,9 +1,9 @@
 package parsercore.pareser;
 
+import commoncore.entity.httpEntity.ResponseData;
+import commoncore.entity.httpEntity.ResponsePage;
 import commoncore.entity.paresEntity.DomainRule;
 import commoncore.entity.paresEntity.MyNew;
-import commoncore.entity.responseEntity.ResponseData;
-import commoncore.entity.responseEntity.ResponsePage;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

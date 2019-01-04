@@ -1,8 +1,8 @@
 package parsercore.paresUtil;
 
+import commoncore.entity.httpEntity.ResponsePage;
 import commoncore.entity.paresEntity.DomainRule;
 import commoncore.entity.paresEntity.MyNew;
-import commoncore.entity.responseEntity.ResponsePage;
 import commoncore.parseTools.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

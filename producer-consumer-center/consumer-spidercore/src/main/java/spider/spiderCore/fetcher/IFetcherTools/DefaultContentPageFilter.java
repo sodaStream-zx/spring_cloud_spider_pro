@@ -17,7 +17,7 @@
  */
 package spider.spiderCore.fetcher.IFetcherTools;
 
-import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponsePage;
 
 /**
  * 将数据交给解析器

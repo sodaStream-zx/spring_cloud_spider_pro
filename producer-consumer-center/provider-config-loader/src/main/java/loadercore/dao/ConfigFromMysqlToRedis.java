@@ -1,7 +1,7 @@
 
 package loadercore.dao;
 
-import commoncore.entity.SiteConfig;
+import commoncore.entity.configEntity.SiteConfig;
 import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class ConfigFromMysqlToRedis {
         String str;
         for (SiteConfig x : scs) {
             try {
-                str = serializeUtil.serializeToString(x);
+                str = SerializeUtil.serializeToString(x);
                 for (int i = 0; i < 3; i++) {
                     redisTemplate.opsForList().leftPush("sites", str);
                 }
@@ -56,7 +56,7 @@ public class ConfigFromMysqlToRedis {
         if (sites.size() > 0) {
             for (String site : sites) {
                 try {
-                    SiteConfig siteConfig = (SiteConfig) serializeUtil.deserializeToObject(site);
+                    SiteConfig siteConfig = (SiteConfig) SerializeUtil.deserializeToObject(site);
                     System.out.println("siteconfig:" + siteConfig.toString());
                 } catch (Exception e) {
                     LOG.error("反序列化SiteConfig对象出错");

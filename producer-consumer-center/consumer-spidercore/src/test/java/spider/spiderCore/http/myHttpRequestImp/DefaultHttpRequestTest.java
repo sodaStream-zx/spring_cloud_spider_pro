@@ -1,7 +1,7 @@
 package spider.spiderCore.http.myHttpRequestImp;
 
-import commoncore.entity.responseEntity.CrawlDatum;
-import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.requestEntity.CrawlDatum;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import spider.myspider.spiderComponent.DefaultHttpRequest;
 
 /**
  * @author 一杯咖啡
@@ -25,6 +26,8 @@ public class DefaultHttpRequestTest {
 
     @Test
     public void sendRequest() {
+        String url = "https://blog.csdn.net/u012426327/article/details/77155556";
+
         CrawlDatum crawlDatum = new CrawlDatum("https://blog.csdn.net/scyatcs/article/details/25042351");
 
         MultiValueMap<String, String> header = new LinkedMultiValueMap<>();
@@ -33,7 +36,7 @@ public class DefaultHttpRequestTest {
         header.add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 Core/1.63.6788.400 QQBrowser/10.3.2767.400");
         defaultHttpRequest.setHeaderMap(header);
 
-        ResponsePage httpResponse = defaultHttpRequest.converterResponsePage(crawlDatum);
+        ResponsePage httpResponse = defaultHttpRequest.converterResponsePage(new CrawlDatum(url));
         log.info("request= " + defaultHttpRequest.getHeaderMap().toString());
         log.info("html == :::" + httpResponse.html());
         log.info("contentTpe == :::" + httpResponse.contentType());

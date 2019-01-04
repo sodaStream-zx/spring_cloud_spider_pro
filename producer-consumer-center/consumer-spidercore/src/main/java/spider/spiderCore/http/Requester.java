@@ -1,8 +1,8 @@
 package spider.spiderCore.http;
 
 
-import commoncore.entity.responseEntity.CrawlDatum;
-import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.requestEntity.CrawlDatum;
 
 /**
  *发送请求接口

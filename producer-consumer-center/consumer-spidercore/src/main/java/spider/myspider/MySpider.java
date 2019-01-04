@@ -1,16 +1,21 @@
 package spider.myspider;
 
 
-import commoncore.entity.SiteConfig;
-import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.entity.configEntity.SiteConfig;
+import commoncore.entity.httpEntity.ResponsePage;
 import commoncore.parseTools.ParesUtil;
 import commoncore.parseTools.RulesSplitUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import spider.spiderCore.crawldb.IDataUtil;
 import spider.spiderCore.crawler.AbstractAutoParseCrawler;
+import spider.spiderCore.fetcher.Fetcher;
 import spider.spiderCore.fetcher.IFetcherTools.TransferToParser;
-import spider.spiderCore.http.Requester;
+import spider.spiderCore.http.ISendRequest;
+
+import java.util.Arrays;
 
 /**
  * @author 一杯咖啡
@@ -35,25 +40,26 @@ public class MySpider extends AbstractAutoParseCrawler {
     private String[] urlRules;
     private String[] seeds;
     private String[] conPickRules;
-
+    @Value(value = "${spider.totalThreads}")
+    private int totalThread;
     @Autowired
     private TransferToParser<ResponsePage> transferToParser;
 
-    public MySpider() {
-        //设置任务上限
-        //this.configuration.setTopN(600);
-        //设置线程数
-        this.setThreads(50);
+    @Autowired
+    public MySpider(IDataUtil iDataUtil, Fetcher fetcher) {
+        this.fetcher = fetcher;
+        this.setThreads(totalThread);
+        this.iDataUtil = iDataUtil;
     }
 
     /**
-     * @param siteConfig 网站配置信息
-     * @param requester  自定义请求工具 需实现requestor接口
-     *                   desc :初始化爬虫组件
+     * @param siteConfig   网站配置信息
+     * @param iSendRequest 自定义请求工具 需实现requestor接口
+     *                     desc :初始化爬虫组件
      */
-    public void initMySpider(SiteConfig siteConfig, Requester requester, ParesUtil paresUtil) {
+    public void initMySpider(SiteConfig siteConfig, ISendRequest<ResponsePage> iSendRequest, ParesUtil paresUtil) {
         this.siteconfig = siteConfig;
-        this.requester = requester;
+        this.iSendRequest = iSendRequest;
 
         RulesSplitUtil rulesSplitUtil = paresUtil.getRulesSplitUtil();
         urlRules = rulesSplitUtil.splitRule(siteconfig.getUrlPares());
@@ -101,6 +107,7 @@ public class MySpider extends AbstractAutoParseCrawler {
         try {
             spider.start(siteconfig.getDeepPath());
         } catch (Exception e) {
+            e.printStackTrace();
             LOG.error("开启爬虫失败");
         }
     }
@@ -111,7 +118,7 @@ public class MySpider extends AbstractAutoParseCrawler {
     @Override
     public void afterStop() {
         LOG.info("总提取量归零");
-        abstractDbManager.getAbstractGenerator().setTotalGenerate(0);
+        iDataUtil.getIGenerator().clear();
         LOG.info("等待10秒 继续下一任务--------------------------");
         //System.exit(0);
     }
@@ -128,5 +135,17 @@ public class MySpider extends AbstractAutoParseCrawler {
                 transferToParser.transfer(responsePage);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MySpider{" +
+                "siteconfig=" + siteconfig +
+                ", urlRules=" + Arrays.toString(urlRules) +
+                ", seeds=" + Arrays.toString(seeds) +
+                ", conPickRules=" + Arrays.toString(conPickRules) +
+                ", totalThread=" + totalThread +
+                ", transferToParser=" + transferToParser +
+                '}';
     }
 }

@@ -1,8 +1,9 @@
 package spider.spiderCore.fetcher;
 
-import commoncore.entity.responseEntity.CrawlDatum;
+import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -14,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 * @desc 任务缓存管道
 * @createTime
 */
+@Component
 public class FetchQueue {
     private static final Logger LOG = LoggerFactory.getLogger(FetchQueue.class);
 

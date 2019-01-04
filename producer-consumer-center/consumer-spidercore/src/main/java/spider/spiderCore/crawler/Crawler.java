@@ -1,10 +1,10 @@
 package spider.spiderCore.crawler;
 
-import commoncore.entity.responseEntity.CrawlDatum;
-import commoncore.entity.responseEntity.CrawlDatums;
+import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.spiderCore.crawldb.AbstractDBManager;
+import spider.spiderCore.crawldb.IDataUtil;
 import spider.spiderCore.fetcher.Fetcher;
 import spider.spiderCore.fetcher.IFetcherTools.Executor;
 import spider.spiderCore.fetcher.IFetcherTools.NextFilter;
@@ -13,12 +13,15 @@ import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 /**
  * desc:单层爬虫
- **/
+ *
+ * @author 一杯咖啡
+ */
 public class Crawler extends DefaultConfigImp {
 
     private static final Logger LOG = LoggerFactory.getLogger(Crawler.class);
 
-    public Crawler() { }
+    public Crawler() {
+    }
 
     private int status;
 
@@ -34,20 +37,20 @@ public class Crawler extends DefaultConfigImp {
 
     protected Executor executor = null;
     protected NextFilter nextFilter = null;
-    protected AbstractDBManager abstractDbManager;
-    //protected GeneratorFilter generatorFilter = new StatusGeneratorFilter();
-    protected void inject() throws Exception {
-        abstractDbManager.inject(seeds);
+    protected IDataUtil iDataUtil;
+
+    protected void injectList() throws Exception {
+        iDataUtil.getIDbWritor().injectList(seeds, false);
     }
 
     protected void injectForcedSeeds() throws Exception {
-        abstractDbManager.inject(forcedSeeds, true);
+        iDataUtil.getIDbWritor().injectList(forcedSeeds, true);
     }
 
 
-    protected void registerOtherConfigurations(){
+    protected void registerOtherConfigurations() {
     }
-    
+
     /**
      * 开始爬取，迭代次数为depth
      *
@@ -55,25 +58,25 @@ public class Crawler extends DefaultConfigImp {
      * @throws Exception 异常
      */
     public void start(int depth) throws Exception {
-        LOG.info("配置信息："+this.configuration.toString());
+        LOG.info("配置信息：" + this.configuration.toString());
         LOG.info(this.toString());
         //register dbmanager conf
-        ConfigurationUtils.setTo(this, abstractDbManager, executor, nextFilter);
+        ConfigurationUtils.setTo(this, executor, nextFilter);
         registerOtherConfigurations();
 
         if (!resumable) {
-            if (abstractDbManager.isDBExists()) {
-                abstractDbManager.clear();
+            if (iDataUtil.getIDbManager().isDBExists()) {
+                iDataUtil.getIDbManager().clear();
             }
             if (seeds.isEmpty() && forcedSeeds.isEmpty()) {
                 LOG.error("error:Please add at least one seed");
                 return;
             }
         }
-        abstractDbManager.open();
+        iDataUtil.getIDbManager().open();
 
         if (!seeds.isEmpty()) {
-            inject();
+            injectList();
         }
         if (!forcedSeeds.isEmpty()) {
             injectForcedSeeds();
@@ -85,9 +88,8 @@ public class Crawler extends DefaultConfigImp {
             }
             LOG.info("start depth " + (i + 1));
             long startTime = System.currentTimeMillis();
-            fetcher = new Fetcher(abstractDbManager,executor,nextFilter);
             //register fetcher conf
-            ConfigurationUtils.setTo(this,fetcher);
+            ConfigurationUtils.setTo(this, fetcher);
 
             fetcher.setThreads(threads);
             int totalGenerate = fetcher.fetcherStart();
@@ -95,18 +97,19 @@ public class Crawler extends DefaultConfigImp {
             long endTime = System.currentTimeMillis();
             long costTime = (endTime - startTime) / 1000;
 
-            LOG.info("\ndepth " + (i + 1) +" finish: " +
-                     "\n              this depth total urls: " + totalGenerate + "" +
-                     "\n              this depth total time: " + costTime + " seconds");
+            LOG.info("\ndepth " + (i + 1) + " finish: " +
+                    "\n              this depth total urls: " + totalGenerate + "" +
+                    "\n              this depth total time: " + costTime + " seconds");
             if (totalGenerate == 0) {
                 break;
             }
         }
-        abstractDbManager.close();
+        iDataUtil.getIDbManager().close();
         afterStop();
     }
 
-    public void afterStop(){ }
+    public void afterStop() {
+    }
 
     /**
      * 停止爬虫
@@ -123,7 +126,7 @@ public class Crawler extends DefaultConfigImp {
      * @param force 如果添加的种子是已爬取的任务，当force为true时，会强制注入种子，当force为false时，会忽略该种子
      */
     public void addSeed(CrawlDatum datum, boolean force) {
-        addSeedAndReturn(datum,force);
+        addSeedAndReturn(datum, force);
     }
 
     /**
@@ -134,14 +137,15 @@ public class Crawler extends DefaultConfigImp {
     public void addSeed(CrawlDatum datum) {
         addSeedAndReturn(datum);
     }
+
     /**
      * 添加种子集合
      *
      * @param datums 种子集合
-     * @param force 如果添加的种子是已爬取的任务，当force为true时，会强制注入种子，当force为false时，会忽略该种子
+     * @param force  如果添加的种子是已爬取的任务，当force为true时，会强制注入种子，当force为false时，会忽略该种子
      */
     public void addSeed(CrawlDatums datums, boolean force) {
-        addSeedAndReturn(datums,force);
+        addSeedAndReturn(datums, force);
     }
 
     /**
@@ -161,7 +165,7 @@ public class Crawler extends DefaultConfigImp {
      * @param force 是否强制注入
      */
     public void addSeed(Iterable<String> links, boolean force) {
-        addSeedAndReturn(links,force);
+        addSeedAndReturn(links, force);
     }
 
 
@@ -177,11 +181,11 @@ public class Crawler extends DefaultConfigImp {
     /**
      * 与addSeed(CrawlDatum datum, boolean force)类似
      *
-     * @param url 种子URL
+     * @param url   种子URL
      * @param force 是否强制注入
      */
     public void addSeed(String url, boolean force) {
-        addSeedAndReturn(url,force);
+        addSeedAndReturn(url, force);
     }
 
     /**
@@ -203,25 +207,25 @@ public class Crawler extends DefaultConfigImp {
     }
 
     public CrawlDatum addSeedAndReturn(CrawlDatum datum) {
-        return addSeedAndReturn(datum,false);
+        return addSeedAndReturn(datum, false);
     }
 
     public CrawlDatum addSeedAndReturn(String url, boolean force) {
         CrawlDatum datum = new CrawlDatum(url);
-        return addSeedAndReturn(datum,force);
+        return addSeedAndReturn(datum, force);
     }
 
     public CrawlDatum addSeedAndReturn(String url) {
-        return addSeedAndReturn(url,false);
+        return addSeedAndReturn(url, false);
     }
 
     public CrawlDatums addSeedAndReturn(Iterable<String> links, boolean force) {
         CrawlDatums datums = new CrawlDatums(links);
-        return addSeedAndReturn(datums,force);
+        return addSeedAndReturn(datums, force);
     }
 
     public CrawlDatums addSeedAndReturn(Iterable<String> links) {
-        return addSeedAndReturn(links,false);
+        return addSeedAndReturn(links, false);
     }
 
     public CrawlDatums addSeedAndReturn(CrawlDatums datums, boolean force) {
@@ -234,7 +238,7 @@ public class Crawler extends DefaultConfigImp {
     }
 
     public CrawlDatums addSeedAndReturn(CrawlDatums datums) {
-        return addSeedAndReturn(datums,false);
+        return addSeedAndReturn(datums, false);
     }
 
     /**
@@ -292,8 +296,6 @@ public class Crawler extends DefaultConfigImp {
     }
 
 
-
-
     public NextFilter getNextFilter() {
         return nextFilter;
     }
@@ -310,23 +312,7 @@ public class Crawler extends DefaultConfigImp {
         this.status = status;
     }
 
-    public void setAbstractDbManager(AbstractDBManager abstractDbManager) {
-        this.abstractDbManager = abstractDbManager;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Crawler Details:\n")
-                .append("Crawler: ").append(getClass()).append("\n")
-                .append("Executor: ").append(executor.getClass()).append("\n")
-                .append("AbstractDBManager: ").append(abstractDbManager.getClass()).append("\n")
-                .append("NextFilter: ");
-        if (nextFilter == null) {
-            sb.append("null");
-        } else {
-            sb.append(nextFilter.getClass());
-        }
-        return sb.toString();
+    public void setiDataUtil(IDataUtil iDataUtil) {
+        this.iDataUtil = iDataUtil;
     }
 }

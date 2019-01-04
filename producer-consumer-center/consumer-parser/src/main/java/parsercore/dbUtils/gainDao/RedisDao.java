@@ -1,7 +1,7 @@
 package parsercore.dbUtils.gainDao;
 
+import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.paresEntity.DomainRule;
-import commoncore.entity.responseEntity.ResponseData;
 import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class RedisDao implements IRedisDao {
         String responseDataStr = (String) redisTemplate.opsForList().leftPop(responseList);
         if (!checkNull(responseDataStr)) {
             try {
-                responseData = (ResponseData) serializeUtil.deserializeToObject(responseDataStr);
+                responseData = (ResponseData) SerializeUtil.deserializeToObject(responseDataStr);
             } catch (Exception e) {
                 LOG.error("反序列化异常" + e.getMessage());
             }
@@ -66,7 +66,7 @@ public class RedisDao implements IRedisDao {
         String domainRuleStr = "";
         String key = domainRule.getSiteName();
         try {
-            domainRuleStr = serializeUtil.serializeToString(domainRule);
+            domainRuleStr = SerializeUtil.serializeToString(domainRule);
         } catch (Exception e) {
             LOG.error("序列化异常");
         }
@@ -95,7 +95,7 @@ public class RedisDao implements IRedisDao {
             }
         } else {
             try {
-                domainRule = (DomainRule) serializeUtil.deserializeToObject(drStr);
+                domainRule = (DomainRule) SerializeUtil.deserializeToObject(drStr);
             } catch (Exception e) {
                 LOG.error("反序列化异常");
             }

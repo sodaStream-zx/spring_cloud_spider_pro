@@ -1,15 +1,15 @@
 package spider.myspider;
 
 
-import commoncore.entity.SiteConfig;
+import commoncore.entity.configEntity.SiteConfig;
 import commoncore.parseTools.ParesUtil;
 import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import spider.myspider.redisSpider.RedisManager;
-import spider.myspider.spiderComponent.MyRequester;
+import spider.myspider.redisSpider.DefaultRedisDataBase;
+import spider.spiderCore.http.ISendRequest;
 import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -28,7 +28,7 @@ public class SpiderEngine {
      * 数据存储组件
      */
     @Autowired
-    private RedisManager redisManager;
+    private DefaultRedisDataBase redisManager;
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -38,9 +38,7 @@ public class SpiderEngine {
     @Autowired
     private ParesUtil paresUtil;
     @Autowired
-    private MyRequester myRequester;
-    @Autowired
-    private SerializeUtil serializeUtil;
+    private ISendRequest iSendRequest;
     @Autowired
     private MySpider mySpider;
 
@@ -69,7 +67,7 @@ public class SpiderEngine {
                 }
                 try {
                     //获取序列化的字符串 生成siteConfig对象
-                    Object scObject = serializeUtil.deserializeToObject(siteConfigString);
+                    Object scObject = SerializeUtil.deserializeToObject(siteConfigString);
                     SiteConfig siteConfig = (SiteConfig) scObject;
                     LOG.info("【" + siteConfig.getSiteName() + "】爬虫装载中------------->>>");
                     /**
@@ -80,8 +78,7 @@ public class SpiderEngine {
                      * abstractDBmanager 数据库管理组件
                      */
                     ConfigurationUtils.setTo(mySpider, redisManager);
-                    mySpider.setAbstractDbManager(redisManager);
-                    mySpider.initMySpider(siteConfig, myRequester, paresUtil);
+                    mySpider.initMySpider(siteConfig, iSendRequest, paresUtil);
                     mySpider.getConfig().setTopN(1000);
                     LOG.info(this.toString());
 
@@ -121,7 +118,6 @@ public class SpiderEngine {
         return "\nMySpiderEngine{" +
                 "\n  ramDBManager : " + redisManager.getClass().getName() +
                 "\n  redisTemplate : " + redisTemplate.getClass().getName() +
-                "\n  myRequester : " + myRequester.getClass().getName() +
                 '}';
     }
 }

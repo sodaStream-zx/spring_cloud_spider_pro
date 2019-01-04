@@ -1,6 +1,6 @@
 package spider.spiderCore.crawler.IResponseWriter;
 
-import commoncore.entity.responseEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponsePage;
 
 /**
  * @author 一杯咖啡
