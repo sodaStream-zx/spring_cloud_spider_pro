@@ -30,6 +30,8 @@ public class Fetcher {
     private FetchQueue fetchQueue;
     @Autowired
     private FetcherState fetcherState;
+    @Autowired
+    FetcherThread fetcherThread;
     @Value(value = "${my.fetcher.maxThread}")
     private int threads = 20;
 
@@ -56,7 +58,8 @@ public class Fetcher {
         pause(3, 0);
         //初始化消费者 从queue中读取任务
         for (int i = 0; i < threads; i++) {
-            threadsExecutor.execute(new FetcherThread(fetchQueue, fetcherState, iParesEngine));
+            threadsExecutor.execute(fetcherThread);
+            //threadsExecutor.execute(new FetcherThread(fetchQueue, fetcherState, iParesEngine));
         }
 
         do {

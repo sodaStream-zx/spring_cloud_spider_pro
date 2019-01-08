@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
-* @author 一杯咖啡
-* @desc 任务缓存管道
-* @createTime
-*/
+ * @author 一杯咖啡
+ * @desc 任务缓存管道
+ * @createTime
+ */
 @Component
 public class FetchQueue {
     private static final Logger LOG = LoggerFactory.getLogger(FetchQueue.class);
@@ -58,13 +58,8 @@ public class FetchQueue {
 
     /**
      * desc:打印queue中的任务
-     *
      **/
     public synchronized void dump() {
-        for (int i = 0; i < queue.size(); i++) {
-            CrawlDatum it = queue.get(i);
-            LOG.info("  " + i + ". " + it.url());
-        }
+        this.queue.forEach(crawlDatum -> LOG.info("queue中任务：" + crawlDatum.url()));
     }
-
 }

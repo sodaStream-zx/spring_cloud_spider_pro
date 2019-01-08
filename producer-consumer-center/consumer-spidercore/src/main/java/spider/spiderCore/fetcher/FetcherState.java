@@ -30,4 +30,12 @@ public class FetcherState {
     public void setFetcherRunning(boolean fetcherRunning) {
         this.fetcherRunning = fetcherRunning;
     }
+
+    @Override
+    public String toString() {
+        return "FetcherState{" +
+                "\n任务生产者状态：" + (feederRunnning ? "运行中..." : "已停止...") +
+                "\n调度器状态=" + (fetcherRunning ? "运行中..." : "已停止...") +
+                '}';
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Set;
 
@@ -70,5 +71,11 @@ public class HttpRequestController {
             }
         }
         return mVMap;
+    }
+
+    @PostMapping(value = "/pos")
+    public String get(HttpServletRequest request) {
+        System.out.println("request.getRequestURL()" + request.getRequestURL());
+        return "ok";
     }
 }

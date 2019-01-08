@@ -18,26 +18,18 @@
 package commoncore.entity.httpEntity;
 
 import commoncore.entity.requestEntity.CrawlDatum;
-import commoncore.entity.requestEntity.Links;
 import commoncore.entity.requestEntity.entityTools.CharsetDetector;
-import commoncore.entity.requestEntity.entityTools.ListUtils;
-import commoncore.entity.requestEntity.entityTools.RegexRule;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Page是爬取过程中，内存中保存网页爬取信息的一个容器，Page只在内存中存放，用于保存一些网页信息，方便用户进行自定义网页解析之类的操作。
+ *
  * @author 一杯咖啡
  */
 public class ResponsePage implements Serializable {
@@ -45,306 +37,44 @@ public class ResponsePage implements Serializable {
     public static final Logger LOG = LoggerFactory.getLogger(ResponsePage.class);
     private String siteName;
     private CrawlDatum crawlDatum = null;
-
     private String contentType;
     private Integer code = null;
-
-
     private Exception exception = null;
-
     private String html = null;
     private Document doc = null;
-
     private String charset = null;
     private byte[] content = null;
-
-    /**
-     * 判断当前Page的URL是否和输入正则匹配
-     *
-     * @param urlRegex
-     * @return
-     */
-    public boolean matchUrl(String urlRegex) {
-        return Pattern.matches(urlRegex, url());
-    }
-
-    /**
-     * 判断当前Page的Http响应头的Content-Type是否符合正则
-     *
-     * @param contentTypeRegex
-     * @return
-     */
-    public boolean matchContentType(String contentTypeRegex) {
-        if (contentTypeRegex == null) {
-            return contentType() == null;
-        }
-        return Pattern.matches(contentTypeRegex, contentType());
-    }
-
-    /**
-     * 获取网页中满足指定css选择器的所有元素的指定属性的集合
-     * 例如通过attrs("img[src]","abs:src")可获取网页中所有图片的链接
-     *
-     * @param cssSelector
-     * @param attrName
-     * @return
-     */
-    public ArrayList<String> attrs(String cssSelector, String attrName) {
-        ArrayList<String> result = new ArrayList<String>();
-        Elements eles = select(cssSelector);
-        for (Element ele : eles) {
-            if (ele.hasAttr(attrName)) {
-                result.add(ele.attr(attrName));
-            }
-        }
-        return result;
-    }
-
-    /**
-     * 获取网页中满足指定css选择器的所有元素的指定属性的集合
-     * 例如通过attr("img[src]","abs:src")可获取网页中第一个图片的链接
-     *
-     * @param cssSelector
-     * @param attrName
-     * @return
-     */
-    public String attr(String cssSelector, String attrName) {
-        return select(cssSelector).attr(attrName);
-    }
-
-
-    public Links links(boolean parseImg) {
-        Links links = new Links().addFromElement(doc(), parseImg);
-        return links;
-    }
-
-    public Links links() {
-        return links(false);
-    }
-
-
-    /**
-     * 获取满足选择器的元素中的链接 选择器cssSelector必须定位到具体的超链接 例如我们想抽取id为content的div中的所有超链接，这里
-     * 就要将cssSelector定义为div[id=content] a
-     *
-     * @param cssSelector
-     * @return
-     */
-    public Links links(String cssSelector, boolean parseSrc) {
-        Links links = new Links().addBySelector(doc(), cssSelector, parseSrc);
-        return links;
-    }
-
-    public Links links(String cssSelector) {
-        return links(cssSelector, false);
-    }
-
-
-    public Links regexLinks(RegexRule regexRule, boolean parseSrc) {
-        return new Links().addByRegex(doc(), regexRule, parseSrc);
-    }
-
-    public Links regexLinks(String regex, boolean parseSrc) {
-        return new Links().addByRegex(doc(), regex, parseSrc);
-    }
-
-    public Links regexLinks(RegexRule regexRule) {
-        return regexLinks(regexRule, false);
-    }
-
-    public Links regexLinks(String regex) {
-        return regexLinks(regex, false);
-    }
-
-
-    public ArrayList<String> selectTextList(String cssSelector) {
-        ArrayList<String> result = new ArrayList<String>();
-        Elements eles = select(cssSelector);
-        for (Element ele : eles) {
-            result.add(ele.text());
-        }
-        return result;
-    }
-
-    public String selectText(String cssSelector, int index) {
-        return ListUtils.getByIndex(selectTextList(cssSelector), index);
-    }
-
-    public String selectText(String cssSelector) {
-        return select(cssSelector).first().text();
-    }
-
-    public ArrayList<Integer> selectIntList(String cssSelector) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        for (String text : selectTextList(cssSelector)) {
-            result.add(Integer.valueOf(text.trim()));
-        }
-        return result;
-    }
-
-    public int selectInt(String cssSelector, int index) {
-        String text = selectText(cssSelector, index).trim();
-        return Integer.valueOf(text);
-    }
-
-    public int selectInt(String cssSelector) {
-        return selectInt(cssSelector, 0);
-    }
-
-    public ArrayList<Double> selectDoubleList(String cssSelector) {
-        ArrayList<Double> result = new ArrayList<Double>();
-        for (String text : selectTextList(cssSelector)) {
-            result.add(Double.valueOf(text.trim()));
-        }
-        return result;
-    }
-
-    public double selectDouble(String cssSelector, int index) {
-        String text = selectText(cssSelector, index).trim();
-        return Double.valueOf(text);
-    }
-
-    public double selectDouble(String cssSelector) {
-        return selectDouble(cssSelector, 0);
-    }
-
-    public ArrayList<Long> selectLongList(String cssSelector) {
-        ArrayList<Long> result = new ArrayList<Long>();
-        for (String text : selectTextList(cssSelector)) {
-            result.add(Long.valueOf(text.trim()));
-        }
-        return result;
-    }
-
-    public long selectLong(String cssSelector, int index) {
-        String text = selectText(cssSelector, index).trim();
-        Long ltext = Long.parseLong(text);
-        return ltext;
-    }
-
-    public long selectLong(String cssSelector) {
-        return selectLong(cssSelector, 0);
-    }
-
-
-    public Elements select(String cssSelector) {
-        return this.doc().select(cssSelector);
-    }
-
-    public Element select(String cssSelector, int index) {
-        Elements eles = select(cssSelector);
-        int realIndex = index;
-        if (index < 0) {
-            realIndex = eles.size() + index;
-        }
-        return eles.get(realIndex);
-    }
-
-    public String regex(String regex, int group, String defaultResult) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(html());
-        if (matcher.find()) {
-            return matcher.group(group);
-        } else {
-            return defaultResult;
-        }
-    }
-
-    public String regex(String regex, int group) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(html());
-        matcher.find();
-        return matcher.group(group);
-    }
-
-    public String regexAndFormat(String regex, String format) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(html());
-        matcher.find();
-        String[] strs = new String[matcher.groupCount()];
-        for (int i = 0; i < matcher.groupCount(); i++) {
-            strs[i] = matcher.group(i + 1);
-        }
-        return String.format(format, strs);
-    }
-
-    public String regex(String regex, String defaultResult) {
-        return regex(regex, 0, defaultResult);
-    }
-
-    public String regex(String regex) {
-        return regex(regex, 0);
-    }
 
     public ResponsePage(CrawlDatum datum, Integer code, String contentType, byte[] content) {
         this.crawlDatum = datum;
         this.code = code;
         this.contentType = contentType;
         this.content = content;
+        //1.解析编码
+        this.charset(content);
+        //2.转化content 为html
+        this.contentTohtml(content);
+        //3.转化html 为doc
+        this.contentTODoc(crawlDatum.url());
     }
-
-
-    /**
-     * 返回网页/文件的内容
-     *
-     * @return 网页/文件的内容
-     */
-    public byte[] content() {
-        return content;
-    }
-
-    public void content(byte[] content) {
-        this.content = content;
-    }
-
-
-    /**
-     * 返回网页的url
-     *
-     * @return 网页的url
-     */
-    public String url() {
-        return crawlDatum.url();
-    }
-
 
     /**
      * 返回网页的源码字符串
      *
      * @return 网页的源码字符串
      */
-    public String html() {
-        if (html != null) {
-            return html;
-        }
-
+    public void contentTohtml(byte[] content) {
         if (content == null) {
-            return null;
+            this.html = null;
         }
-        if (charset == null) {
-            charset = CharsetDetector.guessEncoding(content());
+        if (this.charset == null) {
+            this.charset = CharsetDetector.guessEncoding(content);
         }
         try {
-            html = new String(content, charset);
+            this.html = new String(content, charset);
         } catch (UnsupportedEncodingException e) {
             LOG.info("Exception when decoding ", e);
-            return null;
         }
-        return html;
-    }
-
-    /**
-     * 设置网页的源码字符串
-     *
-     * @param html 网页的源码字符串
-     */
-    public void html(String html) {
-        this.html = html;
-    }
-
-
-    public String contentType() {
-        return contentType;
     }
 
     /**
@@ -352,30 +82,52 @@ public class ResponsePage implements Serializable {
      *
      * @return 网页解析后的DOM树
      */
-    public Document doc() {
-        if (doc != null) {
-            return doc;
+    public void contentTODoc(String url) {
+        if (html != null) {
+            this.doc = Jsoup.parse(html, url);
+        } else {
+            this.doc = null;
         }
-        this.doc = Jsoup.parse(html(), url());
-        return doc;
-//        try {
-//            this.doc = Jsoup.parse(html(), url());
-//            return doc;
-//        } catch (Exception ex) {
-//            LOG.info("Exception", ex);
-//            return null;
-//        }
     }
 
-    /**
-     * 设置网页解析后的DOM树(Jsoup的Document对象)
-     *
-     * @param doc 网页解析后的DOM树
-     */
-    public void doc(Document doc) {
-        this.doc = doc;
+    public void charset(byte[] content) {
+        if (charset == null) {
+            this.charset = CharsetDetector.guessEncoding(content);
+        }
     }
 
+    /*--------------------------*/
+    public String getSiteName() {
+        return siteName;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
+
+    public CrawlDatum getCrawlDatum() {
+        return crawlDatum;
+    }
+
+    public void setCrawlDatum(CrawlDatum crawlDatum) {
+        this.crawlDatum = crawlDatum;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
     public Exception getException() {
         return exception;
@@ -385,53 +137,35 @@ public class ResponsePage implements Serializable {
         this.exception = exception;
     }
 
-    public CrawlDatum crawlDatum() {
-        return crawlDatum;
+    public String getHtml() {
+        return html;
     }
 
-    public void crawlDatum(CrawlDatum crawlDatum) {
-        this.crawlDatum = crawlDatum;
+    public void setHtml(String html) {
+        this.html = html;
     }
 
-    public String charset() {
-        if (charset == null) {
-            charset = CharsetDetector.guessEncoding(content());
-        }
+    public Document getDoc() {
+        return doc;
+    }
+
+    public void setDoc(Document doc) {
+        this.doc = doc;
+    }
+
+    public String getCharset() {
         return charset;
     }
 
-    public void charset(String charset) {
+    public void setCharset(String charset) {
         this.charset = charset;
     }
 
-    public void code(int code) {
-        this.code = code;
+    public byte[] getContent() {
+        return content;
     }
 
-    public int code() {
-        return code;
-    }
-
-    public String getSiteName() {
-        return siteName;
-    }
-
-    public void setSiteName(String siteName) {
-        this.siteName = siteName;
-    }
-
-    @Override
-    public String toString() {
-        return "ResponsePage{" +
-                "siteName='" + siteName + '\'' +
-                ", crawlDatum=" + crawlDatum +
-                ", contentType='" + contentType + '\'' +
-                ", code=" + code +
-                ", exception=" + exception +
-                ", html='" + html + '\'' +
-                ", doc=" + doc +
-                ", charset='" + charset + '\'' +
-                ", content=" + Arrays.toString(content) +
-                '}';
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 }

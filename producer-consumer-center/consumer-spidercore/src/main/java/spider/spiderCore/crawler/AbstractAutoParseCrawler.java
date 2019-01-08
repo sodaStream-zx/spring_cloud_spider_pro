@@ -6,39 +6,27 @@ import commoncore.entity.requestEntity.CrawlDatums;
 import commoncore.entity.requestEntity.Links;
 import commoncore.entity.requestEntity.entityTools.RegexRule;
 import org.jsoup.nodes.Document;
-import spider.spiderCore.fetcher.IFetcherTools.DefaultContentPageFilter;
-import spider.spiderCore.fetcher.IFetcherTools.Executor;
 import spider.spiderCore.http.ISendRequest;
-import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 /**
  * 自动爬取解析爬虫
  */
-public abstract class AbstractAutoParseCrawler extends Crawler implements Executor, DefaultContentPageFilter {
+public abstract class AbstractAutoParseCrawler extends Crawler {
 
     /**
      * 是否自动抽取符合正则的链接并加入后续任务
      */
     protected boolean autoParse = true;
-    protected DefaultContentPageFilter defaultContentPageFilter;
     protected ISendRequest<ResponsePage> iSendRequest;
+    protected IExecutor<CrawlDatums> iExecutor = null;
 
     public AbstractAutoParseCrawler() {
-        this.executor = this;
-        this.defaultContentPageFilter = this;
-    }
-
-    @Override
-    protected void registerOtherConfigurations() {
-        super.registerOtherConfigurations();
-        //当前对象配置，付给当前对象配置
-        ConfigurationUtils.setTo(this, defaultContentPageFilter);
     }
 
     /**
      * URL正则约束
      */
-    protected RegexRule regexRule = new RegexRule();
+    protected RegexRule regexRule;
 
     /**
      * 页面解析器（页面urls提取）
@@ -46,15 +34,13 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
      * @param datum 任务对象
      * @param next  当前任务对象提取出来的接下来的任务
      */
-    @Override
     public void execute(CrawlDatum datum, CrawlDatums next) {
+        CrawlDatums crawlData = iExecutor.execute(datum);
         ResponsePage responsePage = iSendRequest.converterResponsePage(datum);
         //抽取当前页面符合条件的urls
         if (autoParse && !regexRule.isEmpty()) {
             parseLink(responsePage, next);
         }
-        //传输数据给解析器
-        defaultContentPageFilter.getContentPageData(responsePage);
         afterParse(responsePage, next);
     }
 
@@ -66,12 +52,12 @@ public abstract class AbstractAutoParseCrawler extends Crawler implements Execut
      * @Desc: [获取网页中符合 规则的url]
      */
     protected void parseLink(ResponsePage responsePage, CrawlDatums next) {
-        String contentType = responsePage.contentType();
+        String contentType = responsePage.getContentType();
         if (contentType != null && contentType.contains("text/html")) {
-            Document doc = responsePage.doc();
+            Document doc = responsePage.getDoc();
             if (doc != null) {
                 //从页面中取出需要的url 形成接下来的任务
-                Links links = new Links().addByRegex(doc, regexRule, getConfig().getAutoDetectImg());
+                Links links = new Links().addByRegex(doc, regexRule, false);
                 next.add(links);
             }
         }

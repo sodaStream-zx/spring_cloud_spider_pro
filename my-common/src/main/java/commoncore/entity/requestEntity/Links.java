@@ -136,7 +136,7 @@ public class Links implements Iterable<String>,Serializable {
         return addBySelector(ele, cssSelector, false);
     }
 
-    //通过正则表达式取出页面的url
+    //jsoup 匹配正则 提取urls
     public Links addByRegex(Element ele, RegexRule regexRule, boolean parseSrc) {
         for (String href : ele.select("a[href]").eachAttr("abs:href")) {
             if (regexRule.satisfy(href)) {

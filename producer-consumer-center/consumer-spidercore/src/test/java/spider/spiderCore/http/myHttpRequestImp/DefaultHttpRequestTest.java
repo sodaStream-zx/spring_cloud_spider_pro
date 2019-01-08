@@ -38,9 +38,9 @@ public class DefaultHttpRequestTest {
 
         ResponsePage httpResponse = defaultHttpRequest.converterResponsePage(new CrawlDatum(url));
         log.info("request= " + defaultHttpRequest.getHeaderMap().toString());
-        log.info("html == :::" + httpResponse.html());
-        log.info("contentTpe == :::" + httpResponse.contentType());
-        log.info("url == :::" + httpResponse.url());
+        log.info("html == :::" + httpResponse.getHtml());
+        log.info("contentTpe == :::" + httpResponse.getContentType());
+        log.info("url == :::" + httpResponse.getCrawlDatum().url());
         // log.info(httpRequestUtil.toString());
     }
 }

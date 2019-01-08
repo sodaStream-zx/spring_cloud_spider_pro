@@ -7,16 +7,14 @@ import org.slf4j.LoggerFactory;
 import spider.spiderCore.crawldb.IDataUtil;
 import spider.spiderCore.fetcher.Fetcher;
 import spider.spiderCore.fetcher.IFetcherTools.Executor;
-import spider.spiderCore.fetcher.IFetcherTools.NextFilter;
-import spider.spiderCore.spiderConfig.DefaultConfigImp;
-import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
+import spider.spiderCore.fetcher.IFetcherTools.INextFilter;
 
 /**
  * desc:单层爬虫
  *
  * @author 一杯咖啡
  */
-public class Crawler extends DefaultConfigImp {
+public class Crawler {
 
     private static final Logger LOG = LoggerFactory.getLogger(Crawler.class);
 
@@ -36,8 +34,9 @@ public class Crawler extends DefaultConfigImp {
     protected Fetcher fetcher;
 
     protected Executor executor = null;
-    protected NextFilter nextFilter = null;
+    protected INextFilter INextFilter = null;
     protected IDataUtil iDataUtil;
+
 
     protected void injectList() throws Exception {
         iDataUtil.getIDbWritor().injectList(seeds, false);
@@ -47,10 +46,6 @@ public class Crawler extends DefaultConfigImp {
         iDataUtil.getIDbWritor().injectList(forcedSeeds, true);
     }
 
-
-    protected void registerOtherConfigurations() {
-    }
-
     /**
      * 开始爬取，迭代次数为depth
      *
@@ -58,12 +53,7 @@ public class Crawler extends DefaultConfigImp {
      * @throws Exception 异常
      */
     public void start(int depth) throws Exception {
-        LOG.info("配置信息：" + this.configuration.toString());
         LOG.info(this.toString());
-        //register dbmanager conf
-        ConfigurationUtils.setTo(this, executor, nextFilter);
-        registerOtherConfigurations();
-
         if (!resumable) {
             if (iDataUtil.getIDbManager().isDBExists()) {
                 iDataUtil.getIDbManager().clear();
@@ -88,9 +78,6 @@ public class Crawler extends DefaultConfigImp {
             }
             LOG.info("start depth " + (i + 1));
             long startTime = System.currentTimeMillis();
-            //register fetcher conf
-            ConfigurationUtils.setTo(this, fetcher);
-
             fetcher.setThreads(threads);
             int totalGenerate = fetcher.fetcherStart();
 
@@ -260,24 +247,6 @@ public class Crawler extends DefaultConfigImp {
     }
 
     /**
-     * 返回线程数
-     *
-     * @return 线程数
-     */
-    public int getThreads() {
-        return threads;
-    }
-
-    /**
-     * 设置线程数
-     *
-     * @param threads 线程数
-     */
-    public void setThreads(int threads) {
-        this.threads = threads;
-    }
-
-    /**
      * 获取每个爬取任务的最大执行次数
      *
      * @return 每个爬取任务的最大执行次数
@@ -296,12 +265,12 @@ public class Crawler extends DefaultConfigImp {
     }
 
 
-    public NextFilter getNextFilter() {
-        return nextFilter;
+    public INextFilter getINextFilter() {
+        return INextFilter;
     }
 
-    public void setNextFilter(NextFilter nextFilter) {
-        this.nextFilter = nextFilter;
+    public void setINextFilter(INextFilter INextFilter) {
+        this.INextFilter = INextFilter;
     }
 
     public int getStatus() {

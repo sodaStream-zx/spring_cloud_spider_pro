@@ -250,7 +250,10 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
     public boolean checkNull(String key, String value) {
         if (key == null || "".equals(key)) {
             return true;
-        } else return value == null || "".equals(value);
+        } else {
+            return value == null || "".equals(value);
+        }
+
     }
 
     @Override

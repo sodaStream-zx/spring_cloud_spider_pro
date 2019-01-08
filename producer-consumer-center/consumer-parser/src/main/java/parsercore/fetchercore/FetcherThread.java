@@ -3,6 +3,8 @@ package parsercore.fetchercore;
 import commoncore.entity.httpEntity.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import parsercore.pareser.IParesEngine;
 
 import java.util.concurrent.TimeUnit;
@@ -12,17 +14,22 @@ import java.util.concurrent.TimeUnit;
  * @desc 任务消费者
  * @createTime
  */
+@Component
 public class FetcherThread implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(FetcherThread.class);
+    @Autowired
     private FetchQueue fetchQueue;
+    @Autowired
     private FetcherState fetcherState;
+    @Autowired
     private IParesEngine iParesEngine;
 
-    public FetcherThread(FetchQueue fetchQueue, FetcherState fetcherState, IParesEngine iParesEngine) {
+
+    /*public FetcherThread(FetchQueue fetchQueue, FetcherState fetcherState, IParesEngine iParesEngine) {
         this.fetchQueue = fetchQueue;
         this.fetcherState = fetcherState;
         this.iParesEngine = iParesEngine;
-    }
+    }*/
 
     @Override
     public void run() {

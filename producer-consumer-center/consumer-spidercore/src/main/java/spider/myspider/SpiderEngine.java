@@ -2,7 +2,6 @@ package spider.myspider;
 
 
 import commoncore.entity.configEntity.SiteConfig;
-import commoncore.parseTools.ParesUtil;
 import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import spider.myspider.redisSpider.DefaultRedisDataBase;
 import spider.spiderCore.http.ISendRequest;
-import spider.spiderCore.spiderConfig.configUtil.ConfigurationUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,12 +29,6 @@ public class SpiderEngine {
     private DefaultRedisDataBase redisManager;
     @Autowired
     private RedisTemplate redisTemplate;
-
-    /**
-     * 爬虫调度执行组件
-     */
-    @Autowired
-    private ParesUtil paresUtil;
     @Autowired
     private ISendRequest iSendRequest;
     @Autowired
@@ -48,7 +40,7 @@ public class SpiderEngine {
      */
     public boolean initToRun() {
         try {
-            while (true){
+            while (true) {
                 //读取redis队列任务，并开始抓取；阻塞直到能取出值
                 String siteConfigString = "";
                 try {
@@ -73,13 +65,11 @@ public class SpiderEngine {
                     /**
                      * DataToDB 数据持久化组件 param(tableName)
                      * paresUtil 网页解析组件 param(siteConfig,dataToDB)
-                     * DefaultContentPageFilter 网页解析器
+                     * IContentPageFilter 网页解析器
                      * mySpider 爬虫组合APP
                      * abstractDBmanager 数据库管理组件
                      */
-                    ConfigurationUtils.setTo(mySpider, redisManager);
-                    mySpider.initMySpider(siteConfig, iSendRequest, paresUtil);
-                    mySpider.getConfig().setTopN(1000);
+                    mySpider.initMySpider(siteConfig, iSendRequest);
                     LOG.info(this.toString());
 
                     //10秒自动关闭爬虫

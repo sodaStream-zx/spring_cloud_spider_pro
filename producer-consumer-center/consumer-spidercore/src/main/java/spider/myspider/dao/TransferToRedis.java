@@ -20,10 +20,10 @@ public class TransferToRedis implements TransferToParser<ResponsePage> {
     @Override
     public void transfer(ResponsePage responsePage) {
         ResponseData responseData;
-        responseData = new ResponseData(responsePage.getSiteName(), responsePage.crawlDatum(), responsePage.code(), responsePage.contentType(), responsePage.content());
+        responseData = new ResponseData(responsePage.getSiteName(), responsePage.getCrawlDatum(), responsePage.getCode(), responsePage.getContentType(), responsePage.getContent());
         String rd = null;
         try {
-            rd = new SerializeUtil().serializeToString(responseData);
+            rd = SerializeUtil.serializeToString(responseData);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -3,8 +3,7 @@ package spider.myspider;
 
 import commoncore.entity.configEntity.SiteConfig;
 import commoncore.entity.httpEntity.ResponsePage;
-import commoncore.parseTools.ParesUtil;
-import commoncore.parseTools.RulesSplitUtil;
+import commoncore.parseTools.StringSplitUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +15,7 @@ import spider.spiderCore.fetcher.IFetcherTools.TransferToParser;
 import spider.spiderCore.http.ISendRequest;
 
 import java.util.Arrays;
+
 
 /**
  * @author 一杯咖啡
@@ -48,7 +48,6 @@ public class MySpider extends AbstractAutoParseCrawler {
     @Autowired
     public MySpider(IDataUtil iDataUtil, Fetcher fetcher) {
         this.fetcher = fetcher;
-        this.setThreads(totalThread);
         this.iDataUtil = iDataUtil;
     }
 
@@ -57,14 +56,12 @@ public class MySpider extends AbstractAutoParseCrawler {
      * @param iSendRequest 自定义请求工具 需实现requestor接口
      *                     desc :初始化爬虫组件
      */
-    public void initMySpider(SiteConfig siteConfig, ISendRequest<ResponsePage> iSendRequest, ParesUtil paresUtil) {
+    public void initMySpider(SiteConfig siteConfig, ISendRequest<ResponsePage> iSendRequest) {
         this.siteconfig = siteConfig;
         this.iSendRequest = iSendRequest;
-
-        RulesSplitUtil rulesSplitUtil = paresUtil.getRulesSplitUtil();
-        urlRules = rulesSplitUtil.splitRule(siteconfig.getUrlPares());
-        seeds = rulesSplitUtil.splitRule(siteconfig.getSeeds());
-        conPickRules = rulesSplitUtil.splitRule(siteconfig.getPageParse());
+        urlRules = StringSplitUtil.splitRule(siteconfig.getUrlPares());
+        seeds = StringSplitUtil.splitRule(siteconfig.getSeeds());
+        conPickRules = StringSplitUtil.splitRule(siteconfig.getPageParse());
         configSpider(siteConfig);
     }
 
@@ -123,19 +120,6 @@ public class MySpider extends AbstractAutoParseCrawler {
         //System.exit(0);
     }
 
-    /**
-     * desc: 符合正文提取规则。调用自定义解析页面
-     **/
-    @Override
-    public void getContentPageData(ResponsePage responsePage) {
-        //匹配正文筛选规则 url
-        for (String conRegx : conPickRules) {
-            if (responsePage.url().matches(conRegx)) {
-                responsePage.setSiteName(siteconfig.getSiteName());
-                transferToParser.transfer(responsePage);
-            }
-        }
-    }
 
     @Override
     public String toString() {

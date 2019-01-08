@@ -5,9 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.IDataUtil;
-import spider.spiderCore.fetcher.IFetcherTools.Executor;
-import spider.spiderCore.fetcher.IFetcherTools.NextFilter;
-import spider.spiderCore.spiderConfig.DefaultConfigImp;
+import spider.spiderCore.crawler.IExecutor;
+import spider.spiderCore.fetcher.IFetcherTools.INextFilter;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -20,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @createTime
  */
 @Component
-public class Fetcher extends DefaultConfigImp {
+public class Fetcher {
 
     private static final Logger LOG = LoggerFactory.getLogger(Fetcher.class);
 
@@ -34,35 +33,29 @@ public class Fetcher extends DefaultConfigImp {
     @Autowired
     private FetcherState fetcherState;
     @Autowired
-    private FetcherThread fetcherRunning;
+    private FetcherThread fetcherThread;
     /**
      * 外部注入
      */
     @Autowired
     private IDataUtil iDataUtil;
-    @Autowired
-    private Executor executor;
     @Autowired(required = false)
-    private NextFilter nextFilter = null;
+    private INextFilter INextFilter = null;
 
+    @Autowired
+    private IExecutor iExecutor;
     /**
      * 线程状态属性:  threads-线程数量  fetcherRuning-调度器状态
      */
     private int threads = 20;
 
     /**
-     * desc:初始化fetcher
-     **/
-    public Fetcher() {
-    }
-
-    /**
      * 抓取当前所有任务，会阻塞到爬取完成 开启 feeder 和 执行爬取线程。
      *
      * @throws IOException 异常
      */
-    public Integer fetcherStart() throws Exception {
-        if (executor == null) {
+    public Integer fetcherStart() {
+        if (iExecutor == null) {
             LOG.info("未提供任务执行器");
             return 0;
         }
@@ -81,11 +74,12 @@ public class Fetcher extends DefaultConfigImp {
             threadsExecutor.execute(queueFeeder);
             //初始化消费者 从queue中读取任务
             for (int i = 0; i < threads; i++) {
-                threadsExecutor.execute(fetcherRunning);
+                threadsExecutor.execute(fetcherThread);
             }
-
+            //主线程循环打印 线程池状态
             do {
                 pause(1, 0);
+                LOG.info("执行器状态:\n" + fetcherState.toString());
                 LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
             } while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning());
 
@@ -128,12 +122,8 @@ public class Fetcher extends DefaultConfigImp {
         return queueFeeder;
     }
 
-    public Executor getExecutor() {
-        return executor;
-    }
-
-    public NextFilter getNextFilter() {
-        return nextFilter;
+    public INextFilter getINextFilter() {
+        return INextFilter;
     }
 
     public void setThreads(int threads) {
@@ -142,6 +132,10 @@ public class Fetcher extends DefaultConfigImp {
 
     public IDataUtil getiDataUtil() {
         return iDataUtil;
+    }
+
+    public FetcherThread getFetcherThread() {
+        return fetcherThread;
     }
 
     /**

@@ -16,7 +16,7 @@ public class TimeFilter {
     /**
      * desc:正则表达式提取正文时间
      **/
-    public String getTimeByReg(String str) {
+    public static String getTimeByReg(String str) {
         List<String> regs = new ArrayList<>();
         regs.add("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}");
         regs.add("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
@@ -38,7 +38,7 @@ public class TimeFilter {
     /**
      * desc:提取页面更新时间
      **/
-    public String timeLastModify(ResponsePage page) {
+    public static String timeLastModify(ResponsePage page) {
         return null;
     }
 }

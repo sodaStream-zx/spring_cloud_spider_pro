@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 hu
+ * Copyright (C) 2015 hu
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,13 +17,18 @@
  */
 package spider.spiderCore.fetcher.IFetcherTools;
 
-
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.httpEntity.ResponsePage;
 
 /**
- *过滤器
+ * 将数据交给解析器
+ *
+ * @author 一杯咖啡
  */
-public interface NextFilter {
-
-     CrawlDatum filter(CrawlDatum nextItem, CrawlDatum referer);
+public interface IContentPageFilter {
+    /**
+     * desc:该接口用于将请求返回的数据交给解析模块
+     *
+     * @param responsePage 数据
+     **/
+    void getContentPageData(ResponsePage responsePage);
 }

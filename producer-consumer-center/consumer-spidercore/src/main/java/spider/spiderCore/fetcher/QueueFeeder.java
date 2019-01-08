@@ -48,19 +48,11 @@ public class QueueFeeder implements Runnable {
         //停止数据库提取工具
         try {
             LOG.info("【正在关闭数据库提取工具】");
-            closeGenerator();
+            this.closeGenerator();
         } catch (Exception e) {
             LOG.error("【关闭数据库提取工具出错】");
         }
         fetcherState.setFeedRunnning(false);
-        while (fetcherState.isFeedRunnning()) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-                LOG.info("【停止任务生产者】");
-            } catch (InterruptedException ex) {
-                LOG.error("【关闭任务生产者线程-前- 休眠出错】");
-            }
-        }
     }
 
     /**

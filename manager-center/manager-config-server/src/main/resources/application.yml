@@ -14,7 +14,7 @@ spring:
           uri: https://github.com/riceincoke/spring_cloud_web_spider_pro_repo.git
           password:
           username:
-          basedir: f:/my_git_cache
+          basedir: j:/my_git_cache
 #rabbitmq
   rabbitmq:
     connection-timeout: 0
