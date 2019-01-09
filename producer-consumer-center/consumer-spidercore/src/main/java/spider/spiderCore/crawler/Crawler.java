@@ -78,7 +78,6 @@ public class Crawler {
             }
             LOG.info("start depth " + (i + 1));
             long startTime = System.currentTimeMillis();
-            fetcher.setThreads(threads);
             int totalGenerate = fetcher.fetcherStart();
 
             long endTime = System.currentTimeMillis();

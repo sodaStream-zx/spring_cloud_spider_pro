@@ -41,16 +41,15 @@ public class DefaultRedisManager implements IDbManager {
 
     @Override
     public void close() {
-
     }
 
     @Override
     public void merge() {
         String seeds = (String) iDataBase.getCrawlDB();
-        String parse = (String) iDataBase.getFetchDB();
+        String fetchs = (String) iDataBase.getFetchDB();
         while (redisTemplate.opsForList().size(seeds) > 0) {
             String seedStr = (String) redisTemplate.opsForList().leftPop(seeds);
-            redisTemplate.opsForList().rightPush(parse, seedStr);
+            redisTemplate.opsForList().rightPush(fetchs, seedStr);
         }
         log.info("合并任务库");
     }

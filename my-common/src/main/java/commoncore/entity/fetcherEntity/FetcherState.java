@@ -1,4 +1,4 @@
-package spider.spiderCore.fetcher;
+package commoncore.entity.fetcherEntity;
 
 import org.springframework.stereotype.Component;
 
@@ -15,11 +15,11 @@ public class FetcherState {
     public FetcherState() {
     }
 
-    public boolean isFeedRunnning() {
+    public boolean isFeederRunnning() {
         return feederRunnning;
     }
 
-    public void setFeedRunnning(boolean feederRunnning) {
+    public void setFeederRunnning(boolean feederRunnning) {
         this.feederRunnning = feederRunnning;
     }
 

@@ -1,5 +1,6 @@
 package spider.myspider.redisSpider;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.IDataBase;
 
@@ -9,10 +10,14 @@ import spider.spiderCore.crawldb.IDataBase;
 @Component
 public class RedisDb implements IDataBase<String> {
 
-    private String seedsList = "seeds";
-    private String undoneList = "undone";
-    private String lindList = "done";
-    private String redirectList = "redirect";
+    @Value(value = "${redisDb.seedsList}")
+    private String seedsList;
+    @Value(value = "${redisDb.undoneList}")
+    private String undoneList;
+    @Value(value = "${redisDb.lindList}")
+    private String lindList;
+    @Value(value = "${redisDb.redirectList}")
+    private String redirectList;
 
     @Override
     public String getCrawlDB() {
@@ -39,5 +44,6 @@ public class RedisDb implements IDataBase<String> {
      **/
     @Override
     public void clear() {
+
     }
 }

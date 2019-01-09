@@ -26,12 +26,13 @@ public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
     private IGeneratorFilter filter = null;
     @Value(value = "${generator.topNumber}")
     private int topN = 0;
-    //@Value(value = "")
-    private int maxExecuteCount = 5;
-
-    private int totalGenerate;
+    @Value(value = "crawldatum.maxExecuteCount")
+    private int maxExecuteCount;
     @Autowired
     private RedisTemplate redisTemplate;
+
+
+    private int totalGenerate;
 
     @Override
     public CrawlDatum next() {

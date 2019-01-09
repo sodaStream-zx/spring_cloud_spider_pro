@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @desc 后续任务过滤后发送到
  * @createTime 2019-01-07-22:38
  */
-@Component
+@Component(value = "defaultContentPageFilter")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultContentPageFilter implements IContentPageFilter {
     private static final Logger log = Logger.getLogger(DefaultContentPageFilter.class);

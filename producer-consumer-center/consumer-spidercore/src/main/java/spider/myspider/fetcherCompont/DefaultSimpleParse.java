@@ -6,6 +6,8 @@ import commoncore.entity.requestEntity.Links;
 import commoncore.entity.requestEntity.entityTools.RegexRule;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawler.ISimpleParse;
 
@@ -14,7 +16,8 @@ import spider.spiderCore.crawler.ISimpleParse;
  * @desc
  * @createTime 2019-01-07-15:34
  */
-@Component
+@Component(value = "defaultSimpleParse")
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultSimpleParse implements ISimpleParse {
     @Autowired
     private RegexRule regexRule;

@@ -45,7 +45,6 @@ public class ParesProcess implements IParesProcess {
     public void parseRun(ResponseData pageData) {
         log.info("开始解析-----");
         log.debug("解析数据 ：" + pageData.toString());
-
         if (domainRule != null && pageData.getSiteName().equals(domainRule.getSiteName())) {
             ResponsePage page = new ResponsePage(pageData.getDatum(), pageData.getCode(), pageData.getContentType(), pageData.getContent());
             MyNew myNew = (MyNew) paresContent.paresContent(page, domainRule);

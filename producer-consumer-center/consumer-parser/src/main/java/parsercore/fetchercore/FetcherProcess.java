@@ -1,6 +1,7 @@
 package parsercore.fetchercore;
 
 import commoncore.customUtils.BeanGainer;
+import commoncore.entity.fetcherEntity.FetcherState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class FetcherProcess {
         pause(3, 0);
         //初始化消费者 从queue中读取任务
         for (int i = 0; i < threads; i++) {
+            //动态获取bean ，使每个线程中的 执行单元独立。非共享单例
             threadsExecutor.execute(BeanGainer.getBean("fetcherThread", FetcherThread.class));
         }
 
@@ -61,13 +63,13 @@ public class FetcherProcess {
             LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
             //调度器线程 依赖执行线程运行数量 调度器状态，生产者状态
         }
-        while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning() && fetcherState.isFeedRunnning());
+        while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning() && fetcherState.isFeederRunnning());
 
         this.stopFetcher();
         threadsExecutor.shutdown();
         LOG.info("线程池状态？？---" + threadsExecutor.toString());
-        LOG.info("清空管道 redis 可以考虑重新将未抓取的url存回redis中");
-        fetchQueue.clearQueue();
+        //LOG.info("清空管道 redis 可以考虑重新将未抓取的url存回redis中");
+        //fetchQueue.clearQueue();
         return true;
     }
 

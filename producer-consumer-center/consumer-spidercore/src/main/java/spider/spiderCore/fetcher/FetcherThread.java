@@ -1,11 +1,14 @@
 package spider.spiderCore.fetcher;
 
+import commoncore.customUtils.BeanGainer;
+import commoncore.entity.fetcherEntity.FetcherState;
 import commoncore.entity.requestEntity.CrawlDatum;
 import commoncore.entity.requestEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawler.IExecutor;
 
@@ -16,28 +19,32 @@ import java.util.concurrent.TimeUnit;
  * @desc 任务消费者
  * @createTime
  */
-@Component
-public class FetcherThread {
+@Component(value = "fetcherThread")
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class FetcherThread implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(FetcherThread.class);
     @Autowired
     private FetcherState fetcherState;
     @Autowired
-    private IExecutor<CrawlDatums> iExecutor;
-    @Autowired
     private FetchQueue fetchQueue;
     private long defaultExecuteInterval = 0;
+    private IExecutor<CrawlDatums> iExecutor;
 
-    @Async
-    public void startFetcher() {
+    public FetcherThread() {
+        this.iExecutor = BeanGainer.getBean("defaultExecutor", IExecutor.class);
+    }
+
+    @Override
+    public void run() {
         CrawlDatum datum;
         //判断调度器是否处于运行状态
-        while (fetcherState.isFetcherRunning()) {
+        while (fetcherState.isFetcherRunning() || fetchQueue.getSize() > 0) {
             //从queue中取出任务
             datum = fetchQueue.getCrawlDatum();
             if (datum == null) {
                 LOG.info("QUEUE 未取得任务");
                 //判断任务队列是否有任务，如果没有，等待任务管道被消费完，停止执行线程
-                if (fetcherState.isFeedRunnning() || fetchQueue.getSize() > 0) {
+                if (fetcherState.isFeederRunnning()) {
                     pause(0, 200);
                     continue;
                 } else {

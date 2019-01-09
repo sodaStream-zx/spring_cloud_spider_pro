@@ -24,6 +24,5 @@ import commoncore.entity.requestEntity.CrawlDatums;
  *过滤器
  */
 public interface INextFilter {
-
      CrawlDatums filter(CrawlDatums datums);
 }

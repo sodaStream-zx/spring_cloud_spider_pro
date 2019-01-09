@@ -1,6 +1,7 @@
 package parsercore.fetchercore;
 
 import commoncore.customUtils.BeanGainer;
+import commoncore.entity.fetcherEntity.FetcherState;
 import commoncore.entity.httpEntity.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,12 +30,18 @@ public class FetcherThread implements Runnable {
 
     private IParesProcess iParesProcess;
 
+    /**
+     * desc: 实例化时，动态获取解析器
+     **/
     public FetcherThread() {
         this.iParesProcess = BeanGainer.getBean("parse", ParesProcess.class);
     }
 
     @Override
     public void run() {
+        if (iParesProcess == null) {
+            return;
+        }
         LOG.info("执行线程组件：" + this.toString());
         ResponseData responseData;
         //执行线程依赖 调度器 状态，管道任务数量，只要有任务，或者 提取线程工作，者继续执行
@@ -43,13 +50,13 @@ public class FetcherThread implements Runnable {
             responseData = fetchQueue.getResponseData();
             if (responseData == null) {
                 //判断任务队列是否有任务，如果没有,直接退出
-                if (fetcherState.isFeedRunnning()) {
+                if (fetcherState.isFeederRunnning()) {
+                    pause(0, 500);
                     continue;
                 } else {
                     break;
                 }
             } else {
-                //pause(1, 0);
                 iParesProcess.parseRun(responseData);
             }
         }

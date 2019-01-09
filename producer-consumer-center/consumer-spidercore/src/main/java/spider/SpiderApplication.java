@@ -5,12 +5,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -59,11 +57,11 @@ public class SpiderApplication {
         SpringApplication.run(SpiderApplication.class, args);
     }
 
-    /**
+    /* *//**
      * desc:线程池
      *
      * @Return:Executor
-     **/
+     **//*
     @Bean(name = "executor")
     public ThreadPoolTaskExecutor executor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -76,5 +74,5 @@ public class SpiderApplication {
         executor.setQueueCapacity(10);
         return executor;
 
-    }
+    }*/
 }

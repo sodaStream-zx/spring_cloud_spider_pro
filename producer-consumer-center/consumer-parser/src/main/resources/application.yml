@@ -16,8 +16,8 @@ spring:
   application:
     name: MyPares
   redis:
-    #host: 192.168.88.106
-    host: 192.168.0.101
+    host: 192.168.88.106
+    #host: 192.168.0.101
     port: 6379
     password: zxx1994
   datasource:
@@ -59,4 +59,3 @@ info:
   version: ${project.version}
 server:
   port: 9940
-#logging

@@ -7,6 +7,7 @@ import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
@@ -32,8 +33,8 @@ import java.util.zip.GZIPInputStream;
  * @desc 请求发送器
  * @createTime 2018-12-28-13:17
  */
-@Component
-@Scope("prototype")
+@Component(value = "defaultRequest")
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
     public static final Logger LOG = LoggerFactory.getLogger(DefaultHttpRequest.class);
     @Autowired
@@ -49,6 +50,9 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
      **/
     @Override
     public ResponsePage converterResponsePage(CrawlDatum crawlDatum) {
+
+        LOG.info("httputil 配置" + this.httpConfig.toString());
+
         HttpResponse httpResponse = this.sendRequest(crawlDatum);
         ResponsePage responsePage = new ResponsePage(
                 crawlDatum,

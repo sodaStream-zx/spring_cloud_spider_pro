@@ -1,6 +1,7 @@
 package parsercore.fetchercore;
 
 
+import commoncore.entity.fetcherEntity.FetcherState;
 import commoncore.entity.httpEntity.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,20 +43,24 @@ public class QueueFeeder implements Runnable {
         } catch (Exception e) {
             LOG.error("【关闭数据库提取工具出错】");
         }
-        fetcherState.setFeedRunnning(false);
+        fetcherState.setFeederRunnning(false);
     }
 
     /**
      * desc: feeder 线程运行
      **/
-    //@Async(value = "task")
     @Override
     public void run() {
+        if (iGenerator == null) {
+            LOG.error("未提供数据库提取工具，关闭提取线程");
+            fetcherState.setFeederRunnning(false);
+            return;
+        }
         LOG.info(this.toString());
         boolean hasMore = true;
-        fetcherState.setFeedRunnning(true);
+        fetcherState.setFeederRunnning(true);
         //任务生产者依赖 数据库后续任务，自身状态，调度器状态
-        while (hasMore && fetcherState.isFeedRunnning() && fetcherState.isFetcherRunning()) {
+        while (hasMore && fetcherState.isFeederRunnning() && fetcherState.isFetcherRunning()) {
             //监听queue中数量，当queue中数量为1000时，线程等待，
             int feed = queueMaxSize - queue.getSize();
             if (feed <= 0) {
@@ -64,7 +69,7 @@ public class QueueFeeder implements Runnable {
             }
             //如果queue中小于1000，往queue中添加新任务，未提取到任务 count 等待时间
             int count = 0;
-            while (feed > 0 && hasMore && fetcherState.isFeedRunnning()) {
+            while (feed > 0 && hasMore && fetcherState.isFeederRunnning()) {
                 //任务生成器 如果下一个任务为空，返回空。判断dbmananger中是否有后续任务
                 ResponseData responseData = iGenerator.getData();
                 if (responseData != null) {
@@ -79,7 +84,7 @@ public class QueueFeeder implements Runnable {
                     count++;
                     if (queue.getSize() == 0 && count >= 6) {
                         LOG.info("等待超时，关闭程序");
-                        fetcherState.setFeedRunnning(false);
+                        fetcherState.setFeederRunnning(false);
                         hasMore = false;
                     } else {
                         LOG.info("获取数据超时【" + count + "】秒");
