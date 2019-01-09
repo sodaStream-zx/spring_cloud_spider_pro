@@ -1,8 +1,8 @@
 
 package loadercore.dao;
 
+import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.configEntity.SiteConfig;
-import commoncore.parseTools.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

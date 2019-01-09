@@ -13,13 +13,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-public class FetcherTest {
+public class FetcherProcessTest {
     @Autowired
-    private Fetcher fetcher;
+    private FetcherProcess fetcherProcess;
 
     @Test
     public void fetcherStart() {
-        //fetcher.fetcherStart();
+        fetcherProcess.fetcherStart();
     }
 
     @Test

@@ -1,7 +1,7 @@
 #######p配置信息
 my:
   queue:
-    maxSize: 1000
+    maxSize: 500
   #待解析数据 redis list key
   responseList:
     redisKey: responseList
@@ -10,13 +10,14 @@ my:
     mapName: rule
   #任务执行线程数量
   fetcher:
-    maxThread: 30
+    maxThread: 20
 #############以上为自定义配置
 spring:
   application:
     name: MyPares
   redis:
-    host: 192.168.88.106
+    #host: 192.168.88.106
+    host: 192.168.0.101
     port: 6379
     password: zxx1994
   datasource:

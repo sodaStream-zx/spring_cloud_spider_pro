@@ -1,4 +1,4 @@
-package commoncore.parseTools;
+package commoncore.customUtils;
 
 import org.apache.log4j.Logger;
 

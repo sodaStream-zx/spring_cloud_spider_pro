@@ -1,11 +1,15 @@
 package parsercore.fetchercore;
 
+import commoncore.customUtils.BeanGainer;
 import commoncore.entity.httpEntity.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import parsercore.pareser.IParesEngine;
+import parsercore.pareser.IParesProcess;
+import parsercore.pareser.ParesProcess;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,41 +18,39 @@ import java.util.concurrent.TimeUnit;
  * @desc 任务消费者
  * @createTime
  */
-@Component
+@Component(value = "fetcherThread")
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class FetcherThread implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(FetcherThread.class);
     @Autowired
     private FetchQueue fetchQueue;
     @Autowired
     private FetcherState fetcherState;
-    @Autowired
-    private IParesEngine iParesEngine;
 
+    private IParesProcess iParesProcess;
 
-    /*public FetcherThread(FetchQueue fetchQueue, FetcherState fetcherState, IParesEngine iParesEngine) {
-        this.fetchQueue = fetchQueue;
-        this.fetcherState = fetcherState;
-        this.iParesEngine = iParesEngine;
-    }*/
+    public FetcherThread() {
+        this.iParesProcess = BeanGainer.getBean("parse", ParesProcess.class);
+    }
 
     @Override
     public void run() {
+        LOG.info("执行线程组件：" + this.toString());
         ResponseData responseData;
-        //执行线程依赖 调度器 状态
-        while (fetcherState.isFetcherRunning()) {
+        //执行线程依赖 调度器 状态，管道任务数量，只要有任务，或者 提取线程工作，者继续执行
+        while (fetcherState.isFetcherRunning() || fetchQueue.getSize() > 0) {
             //从queue中取出任务
             responseData = fetchQueue.getResponseData();
             if (responseData == null) {
-                //判断任务队列是否有任务，如果没有，直接退出线程，只要 任务管道
-                if (fetcherState.isFeedRunnning() || fetchQueue.getSize() > 0) {
+                //判断任务队列是否有任务，如果没有,直接退出
+                if (fetcherState.isFeedRunnning()) {
                     continue;
                 } else {
                     break;
                 }
             } else {
-                //LOG.debug("item = "+rs.toString());
-                //pause(8, 0);
-                iParesEngine.parseRun(responseData);
+                //pause(1, 0);
+                iParesProcess.parseRun(responseData);
             }
         }
     }
@@ -63,5 +65,14 @@ public class FetcherThread implements Runnable {
         } catch (InterruptedException e) {
             LOG.error("spinWaiting thread sleep exception");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "FetcherThread{" +
+                "fetchQueue=" + fetchQueue +
+                ", fetcherState=" + fetcherState +
+                ", iParesProcess=" + iParesProcess +
+                '}';
     }
 }

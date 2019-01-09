@@ -1,5 +1,6 @@
 package parsercore.pareser;
 
+import commoncore.customUtils.BeanGainer;
 import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.httpEntity.ResponsePage;
 import commoncore.entity.paresEntity.DomainRule;
@@ -19,13 +20,12 @@ import parsercore.paresUtil.ParesContent;
  * @desc 解析器
  * @createTime 2018-12-21-15:49
  */
-@Component
+@Component(value = "parse")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class ParesEngine implements IParesEngine {
+public class ParesProcess implements IParesProcess {
 
-    private static final Logger log = Logger.getLogger(ParesEngine.class.getName());
-    @Autowired
-    ParesContent paresContent;
+    private static final Logger log = Logger.getLogger(ParesProcess.class.getName());
+    private ParesContent paresContent;
     @Autowired
     IRedisDao iRedisDao;
     @Autowired
@@ -34,12 +34,18 @@ public class ParesEngine implements IParesEngine {
     private String listKey;
     private DomainRule domainRule = null;
 
+    public ParesProcess() {
+        this.paresContent = BeanGainer.getBean("parseContent", ParesContent.class);
+    }
+
     /**
      * desc:解析器
      **/
     @Override
     public void parseRun(ResponseData pageData) {
         log.info("开始解析-----");
+        log.debug("解析数据 ：" + pageData.toString());
+
         if (domainRule != null && pageData.getSiteName().equals(domainRule.getSiteName())) {
             ResponsePage page = new ResponsePage(pageData.getDatum(), pageData.getCode(), pageData.getContentType(), pageData.getContent());
             MyNew myNew = (MyNew) paresContent.paresContent(page, domainRule);

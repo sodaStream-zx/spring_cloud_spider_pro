@@ -19,6 +19,7 @@ import java.sql.SQLException;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"commoncore", "parsercore"})
+//@EnableAsync
 public class ParesEngineApplication {
     private static final Logger LOG = Logger.getLogger(ParesEngineApplication.class);
     @Autowired
@@ -51,4 +52,21 @@ public class ParesEngineApplication {
     public static void main(String[] args) {
         SpringApplication.run(ParesEngineApplication.class, args);
     }
+    /**
+     * desc:线程池
+     *
+     * @Return:Executor
+     **/
+   /* @Bean(name = "task")
+    public ThreadPoolTaskExecutor executor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(30);
+        executor.setAllowCoreThreadTimeOut(true);
+        executor.setKeepAliveSeconds(2);
+        executor.setThreadNamePrefix("fetcher-");
+        executor.initialize();
+        return executor;
+
+    }*/
 }

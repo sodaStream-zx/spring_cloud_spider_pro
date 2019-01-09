@@ -3,7 +3,6 @@ package commoncore.entity.httpEntity;
 import commoncore.entity.requestEntity.CrawlDatum;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * @author 一杯咖啡
@@ -11,7 +10,7 @@ import java.util.Arrays;
  * @createTime 2018-12-24-15:24
  */
 public class ResponseData implements Serializable {
-    private static final long serialVersionUID= 1L;
+    private static final long serialVersionUID = 1L;
     private String siteName;
     private CrawlDatum datum;
     private Integer code;
@@ -20,13 +19,14 @@ public class ResponseData implements Serializable {
 
     @Override
     public String toString() {
-        return "ResponseData{" +
-                "siteName='" + siteName + '\'' +
-                ", datum=" + datum +
-                ", code=" + code +
-                ", contentType='" + contentType + '\'' +
-                ", content=" + Arrays.toString(content) +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("ResponseData = [ ")
+                .append("siteName:").append(siteName)
+                .append(",datumn:").append(datum)
+                .append(",code:").append(code)
+                .append(",contentType:").append(contentType)
+                .append(",content:").append(content);
+        return stringBuilder.toString();
     }
 
     public ResponseData(String siteName, CrawlDatum datum, Integer code, String contentType, byte[] content) {

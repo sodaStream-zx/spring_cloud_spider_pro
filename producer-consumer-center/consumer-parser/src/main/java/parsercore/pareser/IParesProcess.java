@@ -8,7 +8,7 @@ import commoncore.entity.httpEntity.ResponseData;
  * @desc 解析器启动接口
  * @createTime 2018-12-21-15:51
  */
-public interface IParesEngine {
+public interface IParesProcess {
     /**
      * desc:解析传入的数据
      * @param responseData

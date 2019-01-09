@@ -1,6 +1,6 @@
 package loadercore.dao;
 
-import commoncore.parseTools.SerializeUtil;
+import commoncore.customUtils.SerializeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ public class RedisDao {
     public boolean insertAObject(String keyString, Object obj) {
         String objStr = null;
         try {
-            objStr = serializeUtil.serializeToString(obj);
+            objStr = SerializeUtil.serializeToString(obj);
         } catch (Exception e) {
             e.printStackTrace();
         }

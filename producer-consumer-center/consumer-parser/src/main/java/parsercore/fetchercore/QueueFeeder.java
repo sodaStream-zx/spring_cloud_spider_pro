@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @createTime
  */
 @Component
+//@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class QueueFeeder implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(QueueFeeder.class);
@@ -27,8 +28,7 @@ public class QueueFeeder implements Runnable {
     private IGenerator<ResponseData> iGenerator;
     @Value(value = "${my.queue.maxSize}")
     private int queueMaxSize;
-    @Value(value = "${my.responseList.redisKey}")
-    private String redisKey;
+
     @Autowired
     private FetcherState fetcherState;
 
@@ -48,13 +48,14 @@ public class QueueFeeder implements Runnable {
     /**
      * desc: feeder 线程运行
      **/
+    //@Async(value = "task")
     @Override
     public void run() {
-        LOG.info(iGenerator.toString());
+        LOG.info(this.toString());
         boolean hasMore = true;
         fetcherState.setFeedRunnning(true);
         //任务生产者依赖 数据库后续任务，自身状态，调度器状态
-        while (hasMore && fetcherState.isFeedRunnning()&&fetcherState.isFetcherRunning()) {
+        while (hasMore && fetcherState.isFeedRunnning() && fetcherState.isFetcherRunning()) {
             //监听queue中数量，当queue中数量为1000时，线程等待，
             int feed = queueMaxSize - queue.getSize();
             if (feed <= 0) {
@@ -65,13 +66,13 @@ public class QueueFeeder implements Runnable {
             int count = 0;
             while (feed > 0 && hasMore && fetcherState.isFeedRunnning()) {
                 //任务生成器 如果下一个任务为空，返回空。判断dbmananger中是否有后续任务
-                ResponseData responseData = iGenerator.getData(redisKey);
-
+                ResponseData responseData = iGenerator.getData();
                 if (responseData != null) {
                     // pause(0, 100);
                     LOG.info("feed Size = " + feed);
                     LOG.info("queue size == " + queue.getSize());
                     queue.addResponseData(responseData);
+                    // pause(0, 500);
                     feed--;
                 } else {
                     pause(1, 0);
@@ -81,7 +82,7 @@ public class QueueFeeder implements Runnable {
                         fetcherState.setFeedRunnning(false);
                         hasMore = false;
                     } else {
-                        LOG.info("redis 中无后续数据，等待第 " + count + " 秒");
+                        LOG.info("获取数据超时【" + count + "】秒");
                     }
                 }
             }
@@ -95,5 +96,15 @@ public class QueueFeeder implements Runnable {
         } catch (InterruptedException e) {
             LOG.error("生产者休眠异常");
         }
+    }
+
+    @Override
+    public String toString() {
+        return " 提取线程 ：QueueFeeder [" +
+                "\nqueue=" + queue +
+                "\niGenerator=" + iGenerator +
+                "\nqueueMaxSize=" + queueMaxSize +
+                "\nfetcherState=" + fetcherState +
+                ']';
     }
 }

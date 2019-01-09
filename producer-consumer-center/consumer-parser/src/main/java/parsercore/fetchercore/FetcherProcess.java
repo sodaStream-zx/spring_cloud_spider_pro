@@ -1,11 +1,11 @@
 package parsercore.fetchercore;
 
+import commoncore.customUtils.BeanGainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import parsercore.pareser.IParesEngine;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
  * @createTime
  */
 @Component
-public class Fetcher {
-    private static final Logger LOG = LoggerFactory.getLogger(Fetcher.class);
+public class FetcherProcess {
+    private static final Logger LOG = LoggerFactory.getLogger(FetcherProcess.class);
 
     /**
      * 核心组件:  fetchQueue-任务管道  queueFeeder-任务生产者
@@ -30,13 +30,8 @@ public class Fetcher {
     private FetchQueue fetchQueue;
     @Autowired
     private FetcherState fetcherState;
-    @Autowired
-    FetcherThread fetcherThread;
     @Value(value = "${my.fetcher.maxThread}")
-    private int threads = 20;
-
-    @Autowired
-    private IParesEngine iParesEngine;
+    private int threads;
 
     /**
      * 抓取当前所有任务，会阻塞到爬取完成 开启 feeder 和 执行爬取线程。
@@ -58,8 +53,7 @@ public class Fetcher {
         pause(3, 0);
         //初始化消费者 从queue中读取任务
         for (int i = 0; i < threads; i++) {
-            threadsExecutor.execute(fetcherThread);
-            //threadsExecutor.execute(new FetcherThread(fetchQueue, fetcherState, iParesEngine));
+            threadsExecutor.execute(BeanGainer.getBean("fetcherThread", FetcherThread.class));
         }
 
         do {
@@ -72,8 +66,7 @@ public class Fetcher {
         this.stopFetcher();
         threadsExecutor.shutdown();
         LOG.info("线程池状态？？---" + threadsExecutor.toString());
-        LOG.info("线程池关闭？？---" + threadsExecutor.isTerminated());
-        //清空管道 redis 可以考虑重新将未抓取的url存回redis中
+        LOG.info("清空管道 redis 可以考虑重新将未抓取的url存回redis中");
         fetchQueue.clearQueue();
         return true;
     }
@@ -86,7 +79,6 @@ public class Fetcher {
         LOG.info("【----------停止任务生产者----------】");
         queueFeeder.stopFeeder();
         //停止调度器
-        fetcherState.setFeedRunnning(false);
         fetcherState.setFetcherRunning(false);
     }
 

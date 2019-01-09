@@ -1,4 +1,4 @@
-package parsercore.fetchercore.coreimp;
+package parsercore.fetchercore.imp;
 
 import commoncore.entity.httpEntity.ResponseData;
 import org.springframework.stereotype.Component;

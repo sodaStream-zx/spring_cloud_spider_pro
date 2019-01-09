@@ -1,8 +1,8 @@
 package spider.spiderCore.crawler;
 
+import commoncore.customUtils.StringSplitUtil;
 import commoncore.entity.configEntity.SiteConfig;
 import commoncore.entity.requestEntity.CrawlDatums;
-import commoncore.parseTools.StringSplitUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spider.spiderCore.crawldb.IDataUtil;
@@ -24,16 +24,14 @@ public class AbstractSpider implements ISpider {
     public final static int STOPED = 2;
     //网站配置
     private SiteConfig siteConfig;
-    protected int threads = 50;
-
     //入口urls
-    protected SeedData seedData;
+    private SeedData seedData;
     //正则规则
-    protected RegexRuleData regexRuleData;
+    private RegexRuleData regexRuleData;
     //执行调度器
-    protected Fetcher fetcher;
+    private Fetcher fetcher;
     //数据存储器（考虑将种子注入和 解析注入分开）
-    protected IDataUtil iDataUtil;
+    private IDataUtil iDataUtil;
 
     /**
      * urlRules url 解析正则表达式
@@ -42,6 +40,10 @@ public class AbstractSpider implements ISpider {
      */
     @Override
     public void loadConfig() {
+        if (siteConfig == null) {
+            LOG.error("未加载网站配置文件");
+            return;
+        }
         //url 提取正则
         String[] urlRules = StringSplitUtil.splitRule(siteConfig.getUrlPares());
         //seeds 种子url
@@ -87,7 +89,7 @@ public class AbstractSpider implements ISpider {
 
     @Override
     public void startSpider() {
-        LOG.info(this.toString());
+
         //判断是否断点。不开启，则，启动前 清理数据库
         if (!siteConfig.isRes()) {
             if (iDataUtil.getIDbManager().isDBExists()) {
@@ -109,7 +111,7 @@ public class AbstractSpider implements ISpider {
             }
             LOG.info("start depth " + (i + 1));
             long startTime = System.currentTimeMillis();
-            fetcher.setThreads(threads);
+
             int totalGenerate = fetcher.fetcherStart();
 
             long endTime = System.currentTimeMillis();

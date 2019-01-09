@@ -3,7 +3,7 @@ package parsercore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import parsercore.fetchercore.Fetcher;
+import parsercore.fetchercore.FetcherProcess;
 
 /**
  * @author 一杯咖啡
@@ -14,11 +14,11 @@ import parsercore.fetchercore.Fetcher;
 public class ParesController {
 
     @Autowired
-    private Fetcher fetcher;
+    private FetcherProcess fetcherProcess;
 
     @GetMapping(value = "/startParse")
     public boolean startParer() {
-        fetcher.fetcherStart();
+        fetcherProcess.fetcherStart();
         return true;
     }
 }

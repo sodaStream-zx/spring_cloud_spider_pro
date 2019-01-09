@@ -1,12 +1,12 @@
 package parsercore.paresUtil;
 
+import commoncore.customUtils.ParesCounter;
+import commoncore.customUtils.Selectors;
+import commoncore.customUtils.StringSplitUtil;
+import commoncore.customUtils.TimeFilter;
 import commoncore.entity.httpEntity.ResponsePage;
 import commoncore.entity.paresEntity.DomainRule;
 import commoncore.entity.paresEntity.MyNew;
-import commoncore.parseTools.ParesCounter;
-import commoncore.parseTools.Selectors;
-import commoncore.parseTools.StringSplitUtil;
-import commoncore.parseTools.TimeFilter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  *
  * @author 一杯咖啡
  */
-@Component
+@Component(value = "parseContent")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MyParesContent implements ParesContent {
     private static final Logger LOG = Logger.getLogger(MyParesContent.class);

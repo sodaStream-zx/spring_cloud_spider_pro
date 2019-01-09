@@ -7,10 +7,8 @@ import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import spider.spiderCore.http.IProxyGain;
 import spider.spiderCore.http.ISendRequest;
@@ -38,28 +36,10 @@ import java.util.zip.GZIPInputStream;
 @Scope("prototype")
 public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
     public static final Logger LOG = LoggerFactory.getLogger(DefaultHttpRequest.class);
-
-    @Value(value = "${httpconfig.maxRedirect}")
-    private int maxRedirect = 0;
-    @Value(value = "${httpconfig.maxReceiveSize}")
-    private int maxReceiveSize = 100;
-    @Value(value = "${httpconfig.timeoutForConnect}")
-    private int timeoutForConnect = 200;
-    @Value(value = "${httpconfig.timeoutForRead}")
-    private int timeoutForRead = 200;
-    @Value(value = "${httpconfig.userAgent}")
-    private String userAgent = "test string";
-    private String cookie = null;
-
+    @Autowired
+    private HttpConfig httpConfig;
     @Autowired
     private IProxyGain iProxyGain;
-
-    private boolean doinput = true;
-    private boolean dooutput = true;
-    private boolean followRedirects = false;
-
-    private MultiValueMap headerMap = new LinkedMultiValueMap();
-    private MultiValueMap postBodyMap = new LinkedMultiValueMap();
 
     public DefaultHttpRequest() {
     }
@@ -87,19 +67,20 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
      **/
     @Override
     public void configHttpRequest(HttpURLConnection httpURLConnection) {
-        httpURLConnection.setInstanceFollowRedirects(followRedirects);
-        httpURLConnection.setDoInput(doinput);
-        httpURLConnection.setDoOutput(dooutput);
-        httpURLConnection.setConnectTimeout(timeoutForConnect);
-        httpURLConnection.setReadTimeout(timeoutForRead);
-        if (!headerMap.containsKey("User-Agent")) {
-            headerMap.set("User-Agent", userAgent);
+        httpURLConnection.setInstanceFollowRedirects(httpConfig.isFollowRedirects());
+        httpURLConnection.setDoInput(httpConfig.isDoinput());
+        httpURLConnection.setDoOutput(httpConfig.isDooutput());
+        httpURLConnection.setConnectTimeout(httpConfig.getTimeoutForConnect());
+        httpURLConnection.setReadTimeout(httpConfig.getTimeoutForRead());
+        MultiValueMap header = httpConfig.getHeaderMap();
+        if (!header.containsKey("User-Agent")) {
+            header.set("User-Agent", httpConfig.getUserAgent());
         }
-        if (!headerMap.containsKey("Cookie")) {
-            headerMap.set("Cookie", cookie);
+        if (!header.containsKey("Cookie")) {
+            header.set("Cookie", httpConfig.getCookie());
         }
-        if (headerMap.size() > 0) {
-            Set<Map.Entry<String, List<String>>> keyAndVaule = headerMap.entrySet();
+        if (header.size() > 0) {
+            Set<Map.Entry<String, List<String>>> keyAndVaule = header.entrySet();
             keyAndVaule.forEach(stringListEntry -> {
                 int valueLen = stringListEntry.getValue().size();
                 for (int i = 0; i < valueLen; i++) {
@@ -118,7 +99,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
         HttpURLConnection con = null;
         InputStream is = null;
         int code = -1;
-        int realRedirectNum = Math.max(0, maxRedirect);
+        int realRedirectNum = Math.max(0, httpConfig.getMaxRedirect());
         try {
             URL url = new URL(crawlDatum.url());
             HttpResponse response = new HttpResponse(url);
@@ -133,10 +114,11 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
                 con.setRequestMethod(crawlDatum.getMethod());
                 this.configHttpRequest(con);
                 //post 请求写入信息
-                if (postBodyMap != null && postBodyMap.size() > 0) {
+                MultiValueMap postBody = httpConfig.getPostBodyMap();
+                if (postBody != null && postBody.size() > 0) {
                     OutputStream postStream = con.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(postStream, StandardCharsets.UTF_8));
-                    String jsonPostBody = new Gson().toJson(postBodyMap);
+                    String jsonPostBody = new Gson().toJson(postBody);
                     bufferedWriter.write(jsonPostBody);
                     bufferedWriter.flush();
                     bufferedWriter.close();
@@ -155,7 +137,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
                     case HttpURLConnection.HTTP_MOVED_PERM:
                     case HttpURLConnection.HTTP_MOVED_TEMP:
                         response.setRedirect(true);
-                        if (redirect == maxRedirect) {
+                        if (redirect == httpConfig.getMaxRedirect()) {
                             throw new Exception("redirect to much time");
                         }
                         String location = con.getHeaderField("Location");
@@ -176,7 +158,6 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
                 }
             }
 
-
             is = con.getInputStream();
             String contentEncoding = con.getContentEncoding();
             if (contentEncoding != null && contentEncoding.equals("gzip")) {
@@ -186,7 +167,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
             byte[] buf = new byte[2048];
             int read;
             int sum = 0;
-            int maxsize = maxReceiveSize * 1024 * 1024;
+            int maxsize = httpConfig.getMaxReceiveSize() * 1024 * 1024;
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             while ((read = is.read(buf)) != -1) {
                 if (maxsize > 0) {
@@ -222,7 +203,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
         if (key == null) {
             throw new NullPointerException("key is null");
         }
-        headerMap.remove(key);
+        httpConfig.getHeaderMap().remove(key);
     }
 
     /**
@@ -230,7 +211,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
      **/
     public void addHeader(String key, String value) {
         if (!checkNull(key, value)) {
-            headerMap.add(key, value);
+            httpConfig.getHeaderMap().add(key, value);
         }
     }
 
@@ -239,10 +220,9 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
      **/
     public void setHeader(String key, String value) {
         if (!checkNull(key, value)) {
-            headerMap.set(key, value);
+            httpConfig.getHeaderMap().set(key, value);
         }
     }
-
 
     /**
      * desc: headerMap key value 空值检查
@@ -254,22 +234,6 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
             return value == null || "".equals(value);
         }
 
-    }
-
-    @Override
-    public String toString() {
-        return "HttpRequestUtil{" +
-                "maxRedirect=" + maxRedirect +
-                ", maxReceiveSize=" + maxReceiveSize +
-                ", timeoutForConnect=" + timeoutForConnect +
-                ", timeoutForRead=" + timeoutForRead +
-                ", userAgent='" + userAgent + '\'' +
-                ", doinput=" + doinput +
-                ", dooutput=" + dooutput +
-                ", followRedirects=" + followRedirects +
-                ", headerMap=" + headerMap +
-                ", postBodyMap=" + postBodyMap +
-                '}';
     }
 
     static {
@@ -299,101 +263,5 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
         } catch (Exception ex) {
             LOG.info("Exception", ex);
         }
-    }
-
-    public int getMaxRedirect() {
-        return maxRedirect;
-    }
-
-    public void setMaxRedirect(int maxRedirect) {
-        this.maxRedirect = maxRedirect;
-    }
-
-    public int getMaxReceiveSize() {
-        return maxReceiveSize;
-    }
-
-    public void setMaxReceiveSize(int maxReceiveSize) {
-        this.maxReceiveSize = maxReceiveSize;
-    }
-
-    public int getTimeoutForConnect() {
-        return timeoutForConnect;
-    }
-
-    public void setTimeoutForConnect(int timeoutForConnect) {
-        this.timeoutForConnect = timeoutForConnect;
-    }
-
-    public int getTimeoutForRead() {
-        return timeoutForRead;
-    }
-
-    public void setTimeoutForRead(int timeoutForRead) {
-        this.timeoutForRead = timeoutForRead;
-    }
-
-    public String getUserAgent() {
-        return userAgent;
-    }
-
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-    }
-
-    public String getCookie() {
-        return cookie;
-    }
-
-    public void setCookie(String cookie) {
-        this.cookie = cookie;
-    }
-
-    public IProxyGain getiProxyGain() {
-        return iProxyGain;
-    }
-
-    public void setiProxyGain(IProxyGain iProxyGain) {
-        this.iProxyGain = iProxyGain;
-    }
-
-    public boolean isDoinput() {
-        return doinput;
-    }
-
-    public void setDoinput(boolean doinput) {
-        this.doinput = doinput;
-    }
-
-    public boolean isDooutput() {
-        return dooutput;
-    }
-
-    public void setDooutput(boolean dooutput) {
-        this.dooutput = dooutput;
-    }
-
-    public boolean isFollowRedirects() {
-        return followRedirects;
-    }
-
-    public void setFollowRedirects(boolean followRedirects) {
-        this.followRedirects = followRedirects;
-    }
-
-    public MultiValueMap getHeaderMap() {
-        return headerMap;
-    }
-
-    public void setHeaderMap(MultiValueMap headerMap) {
-        this.headerMap = headerMap;
-    }
-
-    public MultiValueMap getPostBodyMap() {
-        return postBodyMap;
-    }
-
-    public void setPostBodyMap(MultiValueMap postBodyMap) {
-        this.postBodyMap = postBodyMap;
     }
 }

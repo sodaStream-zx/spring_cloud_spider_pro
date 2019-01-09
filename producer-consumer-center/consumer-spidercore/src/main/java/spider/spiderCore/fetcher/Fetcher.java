@@ -3,14 +3,13 @@ package spider.spiderCore.fetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.IDataUtil;
 import spider.spiderCore.crawler.IExecutor;
-import spider.spiderCore.fetcher.IFetcherTools.INextFilter;
 
 import java.io.IOException;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -20,12 +19,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class Fetcher {
-
     private static final Logger LOG = LoggerFactory.getLogger(Fetcher.class);
-
-    /**
-     * 核心组件:  fetchQueue-任务管道  queueFeeder-任务生产者
-     */
     @Autowired
     private FetchQueue fetchQueue;
     @Autowired
@@ -34,20 +28,15 @@ public class Fetcher {
     private FetcherState fetcherState;
     @Autowired
     private FetcherThread fetcherThread;
-    /**
-     * 外部注入
-     */
     @Autowired
     private IDataUtil iDataUtil;
-    @Autowired(required = false)
-    private INextFilter INextFilter = null;
-
     @Autowired
     private IExecutor iExecutor;
-    /**
-     * 线程状态属性:  threads-线程数量  fetcherRuning-调度器状态
-     */
-    private int threads = 20;
+    @Value(value = "${spider.totalThreads}")
+    private int threads;
+
+    @Autowired
+    private ThreadPoolTaskExecutor threadExecutor;
 
     /**
      * 抓取当前所有任务，会阻塞到爬取完成 开启 feeder 和 执行爬取线程。
@@ -65,30 +54,26 @@ public class Fetcher {
             iDataUtil.getIDbWritor().initSegmentWriter();
             LOG.info("数据库 工具" + iDataUtil.getClass().getName());
             fetcherState.setFetcherRunning(true);
-
             //等待管道先添加任务
+            queueFeeder.startFeeder();
             pause(3, 0);
-            //创建线程池，允许核心线程超时关闭
-            ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(30, 45, 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
-            threadsExecutor.allowCoreThreadTimeOut(true);
-            threadsExecutor.execute(queueFeeder);
             //初始化消费者 从queue中读取任务
             for (int i = 0; i < threads; i++) {
-                threadsExecutor.execute(fetcherThread);
+                fetcherThread.startFetcher();
             }
             //主线程循环打印 线程池状态
             do {
                 pause(1, 0);
                 LOG.info("执行器状态:\n" + fetcherState.toString());
-                LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
-            } while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning());
+                LOG.info("【线程池状态：\n" + threadExecutor.toString() + " 】\n");
+            } while (threadExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning());
 
             //立即停止任务添加到管道
             LOG.info("本地管道数量：" + fetchQueue.getSize());
             this.stopFetcher();
-            threadsExecutor.shutdown();
-            LOG.info("线程池状态？？---" + threadsExecutor.toString());
-            LOG.info("线程池关闭？？---" + threadsExecutor.isTerminated());
+            threadExecutor.shutdown();
+            LOG.info("线程池状态？？---" + threadExecutor.toString());
+            // LOG.info("线程池关闭？？---" + threadExecutor);
             //清空管道 redis 可以考虑重新将未抓取的url存回redis中
             fetchQueue.clearQueue();
         } finally {
@@ -120,10 +105,6 @@ public class Fetcher {
 
     public QueueFeeder getQueueFeeder() {
         return queueFeeder;
-    }
-
-    public INextFilter getINextFilter() {
-        return INextFilter;
     }
 
     public void setThreads(int threads) {

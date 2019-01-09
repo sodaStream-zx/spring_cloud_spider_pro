@@ -6,5 +6,5 @@ package parsercore.fetchercore.generatorcore;
  * @createTime 2018-12-26-14:46
  */
 public interface IGenerator<T> {
-    T getData(String key);
+    T getData();
 }

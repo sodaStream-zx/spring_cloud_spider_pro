@@ -16,8 +16,8 @@ public class CrawlDatumFormater {
     //判断链接是否已经执行，成功还是失败
     public static String datumToString(CrawlDatum datum) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\nURL: ").append(datum.url())
-                .append("\nSTATUS: ");
+        sb.append("[URL: ").append(datum.url())
+                .append(",STATUS: ");
 
         switch (datum.getStatus()) {
             case CrawlDatum.STATUS_DB_SUCCESS:
@@ -32,9 +32,8 @@ public class CrawlDatumFormater {
         }
 
         //加入执行时间
-        sb.append("\nExecuteTime:").append(sdf.format(new Date(datum.getExecuteTime())))
-                .append("\nExecuteCount:").append(datum.getExecuteCount()).append("\nMethod:").append(datum.getMethod());
-        sb.append("\n");
+        sb.append(",ExecuteTime:").append(sdf.format(new Date(datum.getExecuteTime())))
+                .append(",ExecuteCount:").append(datum.getExecuteCount()).append(",Method:").append(datum.getMethod() + "]");
         return sb.toString();
     }
 }

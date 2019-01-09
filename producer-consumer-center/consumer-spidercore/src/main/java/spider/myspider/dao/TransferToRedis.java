@@ -1,8 +1,8 @@
 package spider.myspider.dao;
 
+import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.httpEntity.ResponsePage;
-import commoncore.parseTools.SerializeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;

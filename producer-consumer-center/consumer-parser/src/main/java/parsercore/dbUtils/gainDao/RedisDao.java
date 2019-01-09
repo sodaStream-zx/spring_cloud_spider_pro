@@ -1,8 +1,9 @@
 package parsercore.dbUtils.gainDao;
 
+import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.paresEntity.DomainRule;
-import commoncore.parseTools.SerializeUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,30 +25,34 @@ public class RedisDao implements IRedisDao {
     private IMysqlDao iMysqlDao;
     @Autowired
     private RedisTemplate redisTemplate;
-
     @Autowired
     private IDataFilter iDataFilter;
 
     @Value(value = "${my.domain.mapName}")
     private String domainMapName;
-    SerializeUtil serializeUtil = new SerializeUtil();
+    @Value(value = "${my.responseList.redisKey}")
+    private String dataKey;
 
     /**
      * desc: 从redis 获取待解析数据
      **/
     @Override
     public ResponseData getResponseDataFromRedis(String responseList) {
+        LOG.debug("从数据库提取数据.......");
         ResponseData responseData = null;
         String responseDataStr = (String) redisTemplate.opsForList().leftPop(responseList);
-        if (!checkNull(responseDataStr)) {
+
+        if (!StringUtils.isBlank(responseDataStr)) {
             try {
                 responseData = (ResponseData) SerializeUtil.deserializeToObject(responseDataStr);
             } catch (Exception e) {
                 LOG.error("反序列化异常" + e.getMessage());
             }
+        } else {
+            LOG.warn("redis 中无后续数据");
         }
         /*else {
-            try {
+             try {
                 TimeUnit.SECONDS.sleep(1);
                 LOG.warn("redis没有数据");
             } catch (InterruptedException e) {
@@ -55,6 +60,7 @@ public class RedisDao implements IRedisDao {
             }
             this.getResponseDataFromRedis(responseList);
         }*/
+        // responseData = new ResponseData("sadasd", new CrawlDatum("123124"), 33, "text/html", null);
         return responseData;
     }
 
@@ -104,31 +110,18 @@ public class RedisDao implements IRedisDao {
     }
 
     /**
-     * desc:字符串空值检测
-     **/
-    public boolean checkNull(String str) {
-        if (null == str || str.equals("")) {
-            LOG.error("str = " + str + " is NULL or nothing ");
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * desc:
      * redis 数据提取工具方法
      * 获取redis 中的待解析数据
      **/
     @Override
-    public ResponseData getData(String key) {
-        ResponseData responseData = this.getResponseDataFromRedis(key);
+    public ResponseData getData() {
+        ResponseData responseData = this.getResponseDataFromRedis(dataKey);
         if (iDataFilter != null) {
             boolean passOrNot = iDataFilter.pass(responseData);
             if (passOrNot) {
                 LOG.info("TIP:这里可能有问题");
-                this.getData(key);
-                return null;
+                this.getData();
             }
         }
         return responseData;

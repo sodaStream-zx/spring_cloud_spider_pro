@@ -5,6 +5,7 @@ import commoncore.entity.requestEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawler.IExecutor;
 
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @createTime
  */
 @Component
-public class FetcherThread implements Runnable {
+public class FetcherThread {
     private static final Logger LOG = LoggerFactory.getLogger(FetcherThread.class);
     @Autowired
     private FetcherState fetcherState;
@@ -26,11 +27,8 @@ public class FetcherThread implements Runnable {
     private FetchQueue fetchQueue;
     private long defaultExecuteInterval = 0;
 
-    public FetcherThread() {
-    }
-
-    @Override
-    public void run() {
+    @Async
+    public void startFetcher() {
         CrawlDatum datum;
         //判断调度器是否处于运行状态
         while (fetcherState.isFetcherRunning()) {

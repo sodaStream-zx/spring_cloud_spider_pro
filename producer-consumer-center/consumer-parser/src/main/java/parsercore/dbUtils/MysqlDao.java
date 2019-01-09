@@ -9,6 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import parsercore.dbUtils.Istore.IMysqlDao;
 
+/**
+ * @author Twilight
+ */
 @Component
 public class MysqlDao implements IMysqlDao<MyNew> {
 

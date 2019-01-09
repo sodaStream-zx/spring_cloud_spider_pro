@@ -1,7 +1,7 @@
 package spider.myspider.redisSpider;
 
+import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.requestEntity.CrawlDatum;
-import commoncore.parseTools.SerializeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

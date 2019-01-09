@@ -5,6 +5,7 @@ import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawldb.IDataUtil;
 import spider.spiderCore.crawldb.IGenerator;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @createTime
  */
 @Component
-public class QueueFeeder implements Runnable {
+public class QueueFeeder {
 
     private static final Logger LOG = LoggerFactory.getLogger(QueueFeeder.class);
 
@@ -35,11 +36,6 @@ public class QueueFeeder implements Runnable {
     //feeder 的状态
     @Autowired
     private FetcherState fetcherState;
-    /**
-     * desc:初始化feeder
-     **/
-    public QueueFeeder() {
-    }
 
     /**
      * desc:关闭管道添加工具
@@ -69,8 +65,8 @@ public class QueueFeeder implements Runnable {
     /**
      * desc: feeder 线程运行
      **/
-    @Override
-    public void run() {
+    @Async
+    public void startFeeder() {
         //获取任务生成工具 （从数据库中提取数据）
         LOG.info(iGenerator.toString());
         boolean hasMore = true;

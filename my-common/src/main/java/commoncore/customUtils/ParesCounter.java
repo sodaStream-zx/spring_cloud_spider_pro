@@ -1,4 +1,4 @@
-package commoncore.parseTools;
+package commoncore.customUtils;
 
 import org.springframework.stereotype.Component;
 

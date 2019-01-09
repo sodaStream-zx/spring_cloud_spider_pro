@@ -1,4 +1,4 @@
-package commoncore.parseTools;
+package commoncore.customUtils;
 
 /**
  * desc: 字符串分解工具
