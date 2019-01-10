@@ -16,7 +16,7 @@ public class ParesController {
     @Autowired
     private FetcherProcess fetcherProcess;
 
-    @GetMapping(value = "/startParse")
+    @GetMapping(value = "/parse")
     public boolean startParer() {
         fetcherProcess.fetcherStart();
         return true;

@@ -2,37 +2,72 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/my-common" />
-    <bookmark url="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultHttpRequest.java" line="62" />
+    <bookmark url="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/DefaultHttpRequest.java" line="62" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d16afd6-5162-43c9-835d-97df58fb2f45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetcher/FetcherTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/StatusIGeneratorFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/BaseSpider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/customUtils/BeanGainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/customUtils/BeanGainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/configEntity/SiteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/configEntity/SiteConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/Links.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/Links.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/ParesEngineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/ParesEngineApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherState.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/fetcherEntity/FetcherState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesProcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/MySpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/MySpider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/SpiderEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/SpiderEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/controller/SpiderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/controller/SpiderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/dao/TransferToRedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/dao/TransferToRedis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/RedisDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/RedisDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultHttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultHttpRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/HttpConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/HttpConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisDbWritor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisDbWritor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/RedisDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/RedisDb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/RedisGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/StatusIGeneratorFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultHttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/DefaultHttpRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultProxyGain.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/DefaultProxyGain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/HttpConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/HttpConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/HttpProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/HttpProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/ProxyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/ProxyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDataUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDbManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDbManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDbWritor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDbWritor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IGeneratorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGeneratorFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractAutoParseCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractAutoParseCrawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractSpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractSpider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/Crawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/Crawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SpiderUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SpiderUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/Fetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/Fetcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/DefaultContentPageFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/DefaultContentPageFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/INextFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/INextFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/QueueFeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/QueueFeeder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/IExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/IExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/IResponseWriter/ResponseWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/ISimpleParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/ISimpleParse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/ISpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/ISpider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/RegexRuleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/RegexRuleData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SeedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SeedData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SpiderUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetchQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetchQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/Fetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/Fetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetcherThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/DefaultContentPageFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultContentPageFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/Executor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/IContentPageFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/IContentPageFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/INextFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/INextFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/TransferToParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/TransferToParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/QueueFeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/QueueFeeder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/IHeaderMapGain.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/IHeaderMapGain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/IProxyGain.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/IProxyGain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/ISendRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/ISendRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/Requester.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/Requester.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/myspider/controller/SpiderControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/myspider/controller/SpiderControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetcher/FetchQueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetchercore/FetchQueueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetcher/FetcherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetchercore/FetcherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/http/httpImp/DefaultProxyGainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/ihttp/httpImp/DefaultProxyGainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/http/myHttpRequestImp/DefaultHttpRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/ihttp/myHttpRequestImp/DefaultHttpRequestTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -159,13 +194,15 @@
     <session id="-716677922">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.34" value="1" />
@@ -174,52 +211,56 @@
           <entry key="project.open.time.50" value="1" />
           <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="2018-12-27" value="1" />
+          <entry key="LOG" value="1" />
           <entry key="class" value="1" />
           <entry key="html" value="3" />
-          <entry key="iml" value="3" />
-          <entry key="java" value="446" />
+          <entry key="iml" value="4" />
+          <entry key="java" value="554" />
           <entry key="jpg" value="1" />
-          <entry key="properties" value="22" />
+          <entry key="properties" value="25" />
           <entry key="xml" value="8" />
-          <entry key="yml" value="10" />
+          <entry key="yml" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="ANSI Aware" value="1" />
           <entry key="CLASS" value="1" />
           <entry key="HTML" value="3" />
-          <entry key="IDEA_MODULE" value="3" />
+          <entry key="IDEA_MODULE" value="4" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="446" />
-          <entry key="Properties" value="22" />
+          <entry key="JAVA" value="554" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Properties" value="25" />
           <entry key="XML" value="8" />
-          <entry key="YAML" value="10" />
+          <entry key="YAML" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="91" />
+          <entry key="dummy" value="105" />
           <entry key="html" value="37" />
-          <entry key="java" value="9203" />
-          <entry key="properties" value="207" />
-          <entry key="txt" value="75" />
+          <entry key="java" value="10243" />
+          <entry key="properties" value="225" />
+          <entry key="txt" value="110" />
           <entry key="xml" value="176" />
-          <entry key="yml" value="128" />
+          <entry key="yml" value="132" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="37" />
-          <entry key="JAVA" value="9203" />
-          <entry key="PLAIN_TEXT" value="166" />
-          <entry key="Properties" value="207" />
+          <entry key="JAVA" value="10243" />
+          <entry key="PLAIN_TEXT" value="215" />
+          <entry key="Properties" value="225" />
           <entry key="XML" value="176" />
-          <entry key="YAML" value="128" />
+          <entry key="YAML" value="132" />
         </counts>
       </usages-collector>
     </session>
@@ -229,68 +270,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+            <state relative-caret-position="168">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisDataBase.java">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultContentPageFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisDbWritor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="99" column="26" lean-forward="true" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
+            <state relative-caret-position="65">
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
               <folding>
-                <element signature="e#966#990#0" expanded="true" />
+                <element signature="docComment;class#DefaultContentPageFilter#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisManager.java">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+            <state relative-caret-position="216">
+              <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/IHeaderMapGain.java">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            <state relative-caret-position="134">
+              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+              <folding>
+                <element signature="e#981#1005#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="27" column="33" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="33" />
+              <folding>
+                <element signature="docComment;class#DefaultSimpleParse#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/IContentPageFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+              <folding>
+                <element signature="docComment;class#IContentPageFilter#0" expanded="true" />
+                <element signature="docComment;method#getContentPageData#0;class#IContentPageFilter#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -302,8 +353,8 @@
       <list>
         <option value="Thymeleaf" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -330,6 +381,7 @@
       <find>myhttpRequest</find>
       <find>Scope</find>
       <find>public static final String</find>
+      <find>ihttp</find>
     </findStrings>
     <replaceStrings>
       <replace>ResopnsePage</replace>
@@ -354,57 +406,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/pom.xml" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/loadercore/dao/ConfigFromMysqlToRedis.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/pom.xml" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/pom.xml" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application-online.properties" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application-dev.properties" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/ISpider.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractSpider.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/spiderconfig/ToolsConfig.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/http/myHttpRequestImp/DefaultHttpRequestTest.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/MysqlDao.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/test/java/parsercore/fetchercore/FetcherTest.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresUtil/MyParesContent.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/ParesEngineApplication.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesEngine.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/Fetcher.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/IParesProcess.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/contentSelector/ISelector/ContentSelect.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/imp/RedisDataFilter.java" />
-        <option value="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/httpEntity/ResponseData.java" />
-        <option value="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/entityTools/CrawlDatumFormater.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/generatorcore/IGenerator.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesProcess.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherState.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherState.java" />
-        <option value="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/fetcherEntity/FetcherState.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherProcess.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherProcess.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SpiderUtils.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/DefaultContentPageFilter.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/INextFilter.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/Crawler.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherThread.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/HttpConfig.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultHttpRequest.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/Fetcher.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetcher/FetcherTest.java" />
         <option value="$PROJECT_DIR$/my-common/src/main/java/commoncore/customUtils/BeanGainer.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/QueueFeeder.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisGenerator.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDataBase.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/RedisDb.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisManager.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetcher/FetcherTest.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/DefaultContentPageFilter.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/IContentPageFilter.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultContentPageFilter.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/IProxyGain.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/Crawler.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/INextFilter.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/IExecutor.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/CustomSpider.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SeedData.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDataBase.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDataUtil.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDbManager.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDbWritor.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGenerator.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGeneratorFilter.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/StatusIGeneratorFilter.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisGenerator.java" />
+        <option value="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/configEntity/SiteConfig.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/BaseSpider.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/ISpider.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractSpider.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/myspider/controller/SpiderControllerTest.java" />
+        <option value="$PROJECT_DIR$/manager-center/manager-eureka-server/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/manager-center/manager-config-server/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-crud/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/manager-center/manager-hystrix-dashboard/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/manager-center/manager-zuul-gateway/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/SpiderEngine.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/controller/SpiderController.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/QueueFeeder.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/RegexRuleData.java" />
+        <option value="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/Links.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherProcess.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/DefaultHttpRequest.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetcherThread.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisDbWritor.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultContentPageFilter.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisGenerator.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -454,10 +506,10 @@
     <option name="jreName" value="#JAVA_HOME" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="532" />
-    <option name="y" value="183" />
-    <option name="width" value="1080" />
-    <option name="height" value="762" />
+    <option name="x" value="334" />
+    <option name="y" value="135" />
+    <option name="width" value="1094" />
+    <option name="height" value="765" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -497,6 +549,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -504,6 +557,174 @@
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-config-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-config-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-config-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-config-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-config-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="configcore" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-config-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-eureka-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-eureka-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-eureka-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-eureka-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-eureka-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eurekacore" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-eureka-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-hystrix-dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-hystrix-dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-hystrix-dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-hystrix-dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-zuul-gateway" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-zuul-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-zuul-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-center" type="462c0819:PsiDirectoryNode" />
+              <item name="manager-zuul-gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
@@ -553,123 +774,121 @@
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="DbCon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="configEntity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
-              <item name="gainDao" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="fetcherEntity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
-              <item name="gainDao" type="462c0819:PsiDirectoryNode" />
-              <item name="IGain" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="httpEntity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="fetchercore" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="paresEntity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="fetchercore" type="462c0819:PsiDirectoryNode" />
-              <item name="generatorcore" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="requestEntity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
-              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="my-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
-              <item name="pareser" type="462c0819:PsiDirectoryNode" />
+              <item name="commoncore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="requestEntity" type="462c0819:PsiDirectoryNode" />
+              <item name="entityTools" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
               <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-crud" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-crud" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-crud" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-crud" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
@@ -679,8 +898,6 @@
               <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
               <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
               <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
@@ -688,7 +905,22 @@
               <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
               <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -697,7 +929,7 @@
               <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
               <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="parsercore" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -707,10 +939,53 @@
               <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
               <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
+              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
+              <item name="dbUtils" type="462c0819:PsiDirectoryNode" />
+              <item name="gainDao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="parsercore" type="462c0819:PsiDirectoryNode" />
               <item name="fetchercore" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
@@ -773,7 +1048,55 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="spider" type="462c0819:PsiDirectoryNode" />
               <item name="myspider" type="462c0819:PsiDirectoryNode" />
-              <item name="redisSpider" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="spider" type="462c0819:PsiDirectoryNode" />
+              <item name="myspider" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="spider" type="462c0819:PsiDirectoryNode" />
+              <item name="myspider" type="462c0819:PsiDirectoryNode" />
+              <item name="fetcherCompont" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="spider" type="462c0819:PsiDirectoryNode" />
+              <item name="myspider" type="462c0819:PsiDirectoryNode" />
+              <item name="httpComponent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="spider" type="462c0819:PsiDirectoryNode" />
+              <item name="myspider" type="462c0819:PsiDirectoryNode" />
+              <item name="redisComponent" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
@@ -796,7 +1119,19 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="spider" type="462c0819:PsiDirectoryNode" />
               <item name="spiderCore" type="462c0819:PsiDirectoryNode" />
-              <item name="crawldb" type="462c0819:PsiDirectoryNode" />
+              <item name="crawler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-spidercore" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="spider" type="462c0819:PsiDirectoryNode" />
+              <item name="spiderCore" type="462c0819:PsiDirectoryNode" />
+              <item name="fetchercore" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
@@ -843,142 +1178,72 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="spider" type="462c0819:PsiDirectoryNode" />
-              <item name="spiderCore" type="462c0819:PsiDirectoryNode" />
+              <item name="myspider" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="provider-config-loader" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="provider-config-loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="provider-config-loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="provider-config-loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="provider-config-loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="loadercore" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="provider-config-loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="concurrent" type="462c0819:PsiDirectoryNode" />
+              <item name="loadercore" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-context:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-context:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-context-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-context:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-context-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-context:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-context-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-context:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-context-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="context" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-context:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-context-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="context" type="462c0819:PsiDirectoryNode" />
-              <item name="support" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-core:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-core:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-core-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-core:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-core-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-core:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-core-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-core:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-core-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-core:4.3.14.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-core-4.3.14.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="task" type="462c0819:PsiDirectoryNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="provider-config-loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1001,27 +1266,26 @@
     <property name="project.structure.proportion" value="0.14976303" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="parsercore.paresrule" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="spider.myspider.controller" />
       <recent name="spider.spiderCore.fetcher" />
       <recent name="commoncore.entity.requestEntity.entityTools" />
       <recent name="spider.spiderCore.http.httpImp" />
       <recent name="spider.spiderCore.http.myHttpRequest" />
-      <recent name="commoncore.parseTools" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="spider.spiderCore" />
       <recent name="spider.spiderCore.http" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\intellj_idea_WorkSpaces\spring_cloud_web_spider\my-common\src\main" />
-      <recent name="F:\intellj_idea_WorkSpaces\spring_cloud_web_spider\my-common\src\resources" />
-      <recent name="F:\intellj_idea_WorkSpaces\spring_cloud_web_spider\my-common\src\main\java\commoncore\DbUtils" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="J:\intellj_idea_WorkSpaces\spring_cloud_web_spider\producer-consumer-center\provider-config-loader\src\main\resources" />
@@ -1037,8 +1301,10 @@
       <recent name="spider.spiderCore.http.myHttpRequest" />
       <recent name="spider.spiderCore.http" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="parsercore.paresrule" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\intellj_idea_WorkSpaces\spring_cloud_web_spider\my-common\src\main" />
+      <recent name="F:\intellj_idea_WorkSpaces\spring_cloud_web_spider\my-common\src\resources" />
+      <recent name="F:\intellj_idea_WorkSpaces\spring_cloud_web_spider\my-common\src\main\java\commoncore\DbUtils" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -1085,7 +1351,7 @@
     </option>
     <option name="contentProportion" value="0.2439825" />
   </component>
-  <component name="RunManager" selected="JUnit.FetcherTest.fetcherStart">
+  <component name="RunManager" selected="Spring Boot.ParesEngineApplication">
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -1125,55 +1391,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefaultHttpRequestTest.sendRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="consumer-spidercore" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="spider.spiderCore.http.myHttpRequestImp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="spider.spiderCore.http.myHttpRequestImp" />
-      <option name="MAIN_CLASS_NAME" value="spider.spiderCore.http.myHttpRequestImp.DefaultHttpRequestTest" />
-      <option name="METHOD_NAME" value="sendRequest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FetchQueueTest.dump" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="consumer-spidercore" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="spider.spiderCore.fetcher.Fetcher" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="spider.spiderCore.fetcher" />
-      <option name="MAIN_CLASS_NAME" value="spider.spiderCore.fetcher.FetchQueueTest" />
-      <option name="METHOD_NAME" value="dump" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FetcherProcessTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="consumer-parser" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="commoncore.entity.fetcherEntity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="parsercore.fetchercore" />
-      <option name="MAIN_CLASS_NAME" value="parsercore.fetchercore.FetcherProcessTest" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FetcherProcessTest.fetcherStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="consumer-parser" />
       <extension name="coverage">
@@ -1191,17 +1408,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FetcherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="consumer-spidercore" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="spider.spiderCore.fetchercore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="spider.spiderCore.fetchercore" />
+      <option name="MAIN_CLASS_NAME" value="spider.spiderCore.fetchercore.FetcherTest" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FetcherTest.fetcherStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="consumer-spidercore" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="spider.spiderCore.fetcher.*" />
+          <option name="PATTERN" value="spider.spiderCore.fetchercore.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="spider.spiderCore.fetcher" />
-      <option name="MAIN_CLASS_NAME" value="spider.spiderCore.fetcher.FetcherTest" />
+      <option name="PACKAGE_NAME" value="spider.spiderCore.fetchercore" />
+      <option name="MAIN_CLASS_NAME" value="spider.spiderCore.fetchercore.FetcherTest" />
       <option name="METHOD_NAME" value="fetcherStart" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpiderControllerTest.start" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="consumer-spidercore" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="spider.myspider.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="spider.myspider.controller" />
+      <option name="MAIN_CLASS_NAME" value="spider.myspider.controller.SpiderControllerTest" />
+      <option name="METHOD_NAME" value="start" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -1228,19 +1477,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CrudApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="consumer-crud" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="crudcore.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="crudcore.CrudApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="manager-eureka-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="eurekacore.EurekaServerApplication" />
@@ -1251,6 +1487,19 @@
     <configuration name="HystrixDashboardApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="manager-hystrix-dashboard" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="hystrixdashboardcore.HystrixDashboardApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParesEngineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="consumer-parser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parsercore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="parsercore.ParesEngineApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -1286,19 +1535,19 @@
       <item itemvalue="Spring Boot.ConfigServerApp" />
       <item itemvalue="Spring Boot.ConfigLoaderApp" />
       <item itemvalue="Spring Boot.SpiderApplication" />
-      <item itemvalue="Spring Boot.CrudApplication" />
-      <item itemvalue="JUnit.FetchQueueTest.dump" />
-      <item itemvalue="JUnit.DefaultHttpRequestTest.sendRequest" />
+      <item itemvalue="JUnit.FetcherProcessTest.fetcherStart" />
       <item itemvalue="JUnit.FetcherTest.fetcherStart" />
-      <item itemvalue="JUnit.FetcherProcessTest" />
+      <item itemvalue="JUnit.FetcherTest" />
+      <item itemvalue="JUnit.SpiderControllerTest.start" />
+      <item itemvalue="Spring Boot.ParesEngineApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.ParesEngineApplication" />
+        <item itemvalue="JUnit.SpiderControllerTest.start" />
         <item itemvalue="JUnit.FetcherTest.fetcherStart" />
+        <item itemvalue="JUnit.FetcherTest" />
         <item itemvalue="JUnit.FetcherProcessTest.fetcherStart" />
-        <item itemvalue="JUnit.FetcherProcessTest" />
-        <item itemvalue="JUnit.DefaultHttpRequestTest.sendRequest" />
-        <item itemvalue="JUnit.FetchQueueTest.dump" />
       </list>
     </recent_temporary>
   </component>
@@ -1358,7 +1607,9 @@
       <workItem from="1546880459504" duration="1336000" />
       <workItem from="1546916321919" duration="16520000" />
       <workItem from="1547003700606" duration="11238000" />
-      <workItem from="1547040965731" duration="11261000" />
+      <workItem from="1547040965731" duration="11386000" />
+      <workItem from="1547096330323" duration="470000" />
+      <workItem from="1547096847304" duration="11506000" />
     </task>
     <task id="LOCAL-00001" summary="1.创建分层目录">
       <created>1544717167375</created>
@@ -1416,31 +1667,17 @@
       <option name="project" value="LOCAL" />
       <updated>1547046819713</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="多线程，多实例重构完成，BeanGainer +@Scope 运行时动态获取 实例&#10;spidercore 多线程，多实例 重构 测试完毕">
+      <created>1547052404157</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1547052404157</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="FetcherProcessTest_fetcherStart - 2019.01.09 at 22h 55m 34s.xml">
-      <configuration name="FetcherProcessTest.fetcherStart" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FetcherProcessTest_fetcherStart - 2019.01.09 at 22h 59m 47s.xml">
-      <configuration name="FetcherProcessTest.fetcherStart" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FetcherProcessTest_fetcherStart - 2019.01.09 at 23h 07m 18s.xml">
-      <configuration name="FetcherProcessTest.fetcherStart" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FetcherProcessTest_fetcherStart - 2019.01.09 at 23h 11m 25s.xml">
-      <configuration name="FetcherProcessTest.fetcherStart" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 00h 09m 37s.xml">
-      <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 00h 10m 26s.xml">
-      <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 00h 15m 59s.xml">
-      <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 00h 19m 55s.xml">
       <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
     </history-entry>
@@ -1450,9 +1687,30 @@
     <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 00h 24m 03s.xml">
       <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="FetcherProcessTest_fetcherStart - 2019.01.10 at 13h 10m 10s.xml">
+      <configuration name="FetcherProcessTest.fetcherStart" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FetcherProcessTest_fetcherStart - 2019.01.10 at 13h 11m 24s.xml">
+      <configuration name="FetcherProcessTest.fetcherStart" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FetcherTest - 2019.01.10 at 13h 13m 19s.xml">
+      <configuration name="FetcherTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 13h 14m 22s.xml">
+      <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 13h 16m 18s.xml">
+      <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FetcherTest_fetcherStart - 2019.01.10 at 13h 18m 42s.xml">
+      <configuration name="FetcherTest.fetcherStart" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SpiderControllerTest_start - 2019.01.10 at 15h 25m 20s.xml">
+      <configuration name="SpiderControllerTest.start" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251901000" />
+    <option name="totallyTimeSpent" value="264002000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1467,7 +1725,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48062015" visible="true" weight="0.22800429" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48062015" visible="true" weight="0.23712446" />
       <window_info id="Structure" order="1" sideWeight="0.51937985" side_tool="true" weight="0.2360515" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1475,22 +1733,23 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Web" order="6" sideWeight="0.3580858" side_tool="true" weight="0.26180258" />
       <window_info id="UI Designer" order="7" />
+      <window_info anchor="bottom" id="Tail" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.2513843" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" weight="0.38981172" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.2508324" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" weight="0.44062153" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34994462" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946353" weight="0.32890365" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.22369878" />
       <window_info anchor="bottom" id="Spring" order="8" sideWeight="0.49946353" weight="0.32890365" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946353" weight="0.303433" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946353" weight="0.27192008" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50214595" side_tool="true" weight="0.4894795" />
-      <window_info anchor="bottom" id="Problems" order="11" sideWeight="0.49946353" weight="0.32890365" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" sideWeight="0.49946353" weight="0.32890365" />
+      <window_info anchor="bottom" id="Problems" order="11" sideWeight="0.49946353" weight="0.32852387" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" sideWeight="0.49946353" weight="0.32852387" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.4967811" weight="0.3875969" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.4967811" visible="true" weight="0.47391787" />
       <window_info anchor="bottom" id="REST Client" order="16" weight="0.4374308" />
       <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="0" side_tool="true" weight="0.3299356" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
@@ -1522,425 +1781,410 @@
     <MESSAGE value="重构 fetcher 和db模块" />
     <MESSAGE value="哎，各种重构 正则数据，" />
     <MESSAGE value="多线程，多实例重构完成，BeanGainer +@Scope 运行时动态获取 实例" />
-    <option name="LAST_COMMIT_MESSAGE" value="多线程，多实例重构完成，BeanGainer +@Scope 运行时动态获取 实例" />
+    <MESSAGE value="多线程，多实例重构完成，BeanGainer +@Scope 运行时动态获取 实例&#10;spidercore 多线程，多实例 重构 测试完毕" />
+    <option name="LAST_COMMIT_MESSAGE" value="多线程，多实例重构完成，BeanGainer +@Scope 运行时动态获取 实例&#10;spidercore 多线程，多实例 重构 测试完毕" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/controller/SpiderController.java</url>
-          <line>20</line>
-          <properties />
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/dao/RedisDao.java">
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGeneratorFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/generatorcore/IGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/IGain/IRedisDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/IParesProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/pareser/ParesProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="48" column="54" lean-forward="true" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+        <state relative-caret-position="144">
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
           <folding>
-            <element signature="e#1290#1291#0" expanded="true" />
-            <element signature="e#1380#1381#0" expanded="true" />
+            <element signature="docComment;class#IGeneratorFilter#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherState.java">
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+        <state relative-caret-position="96">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/fetcherEntity/FetcherState.java">
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisDataBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="869">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="28" />
+        <state relative-caret-position="144">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/RedisDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="723">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/RedisGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
           <folding>
-            <element signature="e#366#367#0" expanded="true" />
-            <element signature="e#403#404#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#0#1971#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/generatorcore/IDataFilter.java">
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/StatusIGeneratorFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/QueueFeeder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="85" column="46" lean-forward="true" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SeedData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        <state relative-caret-position="408">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
           <folding>
-            <element signature="docComment;method#FetcherThread#0;class#FetcherThread#0" expanded="true" />
+            <element signature="docComment;class#StatusIGeneratorFilter#0" expanded="true" />
+            <element signature="e#399#430#0" expanded="true" />
+            <element signature="docComment;method#filter#0;class#StatusIGeneratorFilter#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherProcess.java">
+    <entry file="file://$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/configEntity/SiteConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/ISendRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/ISimpleParse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/IContentPageFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/INextFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/IExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/IProxyGain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/ProxyDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/HttpProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1115">
-          <caret line="74" column="25" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/HttpConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
-          <folding>
-            <element signature="e#807#837#0" expanded="true" />
-            <element signature="e#890#915#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultProxyGain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1374">
-          <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/spiderComponent/DefaultHttpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="42" column="16" lean-forward="true" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetchQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDataUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://L:/.m2/org/springframework/spring-context/4.3.14.RELEASE/spring-context-4.3.14.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="1083" column="82" selection-start-line="1083" selection-start-column="68" selection-end-line="1083" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-common/src/main/java/commoncore/customUtils/BeanGainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#getBean#0;class#BeanGainer#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/Fetcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-853">
-          <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
-          <folding>
-            <element signature="e#971#995#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/IFetcherTools/DefaultContentPageFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractAutoParseCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
+        <state relative-caret-position="-72">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/Crawler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="35" column="31" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="31" />
+        <state relative-caret-position="120">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SpiderUtils.java">
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractAutoParseCrawler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540">
-          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/FetcherThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="47" column="32" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="32" />
+        <state relative-caret-position="120">
+          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
           <folding>
-            <element signature="e#1115#1116#0" expanded="true" />
-            <element signature="e#1202#1203#0" expanded="true" />
+            <element signature="docComment;method#parseLink#0;class#AbstractAutoParseCrawler#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetcher/FetcherTest.java">
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/ISpider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="120">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/MySpider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="104" column="18" selection-start-line="103" selection-start-column="12" selection-end-line="104" selection-end-column="18" />
           <folding>
-            <element signature="e#519#520#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
+            <element signature="docComment;class#MySpider#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/myspider/controller/SpiderControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding>
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#608#609#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager-center/manager-eureka-server/src/main/java/eurekacore/EurekaServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager-center/manager-config-server/manager-config-server.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager-center/manager-eureka-server/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager-center/manager-config-server/src/main/java/configcore/ConfigServerApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager-center/manager-config-server/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="52" column="19" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/error/api_services_error.LOG.2018-12-27">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/error/api_services_error.LOG">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="1205" column="125" selection-start-line="1205" selection-start-column="125" selection-end-line="1205" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-crud/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager-center/manager-hystrix-dashboard/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager-center/manager-zuul-gateway/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/HttpProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="docComment;class#HttpProperties#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/SpiderEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/controller/SpiderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding>
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#541#542#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/loadercore/controller/LoadConfigsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/QueueFeeder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-common/src/main/java/commoncore/customUtils/BeanGainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/ISimpleParse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/entityTools/RegexRule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-232">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/BaseSpider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractSpider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="70" column="25" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#AbstractSpider#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/RegexRuleData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/Links.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="140" column="81" selection-start-line="140" selection-start-column="81" selection-end-line="140" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/ParesEngineApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetchercore/FetcherProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/gainDao/RedisDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="32" column="46" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetcherThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="60" column="17" lean-forward="true" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/DefaultHttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="64" column="17" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisDbWritor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1560">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/dao/TransferToRedis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="33" />
+          <folding>
+            <element signature="docComment;class#DefaultSimpleParse#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/IContentPageFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding>
+            <element signature="docComment;class#IContentPageFilter#0" expanded="true" />
+            <element signature="docComment;method#getContentPageData#0;class#IContentPageFilter#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultContentPageFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding>
+            <element signature="docComment;class#DefaultContentPageFilter#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <element signature="e#981#1005#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="76" column="7" selection-start-line="59" selection-start-column="3" selection-end-line="76" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetcher/QueueFeeder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <element signature="docComment;class#IDataBase#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/RedisDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="e#298#320#0" expanded="true" />
-            <element signature="e#371#394#0" expanded="true" />
-            <element signature="e#446#467#0" expanded="true" />
-            <element signature="e#517#542#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawldb/IDbManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisDbWritor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisDataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisSpider/DefaultRedisGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="99" column="26" lean-forward="true" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
-          <folding>
-            <element signature="e#966#990#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/http/IHeaderMapGain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="24">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        <state relative-caret-position="168">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
         </state>
       </provider>
     </entry>

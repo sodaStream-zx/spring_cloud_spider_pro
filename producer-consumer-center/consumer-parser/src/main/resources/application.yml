@@ -1,4 +1,4 @@
-#######p配置信息
+#######配置信息
 my:
   queue:
     maxSize: 500
@@ -9,7 +9,7 @@ my:
   domain:
     mapName: rule
   #任务执行线程数量
-  fetcher:
+  fetchercore:
     maxThread: 20
 #############以上为自定义配置
 spring:

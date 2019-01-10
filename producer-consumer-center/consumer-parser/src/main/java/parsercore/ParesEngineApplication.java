@@ -64,7 +64,7 @@ public class ParesEngineApplication {
         executor.setMaxPoolSize(30);
         executor.setAllowCoreThreadTimeOut(true);
         executor.setKeepAliveSeconds(2);
-        executor.setThreadNamePrefix("fetcher-");
+        executor.setThreadNamePrefix("fetchercore-");
         executor.initialize();
         return executor;
 

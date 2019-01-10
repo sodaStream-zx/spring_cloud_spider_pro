@@ -5,16 +5,17 @@ import commoncore.entity.configEntity.SiteConfig;
 import commoncore.entity.requestEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.spiderCore.crawldb.IDataUtil;
-import spider.spiderCore.crawldb.IDbWritor;
-import spider.spiderCore.fetcher.Fetcher;
+import spider.spiderCore.fetchercore.Fetcher;
+import spider.spiderCore.idbcore.IDataUtil;
+import spider.spiderCore.idbcore.IDbWritor;
+import spider.spiderCore.iexecutorCom.ISpider;
 
 /**
  * @author Twilight
- * @desc
+ * @desc 爬虫抽象类
  * @createTime 2019-01-08-14:34
  */
-public class AbstractSpider implements ISpider {
+public abstract class AbstractSpider implements ISpider {
 
     private static final Logger LOG = LoggerFactory.getLogger(Crawler.class);
 
@@ -22,6 +23,7 @@ public class AbstractSpider implements ISpider {
 
     public final static int RUNNING = 1;
     public final static int STOPED = 2;
+
     //网站配置
     private SiteConfig siteConfig;
     //入口urls
@@ -32,6 +34,13 @@ public class AbstractSpider implements ISpider {
     private Fetcher fetcher;
     //数据存储器（考虑将种子注入和 解析注入分开）
     private IDataUtil iDataUtil;
+
+    public AbstractSpider(SeedData seedData, RegexRuleData regexRuleData, Fetcher fetcher, IDataUtil iDataUtil) {
+        this.seedData = seedData;
+        this.regexRuleData = regexRuleData;
+        this.fetcher = fetcher;
+        this.iDataUtil = iDataUtil;
+    }
 
     /**
      * urlRules url 解析正则表达式
@@ -58,6 +67,7 @@ public class AbstractSpider implements ISpider {
         }
         for (String n : conPickRules) {
             LOG.info("正文提取规则注入:" + n);
+            regexRuleData.addRegex(n);
             regexRuleData.getRegexRule().addContentRegexRule(n);
         }
         for (String u : urlRules) {
@@ -88,8 +98,9 @@ public class AbstractSpider implements ISpider {
     }
 
     @Override
-    public void startSpider() {
-
+    public void spiderProcess() {
+        this.loadConfig();
+        this.injectSeeds();
         //判断是否断点。不开启，则，启动前 清理数据库
         if (!siteConfig.isRes()) {
             if (iDataUtil.getIDbManager().isDBExists()) {
@@ -105,6 +116,7 @@ public class AbstractSpider implements ISpider {
         this.injectSeeds();
 
         status = RUNNING;
+        LOG.info("爬虫配置完成，开始抓取：" + this.toString());
         for (int i = 0; i < siteConfig.getDeepPath(); i++) {
             if (status == STOPED) {
                 break;
@@ -135,7 +147,22 @@ public class AbstractSpider implements ISpider {
     }
 
     @Override
-    public void afterStopSpider() {
+    public abstract void afterStopSpider();
 
+    @Override
+    public void setConfig(SiteConfig config) {
+        this.siteConfig = config;
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractSpider{" +
+                "status=" + status +
+                ", siteConfig=" + siteConfig +
+                ", seedData=" + seedData +
+                ", regexRuleData=" + regexRuleData +
+                ", fetcher=" + fetcher +
+                ", iDataUtil=" + iDataUtil +
+                '}';
     }
 }

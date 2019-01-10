@@ -16,7 +16,7 @@ public class SpiderController {
     @Autowired
     private SpiderEngine spiderEngine;
 
-    @GetMapping(value = "/spiderRun")
+    @GetMapping(value = "/spider")
     public Boolean start() {
         return spiderEngine.initToRun();
     }

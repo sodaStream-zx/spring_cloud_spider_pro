@@ -19,6 +19,7 @@ package commoncore.entity.requestEntity;
 
 
 import commoncore.entity.requestEntity.entityTools.RegexRule;
+import org.apache.log4j.Logger;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -34,7 +35,7 @@ import java.util.LinkedList;
  * @author hu
  */
 public class Links implements Iterable<String>,Serializable {
-
+    private static final Logger log = Logger.getLogger(Links.class);
     protected LinkedList<String> dataList = new LinkedList<String>();
 
     public Links() {

@@ -6,7 +6,8 @@ import commoncore.entity.requestEntity.CrawlDatums;
 import commoncore.entity.requestEntity.Links;
 import commoncore.entity.requestEntity.entityTools.RegexRule;
 import org.jsoup.nodes.Document;
-import spider.spiderCore.http.ISendRequest;
+import spider.spiderCore.iexecutorCom.IExecutor;
+import spider.spiderCore.ihttp.ISendRequest;
 
 /**
  * 自动爬取解析爬虫

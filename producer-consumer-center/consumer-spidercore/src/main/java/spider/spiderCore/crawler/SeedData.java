@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Twilight
- * @desc
+ * @desc 入口任务数据封装
  * @createTime 2019-01-07-16:27
  */
 @Component

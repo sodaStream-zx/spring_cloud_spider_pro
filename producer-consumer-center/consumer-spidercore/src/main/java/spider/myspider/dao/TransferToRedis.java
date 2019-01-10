@@ -6,7 +6,7 @@ import commoncore.entity.httpEntity.ResponsePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import spider.spiderCore.fetcher.IFetcherTools.TransferToParser;
+import spider.spiderCore.iexecutorCom.TransferToParser;
 
 /**
  * @author 一杯咖啡

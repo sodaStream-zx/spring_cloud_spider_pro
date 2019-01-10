@@ -7,8 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import spider.myspider.redisSpider.DefaultRedisDataBase;
-import spider.spiderCore.http.ISendRequest;
+import spider.spiderCore.iexecutorCom.ISpider;
 
 import java.util.concurrent.TimeUnit;
 
@@ -26,14 +25,12 @@ public class SpiderEngine {
      * 数据存储组件
      */
     @Autowired
-    private DefaultRedisDataBase redisManager;
-    @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
-    private ISendRequest iSendRequest;
-    @Autowired
-    private MySpider mySpider;
+    private ISpider iSpider;
 
+    @Autowired
+    private SiteConfig siteConfig;
 
     /**
      * desc: 初始化爬虫,监听消息
@@ -60,7 +57,7 @@ public class SpiderEngine {
                 try {
                     //获取序列化的字符串 生成siteConfig对象
                     Object scObject = SerializeUtil.deserializeToObject(siteConfigString);
-                    SiteConfig siteConfig = (SiteConfig) scObject;
+                    siteConfig = (SiteConfig) scObject;
                     LOG.info("【" + siteConfig.getSiteName() + "】爬虫装载中------------->>>");
                     /**
                      * DataToDB 数据持久化组件 param(tableName)
@@ -69,7 +66,8 @@ public class SpiderEngine {
                      * mySpider 爬虫组合APP
                      * abstractDBmanager 数据库管理组件
                      */
-                    mySpider.initMySpider(siteConfig, iSendRequest);
+                    iSpider.setConfig(siteConfig);
+                    iSpider.spiderProcess();
                     LOG.info(this.toString());
 
                     //10秒自动关闭爬虫
@@ -77,8 +75,6 @@ public class SpiderEngine {
                 pause(10, 0);
                 mySpider.stop();
             }, "关闭线程").start();*/
-
-                    mySpider.startFetcher(mySpider);
                     return true;
                 } catch (Exception e) {
                     LOG.error("初始化爬虫异常: " + e.getCause() + ";messages:" + e.getMessage());
@@ -101,13 +97,5 @@ public class SpiderEngine {
         } catch (InterruptedException e) {
             LOG.error("线程休眠异常");
         }
-    }
-
-    @Override
-    public String toString() {
-        return "\nMySpiderEngine{" +
-                "\n  ramDBManager : " + redisManager.getClass().getName() +
-                "\n  redisTemplate : " + redisTemplate.getClass().getName() +
-                '}';
     }
 }

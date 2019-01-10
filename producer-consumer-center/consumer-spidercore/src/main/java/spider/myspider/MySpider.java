@@ -8,11 +8,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import spider.spiderCore.crawldb.IDataUtil;
 import spider.spiderCore.crawler.AbstractAutoParseCrawler;
-import spider.spiderCore.fetcher.Fetcher;
-import spider.spiderCore.fetcher.IFetcherTools.TransferToParser;
-import spider.spiderCore.http.ISendRequest;
+import spider.spiderCore.fetchercore.Fetcher;
+import spider.spiderCore.idbcore.IDataUtil;
+import spider.spiderCore.iexecutorCom.TransferToParser;
+import spider.spiderCore.ihttp.ISendRequest;
 
 import java.util.Arrays;
 

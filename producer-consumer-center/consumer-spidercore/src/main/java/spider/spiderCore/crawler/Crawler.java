@@ -4,10 +4,9 @@ import commoncore.entity.requestEntity.CrawlDatum;
 import commoncore.entity.requestEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.spiderCore.crawldb.IDataUtil;
-import spider.spiderCore.fetcher.Fetcher;
-import spider.spiderCore.fetcher.IFetcherTools.Executor;
-import spider.spiderCore.fetcher.IFetcherTools.INextFilter;
+import spider.spiderCore.fetchercore.Fetcher;
+import spider.spiderCore.idbcore.IDataUtil;
+import spider.spiderCore.iexecutorCom.INextFilter;
 
 /**
  * desc:单层爬虫
@@ -32,8 +31,6 @@ public class Crawler {
     protected CrawlDatums seeds = new CrawlDatums();
     protected CrawlDatums forcedSeeds = new CrawlDatums();
     protected Fetcher fetcher;
-
-    protected Executor executor = null;
     protected INextFilter INextFilter = null;
     protected IDataUtil iDataUtil;
 
@@ -243,24 +240,6 @@ public class Crawler {
      */
     public void setResumable(boolean resumable) {
         this.resumable = resumable;
-    }
-
-    /**
-     * 获取每个爬取任务的最大执行次数
-     *
-     * @return 每个爬取任务的最大执行次数
-     */
-    public Executor getExecutor() {
-        return executor;
-    }
-
-    /**
-     * 设置执行器
-     *
-     * @param executor 执行器
-     */
-    public void setExecutor(Executor executor) {
-        this.executor = executor;
     }
 
 

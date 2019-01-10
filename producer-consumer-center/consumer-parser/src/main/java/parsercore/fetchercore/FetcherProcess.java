@@ -28,10 +28,8 @@ public class FetcherProcess {
     @Autowired
     private QueueFeeder queueFeeder;
     @Autowired
-    private FetchQueue fetchQueue;
-    @Autowired
     private FetcherState fetcherState;
-    @Value(value = "${my.fetcher.maxThread}")
+    @Value(value = "${my.fetchercore.maxThread}")
     private int threads;
 
     /**

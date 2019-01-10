@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RegexRuleData {
+
     private RegexRule regexRule = new RegexRule();
 
     /**
