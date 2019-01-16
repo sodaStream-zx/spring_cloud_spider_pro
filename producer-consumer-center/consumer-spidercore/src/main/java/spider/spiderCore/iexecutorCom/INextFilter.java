@@ -18,7 +18,7 @@
 package spider.spiderCore.iexecutorCom;
 
 
-import commoncore.entity.requestEntity.CrawlDatums;
+import spider.spiderCore.entitys.CrawlDatums;
 
 /**
  * @desc 后续任务过滤器

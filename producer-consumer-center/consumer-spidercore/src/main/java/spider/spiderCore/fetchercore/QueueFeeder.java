@@ -77,7 +77,7 @@ public class QueueFeeder implements Runnable {
                 CrawlDatum datum = iGenerator.next();
                 // CrawlDatum datum = new CrawlDatum("testUrl");
                 if (datum != null) {
-                    LOG.info("已提取数据" + datum.url());
+                    LOG.info("已提取数据" + datum.getUrl());
                     queue.addCrawlDatum(datum);
                     feed--;//一直填到queue为1000
                 } else {
@@ -106,5 +106,17 @@ public class QueueFeeder implements Runnable {
         } catch (InterruptedException e) {
             LOG.error("spinWaiting thread sleep exception");
         }
+    }
+
+    public IGenerator<CrawlDatum> getiGenerator() {
+        return iGenerator;
+    }
+
+    public int getQueueMaxSize() {
+        return queueMaxSize;
+    }
+
+    public FetcherState getFetcherState() {
+        return fetcherState;
     }
 }

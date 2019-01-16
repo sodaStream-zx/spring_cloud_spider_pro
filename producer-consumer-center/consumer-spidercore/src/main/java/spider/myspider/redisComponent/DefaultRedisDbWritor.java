@@ -2,12 +2,12 @@ package spider.myspider.redisComponent;
 
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.requestEntity.CrawlDatum;
-import commoncore.entity.requestEntity.CrawlDatums;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.idbcore.IDataBase;
 import spider.spiderCore.idbcore.IDbManager;
 import spider.spiderCore.idbcore.IDbWritor;
@@ -37,7 +37,7 @@ public class DefaultRedisDbWritor implements IDbWritor<CrawlDatum, CrawlDatums> 
             throw new Exception("redis 数据库无效");
         } else {
             String taskString = SerializeUtil.serializeToString(datum);
-            log.info("任务入口注入 ： " + datum.url());
+            log.info("任务入口注入 ： " + datum.getUrl());
             //注入任务到入口库
             String seeds = (String) iDataBase.getCrawlDB();
             log.debug("入口数据库 :" + seeds);

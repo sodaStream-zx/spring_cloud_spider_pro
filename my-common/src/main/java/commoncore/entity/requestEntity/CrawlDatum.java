@@ -1,18 +1,13 @@
 package commoncore.entity.requestEntity;
 
 
-import commoncore.entity.requestEntity.entityTools.CrawlDatumFormater;
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
-import java.util.regex.Pattern;
 
 /**
  * 爬取任务的数据结构
  *
  * @author 一杯咖啡
  */
-@Component
 public class CrawlDatum implements Serializable {
     private static final long serialVersionUID = 4L;
     /**
@@ -37,27 +32,17 @@ public class CrawlDatum implements Serializable {
         this.url = url;
     }
 
-    /**
-     * 判断当前Page的URL是否和输入正则匹配
-     *
-     * @param urlRegex
-     */
-    public boolean matchUrl(String urlRegex) {
-        return Pattern.matches(urlRegex, url());
-    }
-
     public int incrExecuteCount(int count) {
         executeCount += count;
         return executeCount;
     }
 
-    public String url() {
+    public String getUrl() {
         return url;
     }
 
-    public CrawlDatum url(String url) {
+    public void setUrl(String url) {
         this.url = url;
-        return this;
     }
 
     public long getExecuteTime() {
@@ -84,10 +69,6 @@ public class CrawlDatum implements Serializable {
         this.status = status;
     }
 
-    public String briefInfo() {
-        return String.format("CrawlDatum: (URL: %s)", url());
-    }
-
     public String getMethod() {
         return method;
     }
@@ -101,4 +82,7 @@ public class CrawlDatum implements Serializable {
         return CrawlDatumFormater.datumToString(this);
     }
 
+    public String briefInfo() {
+        return String.format("CrawlDatum: (URL: %s)", this.getUrl());
+    }
 }

@@ -18,7 +18,7 @@
 package commoncore.entity.httpEntity;
 
 import commoncore.entity.requestEntity.CrawlDatum;
-import commoncore.entity.requestEntity.entityTools.CharsetDetector;
+import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -36,26 +36,26 @@ public class ResponsePage implements Serializable {
 
     public static final Logger LOG = LoggerFactory.getLogger(ResponsePage.class);
     private String siteName;
-    private CrawlDatum crawlDatum = null;
+    private CrawlDatum crawlDatum;
     private String contentType;
-    private Integer code = null;
-    private Exception exception = null;
-    private String html = null;
-    private Document doc = null;
-    private String charset = null;
-    private byte[] content = null;
+    private Integer code;
+    private Exception exception;
+    private String html;
+    private Document doc;
+    private String charset;
+    private byte[] content;
 
     public ResponsePage(CrawlDatum datum, Integer code, String contentType, byte[] content) {
         this.crawlDatum = datum;
         this.code = code;
         this.contentType = contentType;
-        this.content = content;
+        this.content = content.clone();
         //1.解析编码
         this.charset(content);
         //2.转化content 为html
         this.contentTohtml(content);
         //3.转化html 为doc
-        this.contentTODoc(crawlDatum.url());
+        this.contentTODoc(crawlDatum.getUrl());
     }
 
     /**
@@ -64,16 +64,17 @@ public class ResponsePage implements Serializable {
      * @return 网页的源码字符串
      */
     public void contentTohtml(byte[] content) {
-        if (content == null) {
-            this.html = null;
-        }
-        if (this.charset == null) {
+        if (StringUtils.isBlank(this.charset)) {
             this.charset = CharsetDetector.guessEncoding(content);
         }
-        try {
-            this.html = new String(content, charset);
-        } catch (UnsupportedEncodingException e) {
-            LOG.info("Exception when decoding ", e);
+        if (content == null) {
+            this.html = null;
+        } else {
+            try {
+                this.html = new String(content, charset);
+            } catch (UnsupportedEncodingException e) {
+                LOG.info("Exception when decoding ", e);
+            }
         }
     }
 
@@ -96,7 +97,6 @@ public class ResponsePage implements Serializable {
         }
     }
 
-    /*--------------------------*/
     public String getSiteName() {
         return siteName;
     }
@@ -162,10 +162,10 @@ public class ResponsePage implements Serializable {
     }
 
     public byte[] getContent() {
-        return content;
+        return content.clone();
     }
 
     public void setContent(byte[] content) {
-        this.content = content;
+        this.content = content.clone();
     }
 }

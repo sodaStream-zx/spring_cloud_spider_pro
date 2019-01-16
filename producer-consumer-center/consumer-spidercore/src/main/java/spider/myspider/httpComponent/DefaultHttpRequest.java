@@ -1,7 +1,6 @@
 package spider.myspider.httpComponent;
 
 import com.google.gson.Gson;
-import commoncore.entity.httpEntity.HttpResponse;
 import commoncore.entity.httpEntity.ResponsePage;
 import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
+import spider.spiderCore.entitys.HttpResponse;
 import spider.spiderCore.ihttp.IProxyGain;
 import spider.spiderCore.ihttp.ISendRequest;
 
@@ -60,8 +60,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
                 httpResponse.contentType(),
                 httpResponse.content()
         );
-        // responsePage.obj(httpResponse);
-        //LOG.debug(responsePage.toString());
+        LOG.debug(responsePage.toString());
         LOG.debug("响应数据：" + responsePage.toString());
         return responsePage;
     }
@@ -106,7 +105,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
         int code = -1;
         int realRedirectNum = Math.max(0, httpConfig.getMaxRedirect());
         try {
-            URL url = new URL(crawlDatum.url());
+            URL url = new URL(crawlDatum.getUrl());
             HttpResponse response = new HttpResponse(url);
             //请求重试次数
             for (int redirect = 0; redirect <= realRedirectNum; redirect++) {

@@ -1,0 +1,77 @@
+spring:
+  datasource:
+    password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/date?useUnicode=true&characterEncoding=utf8
+    username: root
+  banner:
+    location: banner/banner.txt
+  #rabbitmq
+  rabbitmq:
+    connection-timeout: 0
+    template:
+      retry:
+        enabled: true
+    password: admin
+    port: 5672
+    host: ${spring.cloud.client.ipAddress}
+    virtual-host: /
+    username: admin
+  redis:
+    password: zxx1994
+    port: 6379
+    jedis:
+      pool:
+        max-idle: 10
+        min-idle: 5
+        max-active: 100
+        max-wait: 30000
+    host: 192.168.88.106
+  application:
+    name: spiderCore
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 60
+    lease-renewal-interval-in-seconds: 15
+  client:
+    eureka-service-url-poll-interval-seconds: 300
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${spring.cloud.client.ipAddress}:3001/eureka/
+    registry-fetch-interval-seconds: 10
+#actuator
+info:
+  number: 15282648585
+  provider: ${eureka.instance.instance-id}
+  groupId: ${project.groupId}
+  artifactId: ${project.artifactId}
+  version: ${project.version}
+httpconfig:
+  timeoutForRead: 10000
+  maxReceiveSize: 10
+  userAgent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:36.0) Gecko/20100101 Firefox/36.0
+  timeoutForConnect: 3000
+  maxRedirect: 1
+igenerator:
+  maxExecuteCount: 2
+fetcher:
+  wait_threadEndTime: 2000
+  threadKiller: 1000
+  executeInterval: 0
+defaultparse:
+  autoDetectImg: false
+generator:
+  topNumber: 2000
+redisDb:
+  redirectList: redirect
+  undoneList: undone
+  lindList: done
+  seedsList: seeds
+spider:
+  totalThreads: 10
+server:
+  port: 8080

@@ -10,7 +10,9 @@ my:
     mapName: rule
   #任务执行线程数量
   fetchercore:
-    maxThread: 20
+    maxThread: 10
+  ruleFactory:
+    maxSize: 10
 #############以上为自定义配置
 spring:
   application:
@@ -24,15 +26,26 @@ spring:
     password: 1234
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/date?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/webspider?useUnicode=true&characterEncoding=utf8
     username: root
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
   output:
     ansi:
       enabled: always
+  #rabbitmq
+  rabbitmq:
+    connection-timeout: 0
+    template:
+      retry:
+        enabled: true
+    password: admin
+    port: 5672
+    host: ${spring.cloud.client.ipAddress}
+    virtual-host: /
+    username: admin
 #euraka
 management:
   security:

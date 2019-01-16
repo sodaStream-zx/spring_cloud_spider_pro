@@ -1,7 +1,7 @@
 package spider.spiderCore.crawler;
 
-import commoncore.entity.requestEntity.entityTools.RegexRule;
 import org.springframework.stereotype.Component;
+import spider.spiderCore.entitys.RegexRule;
 
 /**
  * @author Twilight
@@ -19,7 +19,7 @@ public class RegexRuleData {
      * @param urlRegex URL正则约束
      */
     public void addRegex(String urlRegex) {
-        regexRule.addRule(urlRegex);
+        regexRule.addPickReges(urlRegex);
     }
 
     public RegexRule getRegexRule() {

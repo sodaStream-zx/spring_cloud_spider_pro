@@ -21,13 +21,11 @@ public class FetchQueue {
 
     public AtomicInteger totalSize = new AtomicInteger(0);
 
-    public final List<CrawlDatum> queue = Collections.synchronizedList(new LinkedList<CrawlDatum>());
-
+    public final List<CrawlDatum> queue = Collections.synchronizedList(new LinkedList<>());
 
     public void clearQueue() {
         queue.clear();
     }
-
 
     public int getSize() {
         return queue.size();
@@ -60,6 +58,6 @@ public class FetchQueue {
      * desc:打印queue中的任务
      **/
     public synchronized void dump() {
-        this.queue.forEach(crawlDatum -> LOG.info("queue中任务：" + crawlDatum.url()));
+        this.queue.forEach(crawlDatum -> LOG.info("queue中任务：" + crawlDatum.getUrl()));
     }
 }

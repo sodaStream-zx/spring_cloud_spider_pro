@@ -1,5 +1,6 @@
 package commoncore.customUtils;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -28,9 +29,16 @@ public class BeanGainer implements ApplicationContextAware {
      **/
     public static <T> T getBean(String name, Class<T> aClass) {
         try {
-            return context.getBean(name, aClass);
+            if (StringUtils.isBlank(name)) {
+                return context.getBean(aClass);
+            } else if (StringUtils.isBlank(String.valueOf(aClass))) {
+                return (T) context.getBean(name);
+            } else {
+                return context.getBean(name, aClass);
+            }
         } catch (Exception e) {
             log.error("未取得bean:名：" + name + "，类名 ：" + aClass.getSimpleName());
+            log.error("exception:" + e.getCause() + " :: message:" + e.getMessage());
             return null;
         }
     }

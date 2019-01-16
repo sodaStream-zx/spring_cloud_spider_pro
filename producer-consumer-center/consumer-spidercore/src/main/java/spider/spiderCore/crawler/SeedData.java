@@ -1,8 +1,8 @@
 package spider.spiderCore.crawler;
 
 import commoncore.entity.requestEntity.CrawlDatum;
-import commoncore.entity.requestEntity.CrawlDatums;
 import org.springframework.stereotype.Component;
+import spider.spiderCore.entitys.CrawlDatums;
 
 /**
  * @author Twilight

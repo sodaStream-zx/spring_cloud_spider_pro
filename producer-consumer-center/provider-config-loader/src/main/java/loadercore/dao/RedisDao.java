@@ -16,8 +16,6 @@ import org.springframework.stereotype.Component;
 public class RedisDao {
     @Autowired
     RedisTemplate redisTemplate;
-    private SerializeUtil serializeUtil = new SerializeUtil();
-
     /**
      * @Title：${enclosing_method}
      * @Description: [redis 插入序列化的对象]

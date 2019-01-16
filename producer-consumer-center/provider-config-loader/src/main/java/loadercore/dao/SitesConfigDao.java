@@ -28,14 +28,8 @@ public class SitesConfigDao {
      **/
     public List<SiteConfig> Read() {
         String sql = "SELECT * FROM siteconfig ";
-        String siteName = "";
-        SqlRowSet results = null;
+        SqlRowSet results;
         results = jdbcTemplate.queryForRowSet(sql);
-        if (results.next()) {
-            siteName = results.getString(2);
-        } else {
-            LOG.warning("网站配置数据库为空");
-        }
         results.beforeFirst();
         List<SiteConfig> sfList = ObjectRelation(results);
         return sfList;

@@ -40,7 +40,7 @@ public class DefaultHttpRequestTest {
         //  log.info("request= " + defaultHttpRequest.get().toString());
         log.info("html == :::" + httpResponse.getHtml());
         log.info("contentTpe == :::" + httpResponse.getContentType());
-        log.info("url == :::" + httpResponse.getCrawlDatum().url());
+        log.info("url == :::" + httpResponse.getCrawlDatum().getUrl());
         // log.info(httpRequestUtil.toString());
     }
 }

@@ -37,6 +37,7 @@ import java.util.regex.Pattern;
 /**
  * ContentExtractor could extract content,title,time from news webpage
  * 正文提取算法
+ *
  * @author hu
  */
 public class ContentExtractor {
@@ -53,7 +54,7 @@ public class ContentExtractor {
     //网页标签数量统计
     protected HashMap<Element, CountInfo> infoMap = new HashMap<Element, CountInfo>();
 
-    class CountInfo {
+    static class CountInfo {
 
         int textCount = 0;
         int linkTextCount = 0;
@@ -61,7 +62,7 @@ public class ContentExtractor {
         int linkTagCount = 0;
         double density = 0;//密度
         double densitySum = 0;
-        double score = 0;
+        //double score = 0;
         int pCount = 0;
         ArrayList<Integer> leafList = new ArrayList<Integer>();
 
@@ -327,7 +328,7 @@ public class ContentExtractor {
         Elements titles = doc.body().select("*[id^=title],*[id$=title],*[class^=title],*[class$=title]");
         if (titles.size() > 0) {
             String title = titles.first().text();
-            if (title.length() > 5 && title.length()<40) {
+            if (title.length() > 5 && title.length() < 40) {
                 return titles.first().text();
             }
         }

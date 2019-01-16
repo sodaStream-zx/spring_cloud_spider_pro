@@ -2,9 +2,9 @@ package spider.spiderCore.crawler;
 
 import commoncore.customUtils.StringSplitUtil;
 import commoncore.entity.configEntity.SiteConfig;
-import commoncore.entity.requestEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.fetchercore.Fetcher;
 import spider.spiderCore.idbcore.IDataUtil;
 import spider.spiderCore.idbcore.IDbWritor;
@@ -17,7 +17,7 @@ import spider.spiderCore.iexecutorCom.ISpider;
  */
 public abstract class AbstractSpider implements ISpider {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Crawler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractSpider.class);
 
     private int status;
 
@@ -25,15 +25,15 @@ public abstract class AbstractSpider implements ISpider {
     public final static int STOPED = 2;
 
     //网站配置
-    private SiteConfig siteConfig;
+    protected SiteConfig siteConfig;
     //入口urls
-    private SeedData seedData;
+    protected SeedData seedData;
     //正则规则
-    private RegexRuleData regexRuleData;
+    protected RegexRuleData regexRuleData;
     //执行调度器
-    private Fetcher fetcher;
+    protected Fetcher fetcher;
     //数据存储器（考虑将种子注入和 解析注入分开）
-    private IDataUtil iDataUtil;
+    protected IDataUtil iDataUtil;
 
     public AbstractSpider(SeedData seedData, RegexRuleData regexRuleData, Fetcher fetcher, IDataUtil iDataUtil) {
         this.seedData = seedData;
@@ -65,15 +65,10 @@ public abstract class AbstractSpider implements ISpider {
             LOG.info("入口：" + str);
             seedData.addSeed(str, true);
         }
-        for (String n : conPickRules) {
-            LOG.info("正文提取规则注入:" + n);
-            regexRuleData.addRegex(n);
-            regexRuleData.getRegexRule().addContentRegexRule(n);
-        }
-        for (String u : urlRules) {
-            LOG.info("url提取规则注入:" + u);
-            regexRuleData.addRegex(u);
-        }
+        regexRuleData.getRegexRule().addContentRegexRule(conPickRules);
+        regexRuleData.getRegexRule().addPickReges(urlRules);
+        regexRuleData.getRegexRule().addPickReges(conPickRules);
+        LOG.info("url提取规则注入" + regexRuleData.getRegexRule().info());
     }
 
     /**
@@ -117,25 +112,23 @@ public abstract class AbstractSpider implements ISpider {
 
         status = RUNNING;
         LOG.info("爬虫配置完成，开始抓取：" + this.toString());
-        for (int i = 0; i < siteConfig.getDeepPath(); i++) {
+        /*for (int i = 0; i < siteConfig.getDeepPath(); i++) {
             if (status == STOPED) {
                 break;
-            }
-            LOG.info("start depth " + (i + 1));
-            long startTime = System.currentTimeMillis();
+            }*/
+        //LOG.info("start depth " + (i + 1));
+        long startTime = System.currentTimeMillis();
+        int totalGenerate = fetcher.fetcherStart();
+        long endTime = System.currentTimeMillis();
 
-            int totalGenerate = fetcher.fetcherStart();
-
-            long endTime = System.currentTimeMillis();
-            long costTime = (endTime - startTime) / 1000;
-
-            LOG.info("\ndepth " + (i + 1) + " finish: " +
-                    "\n              this depth total urls: " + totalGenerate + "" +
-                    "\n              this depth total time: " + costTime + " seconds");
-            if (totalGenerate == 0) {
+        long costTime = (endTime - startTime) / 1000;
+        LOG.info("\ndepth " + (1) + " finish: " +
+                "\n              this depth total urls: " + totalGenerate + "" +
+                "\n              this depth total time: " + costTime + " seconds");
+           /* if (totalGenerate == 0) {
                 break;
             }
-        }
+        }*/
         iDataUtil.getIDbManager().close();
         this.afterStopSpider();
     }

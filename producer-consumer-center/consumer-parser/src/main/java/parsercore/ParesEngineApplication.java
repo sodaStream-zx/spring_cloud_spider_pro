@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -34,18 +36,29 @@ public class ParesEngineApplication {
         redisTemplate.setValueSerializer(stringSerializer);
         LOG.info("环境监视：\n");
         //获取redis连接，连接失败则退出程序
+        RedisConnection redisCon = null;
         try {
-            redisTemplate.getConnectionFactory().getConnection();
+            redisCon = redisTemplate.getConnectionFactory().getConnection();
         } catch (Exception e) {
             LOG.error("redis 连接失败");
+            redisCon.close();
             System.exit(0);
+        } finally {
+            redisCon.close();
         }
+        Connection connection = null;
         try {
-            dataSource.getConnection();
+            connection = dataSource.getConnection();
         } catch (
                 SQLException e) {
             LOG.error("数据库连接失败");
             System.exit(0);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                LOG.error("数据库关闭连接失败");
+            }
         }
     }
 

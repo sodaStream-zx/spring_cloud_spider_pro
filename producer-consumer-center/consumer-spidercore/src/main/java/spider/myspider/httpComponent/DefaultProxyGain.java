@@ -64,7 +64,7 @@ public class DefaultProxyGain extends ArrayList<Proxy> implements IProxyGain {
         try {
             String[] infos = proxyStr.split(":");
             String ip = infos[0];
-            int port = Integer.valueOf(infos[1]);
+            int port = Integer.parseInt(infos[1]);
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
             this.add(proxy);
         } catch (Exception ex) {
@@ -87,9 +87,10 @@ public class DefaultProxyGain extends ArrayList<Proxy> implements IProxyGain {
     @Override
     public void addProxysFromFile(File file) {
         FileInputStream fis = null;
+        BufferedReader br = null;
         try {
             fis = new FileInputStream(file);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            br = new BufferedReader(new InputStreamReader(fis));
             String line = null;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
@@ -103,6 +104,13 @@ public class DefaultProxyGain extends ArrayList<Proxy> implements IProxyGain {
             LOG.error("文件出问题了呀");
         } catch (IOException e) {
             LOG.error("输入流出问题了呀");
+        } finally {
+            try {
+                fis.close();
+                br.close();
+            } catch (IOException e) {
+                LOG.error("关闭输入流出错");
+            }
         }
     }
 }

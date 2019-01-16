@@ -5,10 +5,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -21,7 +21,7 @@ import java.sql.SQLException;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"spider", "commoncore"})
-@EnableAsync
+@EnableEurekaClient
 public class SpiderApplication {
     private static final Logger LOG = Logger.getLogger(SpiderApplication.class);
     @Autowired

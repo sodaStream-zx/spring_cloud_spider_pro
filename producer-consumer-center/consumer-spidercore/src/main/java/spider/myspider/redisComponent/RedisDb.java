@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import spider.spiderCore.idbcore.IDataBase;
 
 /**
+ * @desc redis数据库表
  * @author 一杯咖啡
  */
 @Component

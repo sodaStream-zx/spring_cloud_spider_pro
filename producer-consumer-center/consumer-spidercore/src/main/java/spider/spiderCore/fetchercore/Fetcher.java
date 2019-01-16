@@ -41,20 +41,17 @@ public class Fetcher {
     public Integer fetcherStart() {
         //合并 入口和解析 任务库到 运行任务库
         iDataUtil.getIDbManager().merge();
-
         try {
             iDataUtil.getIDbWritor().initSegmentWriter();
             LOG.info("数据库 工具" + iDataUtil.getClass().getName());
-
             fetcherState.setFetcherRunning(true);
-
             //创建线程池，允许核心线程超时关闭
-            ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(30, 45, 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
+            ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(threads, threads + (threads / 2), 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
             threadsExecutor.allowCoreThreadTimeOut(true);
             //任务生产者开始 ，添加上限1000个
             threadsExecutor.execute(queueFeeder);
             //等待管道先添加任务
-            pause(3, 0);
+            pause(2, 0);
             //初始化消费者 从queue中读取任务
             for (int i = 0; i < threads; i++) {
                 threadsExecutor.execute(BeanGainer.getBean("fetcherThread", FetcherThread.class));
@@ -72,8 +69,6 @@ public class Fetcher {
             threadsExecutor.shutdown();
             LOG.info("线程池状态？？---" + threadsExecutor.toString());
             LOG.info("线程池关闭？" + (threadsExecutor.isTerminated() ? "已关闭" : "未关闭"));
-            //清空管道 redis 可以考虑重新将未抓取的url存回redis中
-            //fetchQueue.clearQueue();
         } finally {
             if (queueFeeder != null) {
                 queueFeeder.closeGenerator();
@@ -89,8 +84,6 @@ public class Fetcher {
      * 停止爬取
      */
     public void stopFetcher() {
-        //停止任务添加工具
-        LOG.info("【----------停止任务生产者----------】");
         queueFeeder.stopFeeder();
         //停止调度器
         fetcherState.setFetcherRunning(false);
@@ -106,5 +99,21 @@ public class Fetcher {
         } catch (InterruptedException e) {
             LOG.error("调度器休眠出错");
         }
+    }
+
+    public FetchQueue getFetchQueue() {
+        return fetchQueue;
+    }
+
+    public QueueFeeder getQueueFeeder() {
+        return queueFeeder;
+    }
+
+    public FetcherState getFetcherState() {
+        return fetcherState;
+    }
+
+    public IDataUtil getiDataUtil() {
+        return iDataUtil;
     }
 }

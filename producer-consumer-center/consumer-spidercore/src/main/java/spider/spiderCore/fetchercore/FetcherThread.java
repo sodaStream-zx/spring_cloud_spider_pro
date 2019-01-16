@@ -3,13 +3,13 @@ package spider.spiderCore.fetchercore;
 import commoncore.customUtils.BeanGainer;
 import commoncore.entity.fetcherEntity.FetcherState;
 import commoncore.entity.requestEntity.CrawlDatum;
-import commoncore.entity.requestEntity.CrawlDatums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.iexecutorCom.IExecutor;
 
 import java.util.concurrent.TimeUnit;
@@ -31,6 +31,7 @@ public class FetcherThread implements Runnable {
     private IExecutor<CrawlDatums> iExecutor;
 
     public FetcherThread() {
+        LOG.info("加载默认执行器");
         this.iExecutor = BeanGainer.getBean("defaultExecutor", IExecutor.class);
     }
 
@@ -51,7 +52,7 @@ public class FetcherThread implements Runnable {
                     break;
                 }
             } else {
-                LOG.debug("QUEUE 取得任务" + datum.url());
+                LOG.debug("QUEUE 取得任务" + datum.getUrl());
                 //调用执行器
                 iExecutor.execute(datum);
                 //当前页面执行完毕，等待时间
@@ -73,5 +74,13 @@ public class FetcherThread implements Runnable {
         } catch (InterruptedException e) {
             LOG.error("spinWaiting thread sleep exception");
         }
+    }
+
+    public long getDefaultExecuteInterval() {
+        return defaultExecuteInterval;
+    }
+
+    public IExecutor<CrawlDatums> getiExecutor() {
+        return iExecutor;
     }
 }

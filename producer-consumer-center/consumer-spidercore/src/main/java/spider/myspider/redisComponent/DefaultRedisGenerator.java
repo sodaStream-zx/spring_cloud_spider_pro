@@ -87,7 +87,6 @@ public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
 
     @Override
     public void close() {
-
     }
 
     @Override

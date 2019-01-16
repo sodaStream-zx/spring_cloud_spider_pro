@@ -1,7 +1,7 @@
 package spider.spiderCore.iexecutorCom;
 
 import commoncore.entity.httpEntity.ResponsePage;
-import commoncore.entity.requestEntity.CrawlDatums;
+import spider.spiderCore.entitys.CrawlDatums;
 
 /**
  * @author Twilight

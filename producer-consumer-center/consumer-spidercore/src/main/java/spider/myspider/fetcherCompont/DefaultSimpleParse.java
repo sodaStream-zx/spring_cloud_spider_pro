@@ -1,8 +1,6 @@
 package spider.myspider.fetcherCompont;
 
 import commoncore.entity.httpEntity.ResponsePage;
-import commoncore.entity.requestEntity.CrawlDatums;
-import commoncore.entity.requestEntity.Links;
 import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.crawler.RegexRuleData;
+import spider.spiderCore.entitys.CrawlDatums;
+import spider.spiderCore.entitys.Links;
 import spider.spiderCore.iexecutorCom.ISimpleParse;
 
 /**

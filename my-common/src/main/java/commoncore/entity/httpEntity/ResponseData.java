@@ -17,6 +17,14 @@ public class ResponseData implements Serializable {
     private String contentType;
     private byte[] content;
 
+    public String pumpInfo() {
+        return new StringBuffer()
+                .append("siteName:")
+                .append(siteName)
+                .append("url:")
+                .append(datum.getUrl()).toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -25,7 +33,7 @@ public class ResponseData implements Serializable {
                 .append(",datumn:").append(datum)
                 .append(",code:").append(code)
                 .append(",contentType:").append(contentType)
-                .append(",content:").append(content);
+                .append(",content:").append(content.length);
         return stringBuilder.toString();
     }
 
@@ -34,7 +42,7 @@ public class ResponseData implements Serializable {
         this.datum = datum;
         this.code = code;
         this.contentType = contentType;
-        this.content = content;
+        this.content = content.clone();
     }
 
 
@@ -71,10 +79,10 @@ public class ResponseData implements Serializable {
     }
 
     public byte[] getContent() {
-        return content;
+        return content.clone();
     }
 
     public void setContent(byte[] content) {
-        this.content = content;
+        this.content = content.clone();
     }
 }

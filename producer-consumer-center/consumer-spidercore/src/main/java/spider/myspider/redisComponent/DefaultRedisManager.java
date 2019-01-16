@@ -9,7 +9,7 @@ import spider.spiderCore.idbcore.IDbManager;
 
 /**
  * @author 一杯咖啡
- * @desc
+ * @desc redis 数据库管理操作
  * @createTime 2019-01-04-13:11
  */
 @Component
