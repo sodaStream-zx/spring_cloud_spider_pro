@@ -8,13 +8,13 @@ import commoncore.entity.configEntity.SiteConfig;
  * @createTime 2019-01-08-14:55
  */
 public interface ISpider {
-    void loadConfig();
+    boolean loadConfig();
 
-    void injectSeeds();
+    boolean injectSeeds();
 
-    void spiderProcess();
+    boolean spiderProcess();
 
-    void stopSpider();
+    boolean stopSpider();
 
     void afterStopSpider();
 

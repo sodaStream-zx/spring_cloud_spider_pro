@@ -1,6 +1,7 @@
 package parsercore.fetcherCore;
 
 import commoncore.customUtils.BeanGainer;
+import commoncore.customUtils.SleepUtil;
 import commoncore.entity.fetcherEntity.FetcherState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +51,7 @@ public class ParseFetcherProcess {
 
         //等待管道先添加任务
         //LOG.info(" 生产者先运行3秒，保证管道有数据足够多");
-        pause(2, 0);
+        SleepUtil.pause(2, 0);
         //初始化消费者 从queue中读取任务
         for (int i = 0; i < threads; i++) {
             //动态获取bean ，使每个线程中的 执行单元独立。非共享单例
@@ -58,7 +59,7 @@ public class ParseFetcherProcess {
         }
 
         do {
-            pause(1, 0);
+            SleepUtil.pause(1, 0);
             LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
             LOG.info("调度器状态" + fetcherState.toString() + fetchQueue.getSize());
             //调度器线程 依赖执行线程运行数量 调度器状态，生产者状态
@@ -85,19 +86,7 @@ public class ParseFetcherProcess {
         } else {
             stopFetcher();
         }
-        pause(2, 0);
+        SleepUtil.pause(2, 0);
         return !fetcherState.isFetcherRunning();
-    }
-
-    /**
-     * desc: 线程休眠
-     **/
-    public void pause(int second, int mills) {
-        try {
-            TimeUnit.SECONDS.sleep(second);
-            TimeUnit.MILLISECONDS.sleep(mills);
-        } catch (InterruptedException e) {
-            LOG.error("调度器休眠出错");
-        }
     }
 }

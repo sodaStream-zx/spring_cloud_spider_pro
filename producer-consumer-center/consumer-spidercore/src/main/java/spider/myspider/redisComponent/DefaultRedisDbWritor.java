@@ -77,10 +77,10 @@ public class DefaultRedisDbWritor implements IDbWritor<CrawlDatum, CrawlDatums> 
                     nextTask = SerializeUtil.serializeToString(task);
                     redisTemplate.opsForList().rightPush(iDataBase.getFetchDB(), nextTask);
                 }
-                log.info("写入后续任务数量：" + parseDatums.size());
+                //log.info("写入后续任务数量：" + parseDatums.size());
             }
         } catch (Exception e) {
-            log.error("序列化出错");
+            log.error("序列化出错" + e.getCause() + ":" + e.getMessage());
         }
     }
 

@@ -28,14 +28,18 @@ public class BeanGainer implements ApplicationContextAware {
      * @Return:Bean
      **/
     public static <T> T getBean(String name, Class<T> aClass) {
+        T obj = null;
+        if (StringUtils.isBlank(String.valueOf(aClass))) {
+            log.error("不支持按beanName获取bean");
+            return null;
+        }
         try {
             if (StringUtils.isBlank(name)) {
-                return context.getBean(aClass);
-            } else if (StringUtils.isBlank(String.valueOf(aClass))) {
-                return (T) context.getBean(name);
+                obj = context.getBean(aClass);
             } else {
-                return context.getBean(name, aClass);
+                obj = context.getBean(name, aClass);
             }
+            return obj;
         } catch (Exception e) {
             log.error("未取得bean:名：" + name + "，类名 ：" + aClass.getSimpleName());
             log.error("exception:" + e.getCause() + " :: message:" + e.getMessage());

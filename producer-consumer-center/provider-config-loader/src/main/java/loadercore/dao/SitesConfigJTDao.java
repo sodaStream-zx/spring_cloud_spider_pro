@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  * @author whitenoise
  **/
 @Component
-public class SitesConfigDao {
-    private static final Logger LOG = Logger.getLogger(SitesConfigDao.class.getSimpleName());
+public class SitesConfigJTDao {
+    private static final Logger LOG = Logger.getLogger(SitesConfigJTDao.class.getSimpleName());
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -27,7 +27,7 @@ public class SitesConfigDao {
      * desc: 读取siteconfig 和解析配置
      **/
     public List<SiteConfig> Read() {
-        String sql = "SELECT * FROM siteconfig ";
+        String sql = "SELECT * FROM siteconfig";
         SqlRowSet results;
         results = jdbcTemplate.queryForRowSet(sql);
         results.beforeFirst();

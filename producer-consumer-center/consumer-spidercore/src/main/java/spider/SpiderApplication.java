@@ -43,36 +43,15 @@ public class SpiderApplication {
             //  redisTemplate.getConnectionFactory().getConnection();
         } catch (Exception e) {
             LOG.error("redis 连接失败");
-            System.exit(0);
         }
         try {
             dataSource.getConnection();
         } catch (SQLException e) {
             LOG.error("数据库连接失败");
-            System.exit(0);
         }
     }
 
     public static void main(String[] args) {
         SpringApplication.run(SpiderApplication.class, args);
     }
-
-    /* *//**
-     * desc:线程池
-     *
-     * @Return:Executor
-     **//*
-    @Bean(name = "executor")
-    public ThreadPoolTaskExecutor executor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(5);
-        executor.setMaxPoolSize(10);
-        executor.setQueueCapacity(25);
-        executor.initialize();
-        executor.setAllowCoreThreadTimeOut(true);
-        executor.setKeepAliveSeconds(2);
-        executor.setQueueCapacity(10);
-        return executor;
-
-    }*/
 }

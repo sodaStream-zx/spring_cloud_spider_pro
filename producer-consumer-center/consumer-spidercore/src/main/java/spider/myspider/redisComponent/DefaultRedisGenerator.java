@@ -43,7 +43,6 @@ public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
                 if (datum == null) {
                     return null;
                 }
-
                 if (filter != null) {
                     if (filter.filter(datum) == null) {
                         continue;
@@ -64,7 +63,7 @@ public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
         CrawlDatum datum = null;
         String parse = IDataBase.getFetchDB();
         datumString = (String) redisTemplate.opsForList().leftPop(parse);
-        LOG.info("redis 提取任务" + (datumString == null ? "no propeties" : "ok"));
+        //LOG.info("redis 提取任务" + (datumString == null ? "no propeties" : "ok"));
         if (datumString != null) {
             try {
                 datum = (CrawlDatum) SerializeUtil.deserializeToObject(datumString);
@@ -81,12 +80,14 @@ public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
     }
 
     @Override
-    public void clear() {
+    public boolean clear() {
         this.totalGenerate = 0;
+        return true;
     }
 
     @Override
-    public void close() {
+    public boolean close() {
+        return true;
     }
 
     @Override

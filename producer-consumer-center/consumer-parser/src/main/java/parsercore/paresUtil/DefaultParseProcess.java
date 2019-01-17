@@ -4,8 +4,10 @@ import commoncore.customUtils.ParesCounter;
 import commoncore.customUtils.Selectors;
 import commoncore.customUtils.StringSplitUtil;
 import commoncore.customUtils.TimeFilter;
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ParseData;
 import org.apache.log4j.Logger;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -21,7 +23,7 @@ import parsercore.paresEntity.MyNew;
  */
 @Component(value = "parseContent")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DefaultParseProcess implements IParseProcess {
+public class DefaultParseProcess implements IParseProcess<MyNew, ParseData, DomainRule> {
     private static final Logger LOG = Logger.getLogger(DefaultParseProcess.class);
     @Autowired
     private ParesCounter paresCounter;
@@ -31,25 +33,26 @@ public class DefaultParseProcess implements IParseProcess {
      * @Description: [页面正文提取]
      */
     @Override
-    public MyNew paresContent(ResponsePage page, DomainRule domainRule) {
+    public MyNew paresContent(ParseData data, DomainRule domainRule) {
+        Document doc = Jsoup.parse(data.getContentString());
         //有效连接数+1
         paresCounter.getTotalData().incrementAndGet();
-        String title = page.getDoc().title();
+        String title = doc.title();
         if (title.trim().equals("")) {
-            title = Selectors.IdClassSelect(page, StringSplitUtil.splitRule(domainRule.getTitle_rule()));
+            title = Selectors.IdClassSelect(doc, StringSplitUtil.splitRule(domainRule.getTitle_rule()));
         }
         //获取正文
-        String content = Selectors.detaliSelect(page, StringSplitUtil.splitRule(domainRule.getContent_rule()));
+        String content = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getContent_rule()));
         if (!content.trim().equals("")) {
             //正文不为空 获取 作者，媒体，时间
-            String media = Selectors.detaliSelect(page, StringSplitUtil.splitRule(domainRule.getMedia_rule()));
-            String author = Selectors.detaliSelect(page, StringSplitUtil.splitRule(domainRule.getAnthor_rule()));
-            String time = Selectors.detaliSelect(page, StringSplitUtil.splitRule(domainRule.getTime_rule()));
+            String media = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getMedia_rule()));
+            String author = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getAnthor_rule()));
+            String time = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getTime_rule()));
             //截取指定长度字符串
             time = StringSplitUtil.SubStr(TimeFilter.getTimeByReg(time));
             media = StringSplitUtil.SubStr(media);
             author = StringSplitUtil.SubStr(author);
-            String url = page.getCrawlDatum().getUrl();
+            String url = data.getPageUrl();
             MyNew myNew = generateNews(title, url, content, media, author, time);
             paresCounter.getValid().incrementAndGet();
             return myNew;

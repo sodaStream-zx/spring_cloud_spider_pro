@@ -50,9 +50,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
      **/
     @Override
     public ResponsePage converterResponsePage(CrawlDatum crawlDatum) {
-
-        LOG.info("httputil 配置" + this.httpConfig.toString());
-
+        // LOG.info("httputil 配置" + this.httpConfig.toString());
         HttpResponse httpResponse = this.sendRequest(crawlDatum);
         ResponsePage responsePage = new ResponsePage(
                 crawlDatum,

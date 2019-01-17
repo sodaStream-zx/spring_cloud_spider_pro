@@ -48,10 +48,10 @@ public abstract class AbstractSpider implements ISpider {
      * conPickRules 正文提取正则表达式
      */
     @Override
-    public void loadConfig() {
+    public boolean loadConfig() {
         if (siteConfig == null) {
             LOG.error("未加载网站配置文件");
-            return;
+            return false;
         }
         //url 提取正则
         String[] urlRules = StringSplitUtil.splitRule(siteConfig.getUrlPares());
@@ -69,13 +69,14 @@ public abstract class AbstractSpider implements ISpider {
         regexRuleData.getRegexRule().addPickReges(urlRules);
         regexRuleData.getRegexRule().addPickReges(conPickRules);
         LOG.info("url提取规则注入" + regexRuleData.getRegexRule().info());
+        return true;
     }
 
     /**
      * desc: 注入入口种子到数据库中
      **/
     @Override
-    public void injectSeeds() {
+    public boolean injectSeeds() {
         IDbWritor iDbWritor = iDataUtil.getIDbWritor();
         CrawlDatums seeds = seedData.getSeeds();
         CrawlDatums forceSeeds = seedData.getForcedSeeds();
@@ -86,16 +87,18 @@ public abstract class AbstractSpider implements ISpider {
             if (!seedData.getForcedSeeds().isEmpty()) {
                 iDbWritor.injectList(forceSeeds, true);
             }
+            return true;
         } catch (Exception e) {
             LOG.error("添加种子到数据库失败");
             LOG.error(e.toString());
+            return false;
         }
     }
 
     @Override
-    public void spiderProcess() {
-        this.loadConfig();
-        this.injectSeeds();
+    public boolean spiderProcess() {
+        boolean loadState = this.loadConfig();
+        LOG.info("加载配置？" + loadState);
         //判断是否断点。不开启，则，启动前 清理数据库
         if (!siteConfig.isRes()) {
             if (iDataUtil.getIDbManager().isDBExists()) {
@@ -103,13 +106,13 @@ public abstract class AbstractSpider implements ISpider {
             }
             if (seedData.getSeeds().isEmpty() && seedData.getForcedSeeds().isEmpty()) {
                 LOG.error("error:Please add at least one seed");
-                return;
+                return false;
             }
         }
         iDataUtil.getIDbManager().open();
         //注入入口
-        this.injectSeeds();
-
+        boolean injectSeedState = this.injectSeeds();
+        LOG.info("注入种子？" + injectSeedState);
         status = RUNNING;
         LOG.info("爬虫配置完成，开始抓取：" + this.toString());
         /*for (int i = 0; i < siteConfig.getDeepPath(); i++) {
@@ -131,12 +134,14 @@ public abstract class AbstractSpider implements ISpider {
         }*/
         iDataUtil.getIDbManager().close();
         this.afterStopSpider();
+        return true;
     }
 
     @Override
-    public void stopSpider() {
+    public boolean stopSpider() {
         status = STOPED;
-        fetcher.stopFetcher();
+        LOG.info("-----------关闭爬虫------------");
+        return fetcher.stopFetcher();
     }
 
     @Override

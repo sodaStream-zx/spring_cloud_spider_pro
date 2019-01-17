@@ -1,6 +1,7 @@
 package spider.spiderCore.fetchercore;
 
 
+import commoncore.customUtils.SleepUtil;
 import commoncore.entity.fetcherEntity.FetcherState;
 import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
@@ -8,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.idbcore.IGenerator;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author 一杯咖啡
@@ -32,15 +31,11 @@ public class QueueFeeder implements Runnable {
     /**
      * desc:关闭管道添加工具
      **/
-    public void stopFeeder() {
-        //停止数据库提取工具
-        try {
-            LOG.info("【正在关闭数据库提取工具】");
-            this.closeGenerator();
-        } catch (Exception e) {
-            LOG.error("【关闭数据库提取工具出错】");
-        }
+    public boolean stopFeeder() {
+        this.closeGenerator();
         fetcherState.setFeederRunnning(false);
+        SleepUtil.pause(1, 0);
+        return !fetcherState.isFeederRunnning();
     }
 
     /**
@@ -67,7 +62,7 @@ public class QueueFeeder implements Runnable {
             //监听queue中数量，当queue中数量为1000时，线程等待，
             int feed = queueMaxSize - queue.getSize();
             if (feed <= 0) {
-                pause(1, 0);
+                SleepUtil.pause(1, 0);
                 continue;
             }
             //如果queue中小于1000，往queue中添加新任务，未提取到任务 count 等待时间
@@ -77,12 +72,12 @@ public class QueueFeeder implements Runnable {
                 CrawlDatum datum = iGenerator.next();
                 // CrawlDatum datum = new CrawlDatum("testUrl");
                 if (datum != null) {
-                    LOG.info("已提取数据" + datum.getUrl());
+                    //LOG.info("已提取数据" + datum.getUrl());
                     queue.addCrawlDatum(datum);
                     feed--;//一直填到queue为1000
                 } else {
                     LOG.info("未取得数据");
-                    pause(1, 0);
+                    SleepUtil.pause(1, 0);
                     count++;
                     if (count < 5) {
                         LOG.info("redis 中无后续任务，等待第 " + count + " 秒");
@@ -93,18 +88,6 @@ public class QueueFeeder implements Runnable {
                     }
                 }
             }
-        }
-    }
-
-    /**
-     * desc: 线程休眠
-     **/
-    public void pause(int second, long mills) {
-        try {
-            TimeUnit.SECONDS.sleep(second);
-            TimeUnit.MILLISECONDS.sleep(mills);
-        } catch (InterruptedException e) {
-            LOG.error("spinWaiting thread sleep exception");
         }
     }
 

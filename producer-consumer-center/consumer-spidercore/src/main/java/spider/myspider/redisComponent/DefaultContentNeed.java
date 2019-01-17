@@ -35,7 +35,7 @@ public class DefaultContentNeed implements IContentNeed {
         //匹配正文筛选规则 url
         if (regexRuleData.getRegexRule().satisfyContentRegex(responsePage.getCrawlDatum().getUrl())) {
             log.debug("添加responsePage 的 属性 网站名 作为解析模块的识别");
-            log.info("符合要求。传输到解析模块" + siteConfig.getSiteName());
+            log.debug("符合要求。传输到解析模块" + siteConfig.getSiteName());
             responsePage.setSiteName(siteConfig.getSiteName());
             transferToParser.transfer(responsePage);
         }

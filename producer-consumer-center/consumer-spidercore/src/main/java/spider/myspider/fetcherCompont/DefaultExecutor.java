@@ -19,17 +19,17 @@ import spider.spiderCore.ihttp.ISendRequest;
 
 /**
  * @author Twilight
- * @desc
+ * @desc 默认执行器
  * @createTime 2019-01-07-15:35
  */
-@Component(value = "defaultExecutor")
+@Component(value = "iExecutor")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultExecutor implements IExecutor<CrawlDatums> {
     private static final Logger log = Logger.getLogger(DefaultExecutor.class);
     @Autowired
     private IDbWritor iDbWritor;
     private ISendRequest<ResponsePage> iSendRequest;
-    private ISimpleParse iSimpleParse;
+    private ISimpleParse<CrawlDatums, ResponsePage> iSimpleParse;
     private IContentNeed IContentNeed;
     private INextFilter INextFilter;
 
@@ -81,18 +81,6 @@ public class DefaultExecutor implements IExecutor<CrawlDatums> {
         }
         return (next == null ? new CrawlDatums() : next);
     }
-
-    /*@Override
-    public CrawlDatums execute(CrawlDatum datum) {
-        log.info("模拟解析" + datum.url());
-        log.info("执行器组件:" + this.toString());
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
 
     @Override
     public String toString() {

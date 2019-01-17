@@ -1,8 +1,8 @@
 package parsercore.fetcherCore.generatorcore;
 
 import commoncore.customUtils.SerializeUtil;
-import commoncore.entity.httpEntity.ResponseData;
-import org.apache.commons.lang3.StringUtils;
+import commoncore.entity.httpEntity.ParseData;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,29 +16,29 @@ import org.springframework.stereotype.Component;
  * @createTime 2019-01-15-15:17
  */
 @Component
-public class ParseDataGenerator implements IParseDataGenerator<ResponseData> {
+public class ParseDataGenerator implements IParseDataGenerator<ParseData> {
     private static final Logger log = Logger.getLogger(ParseDataGenerator.class);
     @Autowired
-    private IResponseDataFilter iResponseDataFilter;
+    private IResponseDataFilter<ParseData> iResponseDataFilter;
     @Value(value = "${my.responseList.redisKey}")
     private String dataKey;
     @Autowired
     private RedisTemplate redisTemplate;
 
     @Override
-    public ResponseData getData() {
+    public ParseData getData() {
         log.debug("从数据库提取数据.......");
-        ResponseData responseData = null;
+        ParseData data = null;
 
         String responseDataStr = (String) redisTemplate.opsForList().leftPop(dataKey);
         if (!StringUtils.isBlank(responseDataStr)) {
             try {
-                responseData = (ResponseData) SerializeUtil.deserializeToObject(responseDataStr);
+                data = (ParseData) SerializeUtil.deserializeToObject(responseDataStr);
             } catch (Exception e) {
                 log.error("反序列化异常" + e.getMessage());
             }
             if (iResponseDataFilter != null) {
-                boolean passOrNot = iResponseDataFilter.pass(responseData);
+                boolean passOrNot = iResponseDataFilter.pass(data);
                 if (passOrNot) {
                     log.info("TIP:这里可能有问题");
                     this.getData();
@@ -53,6 +53,6 @@ public class ParseDataGenerator implements IParseDataGenerator<ResponseData> {
                 new CrawlDatum("http://cq.qq.com/a/20190115/005822.htm"),
                 33, "text/html",
                 "hello".getBytes());*/
-        return responseData;
+        return data;
     }
 }

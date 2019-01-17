@@ -70,11 +70,12 @@ public class SpiderEngine {
 
                     iSpider.setConfig(siteConfig);
                     iSpider.spiderProcess();
+                    this.initToRun();
                     LOG.info(this.toString());
 
                     //10秒自动关闭爬虫
            /* new Thread(() -> {
-                pause(10, 0);
+                SleepUtil.pause(10, 0);
                 mySpider.stop();
             }, "关闭线程").start();*/
                     return true;
@@ -86,5 +87,12 @@ public class SpiderEngine {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /**
+     * desc:stop
+     **/
+    public boolean stopSpider() {
+        return iSpider.stopSpider();
     }
 }

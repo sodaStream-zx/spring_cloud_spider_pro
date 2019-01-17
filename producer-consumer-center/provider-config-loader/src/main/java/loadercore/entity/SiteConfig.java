@@ -1,30 +1,44 @@
-package commoncore.entity.configEntity;
+/*
+package loadercore.entity;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Component
+@Entity
+@Table(name = "siteConfig")
 public class SiteConfig implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int scId;
     //网站名字
-
+    @Column
     private String SiteName;
     //urls
+    @Column
     private String SiteUrl;
     //断点
+    @Column
     private boolean Res;
     //提取页面规则
+    @Column
     private String PageParse;
     //url提取规则
+    @Column
     private String urlPares;
     //任务入口
+    @Column
     private String seeds;
     //抓取深度
+    @Column
     private Integer deepPath;
     //自动抓取
+    @Column
     private boolean autoParse;
     //数据表名称
+    @Column
     private String tableName;
 
     public SiteConfig() {
@@ -127,3 +141,4 @@ public class SiteConfig implements Serializable {
     }
 
 }
+*/

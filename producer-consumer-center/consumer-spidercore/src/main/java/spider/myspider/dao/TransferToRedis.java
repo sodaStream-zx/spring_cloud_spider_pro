@@ -1,7 +1,7 @@
 package spider.myspider.dao;
 
 import commoncore.customUtils.SerializeUtil;
-import commoncore.entity.httpEntity.ResponseData;
+import commoncore.entity.httpEntity.ParseData;
 import commoncore.entity.httpEntity.ResponsePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,14 +16,17 @@ import spider.spiderCore.iexecutorCom.TransferToParser;
 @Component
 public class TransferToRedis implements TransferToParser<ResponsePage> {
 
-    @Autowired private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Override
-    public void transfer(ResponsePage responsePage) {
-        ResponseData responseData;
-        responseData = new ResponseData(responsePage.getSiteName(), responsePage.getCrawlDatum(), responsePage.getCode(), responsePage.getContentType(), responsePage.getContent());
+    public void transfer(ResponsePage pd) {
+        ParseData data;
+        //data = new ResponseData(responsePage.getSiteName(), responsePage.getCrawlDatum(), responsePage.getCode(), responsePage.getContentType(), responsePage.getContent());
+        data = new ParseData(pd.getSiteName(), pd.getCrawlDatum().getUrl(), pd.getContentType(), pd.getHtml());
         String rd = null;
         try {
-            rd = SerializeUtil.serializeToString(responseData);
+            rd = SerializeUtil.serializeToString(data);
         } catch (Exception e) {
             e.printStackTrace();
         }

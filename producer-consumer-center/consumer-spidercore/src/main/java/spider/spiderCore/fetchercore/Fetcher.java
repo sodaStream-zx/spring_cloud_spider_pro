@@ -1,6 +1,7 @@
 package spider.spiderCore.fetchercore;
 
 import commoncore.customUtils.BeanGainer;
+import commoncore.customUtils.SleepUtil;
 import commoncore.entity.fetcherEntity.FetcherState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,19 +47,24 @@ public class Fetcher {
             LOG.info("数据库 工具" + iDataUtil.getClass().getName());
             fetcherState.setFetcherRunning(true);
             //创建线程池，允许核心线程超时关闭
-            ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(threads, threads + (threads / 2), 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
+            ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(threads + 1, threads + (threads / 2), 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
             threadsExecutor.allowCoreThreadTimeOut(true);
             //任务生产者开始 ，添加上限1000个
             threadsExecutor.execute(queueFeeder);
             //等待管道先添加任务
-            pause(2, 0);
+            SleepUtil.pause(2, 0);
             //初始化消费者 从queue中读取任务
             for (int i = 0; i < threads; i++) {
-                threadsExecutor.execute(BeanGainer.getBean("fetcherThread", FetcherThread.class));
+                FetcherThread ft = BeanGainer.getBean("fetcherThread", FetcherThread.class);
+                if (ft == null) {
+                    this.stopFetcher();
+                    break;
+                }
+                threadsExecutor.execute(ft);
             }
             //主线程循环打印 线程池状态
             do {
-                pause(1, 0);
+                SleepUtil.pause(1, 0);
                 LOG.info("执行器状态:\n" + fetcherState.toString());
                 LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
             } while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning());
@@ -83,22 +89,16 @@ public class Fetcher {
     /**
      * 停止爬取
      */
-    public void stopFetcher() {
-        queueFeeder.stopFeeder();
-        //停止调度器
-        fetcherState.setFetcherRunning(false);
-    }
-
-    /**
-     * desc: 线程休眠
-     **/
-    public void pause(int second, int mills) {
-        try {
-            TimeUnit.SECONDS.sleep(second);
-            TimeUnit.MILLISECONDS.sleep(mills);
-        } catch (InterruptedException e) {
-            LOG.error("调度器休眠出错");
+    public boolean stopFetcher() {
+        boolean feederStoped = queueFeeder.stopFeeder();
+        if (feederStoped) {
+            //停止调度器
+            fetcherState.setFetcherRunning(false);
+        } else {
+            this.stopFetcher();
         }
+        SleepUtil.pause(1, 0);
+        return !fetcherState.isFeederRunnning();
     }
 
     public FetchQueue getFetchQueue() {

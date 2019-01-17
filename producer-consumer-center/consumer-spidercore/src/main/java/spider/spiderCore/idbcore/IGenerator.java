@@ -12,7 +12,7 @@ public interface IGenerator<T> {
 
     int totalGeneretNum();
 
-    void clear();
+    boolean clear();
 
-    void close();
+    boolean close();
 }

@@ -1,6 +1,6 @@
 package parsercore.fetcherCore.generatorcore;
 
-import commoncore.entity.httpEntity.ResponseData;
+import commoncore.entity.httpEntity.ParseData;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
  * @createTime 2018-12-26-15:15
  */
 @Component
-public class RedisResponseDataFilter implements IResponseDataFilter<ResponseData> {
+public class RedisResponseDataFilter implements IResponseDataFilter<ParseData> {
     @Override
-    public boolean pass(ResponseData data) {
+    public boolean pass(ParseData data) {
         //do something
         return false;
     }

@@ -1,6 +1,7 @@
 package spider.spiderCore.fetchercore;
 
 import commoncore.customUtils.BeanGainer;
+import commoncore.customUtils.SleepUtil;
 import commoncore.entity.fetcherEntity.FetcherState;
 import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
@@ -11,8 +12,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.iexecutorCom.IExecutor;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author 一杯咖啡
@@ -32,7 +31,7 @@ public class FetcherThread implements Runnable {
 
     public FetcherThread() {
         LOG.info("加载默认执行器");
-        this.iExecutor = BeanGainer.getBean("defaultExecutor", IExecutor.class);
+        this.iExecutor = BeanGainer.getBean("iExecutor", IExecutor.class);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class FetcherThread implements Runnable {
                 LOG.info("QUEUE 未取得任务");
                 //判断任务队列是否有任务，如果没有，等待任务管道被消费完，停止执行线程
                 if (fetcherState.isFeederRunnning()) {
-                    pause(0, 200);
+                    SleepUtil.pause(0, 200);
                     continue;
                 } else {
                     break;
@@ -58,21 +57,9 @@ public class FetcherThread implements Runnable {
                 //当前页面执行完毕，等待时间
                 long executeInterval = defaultExecuteInterval;
                 if (executeInterval > 0) {
-                    pause(0, executeInterval);
+                    SleepUtil.pause(0, executeInterval);
                 }
             }
-        }
-    }
-
-    /**
-     * desc: 线程休眠
-     **/
-    public void pause(int second, long mills) {
-        try {
-            TimeUnit.SECONDS.sleep(second);
-            TimeUnit.MILLISECONDS.sleep(mills);
-        } catch (InterruptedException e) {
-            LOG.error("spinWaiting thread sleep exception");
         }
     }
 

@@ -18,11 +18,13 @@ public class SpiderController {
 
     @GetMapping(value = "/spider")
     public Boolean start() {
-        return spiderEngine.initToRun();
+        new Thread(() -> spiderEngine.initToRun(), "startSpider--").start();
+        return true;
     }
 
+    @GetMapping(value = "/stop")
     public boolean stopspider() {
-
+        new Thread(() -> spiderEngine.stopSpider(), "startSpider--").start();
         return true;
     }
 }

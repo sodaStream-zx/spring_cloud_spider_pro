@@ -26,14 +26,13 @@ public class ConfigFromMysqlToRedis {
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
-    private SitesConfigDao sitesConfigDao;
-    private SerializeUtil serializeUtil = new SerializeUtil();
+    private SitesConfigJTDao sitesConfigJTDao;
 
     /**
      * desc:主节点需要该功能从mysql数据库读到redis队列
      **/
     public void mysqlWriteRedis() {
-        List<SiteConfig> scs = sitesConfigDao.Read();
+        List<SiteConfig> scs = sitesConfigJTDao.Read();
         String str;
         for (SiteConfig x : scs) {
             try {

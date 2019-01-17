@@ -30,10 +30,10 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <!--jdbcTemplate-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
+        <!--</dependency>-->
         <!--eureka 客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

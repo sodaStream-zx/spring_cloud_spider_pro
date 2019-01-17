@@ -1,6 +1,6 @@
 package parsercore.dbUtils.redisDao;
 
-import commoncore.entity.httpEntity.ResponseData;
+import commoncore.entity.httpEntity.ParseData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import parsercore.fetcherCore.generatorcore.IParseDataGenerator;
 public class RedisDaoTest {
 
     @Autowired
-    IParseDataGenerator<ResponseData> iParseDataGenerator;
+    IParseDataGenerator<ParseData> iParseDataGenerator;
 
     @Test
     public void getResponseDataFromRedis() {
         for (int i = 0; i < 5; i++) {
-            ResponseData responseData = iParseDataGenerator.getData();
-            System.out.println("responseData = " + responseData.toString());
+            ParseData data = iParseDataGenerator.getData();
+            System.out.println("responseData = " + data.toString());
         }
     }
 

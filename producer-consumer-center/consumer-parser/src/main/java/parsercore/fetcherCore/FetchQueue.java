@@ -1,6 +1,6 @@
 package parsercore.fetcherCore;
 
-import commoncore.entity.httpEntity.ResponseData;
+import commoncore.entity.httpEntity.ParseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class FetchQueue {
 
     public AtomicInteger totalSize = new AtomicInteger(0);
 
-    public final List<ResponseData> queue = Collections.synchronizedList(new LinkedList<ResponseData>());
+    public final List<ParseData> queue = Collections.synchronizedList(new LinkedList<ParseData>());
 
     public void clearQueue() {
         queue.clear();
@@ -36,7 +36,7 @@ public class FetchQueue {
      *
      * @Return: void
      **/
-    public synchronized void addResponseData(ResponseData rp) {
+    public synchronized void addResponseData(ParseData rp) {
         if (rp == null) {
             return;
         }
@@ -47,7 +47,7 @@ public class FetchQueue {
     /**
      * desc:从queue中提取任务
      **/
-    public synchronized ResponseData getResponseData() {
+    public synchronized ParseData getResponseData() {
         if (queue.isEmpty()) {
             return null;
         }
@@ -59,8 +59,8 @@ public class FetchQueue {
      **/
     public synchronized void dump() {
         for (int i = 0; i < queue.size(); i++) {
-            ResponseData it = queue.get(i);
-            LOG.info("  " + i + ". " + it.getDatum().getUrl());
+            ParseData it = queue.get(i);
+            LOG.info("  " + i + ". " + it.getPageUrl());
         }
     }
 }

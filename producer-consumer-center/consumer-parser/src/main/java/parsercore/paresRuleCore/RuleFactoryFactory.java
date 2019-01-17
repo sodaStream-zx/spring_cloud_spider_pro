@@ -48,7 +48,7 @@ public class RuleFactoryFactory implements IRuleFactory<DomainRule> {
                     log.warn("从redis中获取规则");
                 }
             } else {
-                log.info("从内存中获取规则规则");
+                log.debug("从内存中获取规则规则");
             }
         }
         return domainRule;

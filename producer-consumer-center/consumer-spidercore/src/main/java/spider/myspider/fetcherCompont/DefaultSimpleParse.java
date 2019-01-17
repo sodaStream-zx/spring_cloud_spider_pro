@@ -19,7 +19,7 @@ import spider.spiderCore.iexecutorCom.ISimpleParse;
  */
 @Component(value = "defaultSimpleParse")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DefaultSimpleParse implements ISimpleParse {
+public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponsePage> {
     private static final Logger log = Logger.getLogger(DefaultSimpleParse.class);
     @Autowired
     private RegexRuleData regexRuleData;
