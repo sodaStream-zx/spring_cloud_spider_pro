@@ -3,6 +3,7 @@ package loadercore.dao;
 
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.configEntity.SiteConfig;
+import commoncore.entity.configEntity.SiteConfigDao;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -28,10 +29,15 @@ public class ConfigFromMysqlToRedis {
     @Autowired
     private SitesConfigJTDao sitesConfigJTDao;
 
+    @Autowired
+    private SiteConfigDao siteConfigDao;
+
     /**
      * desc:主节点需要该功能从mysql数据库读到redis队列
      **/
     public void mysqlWriteRedis() {
+        List<SiteConfig> list = siteConfigDao.findAll();
+        LOG.info(list.toString());
         List<SiteConfig> scs = sitesConfigJTDao.Read();
         String str;
         for (SiteConfig x : scs) {

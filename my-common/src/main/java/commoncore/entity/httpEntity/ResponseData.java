@@ -32,9 +32,9 @@ import java.io.UnsupportedEncodingException;
  *
  * @author 一杯咖啡
  */
-public class ResponsePage implements Serializable {
-
-    public static final Logger LOG = LoggerFactory.getLogger(ResponsePage.class);
+public class ResponseData implements Serializable {
+    private static final long serialVersionUID = 529786856L;
+    private static final Logger LOG = LoggerFactory.getLogger(ResponseData.class);
     private String siteName;
     private CrawlDatum crawlDatum;
     private String contentType;
@@ -45,7 +45,7 @@ public class ResponsePage implements Serializable {
     private String charset;
     private byte[] content;
 
-    public ResponsePage(CrawlDatum datum, Integer code, String contentType, byte[] content) {
+    public ResponseData(CrawlDatum datum, Integer code, String contentType, byte[] content) {
         this.crawlDatum = datum;
         this.code = code;
         this.contentType = contentType;
@@ -56,6 +56,15 @@ public class ResponsePage implements Serializable {
         this.contentTohtml(content);
         //3.转化html 为doc
         this.contentTODoc(crawlDatum.getUrl());
+    }
+
+    /**
+     * desc: 解析charset
+     **/
+    public void charset(byte[] content) {
+        if (StringUtils.isBlank(charset) && content != null) {
+            this.charset = CharsetDetector.guessEncoding(content);
+        }
     }
 
     /**
@@ -84,18 +93,13 @@ public class ResponsePage implements Serializable {
      * @return 网页解析后的DOM树
      */
     public void contentTODoc(String url) {
-        if (html != null) {
+        if (!StringUtils.isBlank(url)) {
             this.doc = Jsoup.parse(html, url);
         } else {
             this.doc = null;
         }
     }
 
-    public void charset(byte[] content) {
-        if (charset == null) {
-            this.charset = CharsetDetector.guessEncoding(content);
-        }
-    }
 
     public String getSiteName() {
         return siteName;

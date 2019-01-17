@@ -2,41 +2,67 @@ package commoncore.entity.configEntity;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Component
+@Entity
+@Table(name = "siteConfig")
 public class SiteConfig implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int scId;
     //网站名字
-    private String SiteName;
+    @Column
+    private String siteName;
     //urls
-    private String SiteUrl;
+    @Column
+    private String siteUrl;
     //断点
-    private boolean Res;
+    @Column
+    private boolean res;
     //提取页面规则
-    private String PageParse;
+    @Column
+    private String pageParse;
     //url提取规则
+    @Column
     private String urlPares;
     //任务入口
+    @Column
     private String seeds;
     //抓取深度
+    @Column
     private Integer deepPath;
     //自动抓取
+    @Column
     private boolean autoParse;
     //数据表名称
+    @Column
     private String tableName;
 
     public SiteConfig() {
+    }
+
+    public SiteConfig(String siteName, String siteUrl, boolean res, String pageParse, String urlPares, String seeds, Integer deepPath, boolean autoParse, String tableName) {
+        this.siteName = siteName;
+        this.siteUrl = siteUrl;
+        this.res = res;
+        this.pageParse = pageParse;
+        this.urlPares = urlPares;
+        this.seeds = seeds;
+        this.deepPath = deepPath;
+        this.autoParse = autoParse;
+        this.tableName = tableName;
     }
 
     @Override
     public String toString() {
         return "SiteConfig{" +
                 "scId=" + scId +
-                ", SiteName='" + SiteName + '\'' +
-                ", SiteUrl='" + SiteUrl + '\'' +
-                ", Res=" + Res +
-                ", PageParse='" + PageParse + '\'' +
+                ", siteName='" + siteName + '\'' +
+                ", siteUrl='" + siteUrl + '\'' +
+                ", res=" + res +
+                ", pageParse='" + pageParse + '\'' +
                 ", urlPares='" + urlPares + '\'' +
                 ", seeds='" + seeds + '\'' +
                 ", deepPath=" + deepPath +
@@ -54,35 +80,35 @@ public class SiteConfig implements Serializable {
     }
 
     public String getSiteName() {
-        return SiteName;
+        return siteName;
     }
 
     public void setSiteName(String siteName) {
-        SiteName = siteName;
+        this.siteName = siteName;
     }
 
     public String getSiteUrl() {
-        return SiteUrl;
+        return siteUrl;
     }
 
     public void setSiteUrl(String siteUrl) {
-        SiteUrl = siteUrl;
+        this.siteUrl = siteUrl;
     }
 
     public boolean isRes() {
-        return Res;
+        return res;
     }
 
     public void setRes(boolean res) {
-        Res = res;
+        this.res = res;
     }
 
     public String getPageParse() {
-        return PageParse;
+        return pageParse;
     }
 
-    public void setPageParse(String contentPares) {
-        PageParse = contentPares;
+    public void setPageParse(String pageParse) {
+        this.pageParse = pageParse;
     }
 
     public String getUrlPares() {
@@ -124,5 +150,4 @@ public class SiteConfig implements Serializable {
     public void setTableName(String tableName) {
         this.tableName = tableName;
     }
-
 }

@@ -5,6 +5,8 @@ import commoncore.customUtils.Selectors;
 import commoncore.customUtils.StringSplitUtil;
 import commoncore.customUtils.TimeFilter;
 import commoncore.entity.httpEntity.ParseData;
+import commoncore.entity.paresEntity.DomainRule;
+import commoncore.entity.paresEntity.MyNew;
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import parsercore.paresEntity.DomainRule;
-import parsercore.paresEntity.MyNew;
 
 
 /**
@@ -46,7 +46,7 @@ public class DefaultParseProcess implements IParseProcess<MyNew, ParseData, Doma
         if (!content.trim().equals("")) {
             //正文不为空 获取 作者，媒体，时间
             String media = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getMedia_rule()));
-            String author = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getAnthor_rule()));
+            String author = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getAuthor_rule()));
             String time = Selectors.detaliSelect(doc, StringSplitUtil.splitRule(domainRule.getTime_rule()));
             //截取指定长度字符串
             time = StringSplitUtil.SubStr(TimeFilter.getTimeByReg(time));

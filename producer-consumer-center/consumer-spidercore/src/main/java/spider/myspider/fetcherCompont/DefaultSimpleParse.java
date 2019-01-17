@@ -1,6 +1,6 @@
 package spider.myspider.fetcherCompont;
 
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponseData;
 import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +19,21 @@ import spider.spiderCore.iexecutorCom.ISimpleParse;
  */
 @Component(value = "defaultSimpleParse")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponsePage> {
+public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponseData> {
     private static final Logger log = Logger.getLogger(DefaultSimpleParse.class);
     @Autowired
     private RegexRule regexRule;
 
     @Override
-    public CrawlDatums parseLinks(ResponsePage responsePage) {
+    public CrawlDatums parseLinks(ResponseData responseData) {
         CrawlDatums next = new CrawlDatums();
-        String contentType = responsePage.getContentType();
+        String contentType = responseData.getContentType();
         if (contentType != null && contentType.contains("text/html")) {
-            Document doc = responsePage.getDoc();
+            Document doc = responseData.getDoc();
             if (doc != null) {
                 //从页面中取出需要的url 形成接下来的任务
-                Links links = new Links().addByRegex(doc, regexRule, false);
-                next.add(links);
+                CrawlDatums crawlDatums = new Links().addHrefByRegx(doc, regexRule).toCrawlDatums();
+                next.add(crawlDatums);
             }
         }
         return next;

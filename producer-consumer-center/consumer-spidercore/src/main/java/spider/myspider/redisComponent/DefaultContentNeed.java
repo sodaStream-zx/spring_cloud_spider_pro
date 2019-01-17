@@ -1,7 +1,7 @@
 package spider.myspider.redisComponent;
 
 import commoncore.entity.configEntity.SiteConfig;
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponseData;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -25,19 +25,19 @@ public class DefaultContentNeed implements IContentNeed {
     @Autowired
     SiteConfig siteConfig;
     @Autowired
-    TransferToParser<ResponsePage> transferToParser;
+    TransferToParser<ResponseData> transferToParser;
 
     /**
      * desc: 符合正文提取规则。调用自定义解析页面
      **/
     @Override
-    public void getContentPageData(ResponsePage responsePage) {
+    public void getContentPageData(ResponseData responseData) {
         //匹配正文筛选规则 url
-        if (regexRule.satisfyContentRegex(responsePage.getCrawlDatum().getUrl())) {
+        if (regexRule.satisfyContentRegex(responseData.getCrawlDatum().getUrl())) {
             log.debug("添加responsePage 的 属性 网站名 作为解析模块的识别");
             log.debug("符合要求。传输到解析模块" + siteConfig.getSiteName());
-            responsePage.setSiteName(siteConfig.getSiteName());
-            transferToParser.transfer(responsePage);
+            responseData.setSiteName(siteConfig.getSiteName());
+            transferToParser.transfer(responseData);
         }
     }
 }

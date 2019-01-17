@@ -17,7 +17,7 @@
  */
 package spider.spiderCore.iexecutorCom;
 
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponseData;
 
 /**
  * @author 一杯咖啡
@@ -27,7 +27,7 @@ public interface IContentNeed {
     /**
      * desc:该接口用于将筛选当前页面 是否需要发送给后续解析器
      *
-     * @param responsePage 数据
+     * @param responseData 数据
      **/
-    void getContentPageData(ResponsePage responsePage);
+    void getContentPageData(ResponseData responseData);
 }

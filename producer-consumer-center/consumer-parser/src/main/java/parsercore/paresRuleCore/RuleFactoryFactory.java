@@ -1,5 +1,7 @@
 package parsercore.paresRuleCore;
 
+import commoncore.entity.paresEntity.DomainRule;
+import commoncore.entity.paresEntity.MyNew;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import parsercore.dbUtils.mysqlDao.IMysqlDao;
 import parsercore.dbUtils.redisDao.IRedisDao;
-import parsercore.paresEntity.DomainRule;
-import parsercore.paresEntity.MyNew;
 import parsercore.paresRuleCore.core.IRuleFactory;
 
 import java.util.HashMap;

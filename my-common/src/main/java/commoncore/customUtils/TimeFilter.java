@@ -1,7 +1,7 @@
 package commoncore.customUtils;
 
 
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponseData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class TimeFilter {
     /**
      * desc:提取页面更新时间
      **/
-    public static String timeLastModify(ResponsePage page) {
+    public static String timeLastModify(ResponseData page) {
         return null;
     }
 }

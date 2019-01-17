@@ -1,4 +1,4 @@
-package parsercore.paresEntity;
+package commoncore.entity.paresEntity;
 
 import org.springframework.stereotype.Component;
 

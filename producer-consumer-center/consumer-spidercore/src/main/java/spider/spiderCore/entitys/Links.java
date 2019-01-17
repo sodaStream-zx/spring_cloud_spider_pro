@@ -19,7 +19,7 @@ package spider.spiderCore.entitys;
 
 
 import org.apache.log4j.Logger;
-import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -27,8 +27,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 用于存储多个URL的数据结构，继承于ArrayList
@@ -38,15 +38,11 @@ import java.util.LinkedList;
  */
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class Links implements Iterable<String>, Serializable {
+public class Links implements Serializable {
     private static final Logger log = Logger.getLogger(Links.class);
     protected LinkedList<String> dataList = new LinkedList<>();
 
     public Links() {
-    }
-
-    public Links(Iterable<String> links) {
-        add(links);
     }
 
     public Links(Collection<String> urls) {
@@ -54,19 +50,11 @@ public class Links implements Iterable<String>, Serializable {
     }
 
     public CrawlDatums toCrawlDatums() {
-        return new CrawlDatums(this);
+        return new CrawlDatums(this.dataList);
     }
 
-    public Links add(String url) {
+    public void add(String url) {
         dataList.add(url);
-        return this;
-    }
-
-    public Links add(Iterable<String> links) {
-        for (String url : links) {
-            dataList.add(url);
-        }
-        return this;
     }
 
     public Links add(Collection<String> urls) {
@@ -74,86 +62,45 @@ public class Links implements Iterable<String>, Serializable {
         return this;
     }
 
-    @Override
-    public Iterator<String> iterator() {
-        return dataList.iterator();
-    }
-
     /**
      * desc: 通过正则过滤page中的链接
      **/
     public Links filterByRegex(RegexRule regexRule) {
-        Iterator<String> ite = iterator();
-        while (ite.hasNext()) {
-            String url = ite.next();
-            if (!regexRule.satisfyPickRegex(url)) {
-                ite.remove();
-            }
-        }
-        return this;
-    }
-
-    public Links addFromElement(Element ele) {
-        addFromElement(ele, false);
+        this.dataList.stream().filter(s ->
+                !regexRule.satisfyPickRegex(s))
+                .forEach(this::remove);
         return this;
     }
 
     /**
-     * 解析网页中的链接，包括图片链接
+     * 解析网页中的链接
      */
-    public Links addFromElement(Element ele, boolean parseImg) {
-        add(ele.select("a[href]").eachAttr("abs:href"));
-        if (parseImg) {
-            add(ele.select("img[src]").eachAttr("abs:src"));
-        }
+    public Links addAllHref(Document doc) {
+        this.add(doc.select("a[href]").eachAttr("abs:href"));
         return this;
     }
-
 
     /**
      * 添加ele中，满足选择器的元素中的链接 选择器cssSelector必须定位到具体的超链接
      * 例如我们想抽取id为content的div中的所有超链接，这里 就要将cssSelector定义为div[id=content] a
      */
-    public Links addBySelector(Element ele, String cssSelector, boolean parseSrc) {
-        Elements as = ele.select(cssSelector);
-        for (Element a : as) {
-            if (a.hasAttr("href")) {
-                String href = a.attr("abs:href");
-                this.add(href);
-            }
-            if (parseSrc) {
-                if (a.hasAttr("src")) {
-                    String src = a.attr("abs:src");
-                    this.add(src);
-                }
-            }
+    public Links addRangeHref(Document doc, String cssSelector) {
+        Elements as = doc.select(cssSelector + " a");
+        if (as.size() > 0) {
+            as.stream().filter(x -> x.hasAttr("href"))
+                    .map(a -> a.attr("abs:href"))
+                    .forEach(x -> this.add(x));
         }
         return this;
-    }
-
-    public Links addBySelector(Element ele, String cssSelector) {
-        return addBySelector(ele, cssSelector, false);
     }
 
     //jsoup 匹配正则 提取urls
-    public Links addByRegex(Element ele, RegexRule regexRule, boolean parseSrc) {
-        for (String href : ele.select("a[href]").eachAttr("abs:href")) {
-            if (regexRule.satisfyPickRegex(href)) {
-                this.add(href);
-            }
-        }
-        if (parseSrc) {
-            for (String src : ele.select("*[src]").eachAttr("abs:src")) {
-                if (regexRule.satisfyPickRegex(src)) {
-                    this.add(src);
-                }
-            }
+    public Links addHrefByRegx(Document doc, RegexRule regexRule) {
+        List<String> es = doc.select("a[href]").eachAttr("abs:href");
+        if (es.size() > 0) {
+            es.stream().filter(regexRule::satisfyPickRegex).forEach(this::add);
         }
         return this;
-    }
-
-    public Links addByRegex(Element ele, RegexRule regexRule) {
-        return addByRegex(ele, regexRule, false);
     }
 
     public String get(int index) {
@@ -183,10 +130,4 @@ public class Links implements Iterable<String>, Serializable {
     public int indexOf(String url) {
         return dataList.indexOf(url);
     }
-
-    @Override
-    public String toString() {
-        return dataList.toString();
-    }
-
 }

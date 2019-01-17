@@ -4,7 +4,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -21,6 +23,8 @@ import java.sql.SQLException;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"commoncore", "parsercore"})
+@EnableJpaRepositories(basePackages = "commoncore.entity.paresEntity")
+@EntityScan(basePackages = "commoncore.entity.paresEntity")
 public class ParesEngineApplication {
     private static final Logger LOG = Logger.getLogger(ParesEngineApplication.class);
     @Autowired

@@ -25,4 +25,8 @@ public interface ISendRequest<T> {
      * desc:转换 封装 响应数据
      **/
     T converterResponsePage(CrawlDatum crawlDatum);
+
+    void addHeader(String key, String value);
+
+    void addPostMap(String key, String value);
 }

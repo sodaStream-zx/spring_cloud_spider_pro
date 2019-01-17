@@ -151,16 +151,4 @@ public abstract class AbstractSpider implements ISpider {
     public void setConfig(SiteConfig config) {
         this.siteConfig = config;
     }
-
-    @Override
-    public String toString() {
-        return "AbstractSpider{" +
-                "status=" + status +
-                ", siteConfig=" + siteConfig +
-                ", seedData=" + seedData +
-                ", regexRule=" + regexRule +
-                ", fetcher=" + fetcher +
-                ", iDataUtil=" + iDataUtil +
-                '}';
-    }
 }

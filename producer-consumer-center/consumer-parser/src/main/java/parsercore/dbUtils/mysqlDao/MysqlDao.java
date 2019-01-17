@@ -1,12 +1,12 @@
 package parsercore.dbUtils.mysqlDao;
 
 
+import commoncore.entity.paresEntity.DomainRule;
+import commoncore.entity.paresEntity.MyNew;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import parsercore.paresEntity.DomainRule;
-import parsercore.paresEntity.MyNew;
 
 /**
  * @author Twilight
@@ -67,7 +67,7 @@ public class MysqlDao implements IMysqlDao<MyNew, DomainRule> {
             DomainRule domainRule = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
                 DomainRule domainRule1 = new DomainRule();
                 domainRule1.setDomainId(rs.getInt(1));
-                domainRule1.setAnthor_rule(rs.getString(2));
+                domainRule1.setAuthor_rule(rs.getString(2));
                 domainRule1.setContent_rule(rs.getString(3));
                 domainRule1.setMedia_rule(rs.getString(4));
                 domainRule1.setSiteName(siteName);

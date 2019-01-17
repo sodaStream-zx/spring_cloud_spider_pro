@@ -1,6 +1,6 @@
 package spider.spiderCore.entitys;
 
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponseData;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @createTime 2019-01-08-16:13
  */
 public class PageRegex {
-    private ResponsePage responsePage;
+    private ResponseData responseData;
 
     /**
      * 判断当前Page的URL是否和输入正则匹配
@@ -23,7 +23,7 @@ public class PageRegex {
      * @return
      */
     public boolean matchUrl(String urlRegex) {
-        return Pattern.matches(urlRegex, responsePage.getCrawlDatum().getUrl());
+        return Pattern.matches(urlRegex, responseData.getCrawlDatum().getUrl());
     }
 
     /**
@@ -34,9 +34,9 @@ public class PageRegex {
      */
     public boolean matchContentType(String contentTypeRegex) {
         if (contentTypeRegex == null) {
-            return responsePage.getContentType() == null;
+            return responseData.getContentType() == null;
         }
-        return Pattern.matches(contentTypeRegex, responsePage.getContentType());
+        return Pattern.matches(contentTypeRegex, responseData.getContentType());
     }
 
     /**
@@ -71,16 +71,6 @@ public class PageRegex {
     }
 
 
-    public Links links(boolean parseImg) {
-        Links links = new Links().addFromElement(responsePage.getDoc(), parseImg);
-        return links;
-    }
-
-    public Links links() {
-        return links(false);
-    }
-
-
     /**
      * 获取满足选择器的元素中的链接 选择器cssSelector必须定位到具体的超链接 例如我们想抽取id为content的div中的所有超链接，这里
      * 就要将cssSelector定义为div[id=content] a
@@ -88,18 +78,14 @@ public class PageRegex {
      * @param cssSelector
      * @return
      */
-    public Links links(String cssSelector, boolean parseSrc) {
-        Links links = new Links().addBySelector(responsePage.getDoc(), cssSelector, parseSrc);
-        return links;
-    }
-
     public Links links(String cssSelector) {
-        return links(cssSelector, false);
+        Links links = new Links().addRangeHref(responseData.getDoc(), cssSelector);
+        return links;
     }
 
 
     public Links regexLinks(RegexRule regexRule, boolean parseSrc) {
-        return new Links().addByRegex(responsePage.getDoc(), regexRule, parseSrc);
+        return new Links().addHrefByRegx(responseData.getDoc(), regexRule);
     }
 
     public Links regexLinks(RegexRule regexRule) {
@@ -177,7 +163,7 @@ public class PageRegex {
 
 
     public Elements select(String cssSelector) {
-        return responsePage.getDoc().select(cssSelector);
+        return responseData.getDoc().select(cssSelector);
     }
 
     public Element select(String cssSelector, int index) {
@@ -191,7 +177,7 @@ public class PageRegex {
 
     public String regex(String regex, int group, String defaultResult) {
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(responsePage.getHtml());
+        Matcher matcher = pattern.matcher(responseData.getHtml());
         if (matcher.find()) {
             return matcher.group(group);
         } else {
@@ -201,14 +187,14 @@ public class PageRegex {
 
     public String regex(String regex, int group) {
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(responsePage.getHtml());
+        Matcher matcher = pattern.matcher(responseData.getHtml());
         matcher.find();
         return matcher.group(group);
     }
 
     public String regexAndFormat(String regex, String format) {
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(responsePage.getHtml());
+        Matcher matcher = pattern.matcher(responseData.getHtml());
         matcher.find();
         String[] strs = new String[matcher.groupCount()];
         for (int i = 0; i < matcher.groupCount(); i++) {

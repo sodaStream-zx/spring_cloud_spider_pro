@@ -1,8 +1,9 @@
 package spider.myspider.httpComponent;
 
 import com.google.gson.Gson;
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.requestEntity.CrawlDatum;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ import java.util.zip.GZIPInputStream;
  */
 @Component(value = "defaultRequest")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
+public class DefaultHttpRequest implements ISendRequest<ResponseData> {
     public static final Logger LOG = LoggerFactory.getLogger(DefaultHttpRequest.class);
     @Autowired
     private HttpConfig httpConfig;
@@ -49,18 +50,17 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
      * desc: 将httpResponse 封装为responsePage
      **/
     @Override
-    public ResponsePage converterResponsePage(CrawlDatum crawlDatum) {
+    public ResponseData converterResponsePage(CrawlDatum crawlDatum) {
         // LOG.info("httputil 配置" + this.httpConfig.toString());
         HttpResponse httpResponse = this.sendRequest(crawlDatum);
-        ResponsePage responsePage = new ResponsePage(
+        ResponseData responseData = new ResponseData(
                 crawlDatum,
                 httpResponse.code(),
                 httpResponse.contentType(),
                 httpResponse.content()
         );
-        LOG.debug(responsePage.toString());
-        LOG.debug("响应数据：" + responsePage.toString());
-        return responsePage;
+        LOG.debug("响应数据：" + responseData.toString());
+        return responseData;
     }
 
 
@@ -82,8 +82,8 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
             header.set("Cookie", httpConfig.getCookie());
         }
         if (header.size() > 0) {
-            Set<Map.Entry<String, List<String>>> keyAndVaule = header.entrySet();
-            keyAndVaule.forEach(stringListEntry -> {
+            Set<Map.Entry<String, List<String>>> keyAndValue = header.entrySet();
+            keyAndValue.forEach(stringListEntry -> {
                 int valueLen = stringListEntry.getValue().size();
                 for (int i = 0; i < valueLen; i++) {
                     httpURLConnection.addRequestProperty(stringListEntry.getKey(), stringListEntry.getValue().get(i));
@@ -187,15 +187,14 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
             bos.close();
             return response;
         } catch (Exception ex) {
-            ex.printStackTrace();
-            LOG.error("someting was wrong");
+            LOG.error("someting was wrong" + ex.getCause() + ":" + ex.getMessage());
             return null;
         } finally {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    LOG.error("关闭输入流出错");
+                    LOG.error("关闭输入流出错" + e.getCause() + ":" + e.getMessage());
                 }
             }
         }
@@ -211,9 +210,17 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
     /**
      * desc: 在现有header上添加key value
      **/
+    @Override
     public void addHeader(String key, String value) {
-        if (!checkNull(key, value)) {
+        if (!StringUtils.isBlank(key) && !StringUtils.isBlank(value)) {
             httpConfig.getHeaderMap().add(key, value);
+        }
+    }
+
+    @Override
+    public void addPostMap(String key, String value) {
+        if (!StringUtils.isBlank(key) && !StringUtils.isBlank(value)) {
+            this.httpConfig.getPostBodyMap().add(key, value);
         }
     }
 
@@ -221,22 +228,11 @@ public class DefaultHttpRequest implements ISendRequest<ResponsePage> {
      * desc: 设置key value 如果存在则覆盖
      **/
     public void setHeader(String key, String value) {
-        if (!checkNull(key, value)) {
+        if (!StringUtils.isBlank(key) && !StringUtils.isBlank(value)) {
             httpConfig.getHeaderMap().set(key, value);
         }
     }
 
-    /**
-     * desc: headerMap key value 空值检查
-     **/
-    public boolean checkNull(String key, String value) {
-        if (key == null || "".equals(key)) {
-            return true;
-        } else {
-            return value == null || "".equals(value);
-        }
-
-    }
 
     static {
         TrustManager[] trustAllCerts = new TrustManager[]{

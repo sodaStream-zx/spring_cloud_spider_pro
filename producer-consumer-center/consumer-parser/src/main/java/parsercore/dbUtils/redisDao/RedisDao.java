@@ -1,14 +1,14 @@
 package parsercore.dbUtils.redisDao;
 
 import commoncore.customUtils.SerializeUtil;
+import commoncore.entity.paresEntity.DomainRule;
+import commoncore.entity.paresEntity.MyNew;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import parsercore.dbUtils.mysqlDao.IMysqlDao;
-import parsercore.paresEntity.DomainRule;
-import parsercore.paresEntity.MyNew;
 
 /**
  * @author 一杯咖啡

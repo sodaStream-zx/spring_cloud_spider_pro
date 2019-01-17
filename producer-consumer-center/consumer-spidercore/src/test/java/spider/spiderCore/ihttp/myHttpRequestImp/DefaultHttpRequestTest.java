@@ -1,6 +1,6 @@
 package spider.spiderCore.ihttp.myHttpRequestImp;
 
-import commoncore.entity.httpEntity.ResponsePage;
+import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.requestEntity.CrawlDatum;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class DefaultHttpRequestTest {
         header.add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 Core/1.63.6788.400 QQBrowser/10.3.2767.400");
         //defaultHttpRequest.setHeader(header);
 
-        ResponsePage httpResponse = defaultHttpRequest.converterResponsePage(new CrawlDatum(url));
+        ResponseData httpResponse = defaultHttpRequest.converterResponsePage(new CrawlDatum(url));
         //  log.info("request= " + defaultHttpRequest.get().toString());
         log.info("html == :::" + httpResponse.getHtml());
         log.info("contentTpe == :::" + httpResponse.getContentType());
