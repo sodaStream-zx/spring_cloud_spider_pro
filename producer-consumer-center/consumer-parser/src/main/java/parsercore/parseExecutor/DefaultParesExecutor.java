@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import parsercore.dbUtils.mysqlDao.IMysqlDao;
 import parsercore.dbUtils.redisDao.IRedisDao;
-import parsercore.dbUtils.reposi.MyNewDao;
 import parsercore.paresEntity.DomainRule;
 import parsercore.paresEntity.MyNew;
+import parsercore.paresEntity.MyNewDao;
 import parsercore.paresRuleCore.core.IRuleFactory;
 import parsercore.paresUtil.IParseProcess;
 

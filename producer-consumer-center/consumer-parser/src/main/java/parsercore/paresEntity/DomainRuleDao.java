@@ -1,8 +1,7 @@
-package parsercore.dbUtils.reposi;
+package parsercore.paresEntity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import parsercore.paresEntity.DomainRule;
 
 /**
  * @author Twilight

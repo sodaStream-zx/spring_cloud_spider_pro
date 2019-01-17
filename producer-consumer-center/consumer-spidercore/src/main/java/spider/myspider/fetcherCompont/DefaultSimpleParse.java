@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import spider.spiderCore.crawler.RegexRuleData;
 import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.entitys.Links;
+import spider.spiderCore.entitys.RegexRule;
 import spider.spiderCore.iexecutorCom.ISimpleParse;
 
 /**
@@ -22,7 +22,7 @@ import spider.spiderCore.iexecutorCom.ISimpleParse;
 public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponsePage> {
     private static final Logger log = Logger.getLogger(DefaultSimpleParse.class);
     @Autowired
-    private RegexRuleData regexRuleData;
+    private RegexRule regexRule;
 
     @Override
     public CrawlDatums parseLinks(ResponsePage responsePage) {
@@ -32,7 +32,7 @@ public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponsePag
             Document doc = responsePage.getDoc();
             if (doc != null) {
                 //从页面中取出需要的url 形成接下来的任务
-                Links links = new Links().addByRegex(doc, regexRuleData.getRegexRule(), false);
+                Links links = new Links().addByRegex(doc, regexRule, false);
                 next.add(links);
             }
         }

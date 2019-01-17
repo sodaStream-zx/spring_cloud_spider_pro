@@ -5,10 +5,13 @@ import commoncore.entity.configEntity.SiteConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spider.spiderCore.entitys.CrawlDatums;
+import spider.spiderCore.entitys.RegexRule;
 import spider.spiderCore.fetchercore.Fetcher;
 import spider.spiderCore.idbcore.IDataUtil;
 import spider.spiderCore.idbcore.IDbWritor;
 import spider.spiderCore.iexecutorCom.ISpider;
+
+import java.util.stream.Stream;
 
 /**
  * @author Twilight
@@ -29,15 +32,15 @@ public abstract class AbstractSpider implements ISpider {
     //入口urls
     protected SeedData seedData;
     //正则规则
-    protected RegexRuleData regexRuleData;
+    protected RegexRule regexRule;
     //执行调度器
     protected Fetcher fetcher;
     //数据存储器（考虑将种子注入和 解析注入分开）
     protected IDataUtil iDataUtil;
 
-    public AbstractSpider(SeedData seedData, RegexRuleData regexRuleData, Fetcher fetcher, IDataUtil iDataUtil) {
+    public AbstractSpider(SeedData seedData, RegexRule regexRule, Fetcher fetcher, IDataUtil iDataUtil) {
         this.seedData = seedData;
-        this.regexRuleData = regexRuleData;
+        this.regexRule = regexRule;
         this.fetcher = fetcher;
         this.iDataUtil = iDataUtil;
     }
@@ -53,22 +56,23 @@ public abstract class AbstractSpider implements ISpider {
             LOG.error("未加载网站配置文件");
             return false;
         }
-        //url 提取正则
-        String[] urlRules = StringSplitUtil.splitRule(siteConfig.getUrlPares());
         //seeds 种子url
         String[] seeds = StringSplitUtil.splitRule(siteConfig.getSeeds());
+        if (seeds.length > 0) {
+            Stream.of(seeds).forEach((x) -> seedData.addSeed(x, true));
+        } else {
+            LOG.error("请提供入口种子");
+            return false;
+        }
+        //url 提取正则
+        String[] urlRules = StringSplitUtil.splitRule(siteConfig.getUrlPares());
         //conPickRules 需要提取正文的 url 正则表达式
         String[] conPickRules = StringSplitUtil.splitRule(siteConfig.getPageParse());
 
-        //配置规则实例
-        for (String str : seeds) {
-            LOG.info("入口：" + str);
-            seedData.addSeed(str, true);
-        }
-        regexRuleData.getRegexRule().addContentRegexRule(conPickRules);
-        regexRuleData.getRegexRule().addPickReges(urlRules);
-        regexRuleData.getRegexRule().addPickReges(conPickRules);
-        LOG.info("url提取规则注入" + regexRuleData.getRegexRule().info());
+        regexRule.addContentRegexRule(conPickRules);
+        regexRule.addPickReges(urlRules);
+        regexRule.addPickReges(conPickRules);
+        LOG.info("url提取规则注入" + regexRule.info());
         return true;
     }
 
@@ -103,10 +107,6 @@ public abstract class AbstractSpider implements ISpider {
         if (!siteConfig.isRes()) {
             if (iDataUtil.getIDbManager().isDBExists()) {
                 iDataUtil.getIDbManager().clear();
-            }
-            if (seedData.getSeeds().isEmpty() && seedData.getForcedSeeds().isEmpty()) {
-                LOG.error("error:Please add at least one seed");
-                return false;
             }
         }
         iDataUtil.getIDbManager().open();
@@ -158,7 +158,7 @@ public abstract class AbstractSpider implements ISpider {
                 "status=" + status +
                 ", siteConfig=" + siteConfig +
                 ", seedData=" + seedData +
-                ", regexRuleData=" + regexRuleData +
+                ", regexRule=" + regexRule +
                 ", fetcher=" + fetcher +
                 ", iDataUtil=" + iDataUtil +
                 '}';

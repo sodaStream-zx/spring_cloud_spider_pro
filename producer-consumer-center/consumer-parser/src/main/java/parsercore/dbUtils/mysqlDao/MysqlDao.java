@@ -43,8 +43,7 @@ public class MysqlDao implements IMysqlDao<MyNew, DomainRule> {
     }
 
     /**
-     * @Title：${enclosing_method}
-     * @Description: [持久化数据到mysql数据库]
+     * @Desc 持久化数据到mysql数据库
      */
     @Override
     public void insertNew(MyNew myNew) {
@@ -83,5 +82,4 @@ public class MysqlDao implements IMysqlDao<MyNew, DomainRule> {
             return null;
         }
     }
-
 }

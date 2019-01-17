@@ -8,7 +8,6 @@ import java.io.Serializable;
 public class SiteConfig implements Serializable {
     private int scId;
     //网站名字
-
     private String SiteName;
     //urls
     private String SiteUrl;

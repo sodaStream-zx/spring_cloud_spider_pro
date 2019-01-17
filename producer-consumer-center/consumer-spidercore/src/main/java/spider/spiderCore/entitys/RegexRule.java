@@ -85,13 +85,8 @@ public class RegexRule {
      * @return 输入字符串是否符合链接提取的正则规则
      */
     public boolean satisfyPickRegex(String str) {
-        int count = 0;
-        for (String regex : pickRegexs) {
-            if (Pattern.matches(regex, str)) {
-                count++;
-            }
-        }
-        return count != 0;
+        boolean satisfy = pickRegexs.stream().anyMatch(x -> Pattern.matches(x, str));
+        return satisfy;
     }
 
     /**
@@ -101,12 +96,8 @@ public class RegexRule {
      * @Return: boolean
      **/
     public boolean satisfyContentRegex(String str) {
-        for (String conRule : contentRegexRules) {
-            if (Pattern.matches(conRule, str)) {
-                return true;
-            }
-        }
-        return false;
+        boolean satisfy = contentRegexRules.stream().anyMatch(x -> Pattern.matches(x, str));
+        return satisfy;
     }
 
     public boolean isEmpty() {
