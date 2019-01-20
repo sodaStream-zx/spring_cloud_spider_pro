@@ -8,7 +8,6 @@ import commoncore.entity.paresEntity.MyNew;
 import commoncore.entity.paresEntity.MyNewDao;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -31,16 +30,16 @@ public class DefaultParesExecutor implements IParesExecutor<ParseData> {
     private static final Logger log = Logger.getLogger(DefaultParesExecutor.class.getName());
     private IParseProcess<MyNew, ParseData, DomainRule> IParseProcess;
     private IRuleFactory<DomainRule> iRuleFactory;
-    @Autowired
     IRedisDao iRedisDao;
-    @Autowired
-    IMysqlDao IMysqlDao;
-    @Autowired
+    IMysqlDao iMysqlDao;
     private MyNewDao myNewDao;
-    @Value(value = "${my.responseList.redisKey}")
-    private String listKey;
 
-    public DefaultParesExecutor() {
+    @Autowired
+    public DefaultParesExecutor(IRedisDao iRedisDao, IMysqlDao iMysqlDao,
+                                MyNewDao myNewDao) {
+        this.iRedisDao = iRedisDao;
+        this.iMysqlDao = iMysqlDao;
+        this.myNewDao = myNewDao;
         this.IParseProcess = BeanGainer.getBean("parseContent", IParseProcess.class);
         this.iRuleFactory = BeanGainer.getBean("", IRuleFactory.class);
     }

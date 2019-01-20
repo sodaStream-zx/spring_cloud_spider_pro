@@ -7,6 +7,7 @@ import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -22,14 +23,18 @@ import spider.spiderCore.iexecutorCom.IExecutor;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class FetcherThread implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(FetcherThread.class);
-    @Autowired
     private FetcherState fetcherState;
-    @Autowired
     private FetchQueue fetchQueue;
     private long defaultExecuteInterval = 0;
     private IExecutor<CrawlDatums> iExecutor;
 
-    public FetcherThread() {
+    @Autowired
+    public FetcherThread(FetcherState fetcherState,
+                         FetchQueue fetchQueue,
+                         @Value(value = "${fetcher.executeInterval}") long defaultExecuteInterval) {
+        this.fetcherState = fetcherState;
+        this.fetchQueue = fetchQueue;
+        this.defaultExecuteInterval = defaultExecuteInterval;
         LOG.info("加载默认执行器");
         this.iExecutor = BeanGainer.getBean("iExecutor", IExecutor.class);
     }

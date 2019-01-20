@@ -23,17 +23,21 @@ import java.util.concurrent.TimeUnit;
 public class ParseFetcherProcess {
     private static final Logger LOG = LoggerFactory.getLogger(ParseFetcherProcess.class);
 
-    /**
-     * 核心组件:  fetchQueue-任务管道  queueFeeder-任务生产者
-     */
-    @Autowired
     private QueueFeeder queueFeeder;
-    @Autowired
     private FetcherState fetcherState;
-    @Autowired
     private FetchQueue fetchQueue;
-    @Value(value = "${my.fetchercore.maxThread}")
     private int threads;
+
+    @Autowired
+    public ParseFetcherProcess(QueueFeeder queueFeeder,
+                               FetcherState fetcherState,
+                               FetchQueue fetchQueue,
+                               @Value(value = "${my.fetchercore.maxThread}") int threads) {
+        this.queueFeeder = queueFeeder;
+        this.fetcherState = fetcherState;
+        this.fetchQueue = fetchQueue;
+        this.threads = threads;
+    }
 
     /**
      * 抓取当前所有任务，会阻塞到爬取完成 开启 feeder 和 执行爬取线程。

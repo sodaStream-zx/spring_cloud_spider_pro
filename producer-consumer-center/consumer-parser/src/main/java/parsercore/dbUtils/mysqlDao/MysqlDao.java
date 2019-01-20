@@ -13,11 +13,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MysqlDao implements IMysqlDao<MyNew, DomainRule> {
-
-    private static Logger LOG = Logger.getLogger(MysqlDao.class);
+    private static final Logger LOG = Logger.getLogger(MysqlDao.class);
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public MysqlDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * desc:初始化mysql建表

@@ -10,7 +10,7 @@ import spider.spiderCore.idbcore.IGeneratorFilter;
  * @desc 爬虫任务状态 最大执行次数过滤
  */
 @Component
-public class StatusIGeneratorFilter implements IGeneratorFilter<CrawlDatum> {
+public class StatusGeneratorFilter implements IGeneratorFilter<CrawlDatum> {
     @Value(value = "${igenerator.maxExecuteCount}")
     private int maxExecuteCount;
 

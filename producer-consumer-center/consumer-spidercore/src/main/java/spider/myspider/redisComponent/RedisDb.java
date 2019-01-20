@@ -45,6 +45,5 @@ public class RedisDb implements IDataBase<String> {
      **/
     @Override
     public void clear() {
-
     }
 }

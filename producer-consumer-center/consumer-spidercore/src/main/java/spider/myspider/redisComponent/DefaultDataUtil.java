@@ -2,7 +2,6 @@ package spider.myspider.redisComponent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import spider.spiderCore.idbcore.IDataUtil;
 import spider.spiderCore.idbcore.IDbManager;
 import spider.spiderCore.idbcore.IDbWritor;
 import spider.spiderCore.idbcore.IGenerator;
@@ -13,13 +12,20 @@ import spider.spiderCore.idbcore.IGenerator;
  * @createTime 2019-01-04-13:13
  */
 @Component
-public class DefaultRedisDataBase implements IDataUtil {
-    @Autowired
+public class DefaultDataUtil {
     private IGenerator iGenerator;
-    @Autowired
     private IDbWritor iDbWritor;
-    @Autowired
     private IDbManager iDbManager;
+
+    public DefaultDataUtil() {
+    }
+
+    @Autowired
+    public DefaultDataUtil(IGenerator iGenerator, IDbWritor iDbWritor, IDbManager iDbManager) {
+        this.iGenerator = iGenerator;
+        this.iDbWritor = iDbWritor;
+        this.iDbManager = iDbManager;
+    }
 
     @Override
     public String toString() {
@@ -30,18 +36,27 @@ public class DefaultRedisDataBase implements IDataUtil {
                 '}';
     }
 
-    @Override
-    public IDbWritor getIDbWritor() {
+    public IGenerator getiGenerator() {
+        return iGenerator;
+    }
+
+    public void setiGenerator(IGenerator iGenerator) {
+        this.iGenerator = iGenerator;
+    }
+
+    public IDbWritor getiDbWritor() {
         return iDbWritor;
     }
 
-    @Override
-    public IDbManager getIDbManager() {
+    public void setiDbWritor(IDbWritor iDbWritor) {
+        this.iDbWritor = iDbWritor;
+    }
+
+    public IDbManager getiDbManager() {
         return iDbManager;
     }
 
-    @Override
-    public IGenerator getIGenerator() {
-        return iGenerator;
+    public void setiDbManager(IDbManager iDbManager) {
+        this.iDbManager = iDbManager;
     }
 }

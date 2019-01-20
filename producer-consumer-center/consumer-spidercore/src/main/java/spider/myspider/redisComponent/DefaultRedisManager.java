@@ -14,14 +14,15 @@ import spider.spiderCore.idbcore.IDbManager;
  */
 @Component
 public class DefaultRedisManager implements IDbManager {
-    private static final Logger log = Logger.getLogger(DefaultRedisDataBase.class);
+    private static final Logger log = Logger.getLogger(DefaultDataUtil.class);
     private IDataBase iDataBase;
-    @Autowired
     private RedisTemplate redisTemplate;
 
-    @Autowired(required = false)
-    public DefaultRedisManager(IDataBase iDataBase) {
+    @Autowired
+    public DefaultRedisManager(IDataBase iDataBase,
+                               RedisTemplate redisTemplate) {
         this.iDataBase = iDataBase;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
@@ -43,13 +44,16 @@ public class DefaultRedisManager implements IDbManager {
     public void close() {
     }
 
+    /**
+     * desc:将入口url和待抓取任务url合并
+     **/
     @Override
     public void merge() {
         String seeds = (String) iDataBase.getCrawlDB();
-        String fetchs = (String) iDataBase.getFetchDB();
+        String fetch = (String) iDataBase.getFetchDB();
         while (redisTemplate.opsForList().size(seeds) > 0) {
             String seedStr = (String) redisTemplate.opsForList().leftPop(seeds);
-            redisTemplate.opsForList().rightPush(fetchs, seedStr);
+            redisTemplate.opsForList().rightPush(fetch, seedStr);
         }
         log.info("合并任务库");
     }

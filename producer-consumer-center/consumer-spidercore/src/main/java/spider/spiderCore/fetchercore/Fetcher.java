@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import spider.spiderCore.idbcore.IDataUtil;
+import spider.myspider.redisComponent.DefaultDataUtil;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -23,16 +23,24 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class Fetcher {
     private static final Logger LOG = LoggerFactory.getLogger(Fetcher.class);
-    @Autowired
     private FetchQueue fetchQueue;
-    @Autowired
     private QueueFeeder queueFeeder;
-    @Autowired
     private FetcherState fetcherState;
-    @Autowired
-    private IDataUtil iDataUtil;
-    @Value(value = "${spider.totalThreads}")
+    private DefaultDataUtil defaultDataUtil;
     private int threads;
+
+    @Autowired
+    public Fetcher(FetchQueue fetchQueue,
+                   QueueFeeder queueFeeder,
+                   FetcherState fetcherState,
+                   DefaultDataUtil defaultDataUtil,
+                   @Value(value = "${spider.totalThreads}") int threads) {
+        this.fetchQueue = fetchQueue;
+        this.queueFeeder = queueFeeder;
+        this.fetcherState = fetcherState;
+        this.defaultDataUtil = defaultDataUtil;
+        this.threads = threads;
+    }
 
     /**
      * 抓取当前所有任务，会阻塞到爬取完成 开启 feeder 和 执行爬取线程。
@@ -41,10 +49,10 @@ public class Fetcher {
      */
     public Integer fetcherStart() {
         //合并 入口和解析 任务库到 运行任务库
-        iDataUtil.getIDbManager().merge();
+        defaultDataUtil.getiDbManager().merge();
         try {
-            iDataUtil.getIDbWritor().initSegmentWriter();
-            LOG.info("数据库 工具" + iDataUtil.getClass().getName());
+            defaultDataUtil.getiDbWritor().initSegmentWriter();
+            LOG.info("数据库 工具" + defaultDataUtil.getClass().getName());
             fetcherState.setFetcherRunning(true);
             //创建线程池，允许核心线程超时关闭
             ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(threads + 1, threads + (threads / 2), 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
@@ -79,11 +87,11 @@ public class Fetcher {
             if (queueFeeder != null) {
                 queueFeeder.closeGenerator();
             }
-            iDataUtil.getIDbWritor().closeSegmentWriter();
-            LOG.info("close segmentWriter:" + iDataUtil.getIDbWritor().getClass().getName());
+            defaultDataUtil.getiDbWritor().closeSegmentWriter();
+            LOG.info("close segmentWriter:" + defaultDataUtil.getiDbWritor().getClass().getName());
         }
         //返回生成的任务总数
-        return iDataUtil.getIGenerator().totalGeneretNum();
+        return defaultDataUtil.getiGenerator().totalGeneretNum();
     }
 
     /**
@@ -113,7 +121,7 @@ public class Fetcher {
         return fetcherState;
     }
 
-    public IDataUtil getiDataUtil() {
-        return iDataUtil;
+    public DefaultDataUtil getiDataUtil() {
+        return defaultDataUtil;
     }
 }

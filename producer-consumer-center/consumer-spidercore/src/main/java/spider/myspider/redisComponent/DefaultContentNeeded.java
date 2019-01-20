@@ -8,7 +8,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.entitys.RegexRule;
-import spider.spiderCore.iexecutorCom.IContentNeed;
+import spider.spiderCore.iexecutorCom.IContentNeeded;
 import spider.spiderCore.iexecutorCom.TransferToParser;
 
 /**
@@ -18,14 +18,18 @@ import spider.spiderCore.iexecutorCom.TransferToParser;
  */
 @Component(value = "defaultContentPageFilter")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DefaultContentNeed implements IContentNeed {
-    private static final Logger log = Logger.getLogger(DefaultContentNeed.class);
+public class DefaultContentNeeded implements IContentNeeded {
+    private static final Logger log = Logger.getLogger(DefaultContentNeeded.class);
+    private RegexRule regexRule;
+    private SiteConfig siteConfig;
+    private TransferToParser<ResponseData> transferToParser;
+
     @Autowired
-    RegexRule regexRule;
-    @Autowired
-    SiteConfig siteConfig;
-    @Autowired
-    TransferToParser<ResponseData> transferToParser;
+    public DefaultContentNeeded(RegexRule regexRule, SiteConfig siteConfig, TransferToParser<ResponseData> transferToParser) {
+        this.regexRule = regexRule;
+        this.siteConfig = siteConfig;
+        this.transferToParser = transferToParser;
+    }
 
     /**
      * desc: 符合正文提取规则。调用自定义解析页面

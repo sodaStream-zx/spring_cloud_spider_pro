@@ -25,8 +25,12 @@ import org.springframework.stereotype.Component;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultParseProcess implements IParseProcess<MyNew, ParseData, DomainRule> {
     private static final Logger LOG = Logger.getLogger(DefaultParseProcess.class);
-    @Autowired
     private ParesCounter paresCounter;
+
+    @Autowired
+    public DefaultParseProcess(ParesCounter paresCounter) {
+        this.paresCounter = paresCounter;
+    }
 
     /**
      * @Title：${enclosing_method}

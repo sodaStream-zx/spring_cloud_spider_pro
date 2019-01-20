@@ -18,12 +18,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParseDataGenerator implements IParseDataGenerator<ParseData> {
     private static final Logger log = Logger.getLogger(ParseDataGenerator.class);
-    @Autowired
     private IResponseDataFilter<ParseData> iResponseDataFilter;
-    @Value(value = "${my.responseList.redisKey}")
     private String dataKey;
-    @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    public ParseDataGenerator(IResponseDataFilter<ParseData> iResponseDataFilter,
+                              RedisTemplate redisTemplate,
+                              @Value(value = "${my.responseList.redisKey}") String dataKey) {
+        this.iResponseDataFilter = iResponseDataFilter;
+        this.redisTemplate = redisTemplate;
+        this.dataKey = dataKey;
+    }
 
     @Override
     public ParseData getData() {

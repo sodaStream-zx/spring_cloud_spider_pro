@@ -38,12 +38,13 @@ import java.util.zip.GZIPInputStream;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultHttpRequest implements ISendRequest<ResponseData> {
     public static final Logger LOG = LoggerFactory.getLogger(DefaultHttpRequest.class);
-    @Autowired
     private HttpConfig httpConfig;
-    @Autowired
     private IProxyGain iProxyGain;
 
-    public DefaultHttpRequest() {
+    @Autowired
+    public DefaultHttpRequest(HttpConfig httpConfig, IProxyGain iProxyGain) {
+        this.httpConfig = httpConfig;
+        this.iProxyGain = iProxyGain;
     }
 
     /**

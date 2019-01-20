@@ -4,10 +4,10 @@ import commoncore.customUtils.StringSplitUtil;
 import commoncore.entity.configEntity.SiteConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import spider.myspider.redisComponent.DefaultDataUtil;
 import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.entitys.RegexRule;
 import spider.spiderCore.fetchercore.Fetcher;
-import spider.spiderCore.idbcore.IDataUtil;
 import spider.spiderCore.idbcore.IDbWritor;
 import spider.spiderCore.iexecutorCom.ISpider;
 
@@ -36,13 +36,13 @@ public abstract class AbstractSpider implements ISpider {
     //执行调度器
     protected Fetcher fetcher;
     //数据存储器（考虑将种子注入和 解析注入分开）
-    protected IDataUtil iDataUtil;
+    protected DefaultDataUtil defaultDataUtil;
 
-    public AbstractSpider(SeedData seedData, RegexRule regexRule, Fetcher fetcher, IDataUtil iDataUtil) {
+    public AbstractSpider(SeedData seedData, RegexRule regexRule, Fetcher fetcher, DefaultDataUtil defaultDataUtil) {
         this.seedData = seedData;
         this.regexRule = regexRule;
         this.fetcher = fetcher;
-        this.iDataUtil = iDataUtil;
+        this.defaultDataUtil = defaultDataUtil;
     }
 
     /**
@@ -81,7 +81,7 @@ public abstract class AbstractSpider implements ISpider {
      **/
     @Override
     public boolean injectSeeds() {
-        IDbWritor iDbWritor = iDataUtil.getIDbWritor();
+        IDbWritor iDbWritor = defaultDataUtil.getiDbWritor();
         CrawlDatums seeds = seedData.getSeeds();
         CrawlDatums forceSeeds = seedData.getForcedSeeds();
         try {
@@ -105,11 +105,11 @@ public abstract class AbstractSpider implements ISpider {
         LOG.info("加载配置？" + loadState);
         //判断是否断点。不开启，则，启动前 清理数据库
         if (!siteConfig.isRes()) {
-            if (iDataUtil.getIDbManager().isDBExists()) {
-                iDataUtil.getIDbManager().clear();
+            if (defaultDataUtil.getiDbManager().isDBExists()) {
+                defaultDataUtil.getiDbManager().clear();
             }
         }
-        iDataUtil.getIDbManager().open();
+        defaultDataUtil.getiDbManager().open();
         //注入入口
         boolean injectSeedState = this.injectSeeds();
         LOG.info("注入种子？" + injectSeedState);
@@ -132,7 +132,7 @@ public abstract class AbstractSpider implements ISpider {
                 break;
             }
         }*/
-        iDataUtil.getIDbManager().close();
+        defaultDataUtil.getiDbManager().close();
         this.afterStopSpider();
         return true;
     }
@@ -150,5 +150,61 @@ public abstract class AbstractSpider implements ISpider {
     @Override
     public void setConfig(SiteConfig config) {
         this.siteConfig = config;
+    }
+
+    public SiteConfig getSiteConfig() {
+        return siteConfig;
+    }
+
+    public void setSiteConfig(SiteConfig siteConfig) {
+        this.siteConfig = siteConfig;
+    }
+
+    public SeedData getSeedData() {
+        return seedData;
+    }
+
+    public void setSeedData(SeedData seedData) {
+        this.seedData = seedData;
+    }
+
+    public RegexRule getRegexRule() {
+        return regexRule;
+    }
+
+    public void setRegexRule(RegexRule regexRule) {
+        this.regexRule = regexRule;
+    }
+
+    public Fetcher getFetcher() {
+        return fetcher;
+    }
+
+    public void setFetcher(Fetcher fetcher) {
+        this.fetcher = fetcher;
+    }
+
+    public DefaultDataUtil getDefaultDataUtil() {
+        return defaultDataUtil;
+    }
+
+    public void setDefaultDataUtil(DefaultDataUtil defaultDataUtil) {
+        this.defaultDataUtil = defaultDataUtil;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public static int getRUNNING() {
+        return RUNNING;
+    }
+
+    public static int getSTOPED() {
+        return STOPED;
     }
 }

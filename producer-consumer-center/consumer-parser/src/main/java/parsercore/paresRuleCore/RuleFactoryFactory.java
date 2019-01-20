@@ -25,12 +25,18 @@ import java.util.HashMap;
 public class RuleFactoryFactory implements IRuleFactory<DomainRule> {
     private static final Logger log = Logger.getLogger(RuleFactoryFactory.class);
     private final HashMap<String, DomainRule> ruleList = new HashMap<>(2);
-    @Autowired
     private IRedisDao iRedisDao;
-    @Autowired
     private IMysqlDao<MyNew, DomainRule> mysqlDao;
-    @Value(value = "${my.ruleFactory.maxSize}")
     private int ruleListMaxSize;
+
+    @Autowired
+    public RuleFactoryFactory(IRedisDao iRedisDao,
+                              IMysqlDao<MyNew, DomainRule> mysqlDao,
+                              @Value(value = "${my.ruleFactory.maxSize}") int ruleListMaxSize) {
+        this.iRedisDao = iRedisDao;
+        this.mysqlDao = mysqlDao;
+        this.ruleListMaxSize = ruleListMaxSize;
+    }
 
     @Override
     public DomainRule getRule(String siteName) {

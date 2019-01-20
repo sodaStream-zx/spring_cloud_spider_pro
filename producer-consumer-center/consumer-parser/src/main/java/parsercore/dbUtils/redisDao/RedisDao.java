@@ -18,12 +18,17 @@ import parsercore.dbUtils.mysqlDao.IMysqlDao;
 @Component
 public class RedisDao implements IRedisDao {
     private static Logger LOG = Logger.getLogger(RedisDao.class);
-    @Autowired
     private IMysqlDao<MyNew, DomainRule> iMysqlDao;
-    @Autowired
     private RedisTemplate redisTemplate;
-    @Value(value = "${my.domain.mapName}")
     private String domainMapName;
+
+    @Autowired
+    public RedisDao(IMysqlDao<MyNew, DomainRule> iMysqlDao, RedisTemplate redisTemplate,
+                    @Value(value = "${my.domain.mapName}") String domainMapName) {
+        this.iMysqlDao = iMysqlDao;
+        this.redisTemplate = redisTemplate;
+        this.domainMapName = domainMapName;
+    }
 
     /**
      * desc:缓存到reids中

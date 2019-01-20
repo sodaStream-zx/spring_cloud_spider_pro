@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.idbcore.IDbWritor;
-import spider.spiderCore.iexecutorCom.IContentNeed;
+import spider.spiderCore.iexecutorCom.IContentNeeded;
 import spider.spiderCore.iexecutorCom.IExecutor;
-import spider.spiderCore.iexecutorCom.INextFilter;
+import spider.spiderCore.iexecutorCom.INextLinksFilter;
 import spider.spiderCore.iexecutorCom.ISimpleParse;
 import spider.spiderCore.ihttp.ISendRequest;
 
@@ -26,23 +26,25 @@ import spider.spiderCore.ihttp.ISendRequest;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultExecutor implements IExecutor<CrawlDatums> {
     private static final Logger log = Logger.getLogger(DefaultExecutor.class);
-    @Autowired
+
     private IDbWritor iDbWritor;
     private ISendRequest<ResponseData> iSendRequest;
     private ISimpleParse<CrawlDatums, ResponseData> iSimpleParse;
-    private IContentNeed IContentNeed;
-    private INextFilter INextFilter;
+    private IContentNeeded IContentNeeded;
+    private INextLinksFilter INextLinksFilter;
 
-    public DefaultExecutor() {
+    @Autowired
+    public DefaultExecutor(IDbWritor iDbWritor) {
+        this.iDbWritor = iDbWritor;
         log.info("加载默认执行器组件");
         this.iSendRequest = BeanGainer.getBean("defaultRequest", ISendRequest.class);
         this.iSimpleParse = BeanGainer.getBean("defaultSimpleParse", ISimpleParse.class);
-        this.IContentNeed = BeanGainer.getBean("defaultContentPageFilter", IContentNeed.class);
-        this.INextFilter = BeanGainer.getBean("defaultNextFilter", INextFilter.class);
+        this.IContentNeeded = BeanGainer.getBean("defaultContentPageFilter", IContentNeeded.class);
+        this.INextLinksFilter = BeanGainer.getBean("defaultNextFilter", INextLinksFilter.class);
         log.info("isendrequest:" + iSendRequest
                 + "\nisimparse:" + iSimpleParse
-                + "\nicontentPageFilter:" + IContentNeed
-                + "\ninextfilter:" + INextFilter);
+                + "\nicontentPageFilter:" + IContentNeeded
+                + "\ninextfilter:" + INextLinksFilter);
     }
 
     @Override
@@ -65,7 +67,7 @@ public class DefaultExecutor implements IExecutor<CrawlDatums> {
 
         //3.传输当前页面到解析模块
 
-        IContentNeed.getContentPageData(responseData);
+        IContentNeeded.getContentPageData(responseData);
 
         //4.解析响应页面的urls 并过滤
         CrawlDatums next = iSimpleParse.parseLinks(responseData);
@@ -73,8 +75,8 @@ public class DefaultExecutor implements IExecutor<CrawlDatums> {
             log.info("当前页面未解析出后续任务");
         } else {
             //5.过滤解析的后续任务
-            if (INextFilter != null) {
-                next = INextFilter.filter(next);
+            if (INextLinksFilter != null) {
+                next = INextLinksFilter.filter(next);
             }
             //6.写入解析的后续任务，
             iDbWritor.writeParseSegment(next);
@@ -88,8 +90,8 @@ public class DefaultExecutor implements IExecutor<CrawlDatums> {
                 "iDbWritor=" + iDbWritor +
                 ", iSendRequest=" + iSendRequest +
                 ", iSimpleParse=" + iSimpleParse +
-                ", IContentNeed=" + IContentNeed +
-                ", INextFilter=" + INextFilter +
+                ", IContentNeeded=" + IContentNeeded +
+                ", INextLinksFilter=" + INextLinksFilter +
                 '}';
     }
 }

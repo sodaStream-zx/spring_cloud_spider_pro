@@ -24,13 +24,16 @@ import java.util.List;
 public class ConfigFromMysqlToRedis {
 
     private static final Logger LOG = Logger.getLogger(ConfigFromMysqlToRedis.class);
-    @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
     private SitesConfigJTDao sitesConfigJTDao;
+    private SiteConfigDao siteConfigDao;
 
     @Autowired
-    private SiteConfigDao siteConfigDao;
+    public ConfigFromMysqlToRedis(RedisTemplate redisTemplate, SitesConfigJTDao sitesConfigJTDao, SiteConfigDao siteConfigDao) {
+        this.redisTemplate = redisTemplate;
+        this.sitesConfigJTDao = sitesConfigJTDao;
+        this.siteConfigDao = siteConfigDao;
+    }
 
     /**
      * desc:主节点需要该功能从mysql数据库读到redis队列

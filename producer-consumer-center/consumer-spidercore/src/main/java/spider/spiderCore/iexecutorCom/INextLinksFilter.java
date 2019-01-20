@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 hu
+ * Copyright (C) 2017 hu
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,17 +17,13 @@
  */
 package spider.spiderCore.iexecutorCom;
 
-import commoncore.entity.httpEntity.ResponseData;
+
+import spider.spiderCore.entitys.CrawlDatums;
 
 /**
- * @author 一杯咖啡
- * @desc 筛选当前页面时候需要 传送到正文解析器 解析
+ * @desc 解析出的后续任务过滤器
+ * @author Twilight
  */
-public interface IContentNeed {
-    /**
-     * desc:该接口用于将筛选当前页面 是否需要发送给后续解析器
-     *
-     * @param responseData 数据
-     **/
-    void getContentPageData(ResponseData responseData);
+public interface INextLinksFilter {
+     CrawlDatums filter(CrawlDatums datums);
 }

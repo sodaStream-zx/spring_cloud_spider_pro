@@ -7,6 +7,7 @@ import commoncore.entity.requestEntity.CrawlDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import spider.spiderCore.idbcore.IGenerator;
 
@@ -19,14 +20,23 @@ import spider.spiderCore.idbcore.IGenerator;
 public class QueueFeeder implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(QueueFeeder.class);
-    @Autowired
     private FetchQueue queue;
-    @Autowired
     private IGenerator<CrawlDatum> iGenerator;
     //queeue 大小最大值设置
-    private int queueMaxSize = 1000;
-    @Autowired
+    private int queueMaxSize;
+
     private FetcherState fetcherState;
+
+    @Autowired
+    public QueueFeeder(FetchQueue queue,
+                       IGenerator<CrawlDatum> iGenerator,
+                       @Value(value = "${generator.topNumber}") int queueMaxSize,
+                       FetcherState fetcherState) {
+        this.queue = queue;
+        this.iGenerator = iGenerator;
+        this.queueMaxSize = queueMaxSize;
+        this.fetcherState = fetcherState;
+    }
 
     /**
      * desc:关闭管道添加工具

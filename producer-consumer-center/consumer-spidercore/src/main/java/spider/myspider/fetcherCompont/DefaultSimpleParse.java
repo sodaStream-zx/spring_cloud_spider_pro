@@ -21,8 +21,13 @@ import spider.spiderCore.iexecutorCom.ISimpleParse;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponseData> {
     private static final Logger log = Logger.getLogger(DefaultSimpleParse.class);
-    @Autowired
+
     private RegexRule regexRule;
+
+    @Autowired
+    public DefaultSimpleParse(RegexRule regexRule) {
+        this.regexRule = regexRule;
+    }
 
     @Override
     public CrawlDatums parseLinks(ResponseData responseData) {

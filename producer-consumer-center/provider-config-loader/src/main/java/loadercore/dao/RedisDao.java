@@ -1,9 +1,10 @@
 package loadercore.dao;
 
 import commoncore.customUtils.SerializeUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.log4j.Logger;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
 
 /**
  * <p>项目名称: ${小型分布式爬虫} </p>
@@ -14,19 +15,20 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 public class RedisDao {
-    @Autowired
-    RedisTemplate redisTemplate;
+    private static final Logger log = Logger.getLogger(RedisDao.class);
+    private RedisTemplate redisTemplate;
+
+    public RedisDao(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+
     /**
      * @Title：${enclosing_method}
      * @Description: [redis 插入序列化的对象]
      */
-    public boolean insertAObject(String keyString, Object obj) {
+    public boolean insertAObject(String keyString, Object obj) throws Exception {
         String objStr = null;
-        try {
-            objStr = SerializeUtil.serializeToString(obj);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        objStr = SerializeUtil.serializeToString(obj);
         Long reindex = redisTemplate.opsForSet().add(keyString, objStr);
         return reindex != 0;
     }

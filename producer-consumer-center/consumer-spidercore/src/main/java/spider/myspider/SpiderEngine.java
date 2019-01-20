@@ -17,19 +17,17 @@ import spider.spiderCore.iexecutorCom.ISpider;
  */
 @Component
 public class SpiderEngine {
-
     private static final Logger LOG = Logger.getLogger(SpiderEngine.class.getSimpleName());
-
-    /**
-     * 数据存储组件
-     */
-    @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
     private ISpider iSpider;
+    private SiteConfig siteConfig;
 
     @Autowired
-    private SiteConfig siteConfig;
+    public SpiderEngine(RedisTemplate redisTemplate, ISpider iSpider, SiteConfig siteConfig) {
+        this.redisTemplate = redisTemplate;
+        this.iSpider = iSpider;
+        this.siteConfig = siteConfig;
+    }
 
     /**
      * desc: 初始化爬虫,监听消息
@@ -54,7 +52,7 @@ public class SpiderEngine {
                     return false;
                 }
                 try {
-                    //获取序列化的字符串 生成siteConfig对象
+                    //获取序列化的字符串 生成siteConfig对象 （一个新对象）
                     SiteConfig sc = (SiteConfig) SerializeUtil.deserializeToObject(siteConfigString);
                     LOG.info("【" + sc.getSiteName() + "】爬虫装载中------------->>>");
 

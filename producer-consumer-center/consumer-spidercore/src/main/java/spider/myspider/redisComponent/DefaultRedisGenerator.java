@@ -20,16 +20,23 @@ import spider.spiderCore.idbcore.IGeneratorFilter;
 @Component
 public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
     public static final Logger LOG = LoggerFactory.getLogger(DefaultRedisGenerator.class);
-    @Autowired
     private IDataBase<String> IDataBase;
-    @Autowired(required = false)
-    private IGeneratorFilter<CrawlDatum> filter = null;
-    @Value(value = "${generator.topNumber}")
+    private IGeneratorFilter<CrawlDatum> filter;
     private int topN;
-    @Autowired
     private RedisTemplate redisTemplate;
-    //提取工具计数器
+    //提取工具计数
     private int totalGenerate = 0;
+
+    @Autowired
+    public DefaultRedisGenerator(@Autowired(required = false) IGeneratorFilter<CrawlDatum> filter,
+                                 IDataBase<String> IDataBase,
+                                 RedisTemplate redisTemplate,
+                                 @Value(value = "${generator.topNumber}") int topN) {
+        this.filter = filter;
+        this.IDataBase = IDataBase;
+        this.redisTemplate = redisTemplate;
+        this.topN = topN;
+    }
 
     @Override
     public CrawlDatum next() {

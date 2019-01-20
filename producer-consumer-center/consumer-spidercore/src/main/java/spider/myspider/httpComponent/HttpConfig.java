@@ -30,6 +30,18 @@ public class HttpConfig {
     private boolean dooutput = true;
     private boolean followRedirects = false;
 
+    public HttpConfig() {
+    }
+
+    public HttpConfig(String cookie, MultiValueMap headerMap, MultiValueMap postBodyMap, boolean doinput, boolean dooutput, boolean followRedirects) {
+        this.cookie = cookie;
+        this.headerMap = headerMap;
+        this.postBodyMap = postBodyMap;
+        this.doinput = doinput;
+        this.dooutput = dooutput;
+        this.followRedirects = followRedirects;
+    }
+
     @Override
     public String toString() {
         return "HttpConfig{" +

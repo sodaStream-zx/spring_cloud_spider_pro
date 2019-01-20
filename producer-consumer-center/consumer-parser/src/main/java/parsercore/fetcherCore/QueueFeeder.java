@@ -19,18 +19,22 @@ import parsercore.fetcherCore.generatorcore.IParseDataGenerator;
 @Component
 //@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class QueueFeeder implements Runnable {
-
     private static final Logger LOG = LoggerFactory.getLogger(QueueFeeder.class);
-
-    @Autowired
     private FetchQueue queue;
-    @Autowired
     private IParseDataGenerator<ParseData> iParseDataGenerator;
-    @Value(value = "${my.queue.maxSize}")
     private int queueMaxSize;
+    private FetcherState fetcherState;
 
     @Autowired
-    private FetcherState fetcherState;
+    public QueueFeeder(FetchQueue queue,
+                       IParseDataGenerator<ParseData> iParseDataGenerator,
+                       FetcherState fetcherState,
+                       @Value(value = "${my.queue.maxSize}") int queueMaxSize) {
+        this.queue = queue;
+        this.iParseDataGenerator = iParseDataGenerator;
+        this.fetcherState = fetcherState;
+        this.queueMaxSize = queueMaxSize;
+    }
 
     /**
      * desc:关闭管道添加工具

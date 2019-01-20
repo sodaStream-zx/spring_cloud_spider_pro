@@ -65,7 +65,7 @@ fetcher:
 defaultparse:
   autoDetectImg: false
 generator:
-  topNumber: 2000
+  topNumber: 1000
 redisDb:
   redirectList: redirect
   undoneList: undone

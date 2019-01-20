@@ -16,8 +16,13 @@ import spider.spiderCore.iexecutorCom.TransferToParser;
 @Component
 public class TransferToRedis implements TransferToParser<ResponseData> {
 
-    @Autowired
+
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    public TransferToRedis(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     @Override
     public void transfer(ResponseData pd) {

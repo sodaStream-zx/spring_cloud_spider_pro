@@ -21,12 +21,16 @@ import spider.spiderCore.idbcore.IDbWritor;
 @Scope("prototype")
 public class DefaultRedisDbWritor implements IDbWritor<CrawlDatum, CrawlDatums> {
     private static final Logger log = Logger.getLogger(DefaultRedisDbWritor.class);
-    @Autowired
     private IDbManager iDbManager;
-    @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
     private IDataBase iDataBase;
+
+    @Autowired
+    public DefaultRedisDbWritor(IDbManager iDbManager, RedisTemplate redisTemplate, IDataBase iDataBase) {
+        this.iDbManager = iDbManager;
+        this.redisTemplate = redisTemplate;
+        this.iDataBase = iDataBase;
+    }
 
     /**
      * desc: 任务强制注入

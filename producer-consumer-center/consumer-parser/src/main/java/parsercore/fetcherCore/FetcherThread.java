@@ -22,16 +22,17 @@ import parsercore.parseExecutor.IParesExecutor;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class FetcherThread implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(FetcherThread.class);
-    @Autowired
     private FetchQueue fetchQueue;
-    @Autowired
     private FetcherState fetcherState;
     private IParesExecutor<ParseData> iParesExecutor;
 
     /**
      * desc: 实例化时，动态获取解析器
      **/
-    public FetcherThread() {
+    @Autowired
+    public FetcherThread(FetchQueue fetchQueue, FetcherState fetcherState) {
+        this.fetchQueue = fetchQueue;
+        this.fetcherState = fetcherState;
         this.iParesExecutor = BeanGainer.getBean("paresExecutor", DefaultParesExecutor.class);
     }
 

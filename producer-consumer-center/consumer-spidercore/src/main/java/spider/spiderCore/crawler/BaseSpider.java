@@ -3,9 +3,9 @@ package spider.spiderCore.crawler;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import spider.myspider.redisComponent.DefaultDataUtil;
 import spider.spiderCore.entitys.RegexRule;
 import spider.spiderCore.fetchercore.Fetcher;
-import spider.spiderCore.idbcore.IDataUtil;
 import spider.spiderCore.idbcore.IGenerator;
 
 
@@ -21,8 +21,8 @@ public class BaseSpider extends AbstractSpider {
     private IGenerator iGenerator;
 
     @Autowired
-    public BaseSpider(SeedData seedData, RegexRule regexRule, Fetcher fetcher, IDataUtil iDataUtil) {
-        super(seedData, regexRule, fetcher, iDataUtil);
+    public BaseSpider(SeedData seedData, RegexRule regexRule, Fetcher fetcher, DefaultDataUtil defaultDataUtil) {
+        super(seedData, regexRule, fetcher, defaultDataUtil);
     }
 
     @Override
