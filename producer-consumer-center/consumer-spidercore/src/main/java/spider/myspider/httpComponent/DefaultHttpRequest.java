@@ -3,6 +3,7 @@ package spider.myspider.httpComponent;
 import com.google.gson.Gson;
 import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.exceptionHandle.MyException;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,9 +50,11 @@ public class DefaultHttpRequest implements ISendRequest<ResponseData> {
 
     /**
      * desc: 将httpResponse 封装为responsePage
+     *
+     * @throws IOException,MyException
      **/
     @Override
-    public ResponseData converterResponsePage(CrawlDatum crawlDatum) {
+    public ResponseData converterResponsePage(CrawlDatum crawlDatum) throws IOException, MyException {
         // LOG.info("httputil 配置" + this.httpConfig.toString());
         HttpResponse httpResponse = this.sendRequest(crawlDatum);
         ResponseData responseData = new ResponseData(
@@ -96,109 +99,103 @@ public class DefaultHttpRequest implements ISendRequest<ResponseData> {
 
     /**
      * desc: 发送请求，返回响应数据
+     *
+     * @throws IOException,MyException
      **/
     @Override
-    public HttpResponse sendRequest(CrawlDatum crawlDatum) {
+    public HttpResponse sendRequest(CrawlDatum crawlDatum) throws IOException, MyException {
         HttpURLConnection con = null;
         InputStream is = null;
         int code = -1;
         int realRedirectNum = Math.max(0, httpConfig.getMaxRedirect());
-        try {
-            URL url = new URL(crawlDatum.getUrl());
-            HttpResponse response = new HttpResponse(url);
-            //请求重试次数
-            for (int redirect = 0; redirect <= realRedirectNum; redirect++) {
-                Proxy proxy = iProxyGain.nextRandom();
-                if (proxy == null) {
-                    con = (HttpURLConnection) url.openConnection();
-                } else {
-                    con = (HttpURLConnection) url.openConnection(proxy);
-                }
-                con.setRequestMethod(crawlDatum.getMethod());
-                this.configHttpRequest(con);
-                //post 请求写入信息
-                MultiValueMap postBody = httpConfig.getPostBodyMap();
-                if (postBody != null && postBody.size() > 0) {
-                    OutputStream postStream = con.getOutputStream();
-                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(postStream, StandardCharsets.UTF_8));
-                    String jsonPostBody = new Gson().toJson(postBody);
-                    bufferedWriter.write(jsonPostBody);
-                    bufferedWriter.flush();
-                    bufferedWriter.close();
-                }
-                code = con.getResponseCode();
-                /*只记录第一次返回的code*/
-                if (redirect == 0) {
-                    response.code(code);
-                }
-                if (code == HttpURLConnection.HTTP_NOT_FOUND) {
-                    response.setNotFound(true);
-                    return response;
-                }
-                boolean needBreak = false;
-                switch (code) {
-                    case HttpURLConnection.HTTP_MOVED_PERM:
-                    case HttpURLConnection.HTTP_MOVED_TEMP:
-                        response.setRedirect(true);
-                        if (redirect == httpConfig.getMaxRedirect()) {
-                            throw new Exception("redirect to much time");
-                        }
-                        String location = con.getHeaderField("Location");
-                        if (location == null) {
-                            throw new Exception("redirect with no location");
-                        }
-                        String originUrl = url.toString();
-                        url = new URL(url, location);
-                        response.setRealUrl(url);
-                        LOG.info("redirect from " + originUrl + " to " + url.toString());
-                        continue;
-                    default:
-                        needBreak = true;
-                        break;
-                }
-                if (needBreak) {
+        URL url = new URL(crawlDatum.getUrl());
+        HttpResponse response = new HttpResponse(url);
+        //请求重试次数
+        for (int redirect = 0; redirect <= realRedirectNum; redirect++) {
+            Proxy proxy = iProxyGain.nextRandom();
+            if (proxy == null) {
+                con = (HttpURLConnection) url.openConnection();
+            } else {
+                con = (HttpURLConnection) url.openConnection(proxy);
+            }
+            con.setRequestMethod(crawlDatum.getMethod());
+            this.configHttpRequest(con);
+            //post 请求写入信息
+            MultiValueMap postBody = httpConfig.getPostBodyMap();
+            if (postBody != null && postBody.size() > 0) {
+                OutputStream postStream = con.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(postStream, StandardCharsets.UTF_8));
+                String jsonPostBody = new Gson().toJson(postBody);
+                bufferedWriter.write(jsonPostBody);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+            }
+            code = con.getResponseCode();
+            /*只记录第一次返回的code*/
+            if (redirect == 0) {
+                response.code(code);
+            }
+            if (code == HttpURLConnection.HTTP_NOT_FOUND) {
+                response.setNotFound(true);
+                return response;
+            }
+            boolean needBreak = false;
+            switch (code) {
+                case HttpURLConnection.HTTP_MOVED_PERM:
+                case HttpURLConnection.HTTP_MOVED_TEMP:
+                    response.setRedirect(true);
+                    if (redirect == httpConfig.getMaxRedirect()) {
+                        throw new MyException("redirect to much time");
+                    }
+                    String location = con.getHeaderField("Location");
+                    if (location == null) {
+                        throw new MyException("redirect with no location");
+                    }
+                    String originUrl = url.toString();
+                    url = new URL(url, location);
+                    response.setRealUrl(url);
+                    LOG.info("redirect from " + originUrl + " to " + url.toString());
+                    continue;
+                default:
+                    needBreak = true;
+                    break;
+            }
+            if (needBreak) {
+                break;
+            }
+        }
+
+        is = con.getInputStream();
+        String contentEncoding = con.getContentEncoding();
+        if (contentEncoding != null && contentEncoding.equals("gzip")) {
+            is = new GZIPInputStream(is);
+        }
+
+        byte[] buf = new byte[2048];
+        int read;
+        int sum = 0;
+        int maxsize = httpConfig.getMaxReceiveSize() * 1024 * 1024;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        while ((read = is.read(buf)) != -1) {
+            if (maxsize > 0) {
+                sum = sum + read;
+                if (maxsize > 0 && sum > maxsize) {
+                    read = maxsize - (sum - read);
+                    bos.write(buf, 0, read);
                     break;
                 }
             }
-
-            is = con.getInputStream();
-            String contentEncoding = con.getContentEncoding();
-            if (contentEncoding != null && contentEncoding.equals("gzip")) {
-                is = new GZIPInputStream(is);
-            }
-
-            byte[] buf = new byte[2048];
-            int read;
-            int sum = 0;
-            int maxsize = httpConfig.getMaxReceiveSize() * 1024 * 1024;
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            while ((read = is.read(buf)) != -1) {
-                if (maxsize > 0) {
-                    sum = sum + read;
-                    if (maxsize > 0 && sum > maxsize) {
-                        read = maxsize - (sum - read);
-                        bos.write(buf, 0, read);
-                        break;
-                    }
-                }
-                bos.write(buf, 0, read);
-            }
-            response.content(bos.toByteArray());
-            response.headers(con.getHeaderFields());
-            bos.close();
-            return response;
-        } catch (Exception ex) {
-            LOG.error("someting was wrong" + ex.getCause() + ":" + ex.getMessage());
-            return null;
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    LOG.error("关闭输入流出错" + e.getCause() + ":" + e.getMessage());
-                }
-            }
+            bos.write(buf, 0, read);
         }
+        response.content(bos.toByteArray());
+        response.headers(con.getHeaderFields());
+        bos.close();
+        if (is != null) {
+            is.close();
+        }
+        return response;
+
+
     }
 
     public void removeHeader(String key) {

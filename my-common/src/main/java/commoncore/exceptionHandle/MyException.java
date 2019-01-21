@@ -6,22 +6,25 @@ package commoncore.exceptionHandle;
  * @createTime 2019-01-21-00:42
  */
 public class MyException extends Exception {
+    private int exId;
     private String code;
-    private String reason;
     private String msg;
-    private String className;
+    private String throwLocaltion;
+    private String requestUrl;
+
+    public MyException(String message) {
+        super(message);
+    }
 
     public MyException() {
     }
 
-    @Override
-    public String toString() {
-        return "MyException{" +
-                "code='" + code + '\'' +
-                ", reason='" + reason + '\'' +
-                ", msg='" + msg + '\'' +
-                ", className='" + className + '\'' +
-                '}';
+    public int getExId() {
+        return exId;
+    }
+
+    public void setExId(int exId) {
+        this.exId = exId;
     }
 
     public String getCode() {
@@ -32,14 +35,6 @@ public class MyException extends Exception {
         this.code = code;
     }
 
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
     public String getMsg() {
         return msg;
     }
@@ -48,11 +43,30 @@ public class MyException extends Exception {
         this.msg = msg;
     }
 
-    public String getClassName() {
-        return className;
+    public String getThrowLocaltion() {
+        return throwLocaltion;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setThrowLocaltion(String throwLocaltion) {
+        this.throwLocaltion = throwLocaltion;
+    }
+
+    public String getRequestUrl() {
+        return requestUrl;
+    }
+
+    public void setRequestUrl(String requestUrl) {
+        this.requestUrl = requestUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "MyException{" +
+                "exId=" + exId +
+                ", code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", throwLocaltion='" + throwLocaltion + '\'' +
+                ", requestUrl='" + requestUrl + '\'' +
+                '}';
     }
 }

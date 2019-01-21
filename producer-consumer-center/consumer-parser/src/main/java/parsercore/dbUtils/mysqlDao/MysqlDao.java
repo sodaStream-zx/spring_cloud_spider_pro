@@ -1,8 +1,8 @@
 package parsercore.dbUtils.mysqlDao;
 
 
-import commoncore.entity.paresEntity.DomainRule;
-import commoncore.entity.paresEntity.MyNew;
+import commoncore.entity.loadEntity.DomainRule;
+import commoncore.entity.loadEntity.MyNew;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

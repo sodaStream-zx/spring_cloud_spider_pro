@@ -1,8 +1,10 @@
 package spider.spiderCore.ihttp;
 
 import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.exceptionHandle.MyException;
 import spider.spiderCore.entitys.HttpResponse;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
 
 /**
@@ -24,7 +26,7 @@ public interface ISendRequest<T> {
     /**
      * desc:转换 封装 响应数据
      **/
-    T converterResponsePage(CrawlDatum crawlDatum);
+    T converterResponsePage(CrawlDatum crawlDatum) throws IOException, MyException;
 
     void addHeader(String key, String value);
 

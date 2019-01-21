@@ -1,4 +1,4 @@
-package commoncore.entity.configEntity;
+package commoncore.entity.loadEntity;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "siteConfig")
 public class SiteConfig implements Serializable {
+    private static final long serialVersionUID = -7895642865L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int scId;

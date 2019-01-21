@@ -33,36 +33,17 @@ public class ParesEngineApplication {
     private DataSource dataSource;
 
     @PostConstruct
-    public void show() {
+    public void show() throws SQLException {
         RedisSerializer stringSerializer = redisTemplate.getStringSerializer();
         redisTemplate.setKeySerializer(stringSerializer);
         redisTemplate.setValueSerializer(stringSerializer);
-        LOG.info("环境监视：\n");
-        //获取redis连接，连接失败则退出程序
-        RedisConnection redisCon = null;
-        try {
-            redisCon = redisTemplate.getConnectionFactory().getConnection();
-        } catch (Exception e) {
-            LOG.error("redis 连接失败");
-            redisCon.close();
-            System.exit(0);
-        } finally {
-            redisCon.close();
-        }
-        Connection connection = null;
-        try {
-            connection = dataSource.getConnection();
-        } catch (
-                SQLException e) {
-            LOG.error("数据库连接失败");
-            System.exit(0);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                LOG.error("数据库关闭连接失败");
-            }
-        }
+        LOG.info("redis连接 数据库连接测试：\n");
+
+        RedisConnection redisCon = redisTemplate.getConnectionFactory().getConnection();
+        redisCon.close();
+
+        Connection connection = dataSource.getConnection();
+        connection.close();
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,6 @@
-package commoncore.entity.paresEntity;
+package commoncore.entity.loadEntity.jpaDao;
 
+import commoncore.entity.loadEntity.DomainRule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @createTime 2019-01-15-16:40
  */
 @Repository
-public interface DomainRuleDao extends JpaRepository<DomainRule, Integer> {
+public interface DomainRuleJpaDao extends JpaRepository<DomainRule, Integer> {
 }

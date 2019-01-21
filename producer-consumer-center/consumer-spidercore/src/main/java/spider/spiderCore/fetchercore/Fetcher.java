@@ -50,46 +50,44 @@ public class Fetcher {
     public Integer fetcherStart() {
         //合并 入口和解析 任务库到 运行任务库
         defaultDataUtil.getiDbManager().merge();
-        try {
-            defaultDataUtil.getiDbWritor().initSegmentWriter();
-            LOG.info("数据库 工具" + defaultDataUtil.getClass().getName());
-            fetcherState.setFetcherRunning(true);
-            //创建线程池，允许核心线程超时关闭
-            ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(threads + 1, threads + (threads / 2), 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
-            threadsExecutor.allowCoreThreadTimeOut(true);
-            //任务生产者开始 ，添加上限1000个
-            threadsExecutor.execute(queueFeeder);
-            //等待管道先添加任务
-            SleepUtil.pause(2, 0);
-            //初始化消费者 从queue中读取任务
-            for (int i = 0; i < threads; i++) {
-                FetcherThread ft = BeanGainer.getBean("fetcherThread", FetcherThread.class);
-                if (ft == null) {
-                    this.stopFetcher();
-                    break;
-                }
-                threadsExecutor.execute(ft);
+        defaultDataUtil.getiDbWritor().initSegmentWriter();
+        LOG.info("数据库 工具" + defaultDataUtil.getClass().getName());
+        fetcherState.setFetcherRunning(true);
+        //创建线程池，允许核心线程超时关闭
+        ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(threads + 1, threads + (threads / 2), 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
+        threadsExecutor.allowCoreThreadTimeOut(true);
+        //任务生产者开始 ，添加上限1000个
+        threadsExecutor.execute(queueFeeder);
+        //等待管道先添加任务
+        SleepUtil.pause(2, 0);
+        //初始化消费者 从queue中读取任务
+        for (int i = 0; i < threads; i++) {
+            FetcherThread ft = BeanGainer.getBean("fetcherThread", FetcherThread.class);
+            if (ft == null) {
+                this.stopFetcher();
+                break;
             }
-            //主线程循环打印 线程池状态
-            do {
-                SleepUtil.pause(1, 0);
-                LOG.info("执行器状态:\n" + fetcherState.toString());
-                LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
-            } while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning());
-
-            //立即停止任务添加到管道
-            LOG.info("本地管道数量：" + fetchQueue.getSize());
-            this.stopFetcher();
-            threadsExecutor.shutdown();
-            LOG.info("线程池状态？？---" + threadsExecutor.toString());
-            LOG.info("线程池关闭？" + (threadsExecutor.isTerminated() ? "已关闭" : "未关闭"));
-        } finally {
-            if (queueFeeder != null) {
-                queueFeeder.closeGenerator();
-            }
-            defaultDataUtil.getiDbWritor().closeSegmentWriter();
-            LOG.info("close segmentWriter:" + defaultDataUtil.getiDbWritor().getClass().getName());
+            threadsExecutor.execute(ft);
         }
+        //主线程循环打印 线程池状态
+        do {
+            SleepUtil.pause(1, 0);
+            LOG.info("执行器状态:\n" + fetcherState.toString());
+            LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
+        } while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning());
+
+        //立即停止任务添加到管道
+        LOG.info("本地管道数量：" + fetchQueue.getSize());
+        this.stopFetcher();
+        threadsExecutor.shutdown();
+        LOG.info("线程池状态？？---" + threadsExecutor.toString());
+        LOG.info("线程池关闭？" + (threadsExecutor.isTerminated() ? "已关闭" : "未关闭"));
+
+        if (queueFeeder != null) {
+            queueFeeder.closeGenerator();
+        }
+        defaultDataUtil.getiDbWritor().closeSegmentWriter();
+        LOG.info("close segmentWriter:" + defaultDataUtil.getiDbWritor().getClass().getName());
         //返回生成的任务总数
         return defaultDataUtil.getiGenerator().totalGeneretNum();
     }

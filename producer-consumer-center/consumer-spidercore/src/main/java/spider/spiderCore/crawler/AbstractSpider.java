@@ -1,7 +1,7 @@
 package spider.spiderCore.crawler;
 
 import commoncore.customUtils.StringSplitUtil;
-import commoncore.entity.configEntity.SiteConfig;
+import commoncore.entity.loadEntity.SiteConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spider.myspider.redisComponent.DefaultDataUtil;

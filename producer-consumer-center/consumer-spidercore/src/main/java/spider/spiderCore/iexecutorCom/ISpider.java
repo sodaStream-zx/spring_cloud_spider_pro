@@ -1,6 +1,6 @@
 package spider.spiderCore.iexecutorCom;
 
-import commoncore.entity.configEntity.SiteConfig;
+import commoncore.entity.loadEntity.SiteConfig;
 
 /**
  * @author Twilight

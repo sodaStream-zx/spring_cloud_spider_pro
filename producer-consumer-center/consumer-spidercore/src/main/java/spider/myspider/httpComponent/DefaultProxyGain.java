@@ -61,16 +61,11 @@ public class DefaultProxyGain extends ArrayList<Proxy> implements IProxyGain {
      **/
     @Override
     public void add(String proxyStr) {
-        try {
-            String[] infos = proxyStr.split(":");
-            String ip = infos[0];
-            int port = Integer.parseInt(infos[1]);
-            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
-            this.add(proxy);
-        } catch (Exception ex) {
-            LOG.error("通过字符串 添加代理ip 出问题了呀");
-        }
-
+        String[] infos = proxyStr.split(":");
+        String ip = infos[0];
+        int port = Integer.parseInt(infos[1]);
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
+        this.add(proxy);
     }
 
     /**
@@ -83,34 +78,25 @@ public class DefaultProxyGain extends ArrayList<Proxy> implements IProxyGain {
 
     /**
      * desc: 加载代理 form file数据库
+     *
+     * @throws IOException
      **/
     @Override
-    public void addProxysFromFile(File file) {
+    public void addProxysFromFile(File file) throws IOException {
         FileInputStream fis = null;
         BufferedReader br = null;
-        try {
-            fis = new FileInputStream(file);
-            br = new BufferedReader(new InputStreamReader(fis));
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                line = line.trim();
-                if (line.startsWith("#") || line.isEmpty()) {
-                    continue;
-                } else {
-                    this.add(line);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            LOG.error("文件出问题了呀");
-        } catch (IOException e) {
-            LOG.error("输入流出问题了呀");
-        } finally {
-            try {
-                fis.close();
-                br.close();
-            } catch (IOException e) {
-                LOG.error("关闭输入流出错");
+        fis = new FileInputStream(file);
+        br = new BufferedReader(new InputStreamReader(fis));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.startsWith("#") || line.isEmpty()) {
+                continue;
+            } else {
+                this.add(line);
             }
         }
+        fis.close();
+        br.close();
     }
 }

@@ -1,5 +1,6 @@
 package loadercore.controller;
 
+import commoncore.entity.loadEntity.ConfigRedisKeys;
 import loadercore.dao.ConfigFromMysqlToRedis;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class LoadConfigsController {
     private static final Logger LOG = Logger.getLogger(LoadConfigsController.class);
     @Autowired
     private ConfigFromMysqlToRedis configFromMysqlToRedis;
+    @Autowired
+    private ConfigRedisKeys configRedisKeys;
 
     /**
      * desc:加载配置文件到redis中
@@ -24,6 +27,16 @@ public class LoadConfigsController {
     public boolean readConfigFormMysql() {
         configFromMysqlToRedis.mysqlWriteRedis();
         LOG.info("加载配置文件到redis 完成");
+        return true;
+    }
+
+    @GetMapping(value = "/read")
+    public boolean read() {
+        configFromMysqlToRedis.readRedis(configRedisKeys.getWsConfHash());
+        configFromMysqlToRedis.readRedis(configRedisKeys.getUrlRuleHash());
+        configFromMysqlToRedis.readRedis(configRedisKeys.getDomainRuleHash());
+        int i = 1 / 0;
+        System.out.println("i" + i);
         return true;
     }
 }

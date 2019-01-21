@@ -45,8 +45,9 @@ public class FetcherThread implements Runnable {
             //从queue中取出任务
             data = fetchQueue.getResponseData();
             if (data == null) {
+                LOG.warn("queue中未取得任务");
                 //判断任务队列是否有任务，如果没有,直接退出
-                if (fetcherState.isFeederRunnning() || fetchQueue.getSize() > 0) {
+                if (fetcherState.isFeederRunnning() && fetchQueue.getSize() <= 0) {
                     SleepUtil.pause(0, 500);
                     continue;
                 } else {

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 
 /**
  * @author Twilight
@@ -33,32 +35,23 @@ public class ParseDataGenerator implements IParseDataGenerator<ParseData> {
 
     @Override
     public ParseData getData() {
-        log.debug("从数据库提取数据.......");
-        ParseData data = null;
-
         String responseDataStr = (String) redisTemplate.opsForList().leftPop(dataKey);
         if (!StringUtils.isBlank(responseDataStr)) {
-            try {
-                data = (ParseData) SerializeUtil.deserializeToObject(responseDataStr);
-            } catch (Exception e) {
-                log.error("反序列化异常" + e.getMessage());
-            }
-            if (iResponseDataFilter != null) {
-                boolean passOrNot = iResponseDataFilter.pass(data);
+            log.debug("从数据库提取数据成功.......");
+            Optional<ParseData> data = SerializeUtil.deserializeToObject(responseDataStr);
+            if (iResponseDataFilter != null && data.isPresent()) {
+                boolean passOrNot = iResponseDataFilter.pass(data.get());
                 if (passOrNot) {
                     log.info("TIP:这里可能有问题");
                     this.getData();
+                } else {
+                    return data.get();
                 }
             }
         } else {
-            log.warn("redis 中无后续数据");
+            log.error("redis中无后续任务");
         }
 
-        //模拟数据提取
-        /*responseData = new ResponseData("dayuwang",
-                new CrawlDatum("http://cq.qq.com/a/20190115/005822.htm"),
-                33, "text/html",
-                "hello".getBytes());*/
-        return data;
+        return null;
     }
 }

@@ -12,6 +12,8 @@ import spider.spiderCore.idbcore.IDataBase;
 import spider.spiderCore.idbcore.IGenerator;
 import spider.spiderCore.idbcore.IGeneratorFilter;
 
+import java.util.Optional;
+
 /**
  * @author 一杯咖啡
  * @desc redis数据库提取提取工具
@@ -45,40 +47,33 @@ public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
         }
         CrawlDatum datum;
         while (true) {
-            try {
-                datum = nextWithoutFilter();
-                if (datum == null) {
-                    return null;
-                }
-                if (filter != null) {
-                    if (filter.filter(datum) == null) {
-                        continue;
-                    }
-                }
-                totalGenerate += 1;
-                return datum;
-            } catch (Exception e) {
-                LOG.info("Exception when generating", e);
+            datum = nextWithoutFilter();
+            if (datum == null) {
                 return null;
             }
+            if (filter != null) {
+                if (filter.filter(datum) == null) {
+                    continue;
+                }
+            }
+            totalGenerate += 1;
+            return datum;
         }
     }
 
     @Override
     public CrawlDatum nextWithoutFilter() {
         String datumString;
-        CrawlDatum datum = null;
         String parse = IDataBase.getFetchDB();
         datumString = (String) redisTemplate.opsForList().leftPop(parse);
         //LOG.info("redis 提取任务" + (datumString == null ? "no propeties" : "ok"));
         if (datumString != null) {
-            try {
-                datum = (CrawlDatum) SerializeUtil.deserializeToObject(datumString);
-            } catch (Exception e) {
-                LOG.error("redis Generator 反序列化 出错" + e.getMessage());
+            Optional<CrawlDatum> datum = SerializeUtil.deserializeToObject(datumString);
+            if (datum.isPresent()) {
+                return datum.get();
             }
         }
-        return datum;
+        return null;
     }
 
     @Override

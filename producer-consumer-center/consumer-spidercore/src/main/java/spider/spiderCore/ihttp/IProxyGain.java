@@ -1,6 +1,7 @@
 package spider.spiderCore.ihttp;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.Proxy;
 
 /**
@@ -19,7 +20,7 @@ public interface IProxyGain {
      *
      * @param file 代理ip文件
      **/
-    void addProxysFromFile(File file);
+    void addProxysFromFile(File file) throws IOException;
 
     /**
      * desc: 从文件中加载代理ip

@@ -66,6 +66,7 @@ public class QueueFeeder implements Runnable {
                 SleepUtil.pause(1, 0);
                 continue;
             }
+            int count = 0;
             //如果queue中小于1000，往queue中添加新任务，未提取到任务 count 等待时间
             while (feed > 0 && hasMore && fetcherState.isFeederRunnning() && fetcherState.isFetcherRunning()) {
                 //任务生成器 如果下一个任务为空，返回空。判断dbmananger中是否有后续任务
@@ -75,16 +76,15 @@ public class QueueFeeder implements Runnable {
                     //LOG.info("feed Size = " + feed + "；queuesize == " + queue.getSize());
                     queue.addResponseData(data);
                     feed--;
+                    count = 0;
                 } else {
-                    int count = 0;
-                    SleepUtil.pause(1, 0);
                     count++;
-                    if (queue.getSize() == 0 && count >= 6) {
+                    SleepUtil.pause(1, 0);
+                    LOG.info("获取数据超时【" + count + "】秒");
+                    if (queue.getSize() <= 0 && count >= 6) {
                         LOG.info("等待超时，关闭程序");
                         fetcherState.setFeederRunnning(false);
                         hasMore = false;
-                    } else {
-                        LOG.info("获取数据超时【" + count + "】秒");
                     }
                 }
             }

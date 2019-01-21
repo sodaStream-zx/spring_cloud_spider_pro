@@ -20,8 +20,8 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 @EnableEurekaClient
 @ComponentScan(basePackages = {"loadercore", "commoncore"})
-@EnableJpaRepositories(basePackages = "commoncore.entity.configEntity")
-@EntityScan(basePackages = "commoncore.entity.configEntity")
+@EnableJpaRepositories(basePackages = "commoncore.entity")
+@EntityScan(basePackages = "commoncore.entity.loadEntity")
 public class ConfigLoaderApp {
     @Autowired
     RedisTemplate redisTemplate;

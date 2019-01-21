@@ -2,6 +2,7 @@ package spider.myspider.redisComponent;
 
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.exceptionHandle.MyException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -11,6 +12,8 @@ import spider.spiderCore.entitys.CrawlDatums;
 import spider.spiderCore.idbcore.IDataBase;
 import spider.spiderCore.idbcore.IDbManager;
 import spider.spiderCore.idbcore.IDbWritor;
+
+import java.util.Optional;
 
 /**
  * @author 一杯咖啡
@@ -38,14 +41,14 @@ public class DefaultRedisDbWritor implements IDbWritor<CrawlDatum, CrawlDatums> 
     @Override
     public void inject(CrawlDatum datum, boolean force) throws Exception {
         if (!iDbManager.isDBExists()) {
-            throw new Exception("redis 数据库无效");
+            throw new MyException("redis 数据库无效");
         } else {
-            String taskString = SerializeUtil.serializeToString(datum);
+            Optional<String> taskString = SerializeUtil.serializeToString(datum);
             log.info("任务入口注入 ： " + datum.getUrl());
             //注入任务到入口库
             String seeds = (String) iDataBase.getCrawlDB();
             log.debug("入口数据库 :" + seeds);
-            redisTemplate.opsForList().rightPush(seeds, taskString);
+            redisTemplate.opsForList().rightPush(seeds, taskString.get());
         }
     }
 
@@ -63,28 +66,18 @@ public class DefaultRedisDbWritor implements IDbWritor<CrawlDatum, CrawlDatums> 
 
     @Override
     public void writeFetchSegment(CrawlDatum fetchDatum) {
-        String taskString;
-        try {
-            taskString = SerializeUtil.serializeToString(fetchDatum);
-            redisTemplate.opsForList().rightPush(iDataBase.getLinkDB(), taskString);
-        } catch (Exception e) {
-            log.error("序列化出错");
-        }
+        Optional<String> taskString = SerializeUtil.serializeToString(fetchDatum);
+        redisTemplate.opsForList().rightPush(iDataBase.getLinkDB(), taskString.get());
     }
 
     @Override
     public void writeParseSegment(CrawlDatums parseDatums) {
-        String nextTask;
-        try {
-            if (!parseDatums.isEmpty()) {
-                for (CrawlDatum task : parseDatums) {
-                    nextTask = SerializeUtil.serializeToString(task);
-                    redisTemplate.opsForList().rightPush(iDataBase.getFetchDB(), nextTask);
-                }
-                //log.info("写入后续任务数量：" + parseDatums.size());
+        if (!parseDatums.isEmpty()) {
+            for (CrawlDatum task : parseDatums) {
+                Optional<String> nextTask = SerializeUtil.serializeToString(task);
+                redisTemplate.opsForList().rightPush(iDataBase.getFetchDB(), nextTask.get());
             }
-        } catch (Exception e) {
-            log.error("序列化出错" + e.getCause() + ":" + e.getMessage());
+            //log.info("写入后续任务数量：" + parseDatums.size());
         }
     }
 

@@ -19,6 +19,7 @@ public class LoadConfigsControllerTest {
 
     @Test
     public void readConfigFormMysql() {
-        //   loadConfigsController.readConfigFormMysql();
+        loadConfigsController.readConfigFormMysql();
+        loadConfigsController.read();
     }
 }

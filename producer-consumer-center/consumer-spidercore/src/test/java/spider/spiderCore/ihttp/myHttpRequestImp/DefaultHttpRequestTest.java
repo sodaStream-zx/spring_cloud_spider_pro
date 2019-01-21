@@ -2,6 +2,7 @@ package spider.spiderCore.ihttp.myHttpRequestImp;
 
 import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.exceptionHandle.MyException;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import spider.myspider.httpComponent.DefaultHttpRequest;
+
+import java.io.IOException;
 
 /**
  * @author 一杯咖啡
@@ -25,7 +28,7 @@ public class DefaultHttpRequestTest {
     DefaultHttpRequest defaultHttpRequest;
 
     @Test
-    public void sendRequest() {
+    public void sendRequest() throws IOException, MyException {
         String url = "https://blog.csdn.net/u012426327/article/details/77155556";
 
         CrawlDatum crawlDatum = new CrawlDatum("https://blog.csdn.net/scyatcs/article/details/25042351");

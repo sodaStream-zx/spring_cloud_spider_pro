@@ -4,6 +4,7 @@ import commoncore.entity.httpEntity.CharsetDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,40 +58,30 @@ public class HttpResponse {
      *
      * @return
      */
-    public String decode() {
+    public String decode() throws UnsupportedEncodingException {
         if (content == null) {
             return null;
         }
         String charset = CharsetDetector.guessEncoding(content);
-        try {
-            String html = new String(content, charset);
-            return html;
-        } catch (Exception ex) {
-            LOG.info("Exception", ex);
-            return null;
-        }
+        String html = new String(content, charset);
+        return html;
     }
 
-    public String decode(String charset) {
+    public String decode(String charset) throws UnsupportedEncodingException {
         if (content == null) {
             return null;
         }
-        try {
-            String html = new String(content, charset);
-            return html;
-        } catch (Exception ex) {
-            LOG.info("Exception", ex);
-            return null;
-        }
+        String html = new String(content, charset);
+        return html;
     }
 
     @Deprecated
-    public String getHtml(String charset) {
+    public String getHtml(String charset) throws UnsupportedEncodingException {
         return decode(charset);
     }
 
     @Deprecated
-    public String getHtmlByCharsetDetect() {
+    public String getHtmlByCharsetDetect() throws UnsupportedEncodingException {
         return decode();
     }
 

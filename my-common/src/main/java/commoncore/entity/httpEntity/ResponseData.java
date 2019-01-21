@@ -45,7 +45,7 @@ public class ResponseData implements Serializable {
     private String charset;
     private byte[] content;
 
-    public ResponseData(CrawlDatum datum, Integer code, String contentType, byte[] content) {
+    public ResponseData(CrawlDatum datum, Integer code, String contentType, byte[] content) throws UnsupportedEncodingException {
         this.crawlDatum = datum;
         this.code = code;
         this.contentType = contentType;
@@ -71,19 +71,16 @@ public class ResponseData implements Serializable {
      * 返回网页的源码字符串
      *
      * @return 网页的源码字符串
+     * @throws UnsupportedEncodingException
      */
-    public void contentTohtml(byte[] content) {
+    public void contentTohtml(byte[] content) throws UnsupportedEncodingException {
         if (StringUtils.isBlank(this.charset)) {
             this.charset = CharsetDetector.guessEncoding(content);
         }
         if (content == null) {
             this.html = null;
         } else {
-            try {
-                this.html = new String(content, charset);
-            } catch (UnsupportedEncodingException e) {
-                LOG.info("Exception when decoding ", e);
-            }
+            this.html = new String(content, charset);
         }
     }
 

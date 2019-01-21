@@ -1,6 +1,6 @@
 package parsercore.paresRuleCore;
 
-import commoncore.entity.paresEntity.DomainRule;
+import commoncore.entity.loadEntity.DomainRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,11 +2,9 @@ package commoncore.customUtils;
 
 import org.apache.log4j.Logger;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 /**
  * desc: 对象序列化和反序列化工具
@@ -21,13 +19,19 @@ public class SerializeUtil {
      * @Description: [序列化对象为字符串]
      * @author <a href="mail to: 113985238@qq.com" rel="nofollow">whitenoise</a>
      */
-    public static String serializeToString(Object obj) throws Exception {
+    public static Optional<String> serializeToString(Object obj) {
         LOG.debug("对象序列化");
-        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-        ObjectOutputStream objOut = new ObjectOutputStream(byteOut);
-        objOut.writeObject(obj);
-        //此处只能是ISO-8859-1,但是不会影响中文使用
-        return byteOut.toString("ISO_8859_1");
+        try {
+            ObjectOutputStream objOut;
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            objOut = new ObjectOutputStream(byteOut);
+            objOut.writeObject(obj);
+            //此处只能是ISO-8859-1,但是不会影响中文使用
+            return Optional.ofNullable(byteOut.toString("ISO_8859_1"));
+        } catch (IOException e) {
+            LOG.error("对象序列化错误");
+            return Optional.empty();
+        }
     }
 
     /**
@@ -35,10 +39,17 @@ public class SerializeUtil {
      * @Description: [反序列化字符串为对象]
      * @author <a href="mail to: *******@******.com" rel="nofollow">作者</a>
      */
-    public static Object deserializeToObject(String str) throws Exception {
+    public static <T> Optional<T> deserializeToObject(String str) {
         LOG.debug("对象反序列化，进入程序");
-        ByteArrayInputStream byteIn = new ByteArrayInputStream(str.getBytes(StandardCharsets.ISO_8859_1));
-        ObjectInputStream objIn = new ObjectInputStream(byteIn);
-        return objIn.readObject();
+        try {
+            ByteArrayInputStream byteIn = new ByteArrayInputStream(str.getBytes(StandardCharsets.ISO_8859_1));
+            ObjectInputStream objIn = new ObjectInputStream(byteIn);
+            return Optional.ofNullable((T) objIn.readObject());
+        } catch (IOException e) {
+            return Optional.empty();
+        } catch (ClassNotFoundException e) {
+            LOG.error("类型转化错误");
+            return Optional.empty();
+        }
     }
 }

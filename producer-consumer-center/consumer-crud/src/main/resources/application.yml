@@ -22,6 +22,17 @@ spring:
   thymeleaf:
     cache: false
     suffix: .html
+  #rabbitmq
+  rabbitmq:
+    connection-timeout: 0
+    template:
+      retry:
+        enabled: true
+    password: admin
+    port: 5672
+    host: ${spring.cloud.client.ipAddress}
+    virtual-host: /
+    username: admin
 #euraka
 management:
   security:

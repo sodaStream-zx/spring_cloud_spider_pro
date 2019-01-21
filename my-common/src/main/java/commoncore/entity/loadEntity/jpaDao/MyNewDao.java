@@ -1,5 +1,6 @@
-package commoncore.entity.paresEntity;
+package commoncore.entity.loadEntity.jpaDao;
 
+import commoncore.entity.loadEntity.MyNew;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

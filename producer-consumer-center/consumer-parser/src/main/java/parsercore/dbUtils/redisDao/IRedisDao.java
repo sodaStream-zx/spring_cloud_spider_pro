@@ -1,7 +1,7 @@
 package parsercore.dbUtils.redisDao;
 
 
-import commoncore.entity.paresEntity.DomainRule;
+import commoncore.entity.loadEntity.DomainRule;
 
 /**
  * @author 一杯咖啡

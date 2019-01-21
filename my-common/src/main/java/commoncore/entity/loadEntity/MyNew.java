@@ -1,6 +1,4 @@
-package commoncore.entity.paresEntity;
-
-import org.springframework.stereotype.Component;
+package commoncore.entity.loadEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +10,6 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "myNew")
-@Component
 public class MyNew implements Serializable {
     private static final long serialVersionUID = 12345L;
     @Id

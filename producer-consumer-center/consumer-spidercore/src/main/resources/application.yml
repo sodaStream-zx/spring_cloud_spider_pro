@@ -30,6 +30,10 @@ spring:
     host: 192.168.88.106
   application:
     name: spiderCore
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 eureka:
   instance:
     instance-id: ${spring.application.name}-${spring.cloud.client.ipAddress}:${server.port}

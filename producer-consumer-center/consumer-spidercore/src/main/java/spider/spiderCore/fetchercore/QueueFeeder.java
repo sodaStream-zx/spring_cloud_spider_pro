@@ -82,13 +82,13 @@ public class QueueFeeder implements Runnable {
                 CrawlDatum datum = iGenerator.next();
                 // CrawlDatum datum = new CrawlDatum("testUrl");
                 if (datum != null) {
-                    //LOG.info("已提取数据" + datum.getUrl());
+                    LOG.debug("加入任务到缓冲区：" + datum.getUrl());
                     queue.addCrawlDatum(datum);
                     feed--;//一直填到queue为1000
+                    count = 0;
                 } else {
-                    LOG.info("未取得数据");
-                    SleepUtil.pause(1, 0);
                     count++;
+                    SleepUtil.pause(1, 0);
                     if (count < 5) {
                         LOG.info("redis 中无后续任务，等待第 " + count + " 秒");
                     } else {

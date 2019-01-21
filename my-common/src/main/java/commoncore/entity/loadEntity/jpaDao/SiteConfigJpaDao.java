@@ -1,7 +1,7 @@
-package commoncore.entity.configEntity;
+package commoncore.entity.loadEntity.jpaDao;
 
+import commoncore.entity.loadEntity.SiteConfig;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /*
@@ -11,6 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-@Component
-public interface SiteConfigDao extends JpaRepository<SiteConfig, Integer> {
+public interface SiteConfigJpaDao extends JpaRepository<SiteConfig, Integer> {
 }

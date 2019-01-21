@@ -47,8 +47,8 @@ public class FetcherThread implements Runnable {
             //从queue中取出任务
             datum = fetchQueue.getCrawlDatum();
             if (datum == null) {
-                LOG.info("QUEUE 未取得任务");
-                //判断任务队列是否有任务，如果没有，等待任务管道被消费完，停止执行线程
+                LOG.warn("QUEUE中无后续任务");
+                //判断生产者是否运行中，如果没有，等待任务管道被消费完，停止执行线程
                 if (fetcherState.isFeederRunnning()) {
                     SleepUtil.pause(0, 200);
                     continue;
@@ -59,7 +59,8 @@ public class FetcherThread implements Runnable {
                 LOG.debug("QUEUE 取得任务" + datum.getUrl());
                 //调用执行器
                 iExecutor.execute(datum);
-                //当前页面执行完毕，等待时间
+
+                //当前页面执行完毕，间隔
                 long executeInterval = defaultExecuteInterval;
                 if (executeInterval > 0) {
                     SleepUtil.pause(0, executeInterval);
