@@ -1,6 +1,5 @@
 package parsercore.controller;
 
-import commoncore.exceptionHandle.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,18 +19,15 @@ public class ParesController {
     @GetMapping(value = "/parse")
     public boolean startParse() {
         new Thread(() -> {
-            try {
-                parseFetcherProcess.fetcherStart();
-            } catch (MyException e) {
-                e.printStackTrace();
-            }
+            parseFetcherProcess.fetcherStart();
         }, "stopThread--").start();
         return true;
     }
 
     @GetMapping(value = "/stop")
     public boolean stopParse() {
-        new Thread(() -> parseFetcherProcess.stopFetcher(), "stopThread").start();
+        new Thread(() -> parseFetcherProcess.stopFetcher(),
+                "stopThread").start();
         return true;
     }
 }

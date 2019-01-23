@@ -4,78 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/my-common" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d16afd6-5162-43c9-835d-97df58fb2f45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/jpaDao/RedisDbKeysJpaDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/configs/LoadConfigService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/executorCompont/NextLinksFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/RedisDb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/dbutils/DefaultRedisDbWritor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/dbutils/StatusGeneratorFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/services/MySpider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/entitys/FetcherTasks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/loadercore/configs/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="5d16afd6-5162-43c9-835d-97df58fb2f45" name="Default Changelist" comment="配置中心">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/httpEntity/ResponseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/httpEntity/ResponseData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/ConfigRedisKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/RedisDbKeys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/SiteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/SiteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/UrlRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/UrlRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/WebSiteConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/WebSiteConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/jpaDao/SiteConfigJpaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/jpaDao/SiteConfigJpaDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/CrawlDatum.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/FetcherTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/CrawlDatumFormater.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/requestEntity/FetcherTaskFormater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-common/src/main/java/commoncore/exceptionHandle/MyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-common/src/main/java/commoncore/exceptionHandle/MyException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/ParesEngineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/ParesEngineApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/redisDao/RedisDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/dbUtils/redisDao/RedisDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/FetcherThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/FetcherThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/ParseFetcherProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/ParseFetcherProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/QueueFeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/QueueFeeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/generatorcore/ParseDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/generatorcore/ParseDataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresRuleCore/RuleFactoryFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/paresRuleCore/RuleFactoryFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/parseExecutor/DefaultParesExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/parseExecutor/DefaultParesExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/test/java/parsercore/fetcherCore/ParseFetcherProcessTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/test/java/parsercore/fetcherCore/ParseFetcherProcessTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/SpiderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/SpiderEngine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/controller/SpiderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/controller/SpiderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/dao/TransferToRedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/dao/TransferToRedis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/executorCompont/DefaultExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/executorCompont/DefaultSimpleParse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/DefaultHttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/httpComponent/DefaultHttpRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultContentNeeded.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/executorCompont/DefaultContentNeeded.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultDataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/DefaultDataUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisDbWritor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/dbutils/DefaultRedisGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/DefaultRedisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/dbutils/DefaultRedisManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/RedisDb.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisComponent/StatusGeneratorFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractSpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/AbstractSpider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/BaseSpider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/crawler/SeedData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/entitys/CrawlDatums.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/entitys/Links.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/entitys/Links.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetchQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetchQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/Fetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/Fetcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetcherThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetcherThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/QueueFeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/QueueFeeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDbWritor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IDbWritor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGeneratorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/idbcore/IGeneratorFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/IExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/IExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/INextLinksFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/INextLinksFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/ISpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/iexecutorCom/ISpider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/ISendRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/ISendRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/Requester.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/ihttp/Requester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/entityTools/CrawlDatumFormaterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/entityTools/FetcherTaskFormaterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/myspider/controller/SpiderControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/myspider/controller/SpiderControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetchercore/FetchQueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/fetchercore/FetchQueueTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/ihttp/myHttpRequestImp/DefaultHttpRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/test/java/spider/spiderCore/ihttp/myHttpRequestImp/DefaultHttpRequestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/loadercore/controller/LoadConfigsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/loadercore/controller/LoadConfigsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/loadercore/dao/ConfigFromMysqlToRedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/java/loadercore/dao/ConfigToRedis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/producer-consumer-center/provider-config-loader/src/main/resources/application.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -244,7 +175,7 @@
           <entry key="class" value="4" />
           <entry key="html" value="5" />
           <entry key="iml" value="19" />
-          <entry key="java" value="2056" />
+          <entry key="java" value="2058" />
           <entry key="jpg" value="1" />
           <entry key="md" value="1" />
           <entry key="properties" value="49" />
@@ -259,7 +190,7 @@
           <entry key="HTML" value="5" />
           <entry key="IDEA_MODULE" value="19" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="2056" />
+          <entry key="JAVA" value="2058" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="Properties" value="49" />
@@ -271,9 +202,9 @@
         <counts>
           <entry key="dummy" value="361" />
           <entry key="html" value="37" />
-          <entry key="java" value="32527" />
+          <entry key="java" value="32528" />
           <entry key="properties" value="227" />
-          <entry key="txt" value="280" />
+          <entry key="txt" value="291" />
           <entry key="xml" value="282" />
           <entry key="yml" value="542" />
         </counts>
@@ -281,8 +212,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="37" />
-          <entry key="JAVA" value="32527" />
-          <entry key="PLAIN_TEXT" value="641" />
+          <entry key="JAVA" value="32528" />
+          <entry key="PLAIN_TEXT" value="652" />
           <entry key="Properties" value="227" />
           <entry key="XML" value="282" />
           <entry key="YAML" value="542" />
@@ -296,35 +227,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/DefaultDataUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
-              <folding>
-                <element signature="e#1448#1449#0" expanded="true" />
-                <element signature="e#1481#1482#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/executorCompont/DefaultExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/dbutils/DefaultRedisGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="74" column="37" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
+            <state relative-caret-position="-147">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="33" />
               <folding>
-                <element signature="e#2670#2671#0" expanded="true" />
-                <element signature="e#2711#2712#0" expanded="true" />
+                <element signature="docComment;method#execute#0;class#DefaultExecutor#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -369,6 +277,24 @@
                 <element signature="e#10065#10066#0" expanded="true" />
                 <element signature="e#10148#10149#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="423">
+              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/ParseFetcherProcess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="51" column="31" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -475,7 +401,6 @@
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/fetcherCompont/DefaultSimpleParse.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/configs/LoadConfig.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/configs/LoadConfigService.java" />
-        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/test/java/parsercore/fetcherCore/ParseFetcherProcessTest.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/FetcherThread.java" />
         <option value="$PROJECT_DIR$/my-common/src/main/java/commoncore/entity/loadEntity/SiteConfig.java" />
@@ -513,6 +438,7 @@
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/redisDbComponent/dbutils/DefaultRedisGenerator.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetcherThread.java" />
         <option value="$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/executorCompont/DefaultExecutor.java" />
+        <option value="$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java" />
       </list>
     </option>
   </component>
@@ -1395,6 +1321,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="parsercore" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring_cloud_web_spider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring_cloud_web_spider" type="462c0819:PsiDirectoryNode" />
+              <item name="producer-consumer-center" type="462c0819:PsiDirectoryNode" />
+              <item name="consumer-parser" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="parsercore" type="462c0819:PsiDirectoryNode" />
               <item name="fetcherCore" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1983,7 +1920,7 @@
       <workItem from="1548126745508" duration="8934000" />
       <workItem from="1548139607369" duration="13284000" />
       <workItem from="1548213182177" duration="12056000" />
-      <workItem from="1548230088375" duration="8281000" />
+      <workItem from="1548230088375" duration="8402000" />
     </task>
     <task id="LOCAL-00001" summary="1.创建分层目录">
       <created>1544717167375</created>
@@ -2097,7 +2034,14 @@
       <option name="project" value="LOCAL" />
       <updated>1548063978829</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="重构配置中心，将所有配置统一管理，">
+      <created>1548238683700</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1548238683700</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2133,7 +2077,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="428102000" />
+    <option name="totallyTimeSpent" value="428223000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2148,7 +2092,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="1411" y="92" width="471" height="901" id="Project" order="0" sideWeight="0.12763596" visible="true" weight="0.30418456" />
+      <window_info active="true" content_ui="combo" x="1411" y="92" width="471" height="901" id="Project" order="0" sideWeight="0.12763596" visible="true" weight="0.30418456" />
       <window_info id="Structure" order="1" sideWeight="0.87236404" side_tool="true" weight="0.24409871" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -2252,7 +2196,9 @@
     <MESSAGE value="siteconfig加载后不自动更换新的" />
     <MESSAGE value="改造类构造方法 接下来异常处理" />
     <MESSAGE value="重构配置中心，将所有配置统一管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构配置中心，将所有配置统一管理" />
+    <MESSAGE value="重构配置中心，将所有配置统一管理，" />
+    <MESSAGE value="配置中心" />
+    <option name="LAST_COMMIT_MESSAGE" value="配置中心" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -2261,13 +2207,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/services/SpiderConfigService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/spiderCore/fetchercore/FetchQueue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -2383,13 +2322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/ParseFetcherProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-669">
-          <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -2640,8 +2572,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-spidercore/src/main/java/spider/myspider/executorCompont/DefaultExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+        <state relative-caret-position="-147">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="33" />
+          <folding>
+            <element signature="docComment;method#execute#0;class#DefaultExecutor#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/fetcherCore/ParseFetcherProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="51" column="31" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/producer-consumer-center/consumer-parser/src/main/java/parsercore/controller/ParesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
         </state>
       </provider>
     </entry>

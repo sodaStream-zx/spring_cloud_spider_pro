@@ -3,13 +3,11 @@ package parsercore.fetcherCore;
 import commoncore.customUtils.BeanGainer;
 import commoncore.customUtils.SleepUtil;
 import commoncore.entity.fetcherEntity.FetcherState;
-import commoncore.entity.loadEntity.RedisDbKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import parsercore.configs.LoadConfigService;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -29,20 +27,16 @@ public class ParseFetcherProcess {
     private FetcherState fetcherState;
     private FetchQueue fetchQueue;
     private int threads;
-    private RedisDbKeys redisDbKeys;
 
     @Autowired
     public ParseFetcherProcess(QueueFeeder queueFeeder,
                                FetcherState fetcherState,
                                FetchQueue fetchQueue,
-                               @Value(value = "${my.fetchercore.maxThread}") int threads,
-                               RedisDbKeys redisDbKeys,
-                               LoadConfigService loadConfigService) {
+                               @Value(value = "${my.fetchercore.maxThread}") int threads) {
         this.queueFeeder = queueFeeder;
         this.fetcherState = fetcherState;
         this.fetchQueue = fetchQueue;
         this.threads = threads;
-        this.redisDbKeys = redisDbKeys;
     }
     /**
      * 抓取当前所有任务，会阻塞到爬取完成 开启 feeder 和 执行爬取线程。
