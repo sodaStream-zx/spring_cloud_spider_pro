@@ -1,5 +1,6 @@
 package parsercore.fetcherCore;
 
+import commoncore.exceptionHandle.MyException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ParseFetcherProcessTest {
     private ParseFetcherProcess parseFetcherProcess;
 
     @Test
-    public void fetcherStart() {
+    public void fetcherStart() throws MyException {
         parseFetcherProcess.fetcherStart();
     }
 

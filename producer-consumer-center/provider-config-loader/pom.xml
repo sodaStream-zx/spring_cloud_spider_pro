@@ -50,6 +50,17 @@
             <artifactId>my-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--swagger-->
+        <dependency>
+            <groupId>repository.io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>repository.io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.0</version>
+        </dependency>
     </dependencies>
     <!--被打包项目必须配置项-->
     <build>

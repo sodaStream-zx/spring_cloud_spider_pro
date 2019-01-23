@@ -28,14 +28,11 @@ public class TransferToRedis implements TransferToParser<ResponseData> {
 
     @Override
     public void transfer(ResponseData pd) {
-        ParseData data;
-        //data = new ResponseData(responsePage.getSiteName(), responsePage.getCrawlDatum(), responsePage.getCode(), responsePage.getContentType(), responsePage.getContent());
-        data = new ParseData(pd.getSiteName(), pd.getCrawlDatum().getUrl(), pd.getContentType(), pd.getHtml());
+        log.debug("传输数据到解析模块" + pd.getHtml().substring(0, 10));
+        ParseData data = new ParseData(pd.getSiteName(), pd.getFetcherTask().getUrl(), pd.getContentType(), pd.getHtml());
         Optional<String> rd = SerializeUtil.serializeToString(data);
         if (rd.isPresent()) {
-            redisTemplate.opsForList().rightPush("responseList", rd.get());
-        } else {
-            log.warn("tip:(无数据)将page 存入redis中，供解析模块提取数据");
+            redisTemplate.opsForList().leftPush("responseList", rd.get());
         }
     }
 }

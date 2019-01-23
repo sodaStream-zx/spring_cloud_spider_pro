@@ -1,4 +1,4 @@
-package spider.myspider.redisComponent;
+package spider.myspider.redisDbComponent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,13 +8,16 @@ import spider.spiderCore.idbcore.IGenerator;
 
 /**
  * @author 一杯咖啡
- * @desc
+ * @desc 数据库组件汇总
  * @createTime 2019-01-04-13:13
  */
 @Component
 public class DefaultDataUtil {
+    //数据库提取组件
     private IGenerator iGenerator;
+    //数据库写入组件
     private IDbWritor iDbWritor;
+    //数据库管理组件
     private IDbManager iDbManager;
 
     public DefaultDataUtil() {

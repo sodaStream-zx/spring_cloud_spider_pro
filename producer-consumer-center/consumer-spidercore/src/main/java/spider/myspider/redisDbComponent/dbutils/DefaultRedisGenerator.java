@@ -1,7 +1,7 @@
-package spider.myspider.redisComponent;
+package spider.myspider.redisDbComponent.dbutils;
 
 import commoncore.customUtils.SerializeUtil;
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.FetcherTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +20,17 @@ import java.util.Optional;
  * @createTime 2019-01-04-13:30
  */
 @Component
-public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
+public class DefaultRedisGenerator implements IGenerator<FetcherTask> {
     public static final Logger LOG = LoggerFactory.getLogger(DefaultRedisGenerator.class);
     private IDataBase<String> IDataBase;
-    private IGeneratorFilter<CrawlDatum> filter;
+    private IGeneratorFilter<FetcherTask> filter;
     private int topN;
     private RedisTemplate redisTemplate;
     //提取工具计数
     private int totalGenerate = 0;
 
     @Autowired
-    public DefaultRedisGenerator(@Autowired(required = false) IGeneratorFilter<CrawlDatum> filter,
+    public DefaultRedisGenerator(@Autowired(required = false) IGeneratorFilter<FetcherTask> filter,
                                  IDataBase<String> IDataBase,
                                  RedisTemplate redisTemplate,
                                  @Value(value = "${generator.topNumber}") int topN) {
@@ -41,36 +41,40 @@ public class DefaultRedisGenerator implements IGenerator<CrawlDatum> {
     }
 
     @Override
-    public CrawlDatum next() {
+    public FetcherTask next() {
         if (topN > 0 && totalGenerate >= topN) {
             return null;
         }
-        CrawlDatum datum;
+        FetcherTask task;
         while (true) {
-            datum = nextWithoutFilter();
-            if (datum == null) {
+            task = nextWithoutFilter();
+            if (task == null) {
                 return null;
             }
             if (filter != null) {
-                if (filter.filter(datum) == null) {
+                if (filter.filter(task) == null) {
                     continue;
                 }
             }
             totalGenerate += 1;
-            return datum;
+            return task;
         }
     }
 
+    /**
+     * desc: 从redis待爬取任务表中提取任务(右出)
+     *
+     * @Return:CrawlDatum
+     **/
     @Override
-    public CrawlDatum nextWithoutFilter() {
-        String datumString;
-        String parse = IDataBase.getFetchDB();
-        datumString = (String) redisTemplate.opsForList().leftPop(parse);
-        //LOG.info("redis 提取任务" + (datumString == null ? "no propeties" : "ok"));
+    public FetcherTask nextWithoutFilter() {
+        String undone = IDataBase.getUnDoneList();
+        String datumString = (String) redisTemplate.opsForList().rightPop(undone);
         if (datumString != null) {
-            Optional<CrawlDatum> datum = SerializeUtil.deserializeToObject(datumString);
-            if (datum.isPresent()) {
-                return datum.get();
+            Optional<FetcherTask> taskOp = SerializeUtil.deserializeToObject(datumString);
+            if (taskOp.isPresent()) {
+                LOG.debug("redis 提取任务 :" + taskOp.get());
+                return taskOp.get();
             }
         }
         return null;

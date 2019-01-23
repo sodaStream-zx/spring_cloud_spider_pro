@@ -17,7 +17,7 @@
  */
 package commoncore.entity.httpEntity;
 
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.FetcherTask;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -36,7 +36,7 @@ public class ResponseData implements Serializable {
     private static final long serialVersionUID = 529786856L;
     private static final Logger LOG = LoggerFactory.getLogger(ResponseData.class);
     private String siteName;
-    private CrawlDatum crawlDatum;
+    private FetcherTask fetcherTask;
     private String contentType;
     private Integer code;
     private Exception exception;
@@ -45,8 +45,8 @@ public class ResponseData implements Serializable {
     private String charset;
     private byte[] content;
 
-    public ResponseData(CrawlDatum datum, Integer code, String contentType, byte[] content) throws UnsupportedEncodingException {
-        this.crawlDatum = datum;
+    public ResponseData(FetcherTask task, Integer code, String contentType, byte[] content) throws UnsupportedEncodingException {
+        this.fetcherTask = task;
         this.code = code;
         this.contentType = contentType;
         this.content = content.clone();
@@ -55,7 +55,7 @@ public class ResponseData implements Serializable {
         //2.转化content 为html
         this.contentTohtml(content);
         //3.转化html 为doc
-        this.contentTODoc(crawlDatum.getUrl());
+        this.contentTODoc(fetcherTask.getUrl());
     }
 
     /**
@@ -106,12 +106,12 @@ public class ResponseData implements Serializable {
         this.siteName = siteName;
     }
 
-    public CrawlDatum getCrawlDatum() {
-        return crawlDatum;
+    public FetcherTask getFetcherTask() {
+        return fetcherTask;
     }
 
-    public void setCrawlDatum(CrawlDatum crawlDatum) {
-        this.crawlDatum = crawlDatum;
+    public void setFetcherTask(FetcherTask fetcherTask) {
+        this.fetcherTask = fetcherTask;
     }
 
     public String getContentType() {

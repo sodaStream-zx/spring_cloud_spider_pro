@@ -1,5 +1,7 @@
 package commoncore.entity.loadEntity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @desc spider 请求和url提取规则
  * @createTime 2019-01-21-16:13
  */
+@Component
 @Entity
 @Table
 public class UrlRule implements Serializable {
@@ -73,5 +76,15 @@ public class UrlRule implements Serializable {
 
     public void setUrlPares(String urlPares) {
         this.urlPares = urlPares;
+    }
+
+    /**
+     * desc: 不更改对象
+     **/
+    public void configOwn(UrlRule ur) {
+        this.urId = ur.getUrId();
+        this.siteName = ur.getSiteName();
+        this.pageParse = ur.getPageParse();
+        this.urlPares = ur.getUrlPares();
     }
 }

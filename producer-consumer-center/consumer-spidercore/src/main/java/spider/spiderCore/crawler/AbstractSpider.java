@@ -1,16 +1,20 @@
 package spider.spiderCore.crawler;
 
 import commoncore.customUtils.StringSplitUtil;
-import commoncore.entity.loadEntity.SiteConfig;
+import commoncore.entity.loadEntity.UrlRule;
+import commoncore.entity.loadEntity.WebSiteConf;
+import commoncore.entity.requestEntity.FetcherTask;
+import commoncore.exceptionHandle.MyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import spider.myspider.redisComponent.DefaultDataUtil;
-import spider.spiderCore.entitys.CrawlDatums;
+import spider.myspider.redisDbComponent.DefaultDataUtil;
+import spider.spiderCore.entitys.FetcherTasks;
 import spider.spiderCore.entitys.RegexRule;
 import spider.spiderCore.fetchercore.Fetcher;
-import spider.spiderCore.idbcore.IDbWritor;
 import spider.spiderCore.iexecutorCom.ISpider;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.stream.Stream;
 
 /**
@@ -28,112 +32,104 @@ public abstract class AbstractSpider implements ISpider {
     public final static int STOPED = 2;
 
     //网站配置
-    protected SiteConfig siteConfig;
-    //入口urls
-    protected SeedData seedData;
+    protected UrlRule urlRule;
+    //网站入口和爬虫配置
+    protected WebSiteConf webSiteConf;
+    //入口临时容器
+    protected FetcherTasks fetcherTasks = new FetcherTasks();
     //正则规则
     protected RegexRule regexRule;
-    //执行调度器
+    //执行单元调度器
     protected Fetcher fetcher;
     //数据存储器（考虑将种子注入和 解析注入分开）
     protected DefaultDataUtil defaultDataUtil;
 
-    public AbstractSpider(SeedData seedData, RegexRule regexRule, Fetcher fetcher, DefaultDataUtil defaultDataUtil) {
-        this.seedData = seedData;
+    /**
+     * desc: 必要内容
+     **/
+    public AbstractSpider(UrlRule urlRule,
+                          WebSiteConf webSiteConf,
+                          RegexRule regexRule,
+                          Fetcher fetcher,
+                          DefaultDataUtil defaultDataUtil) {
+        this.urlRule = urlRule;
+        this.webSiteConf = webSiteConf;
         this.regexRule = regexRule;
         this.fetcher = fetcher;
         this.defaultDataUtil = defaultDataUtil;
     }
 
     /**
+     * desc:加载所有外部配置
+     **/
+    @Override
+    public abstract void loadOuterConfig() throws MyException;
+
+    /**
+     * @desc 装载所有内部配置
      * urlRules url 解析正则表达式
      * seeds 入口 url
      * conPickRules 正文提取正则表达式
      */
     @Override
-    public boolean loadConfig() {
-        if (siteConfig == null) {
-            LOG.error("未加载网站配置文件");
-            return false;
+    public void loadInnerConfig() throws MyException {
+        if (webSiteConf == null || webSiteConf.getSiteName() == null || urlRule == null || urlRule.getPageParse() == null) {
+            throw new MyException("网站配置文件未加载,或者无配置内容");
         }
         //seeds 种子url
-        String[] seeds = StringSplitUtil.splitRule(siteConfig.getSeeds());
-        if (seeds.length > 0) {
-            Stream.of(seeds).forEach((x) -> seedData.addSeed(x, true));
-        } else {
-            LOG.error("请提供入口种子");
-            return false;
-        }
+        String[] seeds = StringSplitUtil.splitRule(webSiteConf.getSeeds());
+        Stream.of(seeds).forEach(x -> {
+            FetcherTask task = new FetcherTask(x);
+            task.setForceFecther(webSiteConf.isForceFecther());
+            fetcherTasks.addTask(task);
+        });
         //url 提取正则
-        String[] urlRules = StringSplitUtil.splitRule(siteConfig.getUrlPares());
+        String[] urlRules = StringSplitUtil.splitRule(urlRule.getUrlPares());
         //conPickRules 需要提取正文的 url 正则表达式
-        String[] conPickRules = StringSplitUtil.splitRule(siteConfig.getPageParse());
-
+        String[] conPickRules = StringSplitUtil.splitRule(urlRule.getPageParse());
         regexRule.addContentRegexRule(conPickRules);
         regexRule.addPickReges(urlRules);
         regexRule.addPickReges(conPickRules);
         LOG.info("url提取规则注入" + regexRule.info());
-        return true;
     }
 
     /**
      * desc: 注入入口种子到数据库中
      **/
     @Override
-    public boolean injectSeeds() {
-        IDbWritor iDbWritor = defaultDataUtil.getiDbWritor();
-        CrawlDatums seeds = seedData.getSeeds();
-        CrawlDatums forceSeeds = seedData.getForcedSeeds();
-        try {
-            if (seeds.isEmpty()) {
-                iDbWritor.injectList(seeds, false);
-            }
-            if (!seedData.getForcedSeeds().isEmpty()) {
-                iDbWritor.injectList(forceSeeds, true);
-            }
-            return true;
-        } catch (Exception e) {
-            LOG.error("添加种子到数据库失败");
-            LOG.error(e.toString());
-            return false;
-        }
+    public void injectSeeds() throws MyException {
+        LOG.info("seeds注入：" + fetcherTasks.get(0).toString());
+        defaultDataUtil.getiDbWritor().inject(fetcherTasks);
     }
 
+    /**
+     * desc:开启爬取
+     *
+     * @Return: boolean
+     **/
     @Override
-    public boolean spiderProcess() {
-        boolean loadState = this.loadConfig();
-        LOG.info("加载配置？" + loadState);
-        //判断是否断点。不开启，则，启动前 清理数据库
-        if (!siteConfig.isRes()) {
-            if (defaultDataUtil.getiDbManager().isDBExists()) {
-                defaultDataUtil.getiDbManager().clear();
-            }
-        }
+    public boolean startSpider() throws MyException {
+        this.loadOuterConfig();
+        this.loadInnerConfig();
         defaultDataUtil.getiDbManager().open();
         //注入入口
-        boolean injectSeedState = this.injectSeeds();
-        LOG.info("注入种子？" + injectSeedState);
-        status = RUNNING;
-        LOG.info("爬虫配置完成，开始抓取：" + this.toString());
-        /*for (int i = 0; i < siteConfig.getDeepPath(); i++) {
-            if (status == STOPED) {
-                break;
-            }*/
-        //LOG.info("start depth " + (i + 1));
-        long startTime = System.currentTimeMillis();
-        int totalGenerate = fetcher.fetcherStart();
-        long endTime = System.currentTimeMillis();
+        this.injectSeeds();
 
-        long costTime = (endTime - startTime) / 1000;
-        LOG.info("\ndepth " + (1) + " finish: " +
-                "\n              this depth total urls: " + totalGenerate + "" +
-                "\n              this depth total time: " + costTime + " seconds");
-           /* if (totalGenerate == 0) {
-                break;
-            }
-        }*/
+        status = RUNNING;
+
+        LOG.info("爬虫配置完成，开始抓取.........");
+        Instant start = Instant.now();
+        int totalGenerate = fetcher.fetcherStart();
+        Instant end = Instant.now();
+        long costTime = Duration.between(start, end).getSeconds();
+        LOG.info("\nfinished: " +
+                "\n           total urls: " + totalGenerate + "" +
+                "\n           total time: " + costTime + " seconds");
         defaultDataUtil.getiDbManager().close();
-        this.afterStopSpider();
+        //关闭后不继续 提取后续网站配置
+        if (status == RUNNING) {
+            this.afterStopSpider();
+        }
         return true;
     }
 
@@ -145,28 +141,8 @@ public abstract class AbstractSpider implements ISpider {
     }
 
     @Override
-    public abstract void afterStopSpider();
+    public abstract void afterStopSpider() throws MyException;
 
-    @Override
-    public void setConfig(SiteConfig config) {
-        this.siteConfig = config;
-    }
-
-    public SiteConfig getSiteConfig() {
-        return siteConfig;
-    }
-
-    public void setSiteConfig(SiteConfig siteConfig) {
-        this.siteConfig = siteConfig;
-    }
-
-    public SeedData getSeedData() {
-        return seedData;
-    }
-
-    public void setSeedData(SeedData seedData) {
-        this.seedData = seedData;
-    }
 
     public RegexRule getRegexRule() {
         return regexRule;

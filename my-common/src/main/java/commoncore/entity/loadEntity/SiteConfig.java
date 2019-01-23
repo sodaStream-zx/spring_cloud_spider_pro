@@ -1,3 +1,4 @@
+/*
 package commoncore.entity.loadEntity;
 
 import org.springframework.stereotype.Component;
@@ -152,3 +153,4 @@ public class SiteConfig implements Serializable {
         this.tableName = tableName;
     }
 }
+*/

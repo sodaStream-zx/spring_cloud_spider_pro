@@ -8,8 +8,8 @@ import java.io.Serializable;
  *
  * @author 一杯咖啡
  */
-public class CrawlDatum implements Serializable {
-    private static final long serialVersionUID = 4L;
+public class FetcherTask implements Serializable {
+    private static final long serialVersionUID = 15368598654L;
     /**
      * STATUS_DB_UNEXECUTED 未爬取
      * STATUS_DB_FAILED 爬取失败
@@ -24,17 +24,33 @@ public class CrawlDatum implements Serializable {
     private int status = STATUS_DB_UNEXECUTED;
     private int executeCount = 0;
     private String method = "GET";
+    private int deepPath = 0;
+    private boolean forceFecther = false;
 
-    public CrawlDatum() {
+    public FetcherTask() {
     }
 
-    public CrawlDatum(String url) {
+    public FetcherTask(String url) {
         this.url = url;
+    }
+
+
+    public FetcherTask(String url, int oldDeep) {
+        this.url = url;
+        this.deepPath = oldDeep + 1;
     }
 
     public int incrExecuteCount(int count) {
         executeCount += count;
         return executeCount;
+    }
+
+    public boolean isForceFecther() {
+        return forceFecther;
+    }
+
+    public void setForceFecther(boolean forceFecther) {
+        this.forceFecther = forceFecther;
     }
 
     public String getUrl() {
@@ -79,10 +95,18 @@ public class CrawlDatum implements Serializable {
 
     @Override
     public String toString() {
-        return CrawlDatumFormater.datumToString(this);
+        return FetcherTaskFormater.datumToString(this);
     }
 
     public String briefInfo() {
-        return String.format("CrawlDatum: (URL: %s)", this.getUrl());
+        return String.format("FetcherTask: (URL: %s Deep: %s)", this.getUrl(), this.deepPath);
+    }
+
+    public int getDeepPath() {
+        return deepPath;
+    }
+
+    public void setDeepPath(int deepPath) {
+        this.deepPath = deepPath;
     }
 }

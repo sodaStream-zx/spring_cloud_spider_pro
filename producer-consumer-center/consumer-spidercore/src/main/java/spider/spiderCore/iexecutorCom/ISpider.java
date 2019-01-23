@@ -1,6 +1,6 @@
 package spider.spiderCore.iexecutorCom;
 
-import commoncore.entity.loadEntity.SiteConfig;
+import commoncore.exceptionHandle.MyException;
 
 /**
  * @author Twilight
@@ -8,15 +8,15 @@ import commoncore.entity.loadEntity.SiteConfig;
  * @createTime 2019-01-08-14:55
  */
 public interface ISpider {
-    boolean loadConfig();
+    void loadInnerConfig() throws MyException;
 
-    boolean injectSeeds();
+    void injectSeeds() throws MyException;
 
-    boolean spiderProcess();
+    boolean startSpider() throws MyException;
 
     boolean stopSpider();
 
-    void afterStopSpider();
+    void afterStopSpider() throws MyException;
 
-    void setConfig(SiteConfig config);
+    void loadOuterConfig() throws MyException;
 }

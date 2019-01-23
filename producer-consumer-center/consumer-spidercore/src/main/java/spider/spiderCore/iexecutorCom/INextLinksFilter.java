@@ -18,12 +18,12 @@
 package spider.spiderCore.iexecutorCom;
 
 
-import spider.spiderCore.entitys.CrawlDatums;
+import spider.spiderCore.entitys.FetcherTasks;
 
 /**
  * @desc 解析出的后续任务过滤器
  * @author Twilight
  */
 public interface INextLinksFilter {
-     CrawlDatums filter(CrawlDatums datums);
+     FetcherTasks filter(FetcherTasks tasks);
 }

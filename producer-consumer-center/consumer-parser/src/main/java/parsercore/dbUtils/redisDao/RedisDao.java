@@ -3,9 +3,9 @@ package parsercore.dbUtils.redisDao;
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.loadEntity.DomainRule;
 import commoncore.entity.loadEntity.MyNew;
+import commoncore.entity.loadEntity.RedisDbKeys;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import parsercore.dbUtils.mysqlDao.IMysqlDao;
@@ -22,14 +22,14 @@ public class RedisDao implements IRedisDao {
     private static Logger LOG = Logger.getLogger(RedisDao.class);
     private IMysqlDao<MyNew, DomainRule> iMysqlDao;
     private RedisTemplate redisTemplate;
-    private String domainMapName;
+    private RedisDbKeys redisDbKeys;
 
     @Autowired
     public RedisDao(IMysqlDao<MyNew, DomainRule> iMysqlDao, RedisTemplate redisTemplate,
-                    @Value(value = "${my.domain.mapName}") String domainMapName) {
+                    RedisDbKeys redisDbKeys) {
         this.iMysqlDao = iMysqlDao;
         this.redisTemplate = redisTemplate;
-        this.domainMapName = domainMapName;
+        this.redisDbKeys = redisDbKeys;
     }
 
     /**
@@ -41,7 +41,7 @@ public class RedisDao implements IRedisDao {
         Optional<String> domainRuleStr = SerializeUtil.serializeToString(domainRule);
         if (domainRuleStr.isPresent()) {
             LOG.info("存入规则到redis中" + key);
-            redisTemplate.opsForHash().put(domainMapName, domainRule.getSiteName(), domainRuleStr.get());
+            redisTemplate.opsForHash().put(redisDbKeys.getDomainRuleHash(), domainRule.getSiteName(), domainRuleStr.get());
             //redisTemplate.opsForList().rightPush(key, domainRuleStr);
         } else {
             LOG.error("未序列化出值");
@@ -53,8 +53,8 @@ public class RedisDao implements IRedisDao {
      **/
     @Override
     public DomainRule getDomainRuleFromRedis(String siteName) {
-        String drStr = (String) redisTemplate.opsForHash().get(domainMapName, siteName);
-        if (null == drStr || "".equals(drStr)) {
+        String drStr = (String) redisTemplate.opsForHash().get(redisDbKeys.getDomainRuleHash(), siteName);
+        /*if (null == drStr || "".equals(drStr)) {
             DomainRule domainRule;
             LOG.info("redis中没有值");
             domainRule = iMysqlDao.getDomainRuleFromMysql(siteName);
@@ -66,9 +66,9 @@ public class RedisDao implements IRedisDao {
                 this.addDomainRuleToRedis(domainRule);
                 return domainRule;
             }
-        } else {
-            Optional<DomainRule> dObj = SerializeUtil.deserializeToObject(drStr);
-            return dObj.isPresent() ? dObj.get() : null;
-        }
+        } else {*/
+        Optional<DomainRule> dObj = SerializeUtil.deserializeToObject(drStr);
+        return dObj.isPresent() ? dObj.get() : null;
+//        }
     }
 }

@@ -1,6 +1,6 @@
 package spider.spiderCore.fetchercore;
 
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.FetcherTask;
 import org.junit.Test;
 
 /**
@@ -13,11 +13,11 @@ public class FetchQueueTest {
 
     @Test
     public void dump() {
-        fetchQueue.addCrawlDatum(new CrawlDatum("12412541252"));
-        fetchQueue.addCrawlDatum(new CrawlDatum("1s412541152"));
-        fetchQueue.addCrawlDatum(new CrawlDatum("124125412"));
-        fetchQueue.addCrawlDatum(new CrawlDatum("1f41w541252"));
-        fetchQueue.addCrawlDatum(new CrawlDatum("12etq412541252"));
+        fetchQueue.addTask(new FetcherTask("12412541252"));
+        fetchQueue.addTask(new FetcherTask("1s412541152"));
+        fetchQueue.addTask(new FetcherTask("124125412"));
+        fetchQueue.addTask(new FetcherTask("1f41w541252"));
+        fetchQueue.addTask(new FetcherTask("12etq412541252"));
         fetchQueue.dump();
     }
 }

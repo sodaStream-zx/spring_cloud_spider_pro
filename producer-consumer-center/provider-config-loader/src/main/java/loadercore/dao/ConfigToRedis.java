@@ -2,19 +2,22 @@
 package loadercore.dao;
 
 import commoncore.customUtils.SerializeUtil;
-import commoncore.customUtils.SleepUtil;
-import commoncore.entity.loadEntity.*;
+import commoncore.entity.loadEntity.DomainRule;
+import commoncore.entity.loadEntity.RedisDbKeys;
+import commoncore.entity.loadEntity.UrlRule;
+import commoncore.entity.loadEntity.WebSiteConf;
 import commoncore.entity.loadEntity.jpaDao.DomainRuleJpaDao;
-import commoncore.entity.loadEntity.jpaDao.SiteConfigJpaDao;
+import commoncore.entity.loadEntity.jpaDao.RedisDbKeysJpaDao;
 import commoncore.entity.loadEntity.jpaDao.UrlRuleJpaDao;
 import commoncore.entity.loadEntity.jpaDao.WebSiteConfJpaDao;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -27,46 +30,60 @@ import java.util.Optional;
  */
 
 @Service
-public class ConfigFromMysqlToRedis {
+public class ConfigToRedis {
 
-    private static final Logger LOG = Logger.getLogger(ConfigFromMysqlToRedis.class);
+    private static final Logger LOG = Logger.getLogger(ConfigToRedis.class);
     private RedisTemplate redisTemplate;
-    private SiteConfigJpaDao siteConfigJpaDao;
     private WebSiteConfJpaDao webSiteConfJpaDao;
     private UrlRuleJpaDao urlRuleJpaDao;
     private DomainRuleJpaDao domainRuleJpaDao;
-    private ConfigRedisKeys configRedisKeys;
+    private RedisDbKeysJpaDao redisDbKeysJpaDao;
+    private RedisDbKeys redisDbKeys;
+    @Value(value = "${redisDb.config}")
+    private String redisKeyConfig;
 
     @Autowired
-    public ConfigFromMysqlToRedis(RedisTemplate redisTemplate,
-                                  SiteConfigJpaDao siteConfigJpaDao,
-                                  WebSiteConfJpaDao webSiteConfJpaDao,
-                                  UrlRuleJpaDao urlRuleJpaDao,
-                                  DomainRuleJpaDao domainRuleJpaDao,
-                                  ConfigRedisKeys configRedisKeys) {
+    public ConfigToRedis(RedisTemplate redisTemplate,
+                         WebSiteConfJpaDao webSiteConfJpaDao,
+                         UrlRuleJpaDao urlRuleJpaDao,
+                         DomainRuleJpaDao domainRuleJpaDao,
+                         RedisDbKeys redisDbKeys,
+                         RedisDbKeysJpaDao redisDbKeysJpaDao) {
         this.redisTemplate = redisTemplate;
-        this.siteConfigJpaDao = siteConfigJpaDao;
         this.webSiteConfJpaDao = webSiteConfJpaDao;
         this.urlRuleJpaDao = urlRuleJpaDao;
         this.domainRuleJpaDao = domainRuleJpaDao;
-        this.configRedisKeys = configRedisKeys;
+        this.redisDbKeys = redisDbKeys;
+        this.redisDbKeysJpaDao = redisDbKeysJpaDao;
     }
+
 
     /**
      * desc:主节点需要该功能从mysql数据库读到redis队列
      **/
-    @Transactional
     public void mysqlWriteRedis() {
         //List<SiteConfig> scs = sitesConfigJTDao.Read();
-
-        List<SiteConfig> list = siteConfigJpaDao.findAll();
+       /* List<SiteConfig> list = siteConfigJpaDao.findAll();
         list.stream()
                 .map(SerializeUtil::serializeToString)
                 .forEach(x -> redisTemplate.opsForList().leftPush("sites", x.get()));
-        SleepUtil.pause(1, 0);
+        SleepUtil.pause(1, 0);*/
+        this.loadRedisKeys();
         this.loadWebConfig();
         this.loadUrlRule();
         this.loadDomainRule();
+    }
+
+    /**
+     * desc:加载redis数据表约定
+     **/
+    public void loadRedisKeys() {
+        //1.从mysql中读取配置
+        RedisDbKeys mrd = redisDbKeysJpaDao.findAll().get(0);
+        redisDbKeys.configOwn(mrd);
+        //2.写入配置到redis中
+        Optional<String> redisDKStr = SerializeUtil.serializeToString(redisDbKeys);
+        redisTemplate.opsForValue().set(redisKeyConfig, redisDKStr.get());
     }
 
     /**
@@ -78,7 +95,7 @@ public class ConfigFromMysqlToRedis {
         if (webs.size() > 0) {
             for (WebSiteConf ws : webs) {
                 Optional<String> wsStr = SerializeUtil.serializeToString(ws);
-                redisTemplate.opsForHash().put(configRedisKeys.getWsConfHash(), ws.getSiteName(), wsStr.get());
+                redisTemplate.opsForList().leftPush(redisDbKeys.getWsConfList(), wsStr.get());
             }
         }
     }
@@ -92,7 +109,8 @@ public class ConfigFromMysqlToRedis {
         if (rules.size() > 0) {
             for (UrlRule ur : rules) {
                 Optional<String> urStr = SerializeUtil.serializeToString(ur);
-                redisTemplate.opsForHash().put(configRedisKeys.getUrlRuleHash(), ur.getSiteName(), urStr.get());
+                // redisTemplate.opsForHash().put(redisDbKeys.getUrlRuleHash(), ur.getSiteName(), urStr.get());
+                redisTemplate.opsForHash().putIfAbsent(redisDbKeys.getUrlRuleHash(), ur.getSiteName(), urStr.get());
             }
         }
     }
@@ -106,7 +124,8 @@ public class ConfigFromMysqlToRedis {
         if (doRs.size() > 0) {
             for (DomainRule dr : doRs) {
                 Optional<String> drStr = SerializeUtil.serializeToString(dr);
-                redisTemplate.opsForHash().put(configRedisKeys.getDomainRuleHash(), dr.getSiteName(), drStr.get());
+                // redisTemplate.opsForHash().put(redisDbKeys.getDomainRuleHash(), dr.getSiteName(), drStr.get());
+                redisTemplate.opsForHash().putIfAbsent(redisDbKeys.getDomainRuleHash(), dr.getSiteName(), drStr.get());
             }
         }
     }
@@ -114,12 +133,14 @@ public class ConfigFromMysqlToRedis {
     /**
      * desc:从redis中读取配置
      **/
-    public void readRedis(String dbKey) {
-        List<String> configs = redisTemplate.opsForHash().values(dbKey);
-        LOG.info(configs.size());
-        configs.stream()
-                .map(SerializeUtil::deserializeToObject)
-                .forEach(x -> System.out.println(x.get().toString()));
+    public Map<String, String> readForHashMap(String dbKey) {
+        Map<String, String> configs = redisTemplate.opsForHash().entries(dbKey);
+        return configs;
+    }
+
+    public List<String> readForList(String dbKey) {
+        List<String> configs = redisTemplate.opsForList().range(dbKey, 0, -1);
+        return configs;
     }
 }
 

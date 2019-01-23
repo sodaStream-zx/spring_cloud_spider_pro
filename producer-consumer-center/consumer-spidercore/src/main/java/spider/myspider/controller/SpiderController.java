@@ -1,9 +1,10 @@
 package spider.myspider.controller;
 
+import commoncore.exceptionHandle.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spider.myspider.SpiderEngine;
+import spider.myspider.services.MySpider;
 
 
 /**
@@ -14,17 +15,23 @@ import spider.myspider.SpiderEngine;
 @RestController
 public class SpiderController {
     @Autowired
-    private SpiderEngine spiderEngine;
+    private MySpider mySpider;
 
     @GetMapping(value = "/spider")
     public Boolean start() {
-        new Thread(() -> spiderEngine.initToRun(), "startSpider--").start();
+        new Thread(() -> {
+            try {
+                mySpider.startSpider();
+            } catch (MyException e) {
+                e.printStackTrace();
+            }
+        }, "startSpider--").start();
         return true;
     }
 
     @GetMapping(value = "/stop")
-    public boolean stopspider() {
-        new Thread(() -> spiderEngine.stopSpider(), "startSpider--").start();
+    public boolean stopSpider() {
+        new Thread(() -> mySpider.stopSpider(), "startSpider--").start();
         return true;
     }
 }

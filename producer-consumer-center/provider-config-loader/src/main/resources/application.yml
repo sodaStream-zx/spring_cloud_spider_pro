@@ -12,6 +12,7 @@ spring:
   #Redis config
   redis:
     host: 192.168.88.106
+    # ${spring.cloud.client.ipAddress}
     port: 6379
     password: zxx1994
     timeout: 4000
@@ -65,3 +66,13 @@ info:
   artifactId: ${project.artifactId}
   version: ${project.version}
   urlLocation: http://${eureka.instance.instance-id}:/${server.port}/load
+redisDb:
+  config: redisKey
+  webSiteCnf: webSiteCnfList
+  urlRuleCnf: urlRuleCnf
+  domRuleCnf: domRuleCnf
+  seedsList: seedList
+  undoneList: undoneList
+  doneList: doneList
+  redirectList: redirectList
+

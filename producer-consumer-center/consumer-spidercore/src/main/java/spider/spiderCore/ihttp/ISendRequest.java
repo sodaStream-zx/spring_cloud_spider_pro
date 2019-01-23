@@ -1,6 +1,6 @@
 package spider.spiderCore.ihttp;
 
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.FetcherTask;
 import commoncore.exceptionHandle.MyException;
 import spider.spiderCore.entitys.HttpResponse;
 
@@ -21,12 +21,12 @@ public interface ISendRequest<T> {
     /**
      * desc: 获取返回值
      **/
-    HttpResponse sendRequest(CrawlDatum crawlDatum) throws Exception;
+    HttpResponse sendRequest(FetcherTask fetcherTask) throws Exception;
 
     /**
      * desc:转换 封装 响应数据
      **/
-    T converterResponsePage(CrawlDatum crawlDatum) throws IOException, MyException;
+    T converterResponsePage(FetcherTask fetcherTask) throws IOException, MyException;
 
     void addHeader(String key, String value);
 

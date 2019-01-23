@@ -2,10 +2,10 @@ package parsercore.fetcherCore.generatorcore;
 
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.httpEntity.ParseData;
+import commoncore.entity.loadEntity.RedisDbKeys;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -21,21 +21,21 @@ import java.util.Optional;
 public class ParseDataGenerator implements IParseDataGenerator<ParseData> {
     private static final Logger log = Logger.getLogger(ParseDataGenerator.class);
     private IResponseDataFilter<ParseData> iResponseDataFilter;
-    private String dataKey;
+    private RedisDbKeys redisDbKeys;
     private RedisTemplate redisTemplate;
 
     @Autowired
     public ParseDataGenerator(IResponseDataFilter<ParseData> iResponseDataFilter,
                               RedisTemplate redisTemplate,
-                              @Value(value = "${my.responseList.redisKey}") String dataKey) {
+                              RedisDbKeys redisDbKeys) {
         this.iResponseDataFilter = iResponseDataFilter;
         this.redisTemplate = redisTemplate;
-        this.dataKey = dataKey;
+        this.redisDbKeys = redisDbKeys;
     }
 
     @Override
     public ParseData getData() {
-        String responseDataStr = (String) redisTemplate.opsForList().leftPop(dataKey);
+        String responseDataStr = (String) redisTemplate.opsForList().leftPop(redisDbKeys.getParseList());
         if (!StringUtils.isBlank(responseDataStr)) {
             log.debug("从数据库提取数据成功.......");
             Optional<ParseData> data = SerializeUtil.deserializeToObject(responseDataStr);

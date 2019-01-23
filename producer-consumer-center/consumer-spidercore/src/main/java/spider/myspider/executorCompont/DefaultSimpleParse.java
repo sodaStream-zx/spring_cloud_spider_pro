@@ -1,4 +1,4 @@
-package spider.myspider.fetcherCompont;
+package spider.myspider.executorCompont;
 
 import commoncore.entity.httpEntity.ResponseData;
 import org.apache.log4j.Logger;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import spider.spiderCore.entitys.CrawlDatums;
+import spider.spiderCore.entitys.FetcherTasks;
 import spider.spiderCore.entitys.Links;
 import spider.spiderCore.entitys.RegexRule;
 import spider.spiderCore.iexecutorCom.ISimpleParse;
@@ -19,7 +19,7 @@ import spider.spiderCore.iexecutorCom.ISimpleParse;
  */
 @Component(value = "defaultSimpleParse")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponseData> {
+public class DefaultSimpleParse implements ISimpleParse<FetcherTasks, ResponseData> {
     private static final Logger log = Logger.getLogger(DefaultSimpleParse.class);
 
     private RegexRule regexRule;
@@ -29,16 +29,20 @@ public class DefaultSimpleParse implements ISimpleParse<CrawlDatums, ResponseDat
         this.regexRule = regexRule;
     }
 
+    /**
+     * desc:只能解析html类型的网页，json需后续处理
+     **/
     @Override
-    public CrawlDatums parseLinks(ResponseData responseData) {
-        CrawlDatums next = new CrawlDatums();
+    public FetcherTasks parseLinks(ResponseData responseData) {
+        FetcherTasks next = new FetcherTasks();
         String contentType = responseData.getContentType();
         if (contentType != null && contentType.contains("text/html")) {
             Document doc = responseData.getDoc();
             if (doc != null) {
                 //从页面中取出需要的url 形成接下来的任务
-                CrawlDatums crawlDatums = new Links().addHrefByRegx(doc, regexRule).toCrawlDatums();
-                next.add(crawlDatums);
+                int nowDeep = responseData.getFetcherTask().getDeepPath();
+                FetcherTasks fetcherTasks = new Links().addHrefByRegx(doc, regexRule).toCrawlDatums(nowDeep);
+                next.addFetcherTasks(fetcherTasks);
             }
         }
         return next;

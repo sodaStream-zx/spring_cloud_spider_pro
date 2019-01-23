@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import spider.myspider.SpiderEngine;
+import spider.myspider.services.MySpider;
 
 /**
  * @author 一杯咖啡
@@ -17,10 +17,10 @@ import spider.myspider.SpiderEngine;
 public class SpiderControllerTest {
 
     @Autowired
-    SpiderEngine spiderEngine;
+    MySpider mySpider;
     @Test
     public void start() {
-        spiderEngine.initToRun();
+        mySpider.loadOuterConfig();
     }
 
     @Test

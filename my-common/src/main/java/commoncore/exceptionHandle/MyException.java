@@ -12,8 +12,8 @@ public class MyException extends Exception {
     private String throwLocaltion;
     private String requestUrl;
 
-    public MyException(String message) {
-        super(message);
+    public MyException(String msg) {
+        this.msg = msg;
     }
 
     public MyException() {

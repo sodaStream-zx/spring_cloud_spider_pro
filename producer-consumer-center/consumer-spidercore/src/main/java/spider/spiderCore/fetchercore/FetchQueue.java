@@ -1,6 +1,6 @@
 package spider.spiderCore.fetchercore;
 
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.FetcherTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class FetchQueue {
 
     public AtomicInteger totalSize = new AtomicInteger(0);
 
-    public final List<CrawlDatum> queue = Collections.synchronizedList(new LinkedList<>());
+    public final List<FetcherTask> queue = Collections.synchronizedList(new LinkedList<>());
 
     public void clearQueue() {
         queue.clear();
@@ -36,7 +36,7 @@ public class FetchQueue {
      *
      * @Return: void
      **/
-    public synchronized void addCrawlDatum(CrawlDatum item) {
+    public synchronized void addTask(FetcherTask item) {
         if (item == null) {
             return;
         }
@@ -47,7 +47,7 @@ public class FetchQueue {
     /**
      * desc:从queue中提取任务
      **/
-    public synchronized CrawlDatum getCrawlDatum() {
+    public synchronized FetcherTask getTask() {
         if (queue.isEmpty()) {
             return null;
         }

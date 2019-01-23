@@ -55,9 +55,9 @@ public class QueueFeeder implements Runnable {
             fetcherState.setFeederRunnning(false);
             return;
         }
-        LOG.info(this.toString());
         boolean hasMore = true;
         fetcherState.setFeederRunnning(true);
+        LOG.info(this.toString());
         //任务生产者依赖 数据库后续任务，自身状态，调度器状态
         while (hasMore && fetcherState.isFeederRunnning() && fetcherState.isFetcherRunning()) {
             //监听queue中数量，当queue中数量为1000时，线程等待，

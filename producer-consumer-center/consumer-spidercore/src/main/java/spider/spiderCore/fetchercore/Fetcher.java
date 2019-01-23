@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import spider.myspider.redisComponent.DefaultDataUtil;
+import spider.myspider.redisDbComponent.DefaultDataUtil;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -51,15 +51,18 @@ public class Fetcher {
         //合并 入口和解析 任务库到 运行任务库
         defaultDataUtil.getiDbManager().merge();
         defaultDataUtil.getiDbWritor().initSegmentWriter();
-        LOG.info("数据库 工具" + defaultDataUtil.getClass().getName());
+
         fetcherState.setFetcherRunning(true);
         //创建线程池，允许核心线程超时关闭
         ThreadPoolExecutor threadsExecutor = new ThreadPoolExecutor(threads + 1, threads + (threads / 2), 2, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
         threadsExecutor.allowCoreThreadTimeOut(true);
-        //任务生产者开始 ，添加上限1000个
+
+        LOG.info("启动任务生产者----------");
         threadsExecutor.execute(queueFeeder);
         //等待管道先添加任务
         SleepUtil.pause(2, 0);
+
+        LOG.info("启动任务消费者----------");
         //初始化消费者 从queue中读取任务
         for (int i = 0; i < threads; i++) {
             FetcherThread ft = BeanGainer.getBean("fetcherThread", FetcherThread.class);
@@ -73,21 +76,16 @@ public class Fetcher {
         do {
             SleepUtil.pause(1, 0);
             LOG.info("执行器状态:\n" + fetcherState.toString());
-            LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n");
-        } while (threadsExecutor.getActiveCount() > 0 && fetcherState.isFetcherRunning());
-
-        //立即停止任务添加到管道
-        LOG.info("本地管道数量：" + fetchQueue.getSize());
+            LOG.info("【线程池状态：\n" + threadsExecutor.toString() + " 】\n"
+                    + "queue size" + fetchQueue.getSize());
+        } while (threadsExecutor.getActiveCount() > 1 || fetcherState.isFetcherRunning());
+        //立即停止调度器
         this.stopFetcher();
         threadsExecutor.shutdown();
         LOG.info("线程池状态？？---" + threadsExecutor.toString());
         LOG.info("线程池关闭？" + (threadsExecutor.isTerminated() ? "已关闭" : "未关闭"));
-
-        if (queueFeeder != null) {
-            queueFeeder.closeGenerator();
-        }
         defaultDataUtil.getiDbWritor().closeSegmentWriter();
-        LOG.info("close segmentWriter:" + defaultDataUtil.getiDbWritor().getClass().getName());
+        LOG.info("关闭数据库写入工具:" + defaultDataUtil.getiDbWritor().getClass().getName());
         //返回生成的任务总数
         return defaultDataUtil.getiGenerator().totalGeneretNum();
     }

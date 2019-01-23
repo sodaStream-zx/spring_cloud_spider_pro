@@ -49,8 +49,8 @@ public class Links implements Serializable {
         add(urls);
     }
 
-    public CrawlDatums toCrawlDatums() {
-        return new CrawlDatums(this.dataList);
+    public FetcherTasks toCrawlDatums(int deepPath) {
+        return new FetcherTasks(this.dataList, deepPath);
     }
 
     public void add(String url) {

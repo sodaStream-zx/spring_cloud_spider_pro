@@ -8,17 +8,17 @@ public interface IDataBase<T> {
     /**
      * 总任务队列
      */
-    T getCrawlDB();
+    T getSeedList();
 
     /**
      * 入口任务
      */
-    T getFetchDB();
+    T getDoneList();
 
     /**
      * 解析入口生成后续任务
      */
-    T getLinkDB();
+    T getUnDoneList();
 
     /**
      * 重试任务

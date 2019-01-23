@@ -29,9 +29,7 @@ spring:
     url: jdbc:mysql://localhost:3306/webspider?useUnicode=true&characterEncoding=utf8
     username: root
   jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
+    show-sql: true
   output:
     ansi:
       enabled: always
@@ -72,3 +70,5 @@ info:
   version: ${project.version}
 server:
   port: 9940
+redisDb:
+  config: redisKey

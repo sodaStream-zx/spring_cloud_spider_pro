@@ -2,7 +2,7 @@ package spider.myspider.httpComponent;
 
 import com.google.gson.Gson;
 import commoncore.entity.httpEntity.ResponseData;
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.FetcherTask;
 import commoncore.exceptionHandle.MyException;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -54,16 +54,16 @@ public class DefaultHttpRequest implements ISendRequest<ResponseData> {
      * @throws IOException,MyException
      **/
     @Override
-    public ResponseData converterResponsePage(CrawlDatum crawlDatum) throws IOException, MyException {
+    public ResponseData converterResponsePage(FetcherTask fetcherTask) throws IOException, MyException {
         // LOG.info("httputil 配置" + this.httpConfig.toString());
-        HttpResponse httpResponse = this.sendRequest(crawlDatum);
+        HttpResponse httpResponse = this.sendRequest(fetcherTask);
         ResponseData responseData = new ResponseData(
-                crawlDatum,
+                fetcherTask,
                 httpResponse.code(),
                 httpResponse.contentType(),
                 httpResponse.content()
         );
-        LOG.debug("响应数据：" + responseData.toString());
+        LOG.debug("响应数据：" + responseData.getHtml().length());
         return responseData;
     }
 
@@ -103,12 +103,12 @@ public class DefaultHttpRequest implements ISendRequest<ResponseData> {
      * @throws IOException,MyException
      **/
     @Override
-    public HttpResponse sendRequest(CrawlDatum crawlDatum) throws IOException, MyException {
+    public HttpResponse sendRequest(FetcherTask fetcherTask) throws IOException, MyException {
         HttpURLConnection con = null;
         InputStream is = null;
         int code = -1;
         int realRedirectNum = Math.max(0, httpConfig.getMaxRedirect());
-        URL url = new URL(crawlDatum.getUrl());
+        URL url = new URL(fetcherTask.getUrl());
         HttpResponse response = new HttpResponse(url);
         //请求重试次数
         for (int redirect = 0; redirect <= realRedirectNum; redirect++) {
@@ -118,7 +118,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponseData> {
             } else {
                 con = (HttpURLConnection) url.openConnection(proxy);
             }
-            con.setRequestMethod(crawlDatum.getMethod());
+            con.setRequestMethod(fetcherTask.getMethod());
             this.configHttpRequest(con);
             //post 请求写入信息
             MultiValueMap postBody = httpConfig.getPostBodyMap();

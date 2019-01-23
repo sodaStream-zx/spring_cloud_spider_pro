@@ -35,13 +35,14 @@ public class DefaultParesExecutor implements IParesExecutor<ParseData> {
     private MyNewDao myNewDao;
 
     @Autowired
-    public DefaultParesExecutor(IRedisDao iRedisDao, IMysqlDao iMysqlDao,
+    public DefaultParesExecutor(IRedisDao iRedisDao,
+                                IMysqlDao iMysqlDao,
                                 MyNewDao myNewDao) {
         this.iRedisDao = iRedisDao;
         this.iMysqlDao = iMysqlDao;
         this.myNewDao = myNewDao;
-        this.IParseProcess = BeanGainer.getBean("parseContent", IParseProcess.class);
-        this.iRuleFactory = BeanGainer.getBean("", IRuleFactory.class);
+        this.IParseProcess = BeanGainer.getBean(null, IParseProcess.class);
+        this.iRuleFactory = BeanGainer.getBean(null, IRuleFactory.class);
     }
 
     /**
@@ -61,12 +62,13 @@ public class DefaultParesExecutor implements IParesExecutor<ParseData> {
                 //IMysqlDao.insertNew(myNew);
                 log.info("DONE::" + data.pumpInfo());
             } else {
-                log.info("NO CONTENT :: " + data.pumpInfo());
+                log.info("没有解析出内容 :: " + data.pumpInfo());
+                log.debug("考虑可能是规则有问题，放入更新规则重试列表");
             }
         } else {
-            log.error("未能获取到网站:【" + data.getSiteName() + "】解析规则");
+            log.error("未能获取到网站:[" + data.getSiteName() + "]解析规则");
             SleepUtil.pause(1, 0);
-            log.info("未获取到解析器[" + data.getSiteName() + "]放入二次解析列表");
+            log.info("未获取到解析器[" + data.getSiteName() + "]，，该网站未配置解析器，需要处理");
         }
     }
 }

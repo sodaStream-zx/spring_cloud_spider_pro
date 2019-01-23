@@ -1,9 +1,11 @@
-package spider.myspider.redisComponent;
+package spider.myspider.redisDbComponent.dbutils;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import spider.myspider.redisDbComponent.DefaultDataUtil;
 import spider.spiderCore.idbcore.IDataBase;
 import spider.spiderCore.idbcore.IDbManager;
 
@@ -27,21 +29,29 @@ public class DefaultRedisManager implements IDbManager {
 
     @Override
     public boolean isDBExists() {
-        return true;
+        RedisConnection flag = redisTemplate.getConnectionFactory().getConnection();
+        if (flag != null) {
+            flag.close();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void clear() {
-
+        redisTemplate.getConnectionFactory().getConnection().flushAll();
+        log.info("清空数据库");
     }
 
     @Override
     public void open() {
-
+        log.info("开启数据库");
     }
 
     @Override
     public void close() {
+        log.info("关闭数据库");
     }
 
     /**
@@ -49,11 +59,12 @@ public class DefaultRedisManager implements IDbManager {
      **/
     @Override
     public void merge() {
-        String seeds = (String) iDataBase.getCrawlDB();
-        String fetch = (String) iDataBase.getFetchDB();
+        String seeds = (String) iDataBase.getSeedList();
+        String undone = (String) iDataBase.getUnDoneList();
         while (redisTemplate.opsForList().size(seeds) > 0) {
             String seedStr = (String) redisTemplate.opsForList().leftPop(seeds);
-            redisTemplate.opsForList().rightPush(fetch, seedStr);
+            //合并时将种子放在最右边，右边为出队列
+            redisTemplate.opsForList().rightPush(undone, seedStr);
         }
         log.info("合并任务库");
     }

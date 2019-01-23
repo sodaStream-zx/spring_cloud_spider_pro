@@ -1,6 +1,6 @@
 package spider.spiderCore.iexecutorCom;
 
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.exceptionHandle.MyException;
 
 /**
  * @author Twilight
@@ -13,5 +13,5 @@ public interface IExecutor<T> {
      *
      * @Return: T 后续任务泛型
      **/
-    T execute(CrawlDatum datum);
+    void execute(T task) throws MyException;
 }

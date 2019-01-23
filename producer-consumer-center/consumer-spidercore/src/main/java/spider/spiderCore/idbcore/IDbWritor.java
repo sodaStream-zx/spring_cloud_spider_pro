@@ -1,5 +1,7 @@
 package spider.spiderCore.idbcore;
 
+import commoncore.exceptionHandle.MyException;
+
 /**
  * @author 一杯咖啡
  * @desc 数据库写入工具
@@ -9,12 +11,7 @@ public interface IDbWritor<T, V> {
     /**
      * desc: 写入入口url
      **/
-    void inject(T datum, boolean force) throws Exception;
-
-    /**
-     * desc: 写入入口url
-     **/
-    void injectList(V datums, boolean force) throws Exception;
+    void inject(V task) throws MyException;
 
     /**
      * desc: 初始化写入工具

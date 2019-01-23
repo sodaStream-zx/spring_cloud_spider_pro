@@ -8,23 +8,23 @@ import java.util.Date;
  *
  * @author Twilight
  */
-public class CrawlDatumFormater {
+public class FetcherTaskFormater {
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static String datumToString(CrawlDatum datum) {
+    public static String datumToString(FetcherTask task) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("[URL: ").append(datum.getUrl()).append(",STATUS: ");
+        sb.append("[URL: ").append(task.getUrl()).append(",STATUS: ");
 
-        switch (datum.getStatus()) {
-            case CrawlDatum.STATUS_DB_SUCCESS:
+        switch (task.getStatus()) {
+            case FetcherTask.STATUS_DB_SUCCESS:
                 sb.append("success");
                 break;
-            case CrawlDatum.STATUS_DB_FAILED:
+            case FetcherTask.STATUS_DB_FAILED:
                 sb.append("failed");
                 break;
-            case CrawlDatum.STATUS_DB_UNEXECUTED:
+            case FetcherTask.STATUS_DB_UNEXECUTED:
                 sb.append("unexecuted");
                 break;
             default:
@@ -34,11 +34,11 @@ public class CrawlDatumFormater {
 
         //加入执行时间
         sb.append(",ExecuteTime:")
-                .append(sdf.format(new Date(datum.getExecuteTime())))
+                .append(sdf.format(new Date(task.getExecuteTime())))
                 .append(",ExecuteCount:")
-                .append(datum.getExecuteCount())
+                .append(task.getExecuteCount())
                 .append(",Method:")
-                .append(datum.getMethod() + "]");
+                .append(task.getMethod() + "]");
         return sb.toString();
     }
 }

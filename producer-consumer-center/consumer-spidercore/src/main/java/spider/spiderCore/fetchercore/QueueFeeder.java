@@ -3,7 +3,7 @@ package spider.spiderCore.fetchercore;
 
 import commoncore.customUtils.SleepUtil;
 import commoncore.entity.fetcherEntity.FetcherState;
-import commoncore.entity.requestEntity.CrawlDatum;
+import commoncore.entity.requestEntity.FetcherTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class QueueFeeder implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(QueueFeeder.class);
     private FetchQueue queue;
-    private IGenerator<CrawlDatum> iGenerator;
+    private IGenerator<FetcherTask> iGenerator;
     //queeue 大小最大值设置
     private int queueMaxSize;
 
@@ -29,8 +29,8 @@ public class QueueFeeder implements Runnable {
 
     @Autowired
     public QueueFeeder(FetchQueue queue,
-                       IGenerator<CrawlDatum> iGenerator,
-                       @Value(value = "${generator.topNumber}") int queueMaxSize,
+                       IGenerator<FetcherTask> iGenerator,
+                       @Value(value = "${queue.MaxSize}") int queueMaxSize,
                        FetcherState fetcherState) {
         this.queue = queue;
         this.iGenerator = iGenerator;
@@ -54,7 +54,7 @@ public class QueueFeeder implements Runnable {
     public void closeGenerator() {
         if (iGenerator != null) {
             iGenerator.close();
-            LOG.info("close abstractGenerator:" + iGenerator.getClass().getName() + " ......");
+            LOG.info("关闭数据库提取工具:" + iGenerator.getClass().getName());
         }
     }
 
@@ -64,7 +64,7 @@ public class QueueFeeder implements Runnable {
     @Override
     public void run() {
         //获取任务生成工具 （从数据库中提取数据）
-        LOG.info(iGenerator.toString());
+        LOG.info("任务生产者开始运行.......：数据提取工具：" + iGenerator.getClass());
         boolean hasMore = true;
         fetcherState.setFeederRunnning(true);
 
@@ -75,15 +75,18 @@ public class QueueFeeder implements Runnable {
                 SleepUtil.pause(1, 0);
                 continue;
             }
+            LOG.info("queue size：" + feed);
             //如果queue中小于1000，往queue中添加新任务，未提取到任务 count 等待时间
             int count = 0;
             while (feed > 0 && hasMore && fetcherState.isFeederRunnning()) {
                 //任务生成器 如果下一个任务为空，返回空。判断dbmananger中是否有后续任务
-                CrawlDatum datum = iGenerator.next();
-                // CrawlDatum datum = new CrawlDatum("testUrl");
-                if (datum != null) {
-                    LOG.debug("加入任务到缓冲区：" + datum.getUrl());
-                    queue.addCrawlDatum(datum);
+                FetcherTask task = iGenerator.next();
+                LOG.debug("获取任务：" + task);
+                LOG.info("当前任务deepPath:" + task.getDeepPath());
+                // FetcherTask task = new FetcherTask("testUrl");
+                if (task != null) {
+                    LOG.debug("加入任务到缓冲区：" + task.getUrl());
+                    queue.addTask(task);
                     feed--;//一直填到queue为1000
                     count = 0;
                 } else {
@@ -101,7 +104,7 @@ public class QueueFeeder implements Runnable {
         }
     }
 
-    public IGenerator<CrawlDatum> getiGenerator() {
+    public IGenerator<FetcherTask> getiGenerator() {
         return iGenerator;
     }
 

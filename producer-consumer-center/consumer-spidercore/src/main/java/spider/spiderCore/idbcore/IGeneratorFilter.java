@@ -6,5 +6,5 @@ package spider.spiderCore.idbcore;
  **/
 public interface IGeneratorFilter<T> {
 
-     T filter(T datum);
+     T filter(T task);
 }

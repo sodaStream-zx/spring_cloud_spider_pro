@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import parsercore.parseExecutor.DefaultParesExecutor;
 import parsercore.parseExecutor.IParesExecutor;
 
 /**
@@ -33,7 +32,7 @@ public class FetcherThread implements Runnable {
     public FetcherThread(FetchQueue fetchQueue, FetcherState fetcherState) {
         this.fetchQueue = fetchQueue;
         this.fetcherState = fetcherState;
-        this.iParesExecutor = BeanGainer.getBean("paresExecutor", DefaultParesExecutor.class);
+        this.iParesExecutor = BeanGainer.getBean("paresExecutor", IParesExecutor.class);
     }
 
     @Override
