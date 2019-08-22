@@ -21,7 +21,7 @@ public class SerializeUtil {
      * @author <a href="mail to: 113985238@qq.com" rel="nofollow">whitenoise</a>
      */
     public static Optional<String> serializeToString(Object obj) {
-        LOG.debug("对象序列化");
+        LOG.warn("对象序列化");
         try {
             ObjectOutputStream objOut;
             ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
@@ -41,7 +41,7 @@ public class SerializeUtil {
      * @author <a href="mail to: *******@******.com" rel="nofollow">作者</a>
      */
     public static <T> Optional<T> deserializeToObject(String str) {
-        LOG.debug("对象反序列化，进入程序");
+        LOG.warn("对象反序列化，进入程序");
         try {
             ByteArrayInputStream byteIn = new ByteArrayInputStream(str.getBytes(StandardCharsets.ISO_8859_1));
             ObjectInputStream objIn = new ObjectInputStream(byteIn);
