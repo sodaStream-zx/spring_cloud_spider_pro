@@ -1,6 +1,7 @@
 package commoncore.exceptionHandle;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,7 +20,7 @@ import java.io.PrintWriter;
 @ControllerAdvice
 //@Component
 public class GlobalExceptionHandle {
-    private static final Logger log = Logger.getLogger(GlobalExceptionHandle.class);
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandle.class);
 
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws IOException {

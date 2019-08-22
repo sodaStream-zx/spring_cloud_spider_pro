@@ -1,6 +1,6 @@
 package spider.myspider.httpComponent;
 
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSON;
 import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.requestEntity.FetcherTask;
 import commoncore.exceptionHandle.MyException;
@@ -125,7 +125,7 @@ public class DefaultHttpRequest implements ISendRequest<ResponseData> {
             if (postBody != null && postBody.size() > 0) {
                 OutputStream postStream = con.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(postStream, StandardCharsets.UTF_8));
-                String jsonPostBody = new Gson().toJson(postBody);
+                String jsonPostBody = JSON.toJSONString(postBody);
                 bufferedWriter.write(jsonPostBody);
                 bufferedWriter.flush();
                 bufferedWriter.close();

@@ -1,0 +1,28 @@
+#######配置信息
+my:
+  queue:
+    maxSize: 500
+  #待解析数据 redis list key
+  responseList:
+    redisKey: responseList
+  #解析器 hashmap key
+  domain:
+    mapName: rule
+  #任务执行线程数量
+  fetchercore:
+    maxThread: 10
+  ruleFactory:
+    maxSize: 10
+#############以上为自定义配置
+spring:
+  application:
+    name: spider-parse
+  jpa:
+    show-sql: true
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 9940
+redisDb:
+  config: redisKey

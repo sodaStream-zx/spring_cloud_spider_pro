@@ -4,7 +4,8 @@ import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.httpEntity.ParseData;
 import commoncore.entity.loadEntity.RedisDbKeys;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import java.util.Optional;
  */
 @Component
 public class ParseDataGenerator implements IParseDataGenerator<ParseData> {
-    private static final Logger log = Logger.getLogger(ParseDataGenerator.class);
+    private static final Logger log = LoggerFactory.getLogger(ParseDataGenerator.class);
     private IResponseDataFilter<ParseData> iResponseDataFilter;
     private RedisDbKeys redisDbKeys;
     private RedisTemplate redisTemplate;

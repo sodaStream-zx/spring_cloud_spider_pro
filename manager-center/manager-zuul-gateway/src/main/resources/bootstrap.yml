@@ -1,16 +1,19 @@
-#---
 spring:
-  cloud:
-    config:
-      fail-fast: true
-      discovery:
-        service-id: config-server
-        enabled: true
-      profile: pro
-      label: master
   application:
-    name: zuul-server
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${spring.cloud.client.ipAddress}:3001/eureka/
+    name: spider-zuul
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: 127.0.0.1:8848
+        namespace: 36f3deb6-bb19-4f9d-abec-f80e1728abdf
+        group: spider
+        #读取自定义data-id 配置，可配置多个，按照顺序读取
+        ext-config[0]:
+          refresh: true
+          data-id: datasource.yml
+          group: spider
+        ext-config[1]:
+          refresh: true
+          data-id: nacos.yml
+          group: spider

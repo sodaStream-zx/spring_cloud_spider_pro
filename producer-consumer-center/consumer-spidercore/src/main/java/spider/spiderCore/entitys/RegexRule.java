@@ -1,7 +1,8 @@
 package spider.spiderCore.entitys;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
  */
 @Component
 public class RegexRule {
-    private static final Logger log = Logger.getLogger(RegexRule.class);
+    private static final Logger log = LoggerFactory.getLogger(RegexRule.class);
     private ArrayList<String> pickRegexs = new ArrayList<>();
     private ArrayList<String> contentRegexRules = new ArrayList<>();
 

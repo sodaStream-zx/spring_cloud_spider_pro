@@ -3,7 +3,8 @@ package spider.myspider.redisDbComponent.dbutils;
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.requestEntity.FetcherTask;
 import commoncore.exceptionHandle.MyException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,7 +24,7 @@ import java.util.Optional;
 @Component
 @Scope("prototype")
 public class DefaultRedisDbWritor implements IDbWritor<FetcherTask, FetcherTasks> {
-    private static final Logger log = Logger.getLogger(DefaultRedisDbWritor.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultRedisDbWritor.class);
     private IDbManager iDbManager;
     private RedisTemplate redisTemplate;
     private IDataBase iDataBase;

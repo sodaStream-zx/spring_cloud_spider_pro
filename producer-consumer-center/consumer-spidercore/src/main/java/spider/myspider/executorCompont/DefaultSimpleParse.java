@@ -1,8 +1,9 @@
 package spider.myspider.executorCompont;
 
 import commoncore.entity.httpEntity.ResponseData;
-import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -20,7 +21,7 @@ import spider.spiderCore.iexecutorCom.ISimpleParse;
 @Component(value = "defaultSimpleParse")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultSimpleParse implements ISimpleParse<FetcherTasks, ResponseData> {
-    private static final Logger log = Logger.getLogger(DefaultSimpleParse.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultSimpleParse.class);
 
     private RegexRule regexRule;
 

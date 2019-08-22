@@ -1,8 +1,10 @@
 package parsercore;
 
+import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.loadEntity.RedisDbKeys;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -28,7 +29,7 @@ import java.util.Optional;
 @ComponentScan(basePackages = {"commoncore", "parsercore"})
 @EnableJpaRepositories(basePackages = "commoncore.entity")
 public class ParesEngineApplication {
-    private static final Logger LOG = Logger.getLogger(ParesEngineApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ParesEngineApplication.class);
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
@@ -40,9 +41,11 @@ public class ParesEngineApplication {
 
     @PostConstruct
     public void show() throws SQLException {
-        RedisSerializer stringSerializer = redisTemplate.getStringSerializer();
-        redisTemplate.setKeySerializer(stringSerializer);
-        redisTemplate.setValueSerializer(stringSerializer);
+        redisTemplate.setKeySerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setValueSerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setHashKeySerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setHashValueSerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.afterPropertiesSet();
         LOG.info("redis连接 数据库连接测试：\n");
 
         RedisConnection redisCon = redisTemplate.getConnectionFactory().getConnection();

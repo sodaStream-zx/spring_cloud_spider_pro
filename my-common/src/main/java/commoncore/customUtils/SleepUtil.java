@@ -1,6 +1,7 @@
 package commoncore.customUtils;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @createTime 2019-01-16-12:28
  */
 public class SleepUtil {
-    private static final Logger log = Logger.getLogger(SleepUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(SleepUtil.class);
 
     /**
      * desc: 线程休眠

@@ -1,6 +1,7 @@
 package spider.myspider.redisDbComponent.dbutils;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,7 +17,7 @@ import spider.spiderCore.idbcore.IDbManager;
  */
 @Component
 public class DefaultRedisManager implements IDbManager {
-    private static final Logger log = Logger.getLogger(DefaultDataUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultDataUtil.class);
     private IDataBase iDataBase;
     private RedisTemplate redisTemplate;
 

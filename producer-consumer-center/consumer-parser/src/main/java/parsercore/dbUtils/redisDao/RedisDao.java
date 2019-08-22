@@ -4,7 +4,8 @@ import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.loadEntity.DomainRule;
 import commoncore.entity.loadEntity.MyNew;
 import commoncore.entity.loadEntity.RedisDbKeys;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import java.util.Optional;
  */
 @Component
 public class RedisDao implements IRedisDao {
-    private static Logger LOG = Logger.getLogger(RedisDao.class);
+    private static Logger LOG = LoggerFactory.getLogger(RedisDao.class);
     private IMysqlDao<MyNew, DomainRule> iMysqlDao;
     private RedisTemplate redisTemplate;
     private RedisDbKeys redisDbKeys;

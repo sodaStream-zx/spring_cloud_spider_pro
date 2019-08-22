@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import zuulcore.config.UrlFilter;
@@ -18,7 +18,7 @@ import zuulcore.config.UrlFilter;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @EnableZuulProxy
 @EnableCircuitBreaker
-@EnableEurekaClient
+@EnableDiscoveryClient
 public class ZuulServerApp {
     /**
      * desc: 配置url过滤bean
@@ -30,16 +30,4 @@ public class ZuulServerApp {
     public static void main(String[] args){
         SpringApplication.run(ZuulServerApp.class, args);
     }
-    /*@Bean
-    public PatternServiceRouteMapper serviceRouteMapper () {
-        return new PatternServiceRouteMapper(
-                "(?<name>.+)-(?<version>v.+$)",
-                "${version}/${name}");
-    }*/
-   /* @Bean
-    @RefreshScope
-    @ConfigurationProperties("zuul")
-    public ZuulProperties zuulProperties(){
-        return new ZuulProperties();
-    }*/
 }

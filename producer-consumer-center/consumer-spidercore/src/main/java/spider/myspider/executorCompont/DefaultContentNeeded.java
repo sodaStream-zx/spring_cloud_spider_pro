@@ -2,7 +2,8 @@ package spider.myspider.executorCompont;
 
 import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.loadEntity.WebSiteConf;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -19,7 +20,7 @@ import spider.spiderCore.iexecutorCom.TransferToParser;
 @Component(value = "defaultContentPageFilter")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultContentNeeded implements IContentNeeded {
-    private static final Logger log = Logger.getLogger(DefaultContentNeeded.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultContentNeeded.class);
     private RegexRule regexRule;
     private TransferToParser<ResponseData> transferToParser;
     private WebSiteConf webSiteConf;

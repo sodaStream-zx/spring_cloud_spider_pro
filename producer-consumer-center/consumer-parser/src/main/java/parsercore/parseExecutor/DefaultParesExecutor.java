@@ -6,7 +6,8 @@ import commoncore.entity.httpEntity.ParseData;
 import commoncore.entity.loadEntity.DomainRule;
 import commoncore.entity.loadEntity.MyNew;
 import commoncore.entity.loadEntity.jpaDao.MyNewDao;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -27,7 +28,7 @@ import java.util.Optional;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultParesExecutor implements IParesExecutor<ParseData> {
 
-    private static final Logger log = Logger.getLogger(DefaultParesExecutor.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(DefaultParesExecutor.class.getName());
     private IParseProcess<MyNew, ParseData, DomainRule> IParseProcess;
     private IRuleFactory<DomainRule> iRuleFactory;
     IRedisDao iRedisDao;

@@ -7,7 +7,8 @@ import commoncore.entity.loadEntity.RedisDbKeys;
 import commoncore.entity.loadEntity.UrlRule;
 import commoncore.entity.loadEntity.WebSiteConf;
 import commoncore.exceptionHandle.MyException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.BoundListOperations;
@@ -27,7 +28,7 @@ import java.util.Optional;
  */
 @Service
 public class MySpider extends AbstractSpider {
-    private static final Logger LOG = Logger.getLogger(MySpider.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(MySpider.class.getSimpleName());
     private RedisTemplate redisTemplate;
     private RedisDbKeys redisDbKeys;
     @Value(value = "${redisDb.config}")

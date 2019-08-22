@@ -6,6 +6,7 @@
         <artifactId>producer-consumer-center</artifactId>
         <groupId>spring_cloud</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -45,41 +46,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-        <!--json-->
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.54</version>
         </dependency>
         <dependency>
             <groupId>spring_cloud</groupId>
             <artifactId>my-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!--springcloud-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
     </dependencies>
 
-    <!--被打包项目必须配置项-->
     <build>
         <plugins>
+            <!--编译插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration><!-- 指定该Main Class为全局的唯一入口 -->
-                    <classifier>exec</classifier>
-                    <mainClass>SpringBootStartRun</mainClass>
-                    <layout>JAR</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

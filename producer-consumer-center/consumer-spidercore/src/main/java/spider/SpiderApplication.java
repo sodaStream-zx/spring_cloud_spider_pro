@@ -1,17 +1,18 @@
 package spider;
 
 
+import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.loadEntity.RedisDbKeys;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -25,9 +26,9 @@ import java.util.Optional;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"spider", "commoncore"})
-@EnableEurekaClient
+@EnableDiscoveryClient
 public class SpiderApplication {
-    private static final Logger LOG = Logger.getLogger(SpiderApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SpiderApplication.class);
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
@@ -44,9 +45,11 @@ public class SpiderApplication {
      **/
     @PostConstruct
     public void monitor() throws SQLException {
-        RedisSerializer stringSerializer = redisTemplate.getStringSerializer();
-        redisTemplate.setKeySerializer(stringSerializer);
-        redisTemplate.setValueSerializer(stringSerializer);
+        redisTemplate.setKeySerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setValueSerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setHashKeySerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setHashValueSerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.afterPropertiesSet();
         LOG.info("环境监视：\n");
         this.loadRedisConfig();
         dataSource.getConnection();

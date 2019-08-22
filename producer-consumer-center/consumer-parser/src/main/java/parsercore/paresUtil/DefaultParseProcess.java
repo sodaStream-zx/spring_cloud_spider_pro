@@ -7,9 +7,10 @@ import commoncore.customUtils.TimeFilter;
 import commoncore.entity.httpEntity.ParseData;
 import commoncore.entity.loadEntity.DomainRule;
 import commoncore.entity.loadEntity.MyNew;
-import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -24,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Component(value = "parseContent")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultParseProcess implements IParseProcess<MyNew, ParseData, DomainRule> {
-    private static final Logger LOG = Logger.getLogger(DefaultParseProcess.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DefaultParseProcess.class);
     private ParesCounter paresCounter;
 
     @Autowired

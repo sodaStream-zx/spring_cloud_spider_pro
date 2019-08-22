@@ -10,7 +10,8 @@ import commoncore.entity.loadEntity.jpaDao.DomainRuleJpaDao;
 import commoncore.entity.loadEntity.jpaDao.RedisDbKeysJpaDao;
 import commoncore.entity.loadEntity.jpaDao.UrlRuleJpaDao;
 import commoncore.entity.loadEntity.jpaDao.WebSiteConfJpaDao;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -32,7 +33,7 @@ import java.util.Optional;
 @Service
 public class ConfigToRedis {
 
-    private static final Logger LOG = Logger.getLogger(ConfigToRedis.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ConfigToRedis.class);
     private RedisTemplate redisTemplate;
     private WebSiteConfJpaDao webSiteConfJpaDao;
     private UrlRuleJpaDao urlRuleJpaDao;

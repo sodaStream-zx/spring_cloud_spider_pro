@@ -2,7 +2,8 @@ package spider.myspider.redisDbComponent.dbutils;
 
 import commoncore.entity.loadEntity.WebSiteConf;
 import commoncore.entity.requestEntity.FetcherTask;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import spider.spiderCore.idbcore.IGeneratorFilter;
  */
 @Component
 public class StatusGeneratorFilter implements IGeneratorFilter<FetcherTask> {
-    private static final Logger log = Logger.getLogger(StatusGeneratorFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(StatusGeneratorFilter.class);
     @Value(value = "${igenerator.maxExecuteCount}")
     private int maxExecuteCount;
     @Autowired

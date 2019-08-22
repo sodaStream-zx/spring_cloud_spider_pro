@@ -1,7 +1,7 @@
 package spider.myspider.httpComponent;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -64,11 +64,10 @@ public class HttpProperties {
         httpProperties.postBodyMap.add("name", "zxx2");
         httpProperties.postBodyMap.add("nihao", "2124");
         httpProperties.postBodyMap.add("jason", "s24");
-        String json = new Gson().toJson(httpProperties.postBodyMap);
+        String json = JSON.toJSONString(httpProperties.postBodyMap, SerializerFeature.PrettyFormat);
         System.out.println("json == " + json);
 
-        LinkedMultiValueMap<String, String> headersMap = new Gson().fromJson(json, new TypeToken<LinkedMultiValueMap<String, String>>() {
-        }.getType());
+        LinkedMultiValueMap<String, String> headersMap = JSON.parseObject(json, LinkedMultiValueMap.class);
         System.out.println("headerMap = " + headersMap);
         MultiValueMap mapva = httpProperties.getPostBodyMap();
         if (mapva.size() > 0) {

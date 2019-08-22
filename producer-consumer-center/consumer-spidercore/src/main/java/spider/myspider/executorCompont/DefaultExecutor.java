@@ -5,7 +5,8 @@ import commoncore.entity.httpEntity.ResponseData;
 import commoncore.entity.loadEntity.WebSiteConf;
 import commoncore.entity.requestEntity.FetcherTask;
 import commoncore.exceptionHandle.MyException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -29,7 +30,7 @@ import java.io.IOException;
 @Component(value = "iExecutor")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultExecutor implements IExecutor<FetcherTask> {
-    private static final Logger log = Logger.getLogger(DefaultExecutor.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultExecutor.class);
 
     private IDbWritor iDbWritor;
     private ISendRequest<ResponseData> iSendRequest;

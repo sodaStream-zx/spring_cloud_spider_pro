@@ -3,7 +3,8 @@ package parsercore.dbUtils.mysqlDao;
 
 import commoncore.entity.loadEntity.DomainRule;
 import commoncore.entity.loadEntity.MyNew;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MysqlDao implements IMysqlDao<MyNew, DomainRule> {
-    private static final Logger LOG = Logger.getLogger(MysqlDao.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MysqlDao.class);
     private JdbcTemplate jdbcTemplate;
 
     @Autowired

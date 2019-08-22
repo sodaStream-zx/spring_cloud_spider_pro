@@ -2,7 +2,8 @@ package zuulcore.config;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
  * @createTime 2018-12-09-20:56
  */
 public class UrlFilter extends ZuulFilter {
-    private static final Logger LOG = Logger.getLogger(UrlFilter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UrlFilter.class);
+
     /**
      * desc:过滤类型  pre 调用之前执行；
      **/
@@ -20,6 +22,7 @@ public class UrlFilter extends ZuulFilter {
     public String filterType() {
         return "pre";
     }
+
     /**
      * desc: 过滤顺序 0 优先级最高
      **/
@@ -44,13 +47,13 @@ public class UrlFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         String name = request.getParameter("ac");
-        LOG.info(request.getRequestURL().toString()+"请求访问");
-        if (null==name||"".equals(name)){
+        LOG.info(request.getRequestURL().toString() + "请求访问");
+        if (null == name || "".equals(name)) {
             LOG.error("ac 验证失败");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
             ctx.setResponseBody("{result:ac is empty!}");
-        }else {
+        } else {
             LOG.info("ac 验证通过");
         }
         return null;

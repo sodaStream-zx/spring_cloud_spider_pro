@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: spider-parse
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: 127.0.0.1:8848
+        namespace: 36f3deb6-bb19-4f9d-abec-f80e1728abdf
+        group: spider
+        #读取自定义data-id 配置，可配置多个，按照顺序读取
+        ext-config[0]:
+          refresh: true
+          data-id: datasource.yml
+          group: spider
+        ext-config[1]:
+          refresh: true
+          data-id: nacos.yml
+          group: spider
+        ext-config[2]:
+          refresh: true
+          data-id: rabbit.yml
+          group: spider
+        ext-config[3]:
+          refresh: true
+          data-id: redis.yml
+          group: spider

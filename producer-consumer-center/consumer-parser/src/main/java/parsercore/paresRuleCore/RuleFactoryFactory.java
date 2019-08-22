@@ -2,7 +2,8 @@ package parsercore.paresRuleCore;
 
 import commoncore.entity.loadEntity.DomainRule;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class RuleFactoryFactory implements IRuleFactory<DomainRule> {
-    private static final Logger log = Logger.getLogger(RuleFactoryFactory.class);
+    private static final Logger log = LoggerFactory.getLogger(RuleFactoryFactory.class);
     private final HashMap<String, DomainRule> ruleList = new HashMap<>(2);
     private IRedisDao iRedisDao;
     private int ruleListMaxSize;

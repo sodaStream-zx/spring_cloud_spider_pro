@@ -1,61 +1,10 @@
 spring:
   application:
-    name: load-config
-  #datasource config
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/webspider?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: 1234
-    type: com.alibaba.druid.pool.DruidDataSource
-
-  #Redis config
-  redis:
-    host: 192.168.88.106
-    # ${spring.cloud.client.ipAddress}
-    port: 6379
-    password: zxx1994
-    timeout: 4000
-    pool:
-      max-wait: 5000
-
-    ###jedis config
-    jedis:
-      pool:
-        max-idle: 10
-        min-idle: 5
-        max-active: 100
-        max-wait: 30000
-
-  #rabbitMQ config
-  rabbitmq:
-    template:
-      retry:
-        enabled: true
-    connection-timeout: 0
-    port: 5672
-    host: ${spring.cloud.client.ipAddress}
-    virtual-host: /
-    username: admin
-    password: admin
+    name: spider-load-config
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-########### eureka config##########
-eureka:
-  instance:
-    hostname: ${spring.cloud.client.ipAddress}
-    instance-id: ${spring.application.name}-${spring.cloud.client.ipAddress}:${server.port}
-    prefer-ip-address: true
-    lease-expiration-duration-in-seconds: 60
-    lease-renewal-interval-in-seconds: 10
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://${spring.cloud.client.ipAddress}:3001/eureka/
 server:
   port: 9898
 #actuator
@@ -75,4 +24,5 @@ redisDb:
   undoneList: undoneList
   doneList: doneList
   redirectList: redirectList
+
 

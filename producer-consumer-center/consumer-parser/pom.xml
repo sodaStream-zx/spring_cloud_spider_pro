@@ -6,6 +6,7 @@
         <artifactId>producer-consumer-center</artifactId>
         <groupId>spring_cloud</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,11 +22,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!--注册服务-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
         <!--mysql数据库连接池-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -40,6 +36,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <!--编译插件-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

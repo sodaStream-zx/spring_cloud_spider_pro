@@ -18,9 +18,10 @@
 package spider.spiderCore.entitys;
 
 
-import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -39,7 +40,7 @@ import java.util.List;
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class Links implements Serializable {
-    private static final Logger log = Logger.getLogger(Links.class);
+    private static final Logger log = LoggerFactory.getLogger(Links.class);
     protected LinkedList<String> dataList = new LinkedList<>();
 
     public Links() {

@@ -1,6 +1,7 @@
 package commoncore.customUtils;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -12,7 +13,7 @@ import java.util.Optional;
  * @author 一杯咖啡
  */
 public class SerializeUtil {
-    private static final Logger LOG = Logger.getLogger(SerializeUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SerializeUtil.class);
 
     /**
      * @Title：${序列化}
