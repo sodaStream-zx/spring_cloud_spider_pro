@@ -1,6 +1,7 @@
 package commoncore.entity.loadEntity;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @createTime 2019-01-21-16:50
  */
 @ConfigurationProperties(value = "redisdb")
+@Configuration
 public class RedisDbKeys implements Serializable {
     private static final long serialVersionUID = -54454855L;
     private int keyId;

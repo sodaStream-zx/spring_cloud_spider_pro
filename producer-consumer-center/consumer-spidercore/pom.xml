@@ -59,6 +59,7 @@
     </dependencies>
 
     <build>
+        <finalName>consumer-spidercore</finalName>
         <plugins>
             <!--编译插件-->
             <plugin>

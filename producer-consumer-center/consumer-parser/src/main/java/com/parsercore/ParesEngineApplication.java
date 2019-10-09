@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -27,7 +26,6 @@ import java.util.Optional;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"commoncore", "com"})
-@EnableJpaRepositories(basePackages = "commoncore.entity")
 public class ParesEngineApplication {
     private static final Logger LOG = LoggerFactory.getLogger(ParesEngineApplication.class);
     @Autowired

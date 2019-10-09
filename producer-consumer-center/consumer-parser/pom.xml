@@ -8,9 +8,10 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>consumer-parser</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>spring_cloud</groupId>
@@ -22,11 +23,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!--mysql数据库连接池-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -37,6 +33,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>consumer-parser</finalName>
         <plugins>
             <!--编译插件-->
             <plugin>

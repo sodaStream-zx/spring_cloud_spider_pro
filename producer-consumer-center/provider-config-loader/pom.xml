@@ -43,6 +43,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>configLoader</finalName>
         <plugins>
             <!--编译插件-->
             <plugin>
