@@ -12,6 +12,7 @@
         <module>manager-center</module>
         <module>producer-consumer-center</module>
         <module>my-common</module>
+        <module>spider-swaggerconfig</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
