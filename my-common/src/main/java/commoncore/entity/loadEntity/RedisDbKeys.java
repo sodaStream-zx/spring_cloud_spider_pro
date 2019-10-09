@@ -1,9 +1,7 @@
 package commoncore.entity.loadEntity;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -11,38 +9,25 @@ import java.io.Serializable;
  * @desc 保存redis 中的配置信息数据表名
  * @createTime 2019-01-21-16:50
  */
-@Component
-@Entity
-@Table
 @ConfigurationProperties(value = "redisdb")
 public class RedisDbKeys implements Serializable {
     private static final long serialVersionUID = -54454855L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int keyId;
     //网站配置表名list
-    @Column
     private String wsConfList;
     //网站提取规则表名hashmap
-    @Column
     private String urlRuleHash;
     //网站正文提取规则hashmap
-    @Column
     private String domainRuleHash;
     //种子表名list
-    @Column
     private String seedsList;
     //已抓取任务list
-    @Column
     private String undoneList;
     //后续任务list
-    @Column
     private String doneList;
     //重试任务list
-    @Column
     private String redirectList;
     //解析队列
-    @Column
     private String parseList;
 
     @Override

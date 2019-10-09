@@ -1,8 +1,5 @@
 package commoncore.entity.loadEntity;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -10,21 +7,13 @@ import java.io.Serializable;
  * @desc spider 请求和url提取规则
  * @createTime 2019-01-21-16:13
  */
-@Component
-@Entity
-@Table
 public class UrlRule implements Serializable {
     private static final long serialVersionUID = -125998875;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int urId;
-    @Column
     private String siteName;
     //提取页面规则
-    @Column
     private String pageParse;
     //url提取规则
-    @Column
     private String urlPares;
 
     @Override

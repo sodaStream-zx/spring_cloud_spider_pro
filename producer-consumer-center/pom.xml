@@ -38,13 +38,13 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.spider</groupId>
-            <artifactId>com-swaggerconfig</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.spider</groupId>
+            <artifactId>spider-swaggerconfig</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
     <build>

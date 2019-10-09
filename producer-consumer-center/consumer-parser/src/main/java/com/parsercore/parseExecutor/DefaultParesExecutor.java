@@ -3,12 +3,12 @@ package com.parsercore.parseExecutor;
 import com.parsercore.dbUtils.mysqlDao.IMysqlDao;
 import com.parsercore.dbUtils.redisDao.IRedisDao;
 import com.parsercore.paresRuleCore.core.IRuleFactory;
+import commoncore.Mappers.MyNewMapper;
 import commoncore.customUtils.BeanGainer;
 import commoncore.customUtils.SleepUtil;
 import commoncore.entity.httpEntity.ParseData;
 import commoncore.entity.loadEntity.DomainRule;
 import commoncore.entity.loadEntity.MyNew;
-import commoncore.entity.loadEntity.jpaDao.MyNewDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +32,15 @@ public class DefaultParesExecutor implements IParesExecutor<ParseData> {
     private IRuleFactory<DomainRule> iRuleFactory;
     IRedisDao iRedisDao;
     IMysqlDao iMysqlDao;
-    private MyNewDao myNewDao;
+    private MyNewMapper myNewMapper;
 
     @Autowired
     public DefaultParesExecutor(IRedisDao iRedisDao,
                                 IMysqlDao iMysqlDao,
-                                MyNewDao myNewDao) {
+                                MyNewMapper myNewMapper) {
         this.iRedisDao = iRedisDao;
         this.iMysqlDao = iMysqlDao;
-        this.myNewDao = myNewDao;
+        this.myNewMapper = myNewMapper;
         this.IParseProcess = BeanGainer.getBean(null, com.parsercore.paresUtil.IParseProcess.class);
         this.iRuleFactory = BeanGainer.getBean(null, IRuleFactory.class);
     }
@@ -58,7 +58,8 @@ public class DefaultParesExecutor implements IParesExecutor<ParseData> {
             Optional<MyNew> myNew = Optional.ofNullable(IParseProcess.paresContent(data, domainRule));
             if (myNew.isPresent()) {
                 log.info(myNew.get().getURL());
-                myNewDao.save(myNew.get());
+                Integer save = myNewMapper.save(myNew.get());
+                log.warn("保存 {}", (save > 0 ? "成功" : "失败"));
                 //IMysqlDao.insertNew(myNew);
                 log.info("DONE::" + data.pumpInfo());
             } else {

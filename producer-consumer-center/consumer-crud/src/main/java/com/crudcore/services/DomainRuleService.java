@@ -1,7 +1,7 @@
 package com.crudcore.services;
 
+import commoncore.Mappers.DomainRuleMapper;
 import commoncore.entity.loadEntity.DomainRule;
-import commoncore.entity.loadEntity.jpaDao.DomainRuleJpaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -13,30 +13,30 @@ import java.util.List;
  */
 public class DomainRuleService implements ICrudService<DomainRule> {
     @Autowired
-    private DomainRuleJpaDao domainRuleJpaDao;
+    private DomainRuleMapper domainRuleMapper;
 
     @Override
     public List<DomainRule> findAll() {
-        return domainRuleJpaDao.findAll();
+        return domainRuleMapper.findAll();
     }
 
     @Override
     public DomainRule findById(int tid) {
-        return domainRuleJpaDao.getOne(tid);
+        return domainRuleMapper.getOne(tid);
     }
 
     @Override
     public DomainRule save(DomainRule domainRule) {
-        return domainRuleJpaDao.save(domainRule);
+        return domainRuleMapper.save(domainRule);
     }
 
     @Override
     public void deleteById(int tid) {
-        domainRuleJpaDao.deleteById(tid);
+        domainRuleMapper.deleteById(tid);
     }
 
     @Override
     public DomainRule modify(DomainRule domainRule) {
-        return domainRuleJpaDao.save(domainRule);
+        return domainRuleMapper.save(domainRule);
     }
 }

@@ -1,7 +1,7 @@
 package com.crudcore.services;
 
+import commoncore.Mappers.UrlRuleMapper;
 import commoncore.entity.loadEntity.UrlRule;
-import commoncore.entity.loadEntity.jpaDao.UrlRuleJpaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -13,30 +13,30 @@ import java.util.List;
  */
 public class UrlRuleService implements ICrudService<UrlRule> {
     @Autowired
-    private UrlRuleJpaDao urlRuleJpaDao;
+    private UrlRuleMapper urlRuleMapper;
 
     @Override
     public List<UrlRule> findAll() {
-        return urlRuleJpaDao.findAll();
+        return urlRuleMapper.findAll();
     }
 
     @Override
     public UrlRule findById(int tid) {
-        return urlRuleJpaDao.getOne(tid);
+        return urlRuleMapper.getOne(tid);
     }
 
     @Override
     public UrlRule save(UrlRule urlRule) {
-        return urlRuleJpaDao.save(urlRule);
+        return urlRuleMapper.save(urlRule);
     }
 
     @Override
     public void deleteById(int tid) {
-        urlRuleJpaDao.deleteById(tid);
+        urlRuleMapper.deleteById(tid);
     }
 
     @Override
     public UrlRule modify(UrlRule urlRule) {
-        return urlRuleJpaDao.save(urlRule);
+        return urlRuleMapper.save(urlRule);
     }
 }

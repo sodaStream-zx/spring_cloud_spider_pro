@@ -1,6 +1,5 @@
 package commoncore.entity.loadEntity;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -8,27 +7,15 @@ import java.io.Serializable;
  *
  * @author Twilight
  */
-@Entity
-@Table(name = "myNew")
 public class MyNew implements Serializable {
     private static final long serialVersionUID = 12345L;
-    @Id
-    @GeneratedValue
     private int newsId;
-    @Column
     private String source;
-    @Column
     private String title;
-    @Column
     private String URL;
-    @Lob
-    @Column
     private String content;
-    @Column
     private String media;
-    @Column
     private String author;
-    @Column
     private String time;
 
     /**

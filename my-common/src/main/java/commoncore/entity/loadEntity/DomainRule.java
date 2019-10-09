@@ -1,9 +1,6 @@
 package commoncore.entity.loadEntity;
 
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -11,25 +8,14 @@ import java.io.Serializable;
  * @desc 解析器配置信息
  * @createTime 2018-11-30-12:40
  */
-@Entity
-@Table(name = "domainRule")
-@Component
 public class DomainRule implements Serializable {
     private static final long serialVersionUID = 2L;
-    @Id
-    @GeneratedValue
     private int domainId;
-    @Column
     private String siteName;
-    @Column
     private String title_rule;
-    @Column
     private String content_rule;
-    @Column
     private String time_rule;
-    @Column
     private String media_rule;
-    @Column
     private String author_rule;
 
     public DomainRule() {

@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>com.spider</groupId>
-            <artifactId>com-swaggerconfig</artifactId>
+            <artifactId>spider-swaggerconfig</artifactId>
             <version>0.0.1</version>
         </dependency>
     </dependencies>

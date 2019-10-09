@@ -1,15 +1,15 @@
 
 package com.loadercore.dao;
 
+import commoncore.Mappers.DomainRuleMapper;
+import commoncore.Mappers.RedisDbKeysMapper;
+import commoncore.Mappers.UrlRuleMapper;
+import commoncore.Mappers.WebSiteConfMapper;
 import commoncore.customUtils.SerializeUtil;
 import commoncore.entity.loadEntity.DomainRule;
 import commoncore.entity.loadEntity.RedisDbKeys;
 import commoncore.entity.loadEntity.UrlRule;
 import commoncore.entity.loadEntity.WebSiteConf;
-import commoncore.entity.loadEntity.jpaDao.DomainRuleJpaDao;
-import commoncore.entity.loadEntity.jpaDao.RedisDbKeysJpaDao;
-import commoncore.entity.loadEntity.jpaDao.UrlRuleJpaDao;
-import commoncore.entity.loadEntity.jpaDao.WebSiteConfJpaDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,27 +35,27 @@ public class ConfigToRedis {
 
     private static final Logger LOG = LoggerFactory.getLogger(ConfigToRedis.class);
     private RedisTemplate redisTemplate;
-    private WebSiteConfJpaDao webSiteConfJpaDao;
-    private UrlRuleJpaDao urlRuleJpaDao;
-    private DomainRuleJpaDao domainRuleJpaDao;
-    private RedisDbKeysJpaDao redisDbKeysJpaDao;
+    private WebSiteConfMapper webSiteConfMapper;
+    private UrlRuleMapper urlRuleMapper;
+    private DomainRuleMapper domainRuleMapper;
+    private RedisDbKeysMapper redisDbKeysMapper;
     private RedisDbKeys redisDbKeys;
     @Value(value = "${redisDb.config}")
     private String redisKeyConfig;
 
     @Autowired
     public ConfigToRedis(RedisTemplate redisTemplate,
-                         WebSiteConfJpaDao webSiteConfJpaDao,
-                         UrlRuleJpaDao urlRuleJpaDao,
-                         DomainRuleJpaDao domainRuleJpaDao,
+                         WebSiteConfMapper webSiteConfMapper,
+                         UrlRuleMapper urlRuleMapper,
+                         DomainRuleMapper domainRuleMapper,
                          RedisDbKeys redisDbKeys,
-                         RedisDbKeysJpaDao redisDbKeysJpaDao) {
+                         RedisDbKeysMapper redisDbKeysMapper) {
         this.redisTemplate = redisTemplate;
-        this.webSiteConfJpaDao = webSiteConfJpaDao;
-        this.urlRuleJpaDao = urlRuleJpaDao;
-        this.domainRuleJpaDao = domainRuleJpaDao;
+        this.webSiteConfMapper = webSiteConfMapper;
+        this.urlRuleMapper = urlRuleMapper;
+        this.domainRuleMapper = domainRuleMapper;
         this.redisDbKeys = redisDbKeys;
-        this.redisDbKeysJpaDao = redisDbKeysJpaDao;
+        this.redisDbKeysMapper = redisDbKeysMapper;
     }
 
 
@@ -80,7 +80,7 @@ public class ConfigToRedis {
      **/
     public void loadRedisKeys() {
         //1.从mysql中读取配置
-        RedisDbKeys mrd = redisDbKeysJpaDao.findAll().get(0);
+        RedisDbKeys mrd = redisDbKeysMapper.findAll().get(0);
         redisDbKeys.configOwn(mrd);
         //2.写入配置到redis中
         Optional<String> redisDKStr = SerializeUtil.serializeToString(redisDbKeys);
@@ -92,7 +92,7 @@ public class ConfigToRedis {
      **/
     public void loadWebConfig() {
         LOG.warn("加载网站规则...");
-        List<WebSiteConf> webs = webSiteConfJpaDao.findAll();
+        List<WebSiteConf> webs = webSiteConfMapper.findAll();
         if (webs.size() > 0) {
             for (WebSiteConf ws : webs) {
                 Optional<String> wsStr = SerializeUtil.serializeToString(ws);
@@ -106,7 +106,7 @@ public class ConfigToRedis {
      **/
     public void loadUrlRule() {
         LOG.warn("加载url解析规则...");
-        List<UrlRule> rules = urlRuleJpaDao.findAll();
+        List<UrlRule> rules = urlRuleMapper.findAll();
         if (rules.size() > 0) {
             for (UrlRule ur : rules) {
                 Optional<String> urStr = SerializeUtil.serializeToString(ur);
@@ -121,7 +121,7 @@ public class ConfigToRedis {
      **/
     public void loadDomainRule() {
         LOG.warn("加载正文解析规则...");
-        List<DomainRule> doRs = domainRuleJpaDao.findAll();
+        List<DomainRule> doRs = domainRuleMapper.findAll();
         if (doRs.size() > 0) {
             for (DomainRule dr : doRs) {
                 Optional<String> drStr = SerializeUtil.serializeToString(dr);

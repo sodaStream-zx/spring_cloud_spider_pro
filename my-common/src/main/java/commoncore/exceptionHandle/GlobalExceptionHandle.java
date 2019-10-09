@@ -18,7 +18,6 @@ import java.io.PrintWriter;
  * @createTime 2019-01-21-00:39
  */
 @ControllerAdvice
-//@Component
 public class GlobalExceptionHandle {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandle.class);
 

@@ -1,8 +1,5 @@
 package commoncore.entity.loadEntity;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -10,21 +7,17 @@ import java.io.Serializable;
  * @desc 网站配置，入口，深度等
  * @createTime 2019-01-21-16:20
  */
-@Component
-@Entity
-@Table
 public class WebSiteConf implements Serializable {
     private static final long serialVersionUID = 9865874136L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //id
     private int webId;
-    @Column
+    //网站名称
     private String siteName;
-    @Column
+    //网站入口
     private String seeds;
-    @Column
+    //抓取深度
     private int deepPath;
-    @Column
+
     private boolean forceFecther = false;
 
     public WebSiteConf() {
